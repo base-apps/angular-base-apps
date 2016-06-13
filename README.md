@@ -1,4 +1,6 @@
-# Foundation for Apps
+# Angular Base for Apps
+
+An open source, community-driven fork of [Foundation for Apps by Zurb](https://github.com/zurb/foundation-apps). Read about the [why](https://github.com/zurb/foundation-apps/issues/812) behind this fork.
 
 [![Build Status](https://travis-ci.org/zurb/foundation-apps.svg)](https://travis-ci.org/zurb/foundation-apps)
 
