@@ -1,5 +1,5 @@
 {
-  "name": "foundation-apps",
+  "name": "angular-base",
   "main": [
     "scss/foundation.scss",
     "dist/js/foundation-apps.js",
@@ -14,12 +14,13 @@
     "angular-animate": "~1.4.7",
     "hammerjs": "~2.0.4"
   },
-  "homepage": "https://github.com/zurb/foundation-apps",
-  "description": "A responsive, Angular-powered framework for web apps from ZURB.",
+  "homepage": "https://github.com/base-apps/angular-base",
+  "description": "A responsive, Angular-powered framework for web apps based on Foundation for Apps.",
   "keywords": [
     "web apps",
     "responsive design",
-    "angular"
+    "angular",
+    "base apps"
   ],
   "license": "MIT",
   "ignore": [
