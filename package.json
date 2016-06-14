@@ -1,27 +1,28 @@
 {
-  "name": "foundation-apps",
+  "name": "angular-base",
   "version": "1.2.0",
-  "description": "A responsive, Angular-powered framework for web apps from ZURB.",
+  "description": "A responsive, Angular-powered framework for web apps based on Foundation for Apps.",
   "scripts": {
     "test": "gulp test",
     "start": "gulp"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/zurb/foundation-apps"
+    "url": "https://github.com/base-apps/angular-base"
   },
   "keywords": [
     "Foundation",
-    "ZURB",
+    "angular",
+    "base-apps",
     "responsive",
     "apps",
     "applications"
   ],
-  "author": "ZURB",
+  "author": "Base Apps",
   "bugs": {
-    "url": "https://github.com/zurb/foundation-apps/issues"
+    "url": "https://github.com/base-apps/angular-base/issues"
   },
-  "homepage": "https://github.com/zurb/foundation-apps",
+  "homepage": "https://github.com/base-apps/angular-base",
   "dependencies": {},
   "devDependencies": {
     "connect-modrewrite": "^0.7.9",
