@@ -6,6 +6,11 @@
     .service('FoundationOffcanvas', FoundationOffcanvas)
   ;
 
+  angular.module('base.offcanvas', ['base.core'])
+    .directive('zfOffcanvas', zfOffcanvas)
+    .service('FoundationOffcanvas', FoundationOffcanvas)
+  ;
+
   FoundationOffcanvas.$inject = ['FoundationApi'];
 
   function FoundationOffcanvas(foundationApi) {

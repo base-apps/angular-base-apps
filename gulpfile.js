@@ -250,7 +250,7 @@ gulp.task('server:start', function() {
 
 gulp.task('test:karma', ['build', 'sass'], function() {
   var testFiles = [
-    'build/assets/js/foundation.js',
+    'build/assets/js/base.js',
     'build/assets/js/dependencies.js',
     'build/assets/js/app.js',
     'bower_components/angular-mocks/angular-mocks.js',

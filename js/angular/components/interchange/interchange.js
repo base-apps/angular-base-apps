@@ -5,6 +5,10 @@
     .directive('zfInterchange', zfInterchange)
   ;
 
+  angular.module('base.interchange', ['base.core', 'base.mediaquery'])
+    .directive('zfInterchange', zfInterchange)
+  ;
+
   zfInterchange.$inject = [ '$compile', '$http', '$templateCache', 'FoundationApi', 'FoundationMQ'];
 
   function zfInterchange($compile, $http, $templateCache, foundationApi, foundationMQ) {

@@ -8,7 +8,12 @@
     //foundation
     'foundation',
     'foundation.dynamicRouting',
-    'foundation.dynamicRouting.animations'
+    'foundation.dynamicRouting.animations',
+
+    // base
+    'base',
+    'base.dynamicRouting',
+    'base.dynamicRouting.animations'
   ])
     .config(config)
     .run(run)
@@ -26,10 +31,10 @@
 
     $locationProvider.hashPrefix('!');
   }
-  
+
 
   function run() {
     FastClick.attach(document.body);
   }
-    
+
 })();

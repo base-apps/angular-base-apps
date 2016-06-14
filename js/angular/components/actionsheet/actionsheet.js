@@ -9,6 +9,14 @@
     .service('FoundationActionSheet', FoundationActionSheet)
   ;
 
+  angular.module('base.actionsheet', ['foundation.core'])
+    .controller('ZfActionSheetController', zfActionSheetController)
+    .directive('zfActionSheet', zfActionSheet)
+    .directive('zfAsContent', zfAsContent)
+    .directive('zfAsButton', zfAsButton)
+    .service('FoundationActionSheet', FoundationActionSheet)
+  ;
+
   FoundationActionSheet.$inject = ['FoundationApi'];
 
   function FoundationActionSheet(foundationApi) {

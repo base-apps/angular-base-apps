@@ -6,6 +6,11 @@
     .directive('zfIconic', zfIconic)
   ;
 
+  angular.module('base.iconic', [])
+    .provider('Iconic', Iconic)
+    .directive('zfIconic', zfIconic)
+  ;
+
   // iconic wrapper
   function Iconic() {
     // default path
