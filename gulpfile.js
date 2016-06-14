@@ -184,7 +184,7 @@ gulp.task('sass', function() {
       errLogToConsole: true
     }))
     .pipe($.autoprefixer({
-      browsers: ['last 2 versions', 'ie 10']
+      browsers: ['> 1%', 'last 2 versions', 'ie >= 10', 'iOS >= 7', 'Safari >= 7', 'Opera >= 25']
     }))
     .pipe(gulp.dest('./build/assets/css/'));
 });
@@ -252,11 +252,12 @@ gulp.task('test:karma', ['build', 'sass'], function(done) {
 });
 
 gulp.task('test:sass', function() {
-  return $.rubySass('./tests/unit/scss/tests.scss', {
-    loadPath: paths.sass.testPaths,
-    style: 'nested',
-    bundleExec: true
-  })
+  return gulp.src('./tests/unit/scss/tests.scss')
+    .pipe($.sass({
+      includePaths: paths.sass.testPaths,
+      outputStyle: 'nested',
+      errLogToConsole: true
+    }))
     .on('data', function(data) {
       console.log(data.contents.toString());
     });
