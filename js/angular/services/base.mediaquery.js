@@ -8,6 +8,14 @@
     .service('FoundationMQ', FoundationMQ)
   ;
 
+
+  angular.module('base.mediaquery', ['base.core'])
+    .run(mqInitRun)
+    .factory('FoundationMQInit', FoundationMQInit)
+    .factory('mqHelpers', mqHelpers)
+    .service('FoundationMQ', FoundationMQ)
+  ;
+
   mqInitRun.$inject = ['FoundationMQInit'];
 
   function mqInitRun(mqInit) {
@@ -127,7 +135,7 @@
       if ((str[0] === '"' && str[str.length - 1] === '"') || (str[0] === '\'' && str[str.length - 1] === '\'')) {
         str = str.trim().slice(1, -1); // some browsers re-quote string style values
       }
-      
+
       if (!str) {
         return styleObject;
       }

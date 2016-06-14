@@ -19,4 +19,21 @@
     'foundation.tabs'
   ]);
 
+  angular.module('base', [
+    'base.core',
+    'base.mediaquery',
+    'base.accordion',
+    'base.actionsheet',
+    'base.common',
+    'base.iconic',
+    'base.interchange',
+    'base.modal',
+    'base.notification',
+    'base.offcanvas',
+    'base.panel',
+    'base.popup',
+    'base.tabs'
+  ]);
+
+
 })();

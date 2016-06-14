@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 // Foundation for Apps
 //
@@ -27,8 +27,8 @@ var gulp        = require('gulp'),
     modRewrite  = require('connect-modrewrite'),
     routes      = require('./bin/gulp-dynamic-routing'),
     merge       = require('merge-stream'),
-    octophant   = require('octophant')
-;
+    octophant   = require('octophant'),
+    Server      = require('karma').Server;
 
 var addVersions = function() {
   var pkg = require('./package.json');
@@ -133,8 +133,6 @@ gulp.task('copy', function() {
 
 // Copy page templates and generate routes
 gulp.task('copy:templates', ['javascript'], function() {
-  var config = [];
-
   return gulp.src(paths.html.templates)
     .pipe(routes({
       path: 'build/assets/js/routes.js',
@@ -179,8 +177,6 @@ gulp.task('css', ['sass'], function() {
 
 // Compile stylesheets
 gulp.task('sass', function() {
-  var filter = $.filter(['*.css']);
-
   return gulp.src('docs/assets/scss/app.scss')
     .pipe($.sass({
       includePaths: paths.sass.loadPaths,
@@ -241,35 +237,18 @@ gulp.task('server:start', function() {
       return [
         modRewrite(['^[^\\.]*$ /index.html [L]'])
       ];
-    },
+    }
   });
 });
 
 // 8. TESTING
 // - - - - - - - - - - - - - - -
 
-gulp.task('test:karma', ['build', 'sass'], function() {
-  var testFiles = [
-    'build/assets/js/foundation.js',
-    'build/assets/js/dependencies.js',
-    'build/assets/js/app.js',
-    'bower_components/angular-mocks/angular-mocks.js',
-    'bower_components/jsdiff/diff.js',
-    'build/assets/css/app.css',
-    'build/assets/css/app_node.css',
-    'tests/unit/common/*Spec.js'
-  ];
-
-  return gulp.src(testFiles)
-    .pipe($.karma({
-      configFile: 'karma.conf.js',
-      action: 'run'
-    }))
-    .on('error', function(err) {
-      throw err;
-    })
-  ;
-
+gulp.task('test:karma', ['build', 'sass'], function(done) {
+  new Server({
+    configFile: __dirname + '/karma.conf.js',
+    singleRun: true
+  }, done).start();
 });
 
 gulp.task('test:sass', function() {
@@ -342,7 +321,40 @@ gulp.task('deploy:dist', ['clean:dist'], function(cb) {
     .pipe(gulp.dest('./dist/js'))
     .pipe($.uglify())
     .pipe($.rename('foundation-apps-templates.min.js'))
+    .pipe(gulp.dest('./dist/js'));
+
+  gulp.src('scss/foundation.scss')
+    .pipe($.sass({
+      outputStyle: 'nested',
+      errLogToConsole: true
+    }))
+    .pipe($.autoprefixer({
+      browsers: ['last 2 versions', 'ie 10']
+    }))
+    .pipe($.rename('base-apps.css'))
+    .pipe(gulp.dest('./dist/css'))
+    .pipe($.minifyCss())
+    .pipe($.rename('base-apps.min.css'))
+    .pipe(gulp.dest('./dist/css'));
+
+  gulp.src(paths.javascript.foundation)
+    .pipe($.concat('base-apps.js'))
     .pipe(gulp.dest('./dist/js'))
+    .pipe($.uglify())
+    .pipe($.rename('base-apps.min.js'))
+    .pipe(gulp.dest('./dist/js'));
+
+  gulp.src(paths.html.partials)
+    .pipe($.ngHtml2js({
+      prefix: 'components/',
+      moduleName: 'base',
+      declareModule: false
+    }))
+    .pipe($.concat('base-apps-templates.js'))
+    .pipe(gulp.dest('./dist/js'))
+    .pipe($.uglify())
+    .pipe($.rename('base-apps-templates.min.js'))
+    .pipe(gulp.dest('./dist/js'));
 
   cb();
 });

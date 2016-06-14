@@ -5,6 +5,10 @@
     .service('FoundationAnimation', FoundationAnimation)
   ;
 
+  angular.module('base.core.animation', [])
+    .service('FoundationAnimation', FoundationAnimation)
+  ;
+
   FoundationAnimation.$inject = ['$q'];
 
   function FoundationAnimation($q) {

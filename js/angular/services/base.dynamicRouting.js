@@ -8,6 +8,13 @@
     .run(DynamicRoutingRun)
   ;
 
+  angular.module('base.dynamicRouting', ['ui.router'])
+    .provider('$FoundationState', FoundationState)
+    .controller('DefaultController', DefaultController)
+    .config(DynamicRoutingConfig)
+    .run(DynamicRoutingRun)
+  ;
+
   FoundationState.$inject = ['$stateProvider'];
 
   function FoundationState($stateProvider) {
@@ -48,7 +55,7 @@
             data: getData(page),
             animation: buildAnimations(page),
           };
-          
+
           $stateProvider.state(page.name, state);
         }
       });
@@ -64,7 +71,7 @@
               '': buildState(page.path, page)
             }
           };
-          
+
           angular.forEach(page.children, function(sub) {
             state.views[sub.name + '@' + page.name] = buildState(sub.path, page);
           });
@@ -74,7 +81,7 @@
     };
 
     this.$get = angular.noop;
-    
+
     function getData(page) {
       var data = { vars: {} };
       if (page.data) {
@@ -88,7 +95,7 @@
       angular.extend(data.vars, page);
       return data;
     }
-    
+
     function buildState(path, state) {
       return {
         templateUrl: path,

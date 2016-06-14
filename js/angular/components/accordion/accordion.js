@@ -7,6 +7,13 @@
     .directive('zfAccordionItem', zfAccordionItem)
   ;
 
+
+  angular.module('base.accordion', [])
+    .controller('ZfAccordionController', zfAccordionController)
+    .directive('zfAccordion', zfAccordion)
+    .directive('zfAccordionItem', zfAccordionItem)
+  ;
+
   zfAccordionController.$inject = ['$scope'];
 
   function zfAccordionController($scope) {
