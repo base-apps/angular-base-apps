@@ -273,11 +273,12 @@ gulp.task('test:karma', ['build', 'sass'], function() {
 });
 
 gulp.task('test:sass', function() {
-  return $.rubySass('./tests/unit/scss/tests.scss', {
-    loadPath: paths.sass.testPaths,
-    style: 'nested',
-    bundleExec: true
-  })
+  return gulp.src('./tests/unit/scss/tests.scss')
+    .pipe($.sass({
+      includePaths: paths.sass.testPaths,
+      outputStyle: 'nested',
+      errLogToConsole: true
+    }))
     .on('data', function(data) {
       console.log(data.contents.toString());
     });
