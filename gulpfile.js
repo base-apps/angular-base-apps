@@ -322,6 +322,40 @@ gulp.task('deploy:dist', ['clean:dist'], function(cb) {
     .pipe($.uglify())
     .pipe($.rename('foundation-apps-templates.min.js'))
     .pipe(gulp.dest('./dist/js'));
+
+  gulp.src('scss/foundation.scss')
+    .pipe($.sass({
+      outputStyle: 'nested',
+      errLogToConsole: true
+    }))
+    .pipe($.autoprefixer({
+      browsers: ['last 2 versions', 'ie 10']
+    }))
+    .pipe($.rename('base-apps.css'))
+    .pipe(gulp.dest('./dist/css'))
+    .pipe($.minifyCss())
+    .pipe($.rename('base-apps.min.css'))
+    .pipe(gulp.dest('./dist/css'));
+
+  gulp.src(paths.javascript.foundation)
+    .pipe($.concat('base-apps.js'))
+    .pipe(gulp.dest('./dist/js'))
+    .pipe($.uglify())
+    .pipe($.rename('base-apps.min.js'))
+    .pipe(gulp.dest('./dist/js'));
+
+  gulp.src(paths.html.partials)
+    .pipe($.ngHtml2js({
+      prefix: 'components/',
+      moduleName: 'base',
+      declareModule: false
+    }))
+    .pipe($.concat('base-apps-templates.js'))
+    .pipe(gulp.dest('./dist/js'))
+    .pipe($.uglify())
+    .pipe($.rename('base-apps-templates.min.js'))
+    .pipe(gulp.dest('./dist/js'));
+
   cb();
 });
 
