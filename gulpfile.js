@@ -188,7 +188,7 @@ gulp.task('sass', function() {
       errLogToConsole: true
     }))
     .pipe($.autoprefixer({
-      ['> 1%', 'last 2 versions', 'ie >= 10', 'iOS >= 7', 'Safari >= 7', 'Opera >= 25', 'not ie <= 9']
+      browsers: ['> 1%', 'last 2 versions', 'ie >= 10', 'iOS >= 7', 'Safari >= 7', 'Opera >= 25', 'not ie <= 9']
     }))
     .pipe(gulp.dest('./build/assets/css/'));
 });
