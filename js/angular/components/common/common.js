@@ -11,6 +11,16 @@
     .directive('zfCloseAll', zfCloseAll)
   ;
 
+  angular.module('base.common', ['base.core'])
+    .directive('zfClose', zfClose)
+    .directive('zfOpen', zfOpen)
+    .directive('zfToggle', zfToggle)
+    .directive('zfEscClose', zfEscClose)
+    .directive('zfSwipeClose', zfSwipeClose)
+    .directive('zfHardToggle', zfHardToggle)
+    .directive('zfCloseAll', zfCloseAll)
+  ;
+
   zfClose.$inject = ['FoundationApi'];
 
   function zfClose(foundationApi) {

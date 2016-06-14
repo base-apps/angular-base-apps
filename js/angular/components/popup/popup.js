@@ -7,6 +7,12 @@
     .service('FoundationPopup', FoundationPopup)
   ;
 
+  angular.module('base.popup', ['base.core'])
+    .directive('zfPopup', zfPopup)
+    .directive('zfPopupToggle', zfPopupToggle)
+    .service('FoundationPopup', FoundationPopup)
+  ;
+
   FoundationPopup.$inject = ['FoundationApi'];
 
   function FoundationPopup(foundationApi) {

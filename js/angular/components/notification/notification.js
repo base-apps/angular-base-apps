@@ -11,6 +11,16 @@
     .service('FoundationNotification', FoundationNotification)
   ;
 
+  angular.module('base.notification', ['base.core'])
+    .controller('ZfNotificationController', ZfNotificationController)
+    .directive('zfNotificationSet', zfNotificationSet)
+    .directive('zfNotification', zfNotification)
+    .directive('zfNotificationStatic', zfNotificationStatic)
+    .directive('zfNotify', zfNotify)
+    .factory('NotificationFactory', NotificationFactory)
+    .service('FoundationNotification', FoundationNotification)
+  ;
+
   FoundationNotification.$inject = ['FoundationApi', 'NotificationFactory'];
 
   function FoundationNotification(foundationApi, NotificationFactory) {
