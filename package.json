@@ -1,6 +1,7 @@
 {
   "name": "angular-base",
   "version": "1.2.0",
+  "license": "MIT",
   "description": "A responsive, Angular-powered framework for web apps based on Foundation for Apps.",
   "scripts": {
     "test": "gulp test",

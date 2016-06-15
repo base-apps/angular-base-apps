@@ -80,6 +80,11 @@ var paths = {
       'js/angular/**/*.js',
       '!js/angular/app.js'
     ],
+    base: [
+      'js/vendor/**/*.js',
+      'js/angular/**/*.js',
+      '!js/angular/app.js'
+    ],
     libs: [
       'bower_components/fastclick/lib/fastclick.js',
       'bower_components/viewport-units-buggyfill/viewport-units-buggyfill.js',
@@ -289,8 +294,8 @@ gulp.task('test:motion', ['server:start', 'test:motion:compile'], function() {
 
 // Deploy distribution files
 gulp.task('deploy:dist', ['clean:dist'], function(cb) {
-  var filter = $.filter(['*.css']);
 
+  // legacy package
   gulp.src('scss/foundation.scss')
     .pipe($.sass({
       outputStyle: 'nested',
@@ -324,7 +329,8 @@ gulp.task('deploy:dist', ['clean:dist'], function(cb) {
     .pipe($.rename('foundation-apps-templates.min.js'))
     .pipe(gulp.dest('./dist/js'));
 
-  gulp.src('scss/foundation.scss')
+  // base package
+  gulp.src('scss/base.scss')
     .pipe($.sass({
       outputStyle: 'nested',
       errLogToConsole: true
@@ -338,7 +344,7 @@ gulp.task('deploy:dist', ['clean:dist'], function(cb) {
     .pipe($.rename('base-apps.min.css'))
     .pipe(gulp.dest('./dist/css'));
 
-  gulp.src(paths.javascript.foundation)
+  gulp.src(paths.javascript.base)
     .pipe($.concat('base-apps.js'))
     .pipe(gulp.dest('./dist/js'))
     .pipe($.uglify())
