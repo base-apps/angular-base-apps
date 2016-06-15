@@ -30,22 +30,6 @@ var gulp        = require('gulp'),
     octophant   = require('octophant'),
     Server      = require('karma').Server;
 
-var addVersions = function() {
-  var pkg = require('./package.json');
-  return $.rename(function(path) {
-    // Inject the version number into the filename
-    var base = path.basename.split('.');
-    if (base.length === 1) {
-      base = base + '-' + pkg.version;
-    }
-    else {
-      base = base.slice(0, -1).join('') + '-' + pkg.version + '.' + base[base.length - 1];
-    }
-    path.basename = base;
-    path.dirname = '';
-  });
-};
-
 // 2. VARIABLES
 // - - - - - - - - - - - - - - -
 
@@ -364,29 +348,6 @@ gulp.task('deploy:dist', ['clean:dist'], function(cb) {
     .pipe(gulp.dest('./dist/js'));
 
   cb();
-});
-
-// Deploy documentation
-gulp.task('deploy:docs', ['build'], function() {
-  return gulp.src('build/**')
-    .pipe($.prompt.confirm("Make sure everything looks good before you deploy."))
-    .pipe($.rsync({
-      root: 'build',
-      hostname: 'deployer@72.32.134.77',
-      destination: '/home/deployer/sites/foundation-apps/current'
-    }));
-});
-
-// Deploy to CDN
-gulp.task('deploy:cdn', ['deploy:dist'], function() {
-  return gulp.src('./dist/**/*', {base:'./dist/'})
-    .pipe($.filter(['**/*.css', '**/*.js']))
-    .pipe(addVersions())
-    .pipe($.rsync({
-      hostname: 'deployer@72.32.134.77',
-      destination: '/home/deployer/sites/foundation-apps-cdn/current',
-      relative: false
-    }));
 });
 
 // 10. NOW BRING IT TOGETHER
