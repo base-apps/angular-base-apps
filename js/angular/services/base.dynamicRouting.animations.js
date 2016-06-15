@@ -5,6 +5,10 @@
     .directive('uiView', uiView)
   ;
 
+  angular.module('base.dynamicRouting.animations', ['base.dynamicRouting'])
+    .directive('uiView', uiView)
+  ;
+
   uiView.$inject = ['$rootScope', '$state'];
 
   function uiView($rootScope, $state) {
@@ -84,7 +88,7 @@
         if (event.targetScope === scope && animation.enter) {
           element.removeClass(animation.enter);
         }
-        
+
         animationEnded = true;
 
       }

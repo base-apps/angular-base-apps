@@ -6,6 +6,11 @@
     .service('FoundationPanel', FoundationPanel)
   ;
 
+  angular.module('base.panel', ['base.core'])
+    .directive('zfPanel', zfPanel)
+    .service('FoundationPanel', FoundationPanel)
+  ;
+
   FoundationPanel.$inject = ['FoundationApi'];
 
   function FoundationPanel(foundationApi) {

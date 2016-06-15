@@ -13,6 +13,18 @@
     .service('FoundationTabs', FoundationTabs)
   ;
 
+  angular.module('base.tabs', ['base.core'])
+    .controller('ZfTabsController', ZfTabsController)
+    .directive('zfTabs', zfTabs)
+    .directive('zfTabContent', zfTabContent)
+    .directive('zfTab', zfTab)
+    .directive('zfTabIndividual', zfTabIndividual)
+    .directive('zfTabHref', zfTabHref)
+    .directive('zfTabCustom', zfTabCustom)
+    .directive('zfTabContentCustom', zfTabContentCustom)
+    .service('FoundationTabs', FoundationTabs)
+  ;
+
   FoundationTabs.$inject = ['FoundationApi'];
 
   function FoundationTabs(foundationApi) {

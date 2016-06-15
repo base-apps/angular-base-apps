@@ -10,6 +10,16 @@
     .run(Setup);
   ;
 
+
+  angular.module('base.core', [
+      'base.core.animation'
+    ])
+    .service('FoundationApi', FoundationApi)
+    .service('FoundationAdapter', FoundationAdapter)
+    .factory('Utils', Utils)
+    .run(Setup);
+  ;
+
   FoundationApi.$inject = ['FoundationAnimation'];
 
   function FoundationApi(FoundationAnimation) {
