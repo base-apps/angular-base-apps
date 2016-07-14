@@ -1,5 +1,5 @@
 {
-  "name": "angular-base",
+  "name": "angular-base-apps",
   "version": "1.2.1",
   "main": [
     "scss/foundation.scss",
