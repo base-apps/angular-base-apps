@@ -52,6 +52,10 @@
       helpers.headerHelper(['foundation-mq']);
       extractedMedia = helpers.getStyle('.foundation-mq', 'font-family');
 
+      if (!extractedMedia.match(/([\w]+=[\d]+[a-z]*&?)+/)) {
+        extractedMedia = 'small=0&medium=40rem&large=75rem&xlarge=90rem&xxlarge=120rem';
+      }
+
       mediaQueries = helpers.parseStyleToObject((extractedMedia));
       mediaQuerySizes = [];
 
