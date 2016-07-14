@@ -25,14 +25,14 @@ npm install angular-base-apps --save
 
 ## Documentation
 
-Documentation for the latest release is available at https://base-apps.github.io/angular-base
+Documentation for the latest release is available at https://base-apps.github.io/angular-base-apps
 
 ## Building this Repo
 
 If you want to work with the source code directly or compile our documentation, follow these steps:
 ```
-git clone https://github.com/base-apps/angular-base.git
-cd angular-base
+git clone https://github.com/base-apps/angular-base-apps.git
+cd angular-base-apps
 npm install
 ```
 
