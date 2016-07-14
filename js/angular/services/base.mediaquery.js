@@ -22,9 +22,9 @@
     mqInit.init();
   }
 
-  FoundationMQInit.$inject = ['mqHelpers', 'FoundationApi', 'Utils'];
+  FoundationMQInit.$inject = ['mqHelpers', 'FoundationApi', 'Utils', 'FoundationMQ'];
 
-  function FoundationMQInit(helpers, foundationApi, u){
+  function FoundationMQInit(helpers, foundationApi, u, foundationMQ){
     var factory = {};
     var namedQueries = {
       'default' : 'only screen',
@@ -51,10 +51,6 @@
 
       helpers.headerHelper(['foundation-mq']);
       extractedMedia = helpers.getStyle('.foundation-mq', 'font-family');
-
-      if (!extractedMedia.match(/([\w]+=[\d]+[a-z]*&?)+/)) {
-        extractedMedia = 'small=0&medium=40rem&large=75rem&xlarge=90rem&xxlarge=120rem';
-      }
 
       mediaQueries = helpers.parseStyleToObject((extractedMedia));
       mediaQuerySizes = [];
@@ -91,6 +87,9 @@
       });
 
       window.addEventListener('resize', u.throttle(function() {
+        // any resize event causes a clearing of the media cache
+        foundationMQ.clearCache();
+
         foundationApi.publish('resize', 'window resized');
       }, 50));
     }
@@ -171,19 +170,20 @@
         mediaQueryResultCache = {},
         queryMinWidthCache = {};
 
-    foundationApi.subscribe('resize', function() {
-      // any new resize event causes a clearing of the media cache
-      mediaQueryResultCache = {};
-    });
-
     service.getMediaQueries = getMediaQueries;
     service.match = match;
     service.matchesMedia = matchesMedia;
     service.matchesMediaOrSmaller = matchesMediaOrSmaller;
     service.matchesMediaOnly = matchesMediaOnly;
     service.collectScenariosFromElement = collectScenariosFromElement;
+    service.clearCache = clearCache;
 
     return service;
+
+    // METHOD INTENDED FOR INTERNAL USE ONLY
+    function clearCache() {
+      mediaQueryResultCache = {};
+    }
 
     function getMediaQueries() {
       return foundationApi.getSettings().mediaQueries;

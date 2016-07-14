@@ -152,9 +152,11 @@
 
         injectSvg(element[0]);
 
-        foundationApi.subscribe('resize', function () {
-          // only run update on current element
-          ico.update(element[0]);
+        // subscribe for resize events
+        foundationApi.subscribe('resize', resize);
+
+        scope.$on("$destroy", function() {
+          foundationApi.unsubscribe('resize', resize);
         });
 
         // handle dynamic updating of src
@@ -253,6 +255,11 @@
               }
             }
           });
+        }
+
+        function resize() {
+          // run update on current element
+          ico.update(element[0]);
         }
       }
 

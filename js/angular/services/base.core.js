@@ -51,8 +51,27 @@
     }
 
     function unsubscribe(name, callback) {
+      var listenerIndex = -1, i, resizeListeners;
+
       if (listeners[name] !== undefined) {
-        delete listeners[name];
+        if (name == 'resize') {
+          resizeListeners = listeners['resize'];
+          for (i = 0; i < resizeListeners.length; i++) {
+            if (resizeListeners[i] === callback) {
+              // listener found
+              listenerIndex = i;
+              break;
+            }
+          }
+
+          if (listenerIndex != -1) {
+            // remove listener
+            resizeListeners.splice(listenerIndex, 1);
+          }
+        } else {
+          // delete all listeners
+          delete listeners[name];
+        }
       }
       if (typeof callback == 'function') {
           callback.call(this);
@@ -128,11 +147,13 @@
     }
 
     function animateAndAdvise(element, futureState, animationIn, animationOut) {
+      var msgPrefix = "animation-" + (futureState ? "open" : "close");
+      publish(element[0].id, msgPrefix + "-started");
       var promise = FoundationAnimation.animate(element, futureState, animationIn, animationOut);
       promise.then(function() {
-        publish(element[0].id, futureState ? 'active-true' : 'active-false');
+        publish(element[0].id, msgPrefix + "-finished");
       }, function() {
-        publish(element[0].id, 'active-aborted');
+        publish(element[0].id, msgPrefix + "-aborted");
       });
       return promise;
     }

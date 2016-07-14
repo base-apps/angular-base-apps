@@ -92,22 +92,30 @@
 
 
         scope.hide = function() {
-          scope.active = false;
-          tetherElement();
-          tether.disable();
+          if (scope.active) {
+            scope.active = false;
+            adviseActiveChanged();
+            tetherElement();
+            tether.disable();
+          }
+
           return;
         };
 
         scope.show = function(newTarget) {
-          scope.active = true;
-          tetherElement(newTarget);
-          tether.enable();
+          if (!scope.active) {
+            scope.active = true;
+            adviseActiveChanged();
+            tetherElement(newTarget);
+            tether.enable();
+          }
 
           return;
         };
 
         scope.toggle = function(newTarget) {
           scope.active = !scope.active;
+          adviseActiveChanged();
           tetherElement(newTarget);
 
           if(scope.active) {
@@ -137,6 +145,11 @@
           tetherInit = true;
         }
 
+        function adviseActiveChanged() {
+          if (!angular.isUndefined(attrs.zfAdvise)) {
+            foundationApi.publish(attrs.id, scope.active ? 'activated' : 'deactivated');
+          }
+        }
       }
     }
   }
