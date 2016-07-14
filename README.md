@@ -19,8 +19,8 @@ You'll need the following software installed to get started.
 
 The Sass and JavaScript components are available on Bower and npm.
 ```
-bower install angular-base --save
-npm install angular-base --save
+bower install angular-base-apps --save
+npm install angular-base-apps --save
 ```
 
 You can also use our command-line interface to quickly setup a basic Angular Base for Apps project. It includes a pre-built Gulpfile that compiles an Angular-powered web app for you.
