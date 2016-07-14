@@ -23,30 +23,9 @@ bower install angular-base-apps --save
 npm install angular-base-apps --save
 ```
 
-You can also use our command-line interface to quickly setup a basic Angular Base for Apps project. It includes a pre-built Gulpfile that compiles an Angular-powered web app for you.
+## Documentation
 
-Install it with this command:
-```
-npm install -g angular-base-cli bower gulp
-```
-
-Now you can make a new project:
-```
-angular-base new myApp
-cd myApp
-```
-
-**note:** The CLI is not yet available.
-
-While working on your project, run:
-```
-npm start
-```
-
-This will assemble the templates, static assets, Sass, and JavaScript. You can view the test server at this URL:
-```
-http://localhost:8080
-```
+Documentation for the latest release is available at https://base-apps.github.io/angular-base
 
 ## Building this Repo
 
@@ -61,6 +40,12 @@ While you're working on the code, run:
 ```
 npm start
 ```
+
+This will assemble the templates, static assets, Sass, and JavaScript. You can view the test server at this URL:
+```
+http://localhost:8080
+```
+
 
 The documentation can be viewed at the same URL as above.
 
