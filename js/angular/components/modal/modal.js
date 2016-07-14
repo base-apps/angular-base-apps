@@ -290,7 +290,7 @@
         for(var i = 0; i < props.length; i++) {
           var prop = props[i];
 
-          if(config[prop]) {
+          if(angular.isDefined(config[prop])) {
             switch (prop) {
               case 'animationIn':
                 element.attr('animation-in', config[prop]);
@@ -299,7 +299,7 @@
                 element.attr('animation-out', config[prop]);
                 break;
               case 'overlayClose':
-                element.attr('overlay-close', config[prop] === 'false' ? 'false' : 'true'); // must be string, see postLink() above
+                element.attr('overlay-close', (config[prop] === 'false' || config[prop] === false) ? 'false' : 'true'); // must be string, see postLink() above
                 break;
               case 'ignoreAllClose':
                 element.attr('zf-ignore-all-close', 'zf-ignore-all-close');
