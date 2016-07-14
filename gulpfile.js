@@ -273,35 +273,36 @@ gulp.task('test:motion', ['server:start', 'test:motion:compile'], function() {
   gulp.watch(['js/**/*', 'tests/motion/**/*'], ['test:motion:compile']);
 });
 
-// 9. DEPLOYMENT
+// 9. DISTRIBUTION BUILD
 // - - - - - - - - - - - - - - -
 
-// Deploy distribution files
-gulp.task('deploy:dist', ['clean:dist'], function(cb) {
+// Distribution files
+gulp.task('build:dist', ['clean:dist'], function() {
+  var merged = merge();
 
   // legacy package
-  gulp.src('scss/foundation.scss')
+  merged.add(gulp.src('scss/foundation.scss')
     .pipe($.sass({
       outputStyle: 'nested',
       errLogToConsole: true
     }))
     .pipe($.autoprefixer({
-      browsers: ['last 2 versions', 'ie 10']
+      browsers: ['> 1%', 'last 2 versions', 'ie >= 10', 'iOS >= 7', 'Safari >= 7', 'Opera >= 25']
     }))
     .pipe($.rename('foundation-apps.css'))
     .pipe(gulp.dest('./dist/css'))
     .pipe($.minifyCss())
     .pipe($.rename('foundation-apps.min.css'))
-    .pipe(gulp.dest('./dist/css'));
+    .pipe(gulp.dest('./dist/css')));
 
-  gulp.src(paths.javascript.foundation)
+  merged.add(gulp.src(paths.javascript.foundation)
     .pipe($.concat('foundation-apps.js'))
     .pipe(gulp.dest('./dist/js'))
     .pipe($.uglify())
     .pipe($.rename('foundation-apps.min.js'))
-    .pipe(gulp.dest('./dist/js'));
+    .pipe(gulp.dest('./dist/js')));
 
-  gulp.src(paths.html.partials)
+  merged.add(gulp.src(paths.html.partials)
     .pipe($.ngHtml2js({
       prefix: 'components/',
       moduleName: 'foundation',
@@ -311,31 +312,31 @@ gulp.task('deploy:dist', ['clean:dist'], function(cb) {
     .pipe(gulp.dest('./dist/js'))
     .pipe($.uglify())
     .pipe($.rename('foundation-apps-templates.min.js'))
-    .pipe(gulp.dest('./dist/js'));
+    .pipe(gulp.dest('./dist/js')));
 
   // base package
-  gulp.src('scss/base.scss')
+  merged.add(gulp.src('scss/base.scss')
     .pipe($.sass({
       outputStyle: 'nested',
       errLogToConsole: true
     }))
     .pipe($.autoprefixer({
-      browsers: ['last 2 versions', 'ie 10']
+      browsers: ['> 1%', 'last 2 versions', 'ie >= 10', 'iOS >= 7', 'Safari >= 7', 'Opera >= 25']
     }))
     .pipe($.rename('base-apps.css'))
     .pipe(gulp.dest('./dist/css'))
     .pipe($.minifyCss())
     .pipe($.rename('base-apps.min.css'))
-    .pipe(gulp.dest('./dist/css'));
+    .pipe(gulp.dest('./dist/css')));
 
-  gulp.src(paths.javascript.base)
+  merged.add(gulp.src(paths.javascript.base)
     .pipe($.concat('base-apps.js'))
     .pipe(gulp.dest('./dist/js'))
     .pipe($.uglify())
     .pipe($.rename('base-apps.min.js'))
-    .pipe(gulp.dest('./dist/js'));
+    .pipe(gulp.dest('./dist/js')));
 
-  gulp.src(paths.html.partials)
+  merged.add(gulp.src(paths.html.partials)
     .pipe($.ngHtml2js({
       prefix: 'components/',
       moduleName: 'base',
@@ -345,9 +346,9 @@ gulp.task('deploy:dist', ['clean:dist'], function(cb) {
     .pipe(gulp.dest('./dist/js'))
     .pipe($.uglify())
     .pipe($.rename('base-apps-templates.min.js'))
-    .pipe(gulp.dest('./dist/js'));
+    .pipe(gulp.dest('./dist/js')));
 
-  cb();
+  return merged;
 });
 
 // 10. NOW BRING IT TOGETHER
@@ -378,3 +379,30 @@ gulp.task('default', ['build', 'server:start'], function() {
   // Watch JavaScript
   gulp.watch(paths.javascript.foundation.concat(paths.javascript.docs), ['javascript']);
 });
+
+gulp.task('bump:patch', function() { return bump('patch'); });
+gulp.task('bump:minor', function() { return bump('minor'); });
+gulp.task('bump:major', function() { return bump('major'); });
+
+gulp.task('publish:patch', ['build:dist', 'bump:patch'], function() { return publish(); });
+gulp.task('publish:minor', ['build:dist', 'bump:minor'], function() { return publish(); });
+gulp.task('publish:major', ['build:dist', 'bump:major'], function() { return publish(); });
+
+function bump(importance) {
+  // get all the files to bump version in
+  return gulp.src(['./package.json', './bower.json'])
+    // bump the version number in those files
+    .pipe($.bump({type: importance}))
+    // save it back to filesystem
+    .pipe(gulp.dest('./'));
+}
+
+function publish() {
+  return gulp.src(['./package.json', './bower.json', './dist/**'])
+    // commit the changes
+    .pipe($.git.commit('bump version'))
+    // read only one file to get the version number
+    .pipe($.filter('package.json'))
+    // **tag it in the repository**
+    .pipe($.tagVersion());
+}
