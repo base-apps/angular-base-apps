@@ -5,7 +5,10 @@
   "description": "A responsive, Angular-powered framework for web apps based on Foundation for Apps.",
   "scripts": {
     "test": "gulp test",
-    "start": "gulp"
+    "start": "gulp",
+    "publish-patch": "gulp publish:patch && git push --follow-tags",
+    "publish-minor": "gulp publish:minor && git push --follow-tags",
+    "publish-major": "gulp publish:major && git push --follow-tags"
   },
   "repository": {
     "type": "git",
