@@ -45,6 +45,7 @@
     "allmighty-autocomplete": "*",
     "marked": "~0.3.2",
     "jsdiff": "~1.0.8",
-    "bootcamp": "~1.1.7"
+    "bootcamp": "~1.1.7",
+    "highlightjs": "~9.5.0"
   }
 }
