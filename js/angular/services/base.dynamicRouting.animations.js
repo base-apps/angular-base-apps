@@ -106,22 +106,24 @@
 
       function resetParent() {
         element.parent().removeClass('position-absolute');
-        if(presetHeight !== true) {
+        if(element.parent()[0] && presetHeight !== true) {
           element.parent()[0].style.height = null;
         }
       }
 
       function prepareParent() {
-        var parentHeight = parseInt(element.parent()[0].style.height);
-        var elHeight = parseInt(window.getComputedStyle(element[0], null).getPropertyValue('height'));
-        var tempHeight = parentHeight > 0 ? parentHeight : elHeight > 0 ? elHeight : '';
+        if (element.parent()[0]) {
+          var parentHeight = parseInt(element.parent()[0].style.height);
+          var elHeight = parseInt(window.getComputedStyle(element[0], null).getPropertyValue('height'));
+          var tempHeight = parentHeight > 0 ? parentHeight : elHeight > 0 ? elHeight : '';
 
-        if(parentHeight > 0) {
-          presetHeight = true;
+          if(parentHeight > 0) {
+            presetHeight = true;
+          }
+
+          element.parent()[0].style.height = tempHeight + 'px';
+          element.parent().addClass('position-absolute');
         }
-
-        element.parent()[0].style.height = tempHeight + 'px';
-        element.parent().addClass('position-absolute');
       }
     }
   }

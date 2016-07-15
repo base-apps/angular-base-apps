@@ -51,6 +51,7 @@
     function compile(tElement, tAttrs, transclude) {
       var type = 'panel';
       var animate = tAttrs.hasOwnProperty('zfAdvise') ? foundationApi.animateAndAdvise : foundationApi.animate;
+      var forceAnimation = tAttrs.hasOwnProperty('forceAnimation');
 
       return {
         pre: preLink,
@@ -106,10 +107,12 @@
         foundationApi.subscribe(attrs.id, function(msg) {
           var panelPosition = $window.getComputedStyle(element[0]).getPropertyValue("position");
 
-          // patch to prevent panel animation on larger screen devices
-          // don't run animation on grid elements, only panel
-          if (panelPosition == 'static' || panelPosition == 'relative') {
-            return;
+          if (!forceAnimation) {
+            // patch to prevent panel animation on larger screen devices
+            // don't run animation on grid elements, only panel
+            if (panelPosition == 'static' || panelPosition == 'relative') {
+              return;
+            }
           }
 
           if(msg == 'show' || msg == 'open') {
@@ -127,11 +130,10 @@
           return;
         });
 
-        // function finish(el)
-
         scope.hide = function() {
           if(scope.active){
             scope.active = false;
+            adviseActiveChanged();
             animate(element, scope.active, animationIn, animationOut);
           }
 
@@ -141,6 +143,7 @@
         scope.show = function() {
           if(!scope.active){
             scope.active = true;
+            adviseActiveChanged();
             animate(element, scope.active, animationIn, animationOut);
           }
 
@@ -149,8 +152,8 @@
 
         scope.toggle = function() {
           scope.active = !scope.active;
+          adviseActiveChanged();
           animate(element, scope.active, animationIn, animationOut);
-
           return;
         };
 
@@ -161,9 +164,14 @@
           if (!matchMedia(globalQueries.medium).matches && srcEl.href && srcEl.href.length > 0) {
             // Hide element if it can't match at least medium
             scope.hide();
-            animate(element, scope.active, animationIn, animationOut);
           }
         });
+
+        function adviseActiveChanged() {
+          if (!angular.isUndefined(attrs.zfAdvise)) {
+            foundationApi.publish(attrs.id, scope.active ? 'activated' : 'deactivated');
+          }
+        }
       }
     }
   }

@@ -1,4 +1,5 @@
 @import "panel";
+@import "motion";
 
 /*
   THE GRID
@@ -174,8 +175,8 @@ $block-grid-max-size: 6 !default;
 */
 @mixin grid-nest($nest: true) {
   @if ($nest) {
-    margin-left: -1rem;
-    margin-right: -1rem;
+    margin-left: -($block-padding);
+    margin-right: -($block-padding);
   }
 }
 /*
@@ -190,6 +191,23 @@ $block-grid-max-size: 6 !default;
 @mixin grid-offset($offset: false) {
   @if ($offset != false) {
     margin-left: percentage($offset / $total-columns);
+  }
+}
+
+@mixin grid-panel-animating($isAnimating: true) {
+  $sel1:  map-get($motion-class, in);
+  $sel1A: map-get($motion-class-active, in);
+  $sel2:  map-get($motion-class, out);
+  $sel2A: map-get($motion-class-active, out);
+
+  @if ($isAnimating == true) {
+    &.#{$sel1}.#{$sel1A}, &.#{$sel2}.#{$sel2A} {
+      @content;
+    }
+  } @else {
+    &:not(.#{$sel1}):not(.#{$sel1A}):not(.#{$sel2}):not(.#{$sel2A}) {
+      @content;
+    }
   }
 }
 
@@ -274,7 +292,7 @@ $block-grid-max-size: 6 !default;
   list-style-type: none;
 
   > li, > div, > section {
-    padding: 0 1rem 1rem;
+    padding: 0 $block-padding $block-padding;
     flex: 0 0 percentage(1 / $up);
     max-width: percentage(1 / $up);
   }
@@ -338,8 +356,6 @@ $block-grid-max-size: 6 !default;
 
     // Grids inside content blocks should wrap by default, so they mimic traditional float grids
     .grid-block {
-      margin-left: -($block-padding);
-      margin-right: -($block-padding);
       flex-wrap: wrap;
       overflow: visible;
 
@@ -351,6 +367,12 @@ $block-grid-max-size: 6 !default;
       .grid-content {
         overflow: visible;
       }
+    }
+
+    // Grids inside content blocks should undo padding
+    &:not(.collapse) > .grid-block {
+      margin-left: -($block-padding);
+      margin-right: -($block-padding);
     }
   }
   .grid-container {
@@ -370,7 +392,24 @@ $block-grid-max-size: 6 !default;
         @include grid-block;
 
         // Override panel styles
-        &.panel { @include grid-panel-reset; }
+        &.panel {
+          &.is-active {
+            @include grid-panel-animating(true) {
+              position: absolute;
+              display: block;
+            }
+            @include grid-panel-animating(false) {
+              @include grid-panel-reset;
+            }
+          }
+          &:not(.is-active) {
+            display: none;
+
+            @include grid-panel-animating(true) {
+              position: absolute;
+            }
+          }
+        }
       }
     }
     .#{$size}-grid-content {
@@ -380,7 +419,24 @@ $block-grid-max-size: 6 !default;
         @include grid-content;
 
         // Override panel styles
-        &.panel { @include grid-panel-reset; }
+        &.panel {
+          &.is-active {
+            @include grid-panel-animating(true) {
+              position: absolute;
+              display: block;
+            }
+            @include grid-panel-animating(false) {
+              @include grid-panel-reset;
+            }
+          }
+          &:not(.is-active) {
+            display: none;
+
+            @include grid-panel-animating(true) {
+              position: absolute;
+            }
+          }
+        }
       }
     }
   }

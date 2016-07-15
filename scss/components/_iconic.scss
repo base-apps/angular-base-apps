@@ -2,7 +2,7 @@
 // ------
 //
 // A sample of 24 flexible, easily schemable icons from the folks at Iconic.
-// 
+//
 // Features:
 //  - 24 icons
 //  - Built-in coloring and sizing classes
@@ -85,11 +85,11 @@ $iconic-accent-stroke: $iconic-accent-fill !default;
   }
 
   @each $color in map-keys($foundation-colors) {
-    .iconic-color-#{$color} {
+    .iconic-color-#{$color}, .iconic.iconic-color-#{$color}, a.iconic-color-#{$color} > .iconic {
       @include color-icon(map-get($foundation-colors, $color));
     }
   }
-  .iconic-color-secondary {
+  .iconic-color-secondary, a > .iconic.iconic-color-secondary {
     @include color-icon($secondary-color);
   }
 }

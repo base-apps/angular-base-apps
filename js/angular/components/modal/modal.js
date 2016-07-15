@@ -71,7 +71,7 @@
         var dialog = angular.element(element.children()[0]);
         var animateFn = attrs.hasOwnProperty('zfAdvise') ? foundationApi.animateAndAdvise : foundationApi.animate;
 
-        scope.active = scope.active || false;
+        scope.active = false;
         scope.overlay = attrs.overlay === 'false' ? false : true;
         scope.overlayClose = attrs.overlayClose === 'false' ? false : true;
 
@@ -88,26 +88,31 @@
         };
 
         scope.hide = function() {
-          scope.active = false;
-          animate();
+          if (scope.active) {
+            scope.active = false;
+            adviseActiveChanged();
+            animate();
+          }
           return;
         };
 
         scope.show = function() {
-          scope.active = true;
-          animate();
-          dialog.tabIndex = -1;
-          dialog[0].focus();
+          if (!scope.active) {
+            scope.active = true;
+            adviseActiveChanged();
+            animate();
+            dialog.tabIndex = -1;
+            dialog[0].focus();
+          }
           return;
         };
 
         scope.toggle = function() {
           scope.active = !scope.active;
+          adviseActiveChanged();
           animate();
           return;
         };
-
-        init();
 
         //setup
         foundationApi.subscribe(attrs.id, function(msg) {
@@ -126,6 +131,12 @@
           return;
         });
 
+        function adviseActiveChanged() {
+          if (!angular.isUndefined(attrs.zfAdvise)) {
+            foundationApi.publish(attrs.id, scope.active ? 'activated' : 'deactivated');
+          }
+        }
+
         function animate() {
           //animate both overlay and dialog
           if(!scope.overlay) {
@@ -136,19 +147,13 @@
           // due to a bug where the overlay fadeIn is essentially covering up
           // the dialog's animation
           if (!scope.active) {
-            animateFn(element, scope.active, overlayIn, overlayOut);
+            foundationApi.animate(element, scope.active, overlayIn, overlayOut);
           }
           else {
             element.addClass('is-active');
           }
 
           animateFn(dialog, scope.active, animationIn, animationOut);
-        }
-
-        function init() {
-          if(scope.active) {
-            scope.show();
-          }
         }
       }
     }
@@ -165,6 +170,7 @@
           id = config.id || foundationApi.generateUuid(),
           attached = false,
           destroyed = false,
+          activated = false,
           html,
           element,
           fetched,
@@ -177,6 +183,7 @@
         'animationOut',
         'overlay',
         'overlayClose',
+        'ignoreAllClose',
         'class'
       ];
 
@@ -196,11 +203,11 @@
         assembleDirective();
       }
 
+      self.isActive = isActive;
       self.activate = activate;
       self.deactivate = deactivate;
       self.toggle = toggle;
       self.destroy = destroy;
-
 
       return {
         isActive: isActive,
@@ -217,44 +224,53 @@
       }
 
       function isActive() {
-        return !destroyed && scope && scope.active === true;
+        return !destroyed && scope && activated;
       }
 
       function activate() {
         checkStatus();
         $timeout(function() {
-          init(true);
-          foundationApi.publish(id, 'show');
+          activated = true;
+          init('show');
         }, 0, false);
       }
 
       function deactivate() {
         checkStatus();
         $timeout(function() {
-          init(false);
-          foundationApi.publish(id, 'hide');
+          activated = false;
+          init('hide');
         }, 0, false);
       }
 
       function toggle() {
         checkStatus();
         $timeout(function() {
-          init(true);
-          foundationApi.publish(id, 'toggle');
+          activated = !activated;
+          init('toggle');
         }, 0, false);
       }
 
-      function init(state) {
+      function init(msg) {
         $q.when(fetched).then(function() {
+          var delayMsg = false;
+
           if(!attached && html.length > 0) {
-            var modalEl = container.append(element);
-
+            container.append(element);
             $compile(element)(scope);
-
             attached = true;
+
+            // delay message so directive can be compiled and respond to messages
+            delayMsg = true;
           }
 
-          scope.active = state;
+          if (delayMsg) {
+            $timeout(function() {
+              foundationApi.publish(id, msg);
+            }, 0, false);
+          } else {
+            foundationApi.publish(id, msg);
+          }
         });
       }
 
@@ -274,7 +290,7 @@
         for(var i = 0; i < props.length; i++) {
           var prop = props[i];
 
-          if(config[prop]) {
+          if(angular.isDefined(config[prop])) {
             switch (prop) {
               case 'animationIn':
                 element.attr('animation-in', config[prop]);
@@ -283,7 +299,10 @@
                 element.attr('animation-out', config[prop]);
                 break;
               case 'overlayClose':
-                element.attr('overlay-close', config[prop] === 'false' ? 'false' : 'true'); // must be string, see postLink() above
+                element.attr('overlay-close', (config[prop] === 'false' || config[prop] === false) ? 'false' : 'true'); // must be string, see postLink() above
+                break;
+              case 'ignoreAllClose':
+                element.attr('zf-ignore-all-close', 'zf-ignore-all-close');
                 break;
               case 'class':
                 if (angular.isString(config[prop])) {
