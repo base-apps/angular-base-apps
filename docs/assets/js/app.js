@@ -9,9 +9,9 @@
     'hljs',
 
     //foundation
-    'foundation',
-    'foundation.dynamicRouting',
-    'foundation.dynamicRouting.animations'
+    'base',
+    'base.dynamicRouting',
+    'base.dynamicRouting.animations'
   ])
     .config(config)
     .controller('MotionUIController', MotionUIController)
