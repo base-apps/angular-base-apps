@@ -33,7 +33,6 @@
     'foundation.dynamicRouting.animations'
   ])
     .config(config)
-    .run(run)
   ;
 
   config.$inject = ['$urlRouterProvider', '$locationProvider'];
@@ -51,11 +50,6 @@
     // Use this to set the prefix for hash-bangs
     // Example: example.com/#!/page
     $locationProvider.hashPrefix('!');
-  }
-
-  function run() {
-    // Enable FastClick to remove the 300ms click delay on touch devices
-    FastClick.attach(document.body);
   }
 
 })();
@@ -119,19 +113,60 @@ FoundationApi.toggleAnimation(element, futureState)
 FoundationApi.animate(element, futureState, animationIn, animationOut)
 </hljs>
 
-    <p>Another helper that works by replicating Angular's built-in <code>ngAnimate</code> functionality with several custom additions to work with Foundation's internal MotionUI. These are mostly for internal use; however, you can easily animate in and animate out any element the same way <code>$animate</code> works.</p>
+    <p>Another helper that works by replicating Angular's built-in <code>ngAnimate</code> functionality with several custom additions to work with Foundation's internal MotionUI. These are mostly for internal use; however, you can easily animate in and animate out any element the same way <code>$animate</code> works.  This function returns a <code>$q</code> promise which is resolved when the animation completes or rejected when the animation is aborted.</p>
 
 <hljs language="javascript">
 FoundationApi.animateAndAdvise(element, futureState, animationIn, animationOut)
 </hljs>
 
-    <p>Does the same thing as FoundationApi.animate, with the addition of firing an event at the completion of an animation. Events are <code>'active-true'</code> and <code>'active-false'</code>.</p>
+    <p class="docs-module-api-desc">Does the same thing as FoundationApi.animate, with the addition of firing notification events based on the status of the component. Events are sent using <code>FoundationApi.publish</code> with the provided element's <code>id</code>.  The following notifications are sent:</p>
+    <ul>
+      <li><code>'activated'</code> - sent when the component considers itself active</li>
+      <li><code>'deactivated'</code> - sent when the component considers itself deactivated</li>
+      <li><code>'animation-open-started'</code> - sent when the component starts the open animation</li>
+      <li><code>'animation-open-finished'</code> - sent when the component finishes the open animation</li>
+      <li><code>'animation-open-aborted'</code> - sent if the open animation is aborted</li>
+      <li><code>'animation-close-started'</code> - sent when the component starts the close animation</li>
+      <li><code>'animation-close-finished'</code> - sent when the component finishes the close animation</li>
+      <li><code>'animation-close-aborted'</code> - sent if the close animation is aborted</li>
+    </ul>
 
 <hljs language="javascript">
 FoundationApi.closeActiveElements(options)
 </hljs>
 
     <p>This utility is used to close all foundation closable elements. It selects any element that has an <code>is-active</code> class and an <code>zf-closable</code> attribute. You're welcome to make your own directives and plugins work with it. It publishes a <code>close</code> message to the ID of the selected element.</p>
+  </section>
+
+  <section>
+    <h4 class="docs-module-name"><pre>zf-advise</pre> (Attribute)</h4>
+
+    <p>Use the zf-advise attribute on any component to enable the component to send notification events (see <code>FoundationApi.animateAndAdvise</code>).</p>
+
+<hljs language="html">
+<div id="modal" zf-modal="" zf-advise="">
+  <!-- ... -->
+</div>
+</hljs>
+
+<hljs language="javascript">
+FoundationApi.subscribe('modal', function(message) {
+  switch (message) {
+    case 'activated': ...,
+    case 'deactivated': ...,
+    case 'animation-open-started': ...,
+    case 'animation-open-finished': ...,
+    case 'animation-open-aborted': ...,
+    case 'animation-close-started': ...,
+    case 'animation-close-finished': ...,
+    case 'animation-close-aborted': ...
+  }
+});
+</hljs>
+<div id="modal" zf-modal="" zf-advise="">
+  <!-- ... -->
+</div>
+</hljs>
   </section>
 
   <section>
@@ -157,7 +192,41 @@ FoundationApi.closeActiveElements(options)
 
     <p>The Initiator also publishes an event to the <code>FoundationApi</code> called "resize" whenever the window is resized (throttled to happen 50ms at a time).</p>
 
-    <p>The FoundationMQ service is used to get the media query settings by shorthand instead of using FoundationAPI. There are several helper functions that allow Interchange to exist but can be used outside of Interchange as well to sort through various MediaQuery scenarios to get a list of media queries that match the current browser configuration and also to gather these scenarios from a parent element that holds Interchange-style elements</p>
+    <p>The FoundationMQ service is used to get the media query settings by shorthand instead of using FoundationAPI. There are several helper functions that allow Interchange to exist but can be used outside of Interchange as well to sort through various MediaQuery scenarios to get a list of media queries that match the current browser configuration and also to gather these scenarios from a parent element that holds Interchange-style elements.  These methods are used by the <code>zf-if</code>, <code>zf-show</code> and <code>zf-hide</code> directives.</p>
+
+<hljs language="javascript">
+FoundationMQ.matchesMedia(breakpoint)
+</hljs>
+
+    <p class="docs-module-api-desc">Returns <code>true</code> if the media matches the breakpoint otherwise returns <code>false</code>.</p>
+    <ul>
+      <li>On a large device, the query <code>FoundationMQ.matchesMedia('medium')</code> returns <strong>true</strong></li>
+      <li>On a medium device, the query <code>FoundationMQ.matchesMedia('medium')</code> returns <strong>true</strong></li>
+      <li>On a small device, the query <code>FoundationMQ.matchesMedia('medium')</code> returns <strong>false</strong></li>
+    </ul>
+
+<hljs language="javascript">
+FoundationMQ.matchesMediaOrSmaller(breakpoint)
+</hljs>
+
+    <p class="docs-module-api-desc">Returns <code>true</code> if the media matches the breakpoint exactly or if a smaller breakpoint matches otherwise returns <code>false</code>.</p>
+    <ul>
+      <li>On a large device, the query <code>FoundationMQ.matchesMediaOrSmaller('medium')</code> returns <strong>false</strong></li>
+      <li>On a medium device, the query <code>FoundationMQ.matchesMediaOrSmaller('medium')</code> returns <strong>true</strong></li>
+      <li>On a small device, the query <code>FoundationMQ.matchesMediaOrSmaller('medium')</code> returns <strong>true</strong></li>
+    </ul>
+
+<hljs language="javascript">
+FoundationMQ.matchesMediaOnly(breakpoint)
+</hljs>
+
+    <p class="docs-module-api-desc">Returns <code>true</code> if the media matches the breakpoint exactly otherwise returns <code>false</code>.</p>
+    <ul>
+      <li>On a large device, the query <code>FoundationMQ.matchesMediaOnly('medium')</code> returns <strong>false</strong></li>
+      <li>On a medium device, the query <code>FoundationMQ.matchesMediaOnly('medium')</code> returns <strong>true</strong></li>
+      <li>On a small device, the query <code>FoundationMQ.matchesMediaOnly('medium')</code> returns <strong>false</strong></li>
+    </ul>
+
   </section>
 </section>
 
@@ -327,7 +396,7 @@ FoundationApi.closeActiveElements(options)
 
     <p>A wrapper for the Iconic data attributes, which allows you to specify the name of an icon insteead of the entire file path.</p>
 
-<hljs>
+<hljs language="html">
 <img zf-iconic icon="thumb" size="medium">
 </hljs>
   </section>
@@ -348,9 +417,9 @@ FoundationApi.closeActiveElements(options)
 
   <p class="docs-module-deps"><strong>Dependencies:</strong> <span class="pre">foundation.core</span>, <span class="pre">foundation.mediaquery</span></p>
 
-  <p>Includes the <code>zf-interchange</code> directive for loading HTML partials responsively.</p>
+  <p>Includes the <code>zf-interchange</code>, <code>zf-if</code>, <code>zf-show</code>, and <code>zf-hide</code> directives for dynamically rendering content responsively.</p>
 
-  <p>Check out the <a ui-sref="interchange">documentation for Interchange</a> to learn how to use it.</p>
+  <p>Check out the <a ui-sref="interchange">documentation for Interchange</a> to learn how to use them.</p>
 </section>
 
 <hr>
@@ -420,7 +489,7 @@ $scope.modal = new ModalFactory(config);
 
     <p>Creates an empty container to house multiple notifications.</p>
 
-<hljs>
+<hljs language="html">
 <zf-notification-set id="notifications" position="top-left"></zf-notification-set>
 </hljs>
   </section>
@@ -446,10 +515,10 @@ var notifSet = new NotificationFactory({
 
 // on some event, call the following
 notifSet.addNotification({
-      title: "Great success!",
-      content: "Congratulations",
-      color: 'success'
-    });
+  title: "Great success!",
+  content: "Congratulations",
+  color: 'success'
+});
 </hljs>
 <div class="button" ng-click="addNotification()">Add a notification</div>
   </section>

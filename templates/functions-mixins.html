@@ -10,7 +10,7 @@
 
 <p>This function takes a background color, and returns an appropriate foreground color based on if the background is light or dark.</p>
 
-<hljs>
+<hljs language="scss">
 .component {
   $bg: dodgerblue;
   background: $bg;
@@ -25,7 +25,7 @@
 
 <p>This function takes a color, and makes it darker if the color is light, or lighter if the color is dark. We use this function to create appropriate offset colors for components.</p>
 
-<hljs>
+<hljs language="scss">
 .component {
   background: dodgerblue;
   // Adjust the intensity of the scaling by adding a percentage value after the color. 5% is the default
@@ -37,7 +37,7 @@
 
 <p>Rems are very useful, but thinking in rems can be hard. Our rem calculation function will convert a pixel value to the correct rem value, based on the base font size of the document.</p>
 
-<hljs>
+<hljs language="scss">
 .component {
   font-size: rem-calc(20); // = 1.25rem
 }
@@ -51,7 +51,7 @@
 
 <p>Generates a CSS triangle, for use as a dropdown arrow, modal tail, or anything you can think of.</p>
 
-<hljs no-escape>
+<hljs no-escape language="scss">
 .component {
   &::after {
     @include css-triangle(
@@ -67,10 +67,10 @@
 
 <p>If you have an element that only contains floated elements, you'll need to add a clearfix to give the container proper height.</p>
 
-<hljs>
+<hljs language="scss">
 .component {
   @include clearfix;
-  
+
   .floaty-thing {
     float: left;
   }
