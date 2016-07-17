@@ -161,7 +161,7 @@ function config($stateProvider) {
 
 <p>A sliding element can originate from any of the element's four sides, and optionally fade in and out as it slides.</p>
 
-<hljs>
+<hljs language="scss">
 .customSlideIn {
   @include slide(
     $dir: in, // Specify in or out
@@ -178,7 +178,7 @@ function config($stateProvider) {
 
 <p>Fading in and out works how you'd expect.</p>
 
-<hljs>
+<hljs language="scss">
 .customFadeIn {
   @include fade(
     $dir: in, // Specify in or out
@@ -195,7 +195,7 @@ function config($stateProvider) {
 
 <p>To create a hinge swing effect, specify the direction of the hinge, the axis to swing on, and the direction to swing.</p>
 
-<hljs>
+<hljs language="scss">
 .customHingeIn {
   @include hinge(
     $dir: in, // Specify in or out
@@ -215,7 +215,7 @@ function config($stateProvider) {
 
 <p>Specify a start and end amount to scale, and optionally have the element fade in or out as well.</p>
 
-<hljs>
+<hljs language="scss">
 .customScaleIn {
   @include scale(
     $dir: in, // Specify in or out
@@ -233,7 +233,7 @@ function config($stateProvider) {
 
 <p>To create a spinning element, specify the distance the element spins and what direction it goes. The turn amount uses the <code>turn</code> unit&mdash;</p>
 
-<hljs>
+<hljs language="scss">
 .customSpinIn {
   @include spin(
     $dir: in, // Specify in or out

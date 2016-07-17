@@ -20,7 +20,7 @@ title: Off Canvas
 
 <p>An off-canvas pane must be placed <em>before</em> the frame of your app. This allows the frame to animate in and out along with the pane.</p>
 
-<hljs>
+<hljs language="html">
 <zf-offcanvas position="left">
   <!-- Off-canvas content -->
 </zf-offcanvas>
@@ -31,7 +31,7 @@ title: Off Canvas
 
 <p>The pane can be positioned at the top, right, bottom, or left of the screen with the `position` attribute.</p>
 
-<hljs>
+<hljs language="html">
 <zf-offcanvas position="left">
 </zf-offcanvas>
 
@@ -41,7 +41,7 @@ title: Off Canvas
 
 Add the `zf-open`, `zf-close`, and `zf-toggle` directives to other elements to open and close the off-canvas pane.
 
-<hljs>
+<hljs language="html">
 <zf-offcanvas id="menu" position="left">
   <a zf-close class="close-button">&times;</a>
   <!-- Modal content -->
@@ -56,14 +56,14 @@ Add the `zf-open`, `zf-close`, and `zf-toggle` directives to other elements to o
 
 <p>Add the `detached` class to an off-canvas to change how the animation works. Instead of sliding with the frame, the off-canvas pane will stay in place, as the pane slides to reveal the pane.</p>
 
-<hljs>
+<hljs language="html">
 <zf-offcanvas position="left" class="detached">
 </zf-offcanvas>
 </hljs>
 
 <p>Lastly, the off-canvas pane supports the coloring classes `primary` and `dark`:</p>
 
-<hljs>
+<hljs language="html">
 <zf-offcanvas position="left" class="primary">
 </zf-offcanvas>
 </hljs>
@@ -74,7 +74,7 @@ Add the `zf-open`, `zf-close`, and `zf-toggle` directives to other elements to o
 
 <p>Use the off-canvas mixins to write your own custom classes for this component.</p>
 
-<hljs no-escape>
+<hljs no-escape language="scss">
 .custom-off-canvas {
   // Extend the off-canvas selector to get the basic structural styles
   @extend %off-canvas;

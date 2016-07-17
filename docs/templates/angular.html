@@ -107,7 +107,7 @@ animationOut: fadeOut
 
   <section>
     <h4><pre>parent</pre></h4>
-    
+
     <p>Defines the parent view for the current one. You can use this as an alternative to the <code>parent.child</code> syntax.</p>
 
 <hljs>
@@ -136,7 +136,7 @@ controller: HomeController
 
     <p>Note that override a controller disables front-matter settings (except dynamic routing). If you want to use your own controller AND keep this feature, you can extend the <code>DefaultController</code>:</p>
 
-<hljs>
+<hljs language="javascript">
 angular.module('application')
     .controller('MyController', MyController)
 ;
@@ -192,8 +192,8 @@ abstract: true
 
 <hljs language="javascript">
 locationProvider.html5Mode({
-  enabled: true,
-  requireBase: true
+  'enabled': true,
+  'requireBase': true
 });
 </hljs>
 
@@ -223,20 +223,22 @@ url: my/sub/page
 
     <p>You can easily link to it like so:</p>
 
-<hljs>
+<hljs language="html">
 <a ui-sref="mypage">my page</a>
 </hljs>
 
     <p><code>ui-sref</code> can also take in parameters for pages that accept parameters. Here's another example page that uses parameters:</p>
 
 <hljs>
+---
 name: inbox.message
 url: inbox/:id
+---
 </hljs>
 
     <p>The page can be accessed via:</p>
 
-<hljs>
+<hljs language="html">
 <a ui-sref="inbox.message({ id: 5 })">5th message</a>
 </hljs>
 
@@ -247,7 +249,7 @@ url: inbox/:id
 
     <p>Now let's say we want to create a menu of links and want to make sure that the active link gets an extra special class to indicate that it is, indeed, active. There are two very similar ways to do this. The first one is using <code>ui-sref-active</code>, you can place this directive on either the <code>ui-sref</code> element or on its parent. When active, it will add a class of your choosing:</p>
 
-<hljs>
+<hljs language="html">
 <ul>
   <li ui-sref-active="my-active-class"><a ui-sref="mypage">My page</a></li>
   <li ui-sref-active="my-active-class"><a ui-sref="myotherpage">My page</a></li>

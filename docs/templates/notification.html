@@ -35,7 +35,7 @@ title: Notification
 <p>You can create a Static Notification with this basic HTML:</p>
 <div class="grid-block">
   <div class="small-12 medium-6 grid-content">
-<hljs>
+<hljs language="html">
 <!-- notification trigger -->
 <a class="button" href="#" zf-open="my-notify">Static Notification</a>
 <!-- notification content -->
@@ -57,7 +57,7 @@ title: Notification
 <p>You can create a Dynamic Notification with this basic HTML:</p>
 <div class="grid-block">
   <div class="small-12 medium-6 grid-content">
-    <hljs>
+    <hljs language="html">
     <!-- notification trigger -->
     <a class="button" href="#"
     	title="My notification"
@@ -81,13 +81,13 @@ title: Notification
 
 <p>And then send it a notification with via FoundationApi:</p>
 
-<hljs>
+<hljs language="javascript">
 foundationApi.publish('main-notifications', { title: 'Test', content: 'Test2' });
 </hljs>
 
 <p>You can also use the `zf-notify` directive for simpler messages and prototyping:</p>
 
-<hljs>
+<hljs language="html">
 <a href="#" zf-notify title="Title of notification" content="Content of notification">Launch notification</a>
 </hljs>
 
@@ -107,7 +107,7 @@ foundationApi.publish('main-notifications', { title: 'Test', content: 'Test2' })
 
 <p>Use our mixins to create custom notification styles.</p>
 
-<hljs>
+<hljs language="scss">
 .custom-notification {
   // Extend the base selector to get core styles
   @extend %notification;
