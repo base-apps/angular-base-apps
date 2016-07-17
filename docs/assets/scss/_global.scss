@@ -16,7 +16,7 @@
   > .grid-container {
     margin-top: 1rem;
   }
-  
+
   .grid-block {
     margin-left: -1rem;
     margin-right: -1rem;
@@ -69,6 +69,12 @@ h3.subheader {
   }
 }
 
+.docs-module-api-desc {
+  + ul {
+    margin-left: 2.5rem;
+  }
+}
+
 hr {
   margin: 2.75rem 0 2.5rem 0;
 }
@@ -109,7 +115,7 @@ hr {
 
 .position-absolute .ui-animation {
   position: absolute;
-  
+
   [zf-offcanvas], [zf-panel] {
     display: none !important;
   }
