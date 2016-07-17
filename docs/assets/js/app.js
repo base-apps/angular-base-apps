@@ -14,8 +14,6 @@
     'foundation.dynamicRouting.animations'
   ])
     .config(config)
-    .run(run)
-    .run(track)
     .controller('MotionUIController', MotionUIController)
     .controller('NavController', NavController)
     .controller('AngularModsController', AngularModsController)
@@ -38,16 +36,6 @@
       $locationProvider.hashPrefix('!');
   }
 
-  function run() {}
-
-  track.$inject = ['$rootScope','$window', '$location'];
-
-  function track($rootScope, $window, $location) {
-    var track = function() {
-      $window.ga('send', 'pageview', { page: $location.path() });
-    };
-    $rootScope.$on('$locationChangeSuccess', track);
-  }
   AngularModsController.$inject = ['$scope', '$state', '$window', 'FoundationApi', 'ModalFactory', 'NotificationFactory'];
 
   function AngularModsController($scope, $state, $window, FoundationApi, ModalFactory, NotificationFactory) {
