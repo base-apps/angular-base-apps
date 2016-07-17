@@ -39,7 +39,6 @@ controller: AngularModsController
     'foundation.dynamicRouting.animations'
   ])
     .config(config)
-    .run(run)
   ;
 
   config.$inject = ['$urlRouterProvider', '$locationProvider'];
@@ -57,11 +56,6 @@ controller: AngularModsController
     // Use this to set the prefix for hash-bangs
     // Example: example.com/#!/page
     $locationProvider.hashPrefix('!');
-  }
-
-  function run() {
-    // Enable FastClick to remove the 300ms click delay on touch devices
-    FastClick.attach(document.body);
   }
 
 })();

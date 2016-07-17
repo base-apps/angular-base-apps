@@ -16,7 +16,6 @@
     'base.dynamicRouting.animations'
   ])
     .config(config)
-    .run(run)
   ;
 
   config.$inject = ['$urlRouterProvider', '$locationProvider'];
@@ -30,11 +29,6 @@
     });
 
     $locationProvider.hashPrefix('!');
-  }
-
-
-  function run() {
-    FastClick.attach(document.body);
   }
 
 })();
