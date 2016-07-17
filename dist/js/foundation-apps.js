@@ -208,8 +208,27 @@
     }
 
     function unsubscribe(name, callback) {
+      var listenerIndex = -1, i, resizeListeners;
+
       if (listeners[name] !== undefined) {
-        delete listeners[name];
+        if (name == 'resize') {
+          resizeListeners = listeners['resize'];
+          for (i = 0; i < resizeListeners.length; i++) {
+            if (resizeListeners[i] === callback) {
+              // listener found
+              listenerIndex = i;
+              break;
+            }
+          }
+
+          if (listenerIndex != -1) {
+            // remove listener
+            resizeListeners.splice(listenerIndex, 1);
+          }
+        } else {
+          // delete all listeners
+          delete listeners[name];
+        }
       }
       if (typeof callback == 'function') {
           callback.call(this);
@@ -285,11 +304,13 @@
     }
 
     function animateAndAdvise(element, futureState, animationIn, animationOut) {
+      var msgPrefix = "animation-" + (futureState ? "open" : "close");
+      publish(element[0].id, msgPrefix + "-started");
       var promise = FoundationAnimation.animate(element, futureState, animationIn, animationOut);
       promise.then(function() {
-        publish(element[0].id, futureState ? 'active-true' : 'active-false');
+        publish(element[0].id, msgPrefix + "-finished");
       }, function() {
-        publish(element[0].id, 'active-aborted');
+        publish(element[0].id, msgPrefix + "-aborted");
       });
       return promise;
     }
@@ -461,22 +482,24 @@
 
       function resetParent() {
         element.parent().removeClass('position-absolute');
-        if(presetHeight !== true) {
+        if(element.parent()[0] && presetHeight !== true) {
           element.parent()[0].style.height = null;
         }
       }
 
       function prepareParent() {
-        var parentHeight = parseInt(element.parent()[0].style.height);
-        var elHeight = parseInt(window.getComputedStyle(element[0], null).getPropertyValue('height'));
-        var tempHeight = parentHeight > 0 ? parentHeight : elHeight > 0 ? elHeight : '';
+        if (element.parent()[0]) {
+          var parentHeight = parseInt(element.parent()[0].style.height);
+          var elHeight = parseInt(window.getComputedStyle(element[0], null).getPropertyValue('height'));
+          var tempHeight = parentHeight > 0 ? parentHeight : elHeight > 0 ? elHeight : '';
 
-        if(parentHeight > 0) {
-          presetHeight = true;
+          if(parentHeight > 0) {
+            presetHeight = true;
+          }
+
+          element.parent()[0].style.height = tempHeight + 'px';
+          element.parent().addClass('position-absolute');
         }
-
-        element.parent()[0].style.height = tempHeight + 'px';
-        element.parent().addClass('position-absolute');
       }
     }
   }
@@ -539,6 +562,7 @@
             controller: getController(page),
             data: getData(page),
             animation: buildAnimations(page),
+            resolve: {}
           };
 
           $stateProvider.state(page.name, state);
@@ -674,9 +698,9 @@
     mqInit.init();
   }
 
-  FoundationMQInit.$inject = ['mqHelpers', 'FoundationApi', 'Utils'];
+  FoundationMQInit.$inject = ['mqHelpers', 'FoundationApi', 'Utils', 'FoundationMQ'];
 
-  function FoundationMQInit(helpers, foundationApi, u){
+  function FoundationMQInit(helpers, foundationApi, u, foundationMQ){
     var factory = {};
     var namedQueries = {
       'default' : 'only screen',
@@ -743,6 +767,9 @@
       });
 
       window.addEventListener('resize', u.throttle(function() {
+        // any resize event causes a clearing of the media cache
+        foundationMQ.clearCache();
+
         foundationApi.publish('resize', 'window resized');
       }, 50));
     }
@@ -823,19 +850,20 @@
         mediaQueryResultCache = {},
         queryMinWidthCache = {};
 
-    foundationApi.subscribe('resize', function() {
-      // any new resize event causes a clearing of the media cache
-      mediaQueryResultCache = {};
-    });
-
     service.getMediaQueries = getMediaQueries;
     service.match = match;
     service.matchesMedia = matchesMedia;
     service.matchesMediaOrSmaller = matchesMediaOrSmaller;
     service.matchesMediaOnly = matchesMediaOnly;
     service.collectScenariosFromElement = collectScenariosFromElement;
+    service.clearCache = clearCache;
 
     return service;
+
+    // METHOD INTENDED FOR INTERNAL USE ONLY
+    function clearCache() {
+      mediaQueryResultCache = {};
+    }
 
     function getMediaQueries() {
       return foundationApi.getSettings().mediaQueries;
@@ -1651,22 +1679,40 @@ angular.module('markdown', [])
 
     function link(scope, element, attrs) {
       element.on('click', function(e) {
-        var tar = e.target;
-        var avoid = ['zf-toggle', 'zf-hard-toggle', 'zf-open', 'zf-close'].filter(function(e, i){
+        var tar = e.target, avoid, activeElements, closedElements, i;
+
+        // check if clicked target is designated to open/close another component
+        avoid = ['zf-toggle', 'zf-hard-toggle', 'zf-open', 'zf-close'].filter(function(e){
           return e in tar.attributes;
         });
+        if(avoid.length > 0) {
+          // do nothing
+          return;
+        }
 
-        if(avoid.length > 0){ return; }
+        // check if clicked element is inside active closable parent
+        if (getParentsUntil(tar, 'zf-closable') !== false) {
+          // do nothing
+          return;
+        }
 
-        var activeElements = document.querySelectorAll('.is-active[zf-closable]');
+        // close all active elements
+        activeElements = document.querySelectorAll('.is-active[zf-closable]');
+        closedElements = 0;
+        if(activeElements.length > 0) {
+          for(i = 0; i < activeElements.length; i++) {
+            if (!activeElements[i].hasAttribute('zf-ignore-all-close')) {
+              foundationApi.publish(activeElements[i].id, 'close');
+              closedElements++;
+            }
+          }
 
-        if(activeElements.length && !activeElements[0].hasAttribute('zf-ignore-all-close')){
-          if(getParentsUntil(tar, 'zf-closable') === false){
+          // if one or more elements were closed,
+          // prevent the default action
+          if (closedElements > 0) {
             e.preventDefault();
-            foundationApi.publish(activeElements[0].id, 'close');
           }
         }
-        return;
       });
     }
     /** special thanks to Chris Ferdinandi for this solution.
@@ -1680,272 +1726,6 @@ angular.module('markdown', [])
         }
       }
       return false;
-    }
-  }
-})();
-
-(function() {
-  'use strict';
-
-  angular.module('foundation.interchange', ['foundation.core', 'foundation.mediaquery'])
-    .directive('zfInterchange', zfInterchange)
-  ;
-
-  angular.module('base.interchange', ['base.core', 'base.mediaquery'])
-    .directive('zfInterchange', zfInterchange)
-  ;
-
-  zfInterchange.$inject = [ '$compile', '$http', '$templateCache', 'FoundationApi', 'FoundationMQ'];
-
-  function zfInterchange($compile, $http, $templateCache, foundationApi, foundationMQ) {
-
-    var directive = {
-      restrict: 'EA',
-      transclude: 'element',
-      scope: {
-        position: '@'
-      },
-      replace: true,
-      template: '<div></div>',
-      link: link
-    };
-
-    return directive;
-
-    function link(scope, element, attrs, ctrl, transclude) {
-      var childScope, current, scenarios, innerTemplates;
-
-      var globalQueries = foundationMQ.getMediaQueries();
-
-      //setup
-      foundationApi.subscribe('resize', function(msg) {
-        transclude(function(clone, newScope) {
-          if(!scenarios || !innerTemplates) {
-            collectInformation(clone);
-          }
-
-          var ruleMatches = foundationMQ.match(scenarios);
-          var scenario = ruleMatches.length === 0 ? null : scenarios[ruleMatches[0].ind];
-
-          //this could use some love
-          if(scenario && checkScenario(scenario)) {
-            var compiled;
-
-            if(childScope) {
-              childScope.$destroy();
-              childScope = null;
-            }
-
-            if(typeof scenario.templ !== 'undefined') {
-              childScope = newScope;
-
-              //temp container
-              var tmp = document.createElement('div');
-              tmp.appendChild(innerTemplates[scenario.templ][0]);
-
-              element.html(tmp.innerHTML);
-              $compile(element.contents())(childScope);
-              current = scenario;
-            } else {
-              var loader = templateLoader(scenario.src);
-              loader.success(function(html) {
-                childScope = newScope;
-                element.html(html);
-              }).then(function(){
-                $compile(element.contents())(childScope);
-                current = scenario;
-              });
-            }
-          }
-        });
-
-      });
-
-      //init
-      foundationApi.publish('resize', 'initial resize');
-
-      function templateLoader(templateUrl) {
-        return $http.get(templateUrl, {cache: $templateCache});
-      }
-
-      function collectInformation(el) {
-        var data = foundationMQ.collectScenariosFromElement(el);
-
-        scenarios = data.scenarios;
-        innerTemplates = data.templates;
-      }
-
-      function checkScenario(scenario) {
-        return !current || current !== scenario;
-      }
-    }
-  }
-
-  angular.module('foundation.interchange')
-  /*
-   * Final directive to perform media queries, other directives set up this one
-   * (See: http://stackoverflow.com/questions/19224028/add-directives-from-directive-in-angularjs)
-   */
-    .directive('zfQuery', zfQuery)
-  /*
-   * zf-if / zf-show / zf-hide
-   */
-    .directive('zfIf', zfQueryDirective('ng-if', 'zf-if'))
-    .directive('zfShow', zfQueryDirective('ng-show', 'zf-show'))
-    .directive('zfHide', zfQueryDirective('ng-hide', 'zf-hide'))
-  ;
-
-  /*
-   * This directive will configure ng-if/ng-show/ng-hide and zf-query directives and then recompile the element
-   */
-  function zfQueryDirective(angularDirective, directiveName) {
-    return ['$compile', 'FoundationApi', function ($compile, foundationApi) {
-      // create unique scope property for media query result, must be unique to avoid collision with other zf-query directives
-      // property set upon element compilation or else all similar directives (i.e. zf-if-*/zf-show-*/zf-hide-*) will get the same value
-      var queryResult;
-
-      return {
-        priority: 1000, // must compile directive before any others
-        terminal: true, // don't compile any other directive after this
-                        // we'll fix this with a recompile
-        restrict: 'A',
-        compile: compile
-      };
-
-      // From here onward, scope[queryResult] refers to the result of running the provided query
-      function compile(element, attrs) {
-        var previousParam;
-
-        // set unique property
-        queryResult = (directiveName + foundationApi.generateUuid()).replace(/-/g,'');
-
-        // set default configuration
-        element.attr('zf-query-not', false);
-        element.attr('zf-query-only', false);
-        element.attr('zf-query-or-smaller', false);
-        element.attr('zf-query-scope-prop', queryResult);
-
-        // parse directive attribute for query parameters
-        element.attr(directiveName).split(' ').forEach(function(param) {
-          if (param) {
-            // add zf-query directive and configuration attributes
-            switch (param) {
-              case "not":
-                element.attr('zf-query-not', true);
-                element.attr('zf-query-only', true);
-                break;
-              case "only":
-                element.attr('zf-query-only', true);
-                break;
-              case "or":
-                break;
-              case "smaller":
-                // allow usage of smaller keyword if preceeded by 'or' keyword
-                if (previousParam === "or") {
-                  element.attr('zf-query-or-smaller', true);
-                }
-                break;
-              default:
-                element.attr('zf-query', param);
-                break;
-            }
-
-            previousParam = param;
-          }
-        });
-
-        // add/update angular directive
-        if (!element.attr(angularDirective)) {
-          element.attr(angularDirective, queryResult);
-        } else {
-          element.attr(angularDirective, queryResult + ' && (' + element.attr(angularDirective) + ')');
-        }
-
-        // remove directive from current element to avoid infinite recompile
-        element.removeAttr(directiveName);
-        element.removeAttr('data-' + directiveName);
-
-        return {
-          pre: function (scope, element, attrs) {
-          },
-          post: function (scope, element, attrs) {
-            // recompile
-            $compile(element)(scope);
-          }
-        };
-      }
-    }];
-  }
-
-  zfQuery.$inject = ['FoundationApi', 'FoundationMQ'];
-  function zfQuery(foundationApi, foundationMQ) {
-    return {
-      priority: 601, // must compile before ng-if (600)
-      restrict: 'A',
-      compile: function compile(element, attrs) {
-        return compileWrapper(attrs['zfQueryScopeProp'],
-                              attrs['zfQuery'],
-                              attrs['zfQueryOnly'] === "true",
-                              attrs['zfQueryNot'] === "true",
-                              attrs['zfQueryOrSmaller'] === "true");
-      }
-    };
-
-    // parameters will be populated with values provided from zf-query-* attributes
-    function compileWrapper(queryResult, namedQuery, queryOnly, queryNot, queryOrSmaller) {
-      // set defaults
-      queryOnly = queryOnly || false;
-      queryNot = queryNot || false;
-
-      return {
-        pre: preLink,
-        post: postLink
-      };
-
-      // From here onward, scope[queryResult] refers to the result of running the provided query
-      function preLink(scope, element, attrs) {
-        // initially set media query result to false
-        scope[queryResult] = false;
-      }
-
-      function postLink(scope, element, attrs) {
-        // subscribe for resize events
-        foundationApi.subscribe('resize', function() {
-          var orignalVisibilty = scope[queryResult];
-          runQuery();
-          if (orignalVisibilty != scope[queryResult]) {
-            // digest if visibility changed
-            scope.$digest();
-          }
-        });
-
-        scope.$on("$destroy", function() {
-          foundationApi.unsubscribe('resize');
-        });
-
-        // run first media query check
-        runQuery();
-
-        function runQuery() {
-          if (!queryOnly) {
-            if (!queryOrSmaller) {
-              // Check if matches media or LARGER
-              scope[queryResult] = foundationMQ.matchesMedia(namedQuery);
-            } else {
-              // Check if matches media or SMALLER
-              scope[queryResult] = foundationMQ.matchesMediaOrSmaller(namedQuery);
-            }
-          } else {
-            if (!queryNot) {
-              // Check that media ONLY matches named query and nothing else
-              scope[queryResult] = foundationMQ.matchesMediaOnly(namedQuery);
-            } else {
-              // Check that media does NOT match named query
-              scope[queryResult] = !foundationMQ.matchesMediaOnly(namedQuery);
-            }
-          }
-        }
-      }
     }
   }
 })();
@@ -2104,9 +1884,11 @@ angular.module('markdown', [])
 
         injectSvg(element[0]);
 
-        foundationApi.subscribe('resize', function () {
-          // only run update on current element
-          ico.update(element[0]);
+        // subscribe for resize events
+        foundationApi.subscribe('resize', resize);
+
+        scope.$on("$destroy", function() {
+          foundationApi.unsubscribe('resize', resize);
         });
 
         // handle dynamic updating of src
@@ -2206,6 +1988,11 @@ angular.module('markdown', [])
             }
           });
         }
+
+        function resize() {
+          // run update on current element
+          ico.update(element[0]);
+        }
       }
 
       function addDataDash(attr) {
@@ -2214,6 +2001,279 @@ angular.module('markdown', [])
     }
   }
 
+})();
+
+(function() {
+  'use strict';
+
+  angular.module('foundation.interchange', ['foundation.core', 'foundation.mediaquery'])
+    .directive('zfInterchange', zfInterchange)
+  ;
+
+  angular.module('base.interchange', ['base.core', 'base.mediaquery'])
+    .directive('zfInterchange', zfInterchange)
+  ;
+
+  zfInterchange.$inject = [ '$compile', '$http', '$templateCache', 'FoundationApi', 'FoundationMQ'];
+
+  function zfInterchange($compile, $http, $templateCache, foundationApi, foundationMQ) {
+
+    var directive = {
+      restrict: 'EA',
+      transclude: 'element',
+      scope: {
+        position: '@'
+      },
+      replace: true,
+      template: '<div></div>',
+      link: link
+    };
+
+    return directive;
+
+    function link(scope, element, attrs, ctrl, transclude) {
+      var childScope, current, scenarios, innerTemplates;
+
+      var globalQueries = foundationMQ.getMediaQueries();
+
+      // subscribe for resize events
+      foundationApi.subscribe('resize', resize);
+
+      scope.$on("$destroy", function() {
+        foundationApi.unsubscribe('resize', resize);
+      });
+
+      //init
+      foundationApi.publish('resize', 'initial resize');
+
+      function templateLoader(templateUrl) {
+        return $http.get(templateUrl, {cache: $templateCache});
+      }
+
+      function collectInformation(el) {
+        var data = foundationMQ.collectScenariosFromElement(el);
+
+        scenarios = data.scenarios;
+        innerTemplates = data.templates;
+      }
+
+      function checkScenario(scenario) {
+        return !current || current !== scenario;
+      }
+
+      function resize(msg) {
+        transclude(function(clone, newScope) {
+          if(!scenarios || !innerTemplates) {
+            collectInformation(clone);
+          }
+
+          var ruleMatches = foundationMQ.match(scenarios);
+          var scenario = ruleMatches.length === 0 ? null : scenarios[ruleMatches[0].ind];
+
+          //this could use some love
+          if(scenario && checkScenario(scenario)) {
+            var compiled;
+
+            if(childScope) {
+              childScope.$destroy();
+              childScope = null;
+            }
+
+            if(typeof scenario.templ !== 'undefined') {
+              childScope = newScope;
+
+              //temp container
+              var tmp = document.createElement('div');
+              tmp.appendChild(innerTemplates[scenario.templ][0]);
+
+              element.html(tmp.innerHTML);
+              $compile(element.contents())(childScope);
+              current = scenario;
+            } else {
+              var loader = templateLoader(scenario.src);
+              loader.success(function(html) {
+                childScope = newScope;
+                element.html(html);
+              }).then(function(){
+                $compile(element.contents())(childScope);
+                current = scenario;
+              });
+            }
+          }
+        });
+      }
+    }
+  }
+
+  angular.module('foundation.interchange')
+  /*
+   * Final directive to perform media queries, other directives set up this one
+   * (See: http://stackoverflow.com/questions/19224028/add-directives-from-directive-in-angularjs)
+   */
+    .directive('zfQuery', zfQuery)
+  /*
+   * zf-if / zf-show / zf-hide
+   */
+    .directive('zfIf', zfQueryDirective('ng-if', 'zf-if'))
+    .directive('zfShow', zfQueryDirective('ng-show', 'zf-show'))
+    .directive('zfHide', zfQueryDirective('ng-hide', 'zf-hide'))
+  ;
+
+  /*
+   * This directive will configure ng-if/ng-show/ng-hide and zf-query directives and then recompile the element
+   */
+  function zfQueryDirective(angularDirective, directiveName) {
+    return ['$compile', 'FoundationApi', function ($compile, foundationApi) {
+      // create unique scope property for media query result, must be unique to avoid collision with other zf-query directives
+      // property set upon element compilation or else all similar directives (i.e. zf-if-*/zf-show-*/zf-hide-*) will get the same value
+      var queryResult;
+
+      return {
+        priority: 1000, // must compile directive before any others
+        terminal: true, // don't compile any other directive after this
+                        // we'll fix this with a recompile
+        restrict: 'A',
+        compile: compile
+      };
+
+      // From here onward, scope[queryResult] refers to the result of running the provided query
+      function compile(element, attrs) {
+        var previousParam;
+
+        // set unique property
+        queryResult = (directiveName + foundationApi.generateUuid()).replace(/-/g,'');
+
+        // set default configuration
+        element.attr('zf-query-not', false);
+        element.attr('zf-query-only', false);
+        element.attr('zf-query-or-smaller', false);
+        element.attr('zf-query-scope-prop', queryResult);
+
+        // parse directive attribute for query parameters
+        element.attr(directiveName).split(' ').forEach(function(param) {
+          if (param) {
+            // add zf-query directive and configuration attributes
+            switch (param) {
+              case "not":
+                element.attr('zf-query-not', true);
+                element.attr('zf-query-only', true);
+                break;
+              case "only":
+                element.attr('zf-query-only', true);
+                break;
+              case "or":
+                break;
+              case "smaller":
+                // allow usage of smaller keyword if preceeded by 'or' keyword
+                if (previousParam === "or") {
+                  element.attr('zf-query-or-smaller', true);
+                }
+                break;
+              default:
+                element.attr('zf-query', param);
+                break;
+            }
+
+            previousParam = param;
+          }
+        });
+
+        // add/update angular directive
+        if (!element.attr(angularDirective)) {
+          element.attr(angularDirective, queryResult);
+        } else {
+          element.attr(angularDirective, queryResult + ' && (' + element.attr(angularDirective) + ')');
+        }
+
+        // remove directive from current element to avoid infinite recompile
+        element.removeAttr(directiveName);
+        element.removeAttr('data-' + directiveName);
+
+        return {
+          pre: function (scope, element, attrs) {
+          },
+          post: function (scope, element, attrs) {
+            // recompile
+            $compile(element)(scope);
+          }
+        };
+      }
+    }];
+  }
+
+  zfQuery.$inject = ['FoundationApi', 'FoundationMQ'];
+  function zfQuery(foundationApi, foundationMQ) {
+    return {
+      priority: 601, // must compile before ng-if (600)
+      restrict: 'A',
+      compile: function compile(element, attrs) {
+        return compileWrapper(attrs['zfQueryScopeProp'],
+                              attrs['zfQuery'],
+                              attrs['zfQueryOnly'] === "true",
+                              attrs['zfQueryNot'] === "true",
+                              attrs['zfQueryOrSmaller'] === "true");
+      }
+    };
+
+    // parameters will be populated with values provided from zf-query-* attributes
+    function compileWrapper(queryResult, namedQuery, queryOnly, queryNot, queryOrSmaller) {
+      // set defaults
+      queryOnly = queryOnly || false;
+      queryNot = queryNot || false;
+
+      return {
+        pre: preLink,
+        post: postLink
+      };
+
+      // From here onward, scope[queryResult] refers to the result of running the provided query
+      function preLink(scope, element, attrs) {
+        // initially set media query result to false
+        scope[queryResult] = false;
+      }
+
+      function postLink(scope, element, attrs) {
+        // subscribe for resize events
+        foundationApi.subscribe('resize', resize);
+
+        scope.$on("$destroy", function() {
+          foundationApi.unsubscribe('resize', resize);
+        });
+
+        // run first media query check
+        runQuery();
+
+        function runQuery() {
+          if (!queryOnly) {
+            if (!queryOrSmaller) {
+              // Check if matches media or LARGER
+              scope[queryResult] = foundationMQ.matchesMedia(namedQuery);
+            } else {
+              // Check if matches media or SMALLER
+              scope[queryResult] = foundationMQ.matchesMediaOrSmaller(namedQuery);
+            }
+          } else {
+            if (!queryNot) {
+              // Check that media ONLY matches named query and nothing else
+              scope[queryResult] = foundationMQ.matchesMediaOnly(namedQuery);
+            } else {
+              // Check that media does NOT match named query
+              scope[queryResult] = !foundationMQ.matchesMediaOnly(namedQuery);
+            }
+          }
+        }
+
+        function resize() {
+          var orignalVisibilty = scope[queryResult];
+          runQuery();
+          if (orignalVisibilty != scope[queryResult]) {
+            // digest if visibility changed
+            scope.$digest();
+          }
+        }
+      }
+    }
+  }
 })();
 
 (function() {
@@ -2289,7 +2349,7 @@ angular.module('markdown', [])
         var dialog = angular.element(element.children()[0]);
         var animateFn = attrs.hasOwnProperty('zfAdvise') ? foundationApi.animateAndAdvise : foundationApi.animate;
 
-        scope.active = scope.active || false;
+        scope.active = false;
         scope.overlay = attrs.overlay === 'false' ? false : true;
         scope.overlayClose = attrs.overlayClose === 'false' ? false : true;
 
@@ -2306,26 +2366,31 @@ angular.module('markdown', [])
         };
 
         scope.hide = function() {
-          scope.active = false;
-          animate();
+          if (scope.active) {
+            scope.active = false;
+            adviseActiveChanged();
+            animate();
+          }
           return;
         };
 
         scope.show = function() {
-          scope.active = true;
-          animate();
-          dialog.tabIndex = -1;
-          dialog[0].focus();
+          if (!scope.active) {
+            scope.active = true;
+            adviseActiveChanged();
+            animate();
+            dialog.tabIndex = -1;
+            dialog[0].focus();
+          }
           return;
         };
 
         scope.toggle = function() {
           scope.active = !scope.active;
+          adviseActiveChanged();
           animate();
           return;
         };
-
-        init();
 
         //setup
         foundationApi.subscribe(attrs.id, function(msg) {
@@ -2344,6 +2409,12 @@ angular.module('markdown', [])
           return;
         });
 
+        function adviseActiveChanged() {
+          if (!angular.isUndefined(attrs.zfAdvise)) {
+            foundationApi.publish(attrs.id, scope.active ? 'activated' : 'deactivated');
+          }
+        }
+
         function animate() {
           //animate both overlay and dialog
           if(!scope.overlay) {
@@ -2354,19 +2425,13 @@ angular.module('markdown', [])
           // due to a bug where the overlay fadeIn is essentially covering up
           // the dialog's animation
           if (!scope.active) {
-            animateFn(element, scope.active, overlayIn, overlayOut);
+            foundationApi.animate(element, scope.active, overlayIn, overlayOut);
           }
           else {
             element.addClass('is-active');
           }
 
           animateFn(dialog, scope.active, animationIn, animationOut);
-        }
-
-        function init() {
-          if(scope.active) {
-            scope.show();
-          }
         }
       }
     }
@@ -2383,6 +2448,7 @@ angular.module('markdown', [])
           id = config.id || foundationApi.generateUuid(),
           attached = false,
           destroyed = false,
+          activated = false,
           html,
           element,
           fetched,
@@ -2395,6 +2461,7 @@ angular.module('markdown', [])
         'animationOut',
         'overlay',
         'overlayClose',
+        'ignoreAllClose',
         'class'
       ];
 
@@ -2414,11 +2481,11 @@ angular.module('markdown', [])
         assembleDirective();
       }
 
+      self.isActive = isActive;
       self.activate = activate;
       self.deactivate = deactivate;
       self.toggle = toggle;
       self.destroy = destroy;
-
 
       return {
         isActive: isActive,
@@ -2435,44 +2502,53 @@ angular.module('markdown', [])
       }
 
       function isActive() {
-        return !destroyed && scope && scope.active === true;
+        return !destroyed && scope && activated;
       }
 
       function activate() {
         checkStatus();
         $timeout(function() {
-          init(true);
-          foundationApi.publish(id, 'show');
+          activated = true;
+          init('show');
         }, 0, false);
       }
 
       function deactivate() {
         checkStatus();
         $timeout(function() {
-          init(false);
-          foundationApi.publish(id, 'hide');
+          activated = false;
+          init('hide');
         }, 0, false);
       }
 
       function toggle() {
         checkStatus();
         $timeout(function() {
-          init(true);
-          foundationApi.publish(id, 'toggle');
+          activated = !activated;
+          init('toggle');
         }, 0, false);
       }
 
-      function init(state) {
+      function init(msg) {
         $q.when(fetched).then(function() {
+          var delayMsg = false;
+
           if(!attached && html.length > 0) {
-            var modalEl = container.append(element);
-
+            container.append(element);
             $compile(element)(scope);
-
             attached = true;
+
+            // delay message so directive can be compiled and respond to messages
+            delayMsg = true;
           }
 
-          scope.active = state;
+          if (delayMsg) {
+            $timeout(function() {
+              foundationApi.publish(id, msg);
+            }, 0, false);
+          } else {
+            foundationApi.publish(id, msg);
+          }
         });
       }
 
@@ -2492,7 +2568,7 @@ angular.module('markdown', [])
         for(var i = 0; i < props.length; i++) {
           var prop = props[i];
 
-          if(config[prop]) {
+          if(angular.isDefined(config[prop])) {
             switch (prop) {
               case 'animationIn':
                 element.attr('animation-in', config[prop]);
@@ -2501,7 +2577,10 @@ angular.module('markdown', [])
                 element.attr('animation-out', config[prop]);
                 break;
               case 'overlayClose':
-                element.attr('overlay-close', config[prop] === 'false' ? 'false' : 'true'); // must be string, see postLink() above
+                element.attr('overlay-close', (config[prop] === 'false' || config[prop] === false) ? 'false' : 'true'); // must be string, see postLink() above
+                break;
+              case 'ignoreAllClose':
+                element.attr('zf-ignore-all-close', 'zf-ignore-all-close');
                 break;
               case 'class':
                 if (angular.isString(config[prop])) {
@@ -2712,11 +2791,13 @@ angular.module('markdown', [])
         //due to dynamic insertion of DOM, we need to wait for it to show up and get working!
         setTimeout(function() {
           scope.active = true;
+          adviseActiveChanged();
           animate(element, scope.active, animationIn, animationOut);
         }, 50);
 
         scope.hide = function() {
           scope.active = false;
+          adviseActiveChanged();
           animate(element, scope.active, animationIn, animationOut);
           setTimeout(function() {
             controller.removeNotification(scope.notifId);
@@ -2748,6 +2829,12 @@ angular.module('markdown', [])
               scope.hide();
             }
           });
+        }
+
+        function adviseActiveChanged() {
+          if (!angular.isUndefined(attrs.zfAdvise)) {
+            foundationApi.publish(attrs.id, scope.active ? 'activated' : 'deactivated');
+          }
         }
       }
     }
@@ -2824,23 +2911,35 @@ angular.module('markdown', [])
         });
 
         scope.hide = function() {
-          scope.active = false;
-          animateFn(element, scope.active, animationIn, animationOut);
+          if (scope.active) {
+            scope.active = false;
+            adviseActiveChanged();
+            animateFn(element, scope.active, animationIn, animationOut);
+          }
           return;
         };
 
         scope.show = function() {
-          scope.active = true;
-          animateFn(element, scope.active, animationIn, animationOut);
+          if (!scope.active) {
+            scope.active = true;
+            adviseActiveChanged();
+            animateFn(element, scope.active, animationIn, animationOut);
+          }
           return;
         };
 
         scope.toggle = function() {
           scope.active = !scope.active;
+          adviseActiveChanged();
           animateFn(element, scope.active, animationIn, animationOut);
           return;
         };
 
+        function adviseActiveChanged() {
+          if (!angular.isUndefined(attrs.zfAdvise)) {
+            foundationApi.publish(attrs.id, scope.active ? 'activated' : 'deactivated');
+          }
+        }
       }
     }
   }
@@ -3074,18 +3173,27 @@ angular.module('markdown', [])
 
         scope.hide = function() {
           scope.active = false;
+          adviseActiveChanged();
           return;
         };
 
         scope.show = function() {
           scope.active = true;
+          adviseActiveChanged();
           return;
         };
 
         scope.toggle = function() {
           scope.active = !scope.active;
+          adviseActiveChanged();
           return;
         };
+
+        function adviseActiveChanged() {
+          if (!angular.isUndefined(attrs.zfAdvise)) {
+            foundationApi.publish(attrs.id, scope.active ? 'activated' : 'deactivated');
+          }
+        }
       }
     }
   }
@@ -3145,6 +3253,7 @@ angular.module('markdown', [])
     function compile(tElement, tAttrs, transclude) {
       var type = 'panel';
       var animate = tAttrs.hasOwnProperty('zfAdvise') ? foundationApi.animateAndAdvise : foundationApi.animate;
+      var forceAnimation = tAttrs.hasOwnProperty('forceAnimation');
 
       return {
         pre: preLink,
@@ -3200,10 +3309,12 @@ angular.module('markdown', [])
         foundationApi.subscribe(attrs.id, function(msg) {
           var panelPosition = $window.getComputedStyle(element[0]).getPropertyValue("position");
 
-          // patch to prevent panel animation on larger screen devices
-          // don't run animation on grid elements, only panel
-          if (panelPosition == 'static' || panelPosition == 'relative') {
-            return;
+          if (!forceAnimation) {
+            // patch to prevent panel animation on larger screen devices
+            // don't run animation on grid elements, only panel
+            if (panelPosition == 'static' || panelPosition == 'relative') {
+              return;
+            }
           }
 
           if(msg == 'show' || msg == 'open') {
@@ -3221,11 +3332,10 @@ angular.module('markdown', [])
           return;
         });
 
-        // function finish(el)
-
         scope.hide = function() {
           if(scope.active){
             scope.active = false;
+            adviseActiveChanged();
             animate(element, scope.active, animationIn, animationOut);
           }
 
@@ -3235,6 +3345,7 @@ angular.module('markdown', [])
         scope.show = function() {
           if(!scope.active){
             scope.active = true;
+            adviseActiveChanged();
             animate(element, scope.active, animationIn, animationOut);
           }
 
@@ -3243,8 +3354,8 @@ angular.module('markdown', [])
 
         scope.toggle = function() {
           scope.active = !scope.active;
+          adviseActiveChanged();
           animate(element, scope.active, animationIn, animationOut);
-
           return;
         };
 
@@ -3255,9 +3366,14 @@ angular.module('markdown', [])
           if (!matchMedia(globalQueries.medium).matches && srcEl.href && srcEl.href.length > 0) {
             // Hide element if it can't match at least medium
             scope.hide();
-            animate(element, scope.active, animationIn, animationOut);
           }
         });
+
+        function adviseActiveChanged() {
+          if (!angular.isUndefined(attrs.zfAdvise)) {
+            foundationApi.publish(attrs.id, scope.active ? 'activated' : 'deactivated');
+          }
+        }
       }
     }
   }
@@ -3358,22 +3474,30 @@ angular.module('markdown', [])
 
 
         scope.hide = function() {
-          scope.active = false;
-          tetherElement();
-          tether.disable();
+          if (scope.active) {
+            scope.active = false;
+            adviseActiveChanged();
+            tetherElement();
+            tether.disable();
+          }
+
           return;
         };
 
         scope.show = function(newTarget) {
-          scope.active = true;
-          tetherElement(newTarget);
-          tether.enable();
+          if (!scope.active) {
+            scope.active = true;
+            adviseActiveChanged();
+            tetherElement(newTarget);
+            tether.enable();
+          }
 
           return;
         };
 
         scope.toggle = function(newTarget) {
           scope.active = !scope.active;
+          adviseActiveChanged();
           tetherElement(newTarget);
 
           if(scope.active) {
@@ -3384,6 +3508,17 @@ angular.module('markdown', [])
 
           return;
         };
+
+        scope.$on('$destroy', function() {
+          foundationApi.unsubscribe(attrs.id);
+
+          scope.active = false;
+          if(tetherInit) {
+            tether.destroy();
+            element.remove();
+            tetherInit = false;
+          }
+        });
 
         function tetherElement(target) {
           if(tetherInit) {
@@ -3403,6 +3538,11 @@ angular.module('markdown', [])
           tetherInit = true;
         }
 
+        function adviseActiveChanged() {
+          if (!angular.isUndefined(attrs.zfAdvise)) {
+            foundationApi.publish(attrs.id, scope.active ? 'activated' : 'deactivated');
+          }
+        }
       }
     }
   }
