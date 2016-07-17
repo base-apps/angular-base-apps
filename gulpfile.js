@@ -137,7 +137,7 @@ gulp.task('copy:partials', ['clean:partials'], function(cb) {
   gulp.src(paths.html.partials)
     .pipe($.ngHtml2js({
       prefix: 'components/',
-      moduleName: 'foundation',
+      moduleName: 'base',
       declareModule: false
     }))
     .pipe($.if(production, $.uglify()))
