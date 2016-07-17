@@ -21,6 +21,7 @@
     .controller('AngularModsController', AngularModsController)
     .controller('IconicController', IconicController)
     .controller('ModalController', ModalController)
+    .factory('ProgrammaticModal', ProgrammaticModalFactory)
   ;
 
   config.$inject = ['$urlRouterProvider', '$locationProvider'];
@@ -295,9 +296,9 @@
     }
   }
 
-  ModalController.$inject = ['$scope', '$timeout', 'ModalFactory'];
+  ModalController.$inject = ['$scope', '$timeout', 'ModalFactory', 'ProgrammaticModal'];
 
-  function ModalController($scope, $timeout, ModalFactory) {
+  function ModalController($scope, $timeout, ModalFactory, ProgrammaticModal) {
     $scope.createModal = function() {
       var modal = new ModalFactory({
         class: 'tiny dialog',
@@ -315,6 +316,38 @@
       });
       modal.activate();
     };
+
+    $scope.createAngularModal = function() {
+      var modal = new ProgrammaticModal();
+      modal.activate();
+    };
+  }
+
+  ProgrammaticModalFactory.$inject = ['$timeout', 'ModalFactory'];
+
+  function ProgrammaticModalFactory($timeout, ModalFactory) {
+    var ProgrammaticModal = function() {
+      var modal = this;
+
+      ModalFactory.call(this, {
+        class: 'tiny dialog',
+        overlay: true,
+        overlayClose: false,
+        templateUrl: 'partials/examples-dynamic-modal.html',
+        contentScope: {
+          close: function() {
+            modal.deactivate();
+            $timeout(function() {
+              modal.destroy();
+            }, 1000);
+          }
+        }
+      });
+    };
+
+    ProgrammaticModal.prototype = Object.create(ModalFactory.prototype);
+
+    return ProgrammaticModal;
   }
 
 })();
