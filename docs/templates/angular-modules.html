@@ -145,6 +145,37 @@ FoundationApi.closeActiveElements(options)
   </section>
 
   <section>
+    <h4 class="docs-module-name"><pre>zf-advise</pre> (Attribute)</h4>
+
+    <p>Use the zf-advise attribute on any component to enable the component to send notification events (see <code>FoundationApi.animateAndAdvise</code>).</p>
+
+<hljs language="html">
+<div id="modal" zf-modal="" zf-advise="">
+  <!-- ... -->
+</div>
+</hljs>
+
+<hljs language="javascript">
+FoundationApi.subscribe('modal', function(message) {
+  switch (message) {
+    case 'activated': ...,
+    case 'deactivated': ...,
+    case 'animation-open-started': ...,
+    case 'animation-open-finished': ...,
+    case 'animation-open-aborted': ...,
+    case 'animation-close-started': ...,
+    case 'animation-close-finished': ...,
+    case 'animation-close-aborted': ...
+  }
+});
+</hljs>
+<div id="modal" zf-modal="" zf-advise="">
+  <!-- ... -->
+</div>
+</hljs>
+  </section>
+
+  <section>
     <h4 class="docs-module-name"><pre>Utils</pre> (Factory)</h4>
 
     <p>Utils is a small module which has a couple of simple methods. One of them is <code>throttle(func, delay)</code> which allows for simple throttling (and is used in the Media Query initiator)</p>
@@ -167,13 +198,13 @@ FoundationApi.closeActiveElements(options)
 
     <p>The Initiator also publishes an event to the <code>FoundationApi</code> called "resize" whenever the window is resized (throttled to happen 50ms at a time).</p>
 
-    <p>The FoundationMQ service is used to get the media query settings by shorthand instead of using FoundationAPI. There are several helper functions that allow Interchange to exist but can be used outside of Interchange as well to sort through various MediaQuery scenarios to get a list of media queries that match the current browser configuration and also to gather these scenarios from a parent element that holds Interchange-style elements.  These methods are used by the This method is used to by the <code>zf-if</code>, <code>zf-show</code> and <code>zf-hide</code> directives.</p>
+    <p>The FoundationMQ service is used to get the media query settings by shorthand instead of using FoundationAPI. There are several helper functions that allow Interchange to exist but can be used outside of Interchange as well to sort through various MediaQuery scenarios to get a list of media queries that match the current browser configuration and also to gather these scenarios from a parent element that holds Interchange-style elements.  These methods are used by the <code>zf-if</code>, <code>zf-show</code> and <code>zf-hide</code> directives.</p>
 
 <hljs language="javascript">
 FoundationMQ.matchesMedia(breakpoint)
 </hljs>
 
-    <p class="docs-module-api-desc">Returns <strong>true</strong> if the media matches the breakpoint otherwise returns <strong>false</strong>.</p>
+    <p class="docs-module-api-desc">Returns <code>true</code> if the media matches the breakpoint otherwise returns <code>false</code>.</p>
     <ul>
       <li>On a large device, the query <code>FoundationMQ.matchesMedia('medium')</code> returns <strong>true</strong></li>
       <li>On a medium device, the query <code>FoundationMQ.matchesMedia('medium')</code> returns <strong>true</strong></li>
@@ -184,7 +215,7 @@ FoundationMQ.matchesMedia(breakpoint)
 FoundationMQ.matchesMediaOrSmaller(breakpoint)
 </hljs>
 
-    <p class="docs-module-api-desc">Returns <strong>true</strong> if the media matches the breakpoint exactly or if a smaller breakpoint matches otherwise returns <strong>false</strong>.</p>
+    <p class="docs-module-api-desc">Returns <code>true</code> if the media matches the breakpoint exactly or if a smaller breakpoint matches otherwise returns <code>false</code>.</p>
     <ul>
       <li>On a large device, the query <code>FoundationMQ.matchesMediaOrSmaller('medium')</code> returns <strong>false</strong></li>
       <li>On a medium device, the query <code>FoundationMQ.matchesMediaOrSmaller('medium')</code> returns <strong>true</strong></li>
@@ -195,7 +226,7 @@ FoundationMQ.matchesMediaOrSmaller(breakpoint)
 FoundationMQ.matchesMediaOnly(breakpoint)
 </hljs>
 
-    <p class="docs-module-api-desc">Returns <strong>true</strong> if the media matches the breakpoint exactly otherwise returns <strong>false</strong>.</p>
+    <p class="docs-module-api-desc">Returns <code>true</code> if the media matches the breakpoint exactly otherwise returns <code>false</code>.</p>
     <ul>
       <li>On a large device, the query <code>FoundationMQ.matchesMediaOnly('medium')</code> returns <strong>false</strong></li>
       <li>On a medium device, the query <code>FoundationMQ.matchesMediaOnly('medium')</code> returns <strong>true</strong></li>
@@ -490,10 +521,10 @@ var notifSet = new NotificationFactory({
 
 // on some event, call the following
 notifSet.addNotification({
-      title: "Great success!",
-      content: "Congratulations",
-      color: 'success'
-    });
+  title: "Great success!",
+  content: "Congratulations",
+  color: 'success'
+});
 </hljs>
 <div class="button" ng-click="addNotification()">Add a notification</div>
   </section>
