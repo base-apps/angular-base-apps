@@ -348,6 +348,9 @@ gulp.task('build:dist', ['clean:dist'], function() {
     .pipe($.rename('base-apps-templates.min.js'))
     .pipe(gulp.dest('./dist/js')));
 
+  merged.add(gulp.src("./build/**/*")
+    .pipe(gulp.dest('./dist/docs')));
+
   return merged;
 });
 
