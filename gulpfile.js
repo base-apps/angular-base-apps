@@ -32,6 +32,7 @@ var gulp        = require('gulp'),
 
 // 2. VARIABLES
 // - - - - - - - - - - - - - - -
+var production = false;
 
 var paths = {
   html: {
@@ -139,7 +140,7 @@ gulp.task('copy:partials', ['clean:partials'], function(cb) {
       moduleName: 'foundation',
       declareModule: false
     }))
-    .pipe($.uglify())
+    .pipe($.if(production, $.uglify()))
     .pipe($.concat('templates.js'))
     .pipe(gulp.dest('./build/assets/js'));
 
@@ -205,12 +206,12 @@ gulp.task('javascript', function() {
     paths.javascript.docs
   );
   return gulp.src(dirs)
-    .pipe($.uglify({
+    .pipe($.if(production, $.uglify({
       beautify: true,
       mangle: false
     }).on('error', function(e) {
       console.log(e);
-    }))
+    })))
     .pipe($.concat('app.js'))
     .pipe(gulp.dest('./build/assets/js/'))
   ;
@@ -277,7 +278,9 @@ gulp.task('test:motion', ['server:start', 'test:motion:compile'], function() {
 // - - - - - - - - - - - - - - -
 
 // Distribution files
-gulp.task('build:dist', ['clean:dist'], function() {
+gulp.task('production:enable', function(cb) { production = true; cb(); });
+
+gulp.task('build:dist', ['clean:dist', 'production:enable', 'build'], function() {
   var merged = merge();
 
   // legacy package
