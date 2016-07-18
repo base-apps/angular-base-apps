@@ -17,6 +17,7 @@
   }
 }
 
+
 .docs-grid-demo {
   height: 100px;
   margin: 0 0 1.5rem 0 !important;
@@ -29,6 +30,19 @@
     font-weight: bold;
     text-align: center;
   }
+
+  $block-spacing: 15px;
+  &.gutters {
+    height: auto;
+    background: rgba($primary-color, 0.1);
+    padding: $block-spacing/2;
+    &, .grid-block, .grid-content, .grid-container {
+      padding: $block-spacing/2;
+      margin: $block-spacing/2;
+      justify-content: center;
+    }
+  }
+
   .shrink {
     width: 100px;
   }
@@ -98,8 +112,8 @@
     font-size: 2rem;
     align-items: center;
     justify-content: center;
-    }
   }
+}
 
 .docs-example-dialog .modal {
   text-align: center;
