@@ -355,6 +355,113 @@ title: Grid
 
 <hr>
 
+<h4>Gutters</h4>
+
+<p>Use `gutters` class on your `grid-block` to apply `$global-spacing` to your columns. This will force the heigh of all columns in a row to be the same height while maintaining a consitant global spacing around all blocks. Helpful for adding backgrounds to widgets and panels.</p>
+
+<hljs language="html">
+<div class="grid-block gutters">
+  <div class="shrink grid-block">
+    Lots of content that will force this column to grow downward forcing the other columns in the row to fill negative space to maintain an equal height.
+  </div>
+  <div class="grid-block">
+    Very little content but will have same background height.
+  </div>
+</div>
+</hljs>
+
+<div class="docs-grid-demo grid-block gutters">
+  <div class="shrink grid-block">
+    Lots of content that will force this column to grow downward forcing the other columns in the row to fill negative space to maintain an equal height.
+  </div>
+  <div class="grid-block">
+    Very little content but will have same background height.
+  </div>
+</div>
+
+<h5>Gutters with manual sizing.</h5>
+
+<hljs language="html">
+<div class="grid-block gutters">
+  <div class="small-3 grid-block">
+      Lots of content that will force this column to grow downward forcing the other columns in the row to fill negative space to maintain an equal height.
+  </div>
+  <div class="small-3 grid-block">
+    Very little content but will have same background height.
+  </div>
+  <div class="small-6 grid-block">
+    Very little content but will have same background height.
+  </div>
+</div>
+</hljs>
+
+<div class="docs-grid-demo docs-grid-demo grid-block gutters">
+  <div class="small-3 grid-block">
+    Lots of content that will force this column to grow downward forcing the other columns in the row to fill negative space to maintain an equal height.
+  </div>
+  <div class="small-3 grid-block">
+    Very little content but will have same background height.
+  </div>
+  <div class="small-6 grid-block">
+    Very little content but will have same background height.
+  </div>
+</div>
+
+<h5>Gutters with wrapping.</h5>
+<p>Notice that all blocks maintain the same height as others siblings in the same row. This is a great solution to maintain styled background heights without the use of javascript.</p>
+
+<hljs language="html">
+<div class="grid-block gutters wrap">
+  <div class="small-3 grid-block">
+    Lots of content that will force this column to grow downward forcing the other blocks in this row to fill negative space to maintain an equal height.
+  </div>
+  <div class="small-9 grid-block">
+    Very little content but will have same background height.
+  </div>
+  <div class="small-6 grid-block">
+    Another block with less content but same desired height.
+  </div>
+  <div class="small-3 grid-block">
+    Another block with less content but same desired height.
+  </div>
+  <div class="small-3 grid-block">
+    Another block with lots of content but we will want the others in the row to have an equal height. 
+  </div>
+  <div class="small-6 grid-block">
+    The blocks in this row have equal sized content.
+  </div>
+  <div class="small-6 grid-block">
+    The blocks in this row have equal sized content.
+  </div>
+</div>
+</hljs>
+
+<div class="docs-grid-demo docs-grid-demo grid-block gutters wrap">
+  <div class="small-3 grid-block">
+    Lots of content that will force this column to grow downward farther so the other blocks will grow to maintain an equal height.
+  </div>
+  <div class="small-9 grid-block">
+    Very little content but will have same background height.
+  </div>
+  <div class="small-6 grid-block">
+    Another block with less content but same desired height.
+  </div>
+  <div class="small-3 grid-block">
+    Another block with less content but same desired height.
+  </div>
+  <div class="small-3 grid-block">
+    Another block with lots of content but we will want the others in the row to have an equal height. 
+  </div>
+  <div class="small-6 grid-block">
+    The blocks in this row have equal sized content.
+  </div>
+  <div class="small-6 grid-block">
+    The blocks in this row have equal sized content.
+  </div>
+</div>
+
+<hr>
+
 <h3>Building with Mixins</h3>
 
 <p>The grid has many features, and to create a robust responsive design you'll need to use many of them, often times on the same element. That can lead to HTML like this:</p>
@@ -488,6 +595,8 @@ title: Grid
 </hljs>
 
 <hr>
+
+
 
 <h3>Sass Variables</h3>
 
