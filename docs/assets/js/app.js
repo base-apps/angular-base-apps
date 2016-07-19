@@ -321,7 +321,7 @@
         class: 'tiny dialog',
         overlay: true,
         overlayClose: false,
-        templateUrl: 'partials/examples-dynamic-modal.html',
+        templateUrl: 'partials/examples-dynamic-modal2.html',
         contentScope: {
           close: function() {
             modal.deactivate();

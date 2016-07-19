@@ -81,8 +81,8 @@
         var overlayIn = 'fadeIn';
         var overlayOut = 'fadeOut';
 
-        scope.hideOverlay = function() {
-          if(scope.overlayClose) {
+        scope.hideOverlay = function($event) {
+          if($event.target.id == attrs.id && scope.overlayClose) {
             foundationApi.publish(attrs.id, 'close');
           }
         };
