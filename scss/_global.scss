@@ -64,6 +64,7 @@ $global-spacing: rem-calc(15) !default;
 // For internal use: a color map
 $foundation-colors: (
   primary: $primary-color,
+  secondary: $secondary-color,
   success: $success-color,
   warning: $warning-color,
   alert: $alert-color,
