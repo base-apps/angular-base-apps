@@ -151,6 +151,31 @@ controller: IconicController
 
 <hr>
 
+<h3>Icon Location</h3>
+<p>You can add in these sweet icons with the simple markup shown below. The <code>zf-iconic</code> attribute is needed to make the Iconic JS work.</p>
+<div class="grid-block">
+  <div class="small-12 medium-6 grid-content">
+<hljs language="html">
+  <img zf-iconic icon="thumb" size="medium">
+</hljs>
+  </div>
+  <div class="small-12 medium-6 grid-content">
+    <img zf-iconic icon="thumb" size="medium">
+  </div>
+</div>
+
+<p>The <code>icon</code> attribute refers to an icon in the iconic folder.  The iconic folder is set to <code>/assets/img/iconic</code> by default.  This value can be changed locally for a single icon using the <code>icon-dir</code> attribute.  The default can be changed globally using the <strong>IconicProvider</strong>.</p>
+
+<hljs language="javascript">
+angular.module('...').config(function(IconicProvider) {
+   IconicProvider.setAssetPath("...");
+});
+</hljs>
+
+<p>You can also use the <code>data-src</code> attribute to specify the full path to the icon (including svg extension).  This will override usage of the prevous methods for settings the icon location.</p>
+
+<hr>
+
 <h3>Icon Attributes</h3>
 <p>Iconic provides the ability to futher customize some of their icons by using data attributes.  For example, one can create a chevron icon in any direction using <a href="https://useiconic.com/icons/chevron">data-direction</a>.  Icon attributes can also be passed as an object to the iconic directive using the <strong>icon-attrs</strong> attribute.</p>
 
@@ -184,25 +209,6 @@ controller: IconicController
 </hljs>
   </div>
 </div>
-
-<hr>
-
-<h3>Icon Names</h3>
-<p>You can add in these sweet icons with this simple markup:</p>
-<div class="grid-block">
-  <div class="small-12 medium-6 grid-content">
-<hljs language="html">
-  <img zf-iconic icon="thumb" size="medium">
-</hljs>
-  </div>
-  <div class="small-12 medium-6 grid-content">
-    <img zf-iconic icon="thumb" size="medium">
-  </div>
-</div>
-
-
-<p>The icons are in the <code>build/assets/img/iconic</code> folder. If you're using the <code>data-src</code> attribute, you can manually pull in the path from there.</p>
-<p>The <code>zf-iconic</code> attribute is needed to make the Iconic JS work.</p>
 
 <hr>
 
