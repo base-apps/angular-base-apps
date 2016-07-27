@@ -50,10 +50,9 @@ angular.module('foundation').run(['$templateCache', function($templateCache) {
   $templateCache.put('components/modal/modal.html',
     '<div\n' +
     '  class="modal-overlay"\n' +
-    '  ng-click="hideOverlay()">\n' +
+    '  ng-click="hideOverlay($event)">\n' +
     '  <aside\n' +
     '    class="modal"\n' +
-    '    ng-click="$event.stopPropagation();"\n' +
     '    ng-transclude>\n' +
     '  </aside>\n' +
     '</div>\n' +
