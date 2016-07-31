@@ -71,7 +71,6 @@
           tab.scope.active = false;
         }
       });
-
     };
 
     controller.addTab = function addTab(tabScope) {
@@ -212,7 +211,19 @@
 
       foundationApi.subscribe(scope.id, function(msg) {
         if(msg === 'show' || msg === 'open' || msg === 'activate') {
-          scope.makeActive();
+          if (!scope.active) {
+            controller.select(scope);
+          }
+        }
+
+        if(msg === 'hide' || msg === 'close' || msg === 'deactivate') {
+          if (scope.active) {
+            controller.select(scope);
+          }
+        }
+
+        if(msg === 'toggle') {
+          controller.select(scope);
         }
       });
 

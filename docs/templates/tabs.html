@@ -93,6 +93,51 @@ controller: TabsController
 
 <hr>
 
+<h3>External Triggers</h3>
+
+<p>The tabs can be opened and closed outside the tabs component using the <code>zf-open</code>, <code>zf-close</code>, and <code>zf-toggle</code> directives.</p>
+
+<div class="grid-block align-center">
+  <div class="small-12 grid-content">
+
+<hljs language="html">
+<a class="button" zf-open="external-trigger-tabs-1">Open 1</a>
+<a class="button" zf-close="external-trigger-tabs-2">Close 2</a>
+<a class="button" zf-toggle="external-trigger-tabs-3">Toggle 3</a>
+<div zf-tabs auto-open="false" collapsible="true">
+  <div zf-tab title="Tab 1" id="external-trigger-tabs-1">
+    Tab content 1
+  </div>
+  <div zf-tab title="Tab 2" id="external-trigger-tabs-2">
+    Tab content 2
+  </div>
+  <div zf-tab title="Tab 3" id="external-trigger-tabs-3">
+    Tab content 3
+  </div>
+</div>
+</hljs>
+  </div>
+
+  <div class="small-12 shrink grid-content">
+    <a class="button" zf-open="external-trigger-tabs-1">Open 1</a>
+    <a class="button" zf-close="external-trigger-tabs-2">Close 2</a>
+    <a class="button" zf-toggle="external-trigger-tabs-3">Toggle 3</a>
+    <div zf-tabs auto-open="false" collapsible="true">
+		  <div zf-tab title="Tab 1" id="external-trigger-tabs-1">
+		    Tab content 1
+		  </div>
+		  <div zf-tab title="Tab 2" id="external-trigger-tabs-2">
+		    Tab content 2
+		  </div>
+		  <div zf-tab title="Tab 3" id="external-trigger-tabs-3">
+		    Tab content 3
+		  </div>
+  	</div>
+	</div>
+</div>
+
+<hr>
+
 <h3>Relocate Content</h3>
 
 <p>By default, the content for <code>zf-tabs</code> is placed directly below the tabs header.  This can be changed by using the <code>displaced</code> attribute on the tabs which allows easy positioning of the tab content using <code>zf-tab-content</code>.  The <code>target</code> for the <code>zf-tab-content</code> must match the desired <code>zf-tabs</code> id.</p>
@@ -138,7 +183,7 @@ controller: TabsController
 
 <p>The code above works great so long as <code>zf-tab-content</code> is rendered after <code>zf-tabs</code>.  Attempting to render <code>zf-tab-content</code> before <code>zf-tabs</code> will break the communication between the two components.  In order to resolve this issue, use <code>ng-if</code> and <code>ng-init</code> as shown below to ensure the components are rendered in the correct order.</p>
 
-<div class="grid-block">
+<div class="grid-block align-center">
   <div class="small-12 grid-content">
 <hljs language="html">
 <!-- Displaced content -->
@@ -158,7 +203,7 @@ controller: TabsController
 </hljs>
   </div>
 
-  <div class="small-12 grid-content">
+  <div class="small-12 shrink grid-content">
     <div zf-tab-content target="displaced-tabs2" ng-if="displacedTabsInit">
     </div>
     <div zf-tabs id="displaced-tabs2" displaced="true" ng-init="displacedTabsInit = true">
