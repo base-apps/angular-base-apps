@@ -136,6 +136,9 @@
         controller.select(scope);
       };
 
+      scope.$on("$destroy", function() {
+        foundationApi.unsubscribe(scope.id);
+      });
     }
   }
 

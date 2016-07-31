@@ -98,6 +98,10 @@
     function link(scope, element, attrs, controller) {
       scope.position = scope.position ? scope.position.split(' ').join('-') : 'top-right';
 
+      scope.$on("$destroy", function() {
+        foundationApi.unsubscribe(attrs.id);
+      });
+
       foundationApi.subscribe(attrs.id, function(msg) {
         if(msg === 'clearall') {
           controller.clearAll();

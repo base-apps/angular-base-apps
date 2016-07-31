@@ -132,6 +132,10 @@
       foundationApi.subscribe(scope.id + '-get-tabs', function() {
         updateTabs();
       });
+
+      scope.$on("$destroy", function() {
+        foundationApi.unsubscribe(scope.id + '-get-tabs');
+      });
     }
   }
 
@@ -183,6 +187,11 @@
 
         foundationApi.publish(id + '-get-tabs', '');
       }
+
+      scope.$on("$destroy", function() {
+        foundationApi.unsubscribe(id);
+        foundationApi.unsubscribe(id + '-tabs');
+      });
     }
   }
 
@@ -230,6 +239,10 @@
       scope.makeActive = function() {
         controller.select(scope);
       };
+
+      scope.$on("$destroy", function() {
+        foundationApi.unsubscribe(scope.id);
+      });
     }
   }
 
@@ -257,6 +270,9 @@
         scope.$apply();
       });
 
+      scope.$on("$destroy", function() {
+        foundationApi.unsubscribe(tab.scope.id);
+      });
     }
   }
 
@@ -350,7 +366,6 @@
           if(el.attr('id') === tabId) {
             el.addClass('is-active');
           }
-
         });
       }
     }

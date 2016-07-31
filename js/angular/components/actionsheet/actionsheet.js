@@ -182,6 +182,10 @@
           scope.active = true;
           return;
         };
+
+        scope.$on("$destroy", function() {
+          foundationApi.unsubscribe(id);
+        });
       }
     }
   }

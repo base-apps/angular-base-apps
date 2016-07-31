@@ -102,6 +102,9 @@
         //   animationOut = attrs.animationOut || 'slideOutDown';
         // }
 
+        scope.$on("$destroy", function() {
+          foundationApi.unsubscribe(attrs.id);
+        });
 
         //setup
         foundationApi.subscribe(attrs.id, function(msg) {
