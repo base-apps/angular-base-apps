@@ -62,9 +62,9 @@
           }
 
           if (tab.active) {
-            foundationApi.publish(id, ['activate', tab]);
+            foundationApi.publish(id, ['activate', tab.scope.id]);
           } else {
-            foundationApi.publish(id, ['deactivate', tab]);
+            foundationApi.publish(id, ['deactivate', tab.scope.id]);
           }
         } else {
           tab.active = false;
@@ -163,7 +163,7 @@
             tab.scope.active = false;
             tab.active = false;
 
-            if(tab === msg[1]) {
+            if(tab.scope.id == msg[1]) {
               tab.scope.active = true;
               tab.active = true;
             }
