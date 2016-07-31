@@ -6,7 +6,7 @@
 
 <h3>Basic HTML</h3>
 
-<p>You can create automatic tabs with this basic directive:</p>
+<p>You can create tabs with this basic directive</p>
 
 <div class="grid-block">
   <div class="small-12 medium-6 grid-content">
@@ -45,7 +45,96 @@
 
 <h3>Advanced HTML</h3>
 
-<p>You can create Automatic tabs with displaced tab content with this basic directive:</p>
+<p>You can create advanced versions of tabs with these additional directive options</p>
+
+<div class="grid-block">
+  <div class="small-12 medium-6 grid-content">
+
+<hljs language="html">
+<div zf-tabs auto-open="false" collapsible="true">
+  <div zf-tab title="Tab 1">
+    Tab content 1
+  </div>
+  <div zf-tab title="Tab 2">
+    Tab content 2
+  </div>
+  <div zf-tab title="Tab 3">
+    Tab content 3
+  </div>
+</div>
+</hljs>
+  </div>
+
+  <div class="small-12 medium-6 grid-content">
+    <div zf-tabs auto-open="false" collapsible="true">
+		  <div zf-tab title="Tab 1">
+		    Tab content 1
+		  </div>
+		  <div zf-tab title="Tab 2">
+		    Tab content 2
+		  </div>
+		  <div zf-tab title="Tab 3">
+		    Tab content 3
+		  </div>
+  	</div>
+	</div>
+</div>
+
+<ul>
+  <li><code>auto-open</code>: By default, the tabs will auto open the first tab in the container.  Set the <strong>auto-open</strong> attribute to <strong>false</strong> to change this functionality.</li>
+  <li><code>collapsible</code>: By default, one tab must be open at all times.  Set the <strong>collapsible</strong> attribute to <strong>true</strong> to change this functionality.  This will enable toggling the tabs.</li>
+</ul>
+
+<hr>
+
+<h3>External Triggers</h3>
+
+<p>The tabs can be opened and closed outside the tabs component using the <code>zf-open</code>, <code>zf-close</code>, and <code>zf-toggle</code> directives.</p>
+
+<div class="grid-block align-center">
+  <div class="small-12 grid-content">
+
+<hljs language="html">
+<a class="button" zf-open="external-trigger-tabs-1">Open 1</a>
+<a class="button" zf-close="external-trigger-tabs-2">Close 2</a>
+<a class="button" zf-toggle="external-trigger-tabs-3">Toggle 3</a>
+<div zf-tabs auto-open="false" collapsible="true">
+  <div zf-tab title="Tab 1" id="external-trigger-tabs-1">
+    Tab content 1
+  </div>
+  <div zf-tab title="Tab 2" id="external-trigger-tabs-2">
+    Tab content 2
+  </div>
+  <div zf-tab title="Tab 3" id="external-trigger-tabs-3">
+    Tab content 3
+  </div>
+</div>
+</hljs>
+  </div>
+
+  <div class="small-12 shrink grid-content">
+    <a class="button" zf-open="external-trigger-tabs-1">Open 1</a>
+    <a class="button" zf-close="external-trigger-tabs-2">Close 2</a>
+    <a class="button" zf-toggle="external-trigger-tabs-3">Toggle 3</a>
+    <div zf-tabs auto-open="false" collapsible="true">
+		  <div zf-tab title="Tab 1" id="external-trigger-tabs-1">
+		    Tab content 1
+		  </div>
+		  <div zf-tab title="Tab 2" id="external-trigger-tabs-2">
+		    Tab content 2
+		  </div>
+		  <div zf-tab title="Tab 3" id="external-trigger-tabs-3">
+		    Tab content 3
+		  </div>
+  	</div>
+	</div>
+</div>
+
+<hr>
+
+<h3>Relocate Content</h3>
+
+<p>By default, the content for <code>zf-tabs</code> is placed directly below the tabs header.  This can be changed by using the <code>displaced</code> attribute on the tabs which allows easy positioning of the tab content using <code>zf-tab-content</code>.  The <code>target</code> for the <code>zf-tab-content</code> must match the desired <code>zf-tabs</code> id.</p>
 
 <div class="grid-block">
   <div class="small-12 medium-6 grid-content">
@@ -61,6 +150,7 @@
     Tab 3
   </div>
 </div>
+<hr>
 <!-- Displaced content -->
 <div zf-tab-content target="displaced-tabs">
 </div>
@@ -68,7 +158,7 @@
   </div>
 
   <div class="small-12 medium-6 grid-content">
-    <div zf-tabs id="displaced-tabs" displaced="true">
+    <div zf-tabs id="displaced-tabs1" displaced="true">
 		  <div zf-tab title="Tab 1">
 		    Tab 1
 		  </div>
@@ -79,17 +169,123 @@
 		    Tab 3
 		  </div>
 		</div>
-		<div zf-tab-content target="displaced-tabs">
+    <hr>
+    <div zf-tab-content target="displaced-tabs1">
+    </div>
+	</div>
+</div>
+
+<p>The code above works great so long as <code>zf-tab-content</code> is rendered after <code>zf-tabs</code>.  Attempting to render <code>zf-tab-content</code> before <code>zf-tabs</code> will break the communication between the two components.  In order to resolve this issue, use <code>ng-if</code> and <code>ng-init</code> as shown below to ensure the components are rendered in the correct order.</p>
+
+<div class="grid-block align-center">
+  <div class="small-12 grid-content">
+<hljs language="html">
+<!-- Displaced content -->
+<div zf-tab-content target="displaced-tabs" ng-if="displacedTabsInit">
+</div>
+<div zf-tabs id="displaced-tabs" displaced="true" ng-init="displacedTabsInit = true">
+  <div zf-tab title="Tab 1">
+    Tab 1
+  </div>
+  <div zf-tab title="Tab 2">
+    Tab 2
+  </div>
+  <div zf-tab title="Tab 3">
+    Tab 3
+  </div>
+</div>
+</hljs>
+  </div>
+
+  <div class="small-12 shrink grid-content">
+    <div zf-tab-content target="displaced-tabs2" ng-if="displacedTabsInit">
+    </div>
+    <div zf-tabs id="displaced-tabs2" displaced="true" ng-init="displacedTabsInit = true">
+		  <div zf-tab title="Tab 1">
+		    Tab 1
+		  </div>
+		  <div zf-tab title="Tab 2">
+		    Tab 2
+		  </div>
+		  <div zf-tab title="Tab 3">
+		    Tab 3
+		  </div>
 		</div>
 	</div>
 </div>
 
 <hr>
 
+<h3>Accessing Parent Data</h3>
+
+<p>The tabs directive uses an isolated scope, meaning data from the parent scope cannot be accessed directly.  In order to access properties on the parent scope, one must use  <code>$parent</code>.  For more information on angular scopes, <a href="https://docs.angularjs.org/api/ng/type/$rootScope.Scope">check their docs</a>.  The example below shows how to access data from a parent scope using <code>zf-tabs</code>.</p>
+
+<div class="grid-block align-center">
+  <div class="small-12 grid-content">
+
+<hljs language="html">
+<div zf-tabs>
+  <div zf-tab title="Text Example">
+    {{ $parent.message }}
+  </div>
+  <div zf-tab title="Click Example">
+    <h6>{{ $parent.clicks }}</h6>
+    <a class="button" ng-click="$parent.doClick()">Click Me</a>
+    <a class="button secondary" ng-click="$parent.reset()">Reset</a>
+  </div>
+  <div zf-tab title="Click Example 2">
+    <h6>{{ $parent.data.clicks2 }}</h6>
+    <a class="button" ng-click="$parent.data.clicks2 = $parent.data.clicks2 + 1">Click Me</a>
+    <a class="button secondary" ng-click="$parent.data.clicks2 = 0">Reset</a>
+  </div>
+</div>
+</hljs>
+  </div>
+
+  <div class="small-12 grid-content shrink">
+    <div zf-tabs>
+      <div zf-tab title="Text Example">
+        {{ $parent.message }}
+      </div>
+      <div zf-tab title="Click Example">
+        <h6>{{ $parent.clicks }}</h6>
+        <a class="button" ng-click="$parent.doClick()">Click Me</a>
+        <a class="button secondary" ng-click="$parent.reset()">Reset</a>
+      </div>
+      <div zf-tab title="Click Example 2">
+        <h6>{{ $parent.data.clicks2 }}</h6>
+        <a class="button" ng-click="$parent.data.clicks2 = $parent.data.clicks2 + 1">Click Me</a>
+        <a class="button secondary" ng-click="$parent.data.clicks2 = 0">Reset</a>
+      </div>
+  	</div>
+	</div>
+</div>
+
+<p>Take special look at the differences between the two click examples.  The first example uses functions on the parent scope to modify the value, while the second example modifies the value directly.  The second example does not work if you attempt to modify the <code>$parent.clicks</code> value instead of the <code>$parent.data.clicks2</code> value.  The reason has to due with how angular binds to data.  Using a primitive value on the scope causes the binding to break in the second example.  This is fixed by storing the value in an object and assigning the object to the scope.  This makes angular bind to the object instead of the primitive value, allow the value to be manipulated by child scopes without breaking any bindings.</p>
+
+<p>Controller used in example above:</p>
+<hljs language="javascript">
+function TabsController($scope) {
+  $scope.message = "Hello World!";
+  $scope.clicks = 0;
+  $scope.data = {
+    clicks2: 0
+  };
+
+  $scope.doClick = function() {
+    $scope.clicks++;
+  };
+  $scope.reset = function() {
+    $scope.clicks = 0;
+  };
+}
+</hljs>
+
+<hr />
+
 <h3>Sass Mixins</h3>
 
 <p>Use our mixins to write your own tab classes.</p>
-
 <hljs language="scss">
 // This is the container for your tabstrip
 .custom-tabs {
