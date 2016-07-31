@@ -19,6 +19,7 @@
     .controller('AngularModsController', AngularModsController)
     .controller('IconicController', IconicController)
     .controller('ModalController', ModalController)
+    .controller('TabsController', TabsController)
     .factory('ProgrammaticModal', ProgrammaticModalFactory)
   ;
 
@@ -336,6 +337,23 @@
     ProgrammaticModal.prototype = Object.create(ModalFactory.prototype);
 
     return ProgrammaticModal;
+  }
+
+  TabsController.$inject = ['$scope'];
+
+  function TabsController($scope) {
+    $scope.message = "Hello World!";
+    $scope.clicks = 0;
+    $scope.data = {
+      clicks2: 0
+    };
+
+    $scope.doClick = function() {
+      $scope.clicks++;
+    };
+    $scope.reset = function() {
+      $scope.clicks = 0;
+    };
   }
 
 })();
