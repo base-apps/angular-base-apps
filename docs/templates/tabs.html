@@ -48,6 +48,50 @@ title: Tabs
 
 <hr />
 
+<h3>Advanced HTML</h3>
+
+<p>You can create advanced versions of tabs with these additional directive options</p>
+
+<div class="grid-block">
+  <div class="small-12 medium-6 grid-content">
+
+<hljs language="html">
+<div zf-tabs auto-open="false" collapsible="true">
+  <div zf-tab title="Tab 1">
+    Tab content 1
+  </div>
+  <div zf-tab title="Tab 2">
+    Tab content 2
+  </div>
+  <div zf-tab title="Tab 3">
+    Tab content 3
+  </div>
+</div>
+</hljs>
+  </div>
+
+  <div class="small-12 medium-6 grid-content">
+    <div zf-tabs auto-open="false" collapsible="true">
+		  <div zf-tab title="Tab 1">
+		    Tab content 1
+		  </div>
+		  <div zf-tab title="Tab 2">
+		    Tab content 2
+		  </div>
+		  <div zf-tab title="Tab 3">
+		    Tab content 3
+		  </div>
+  	</div>
+	</div>
+</div>
+
+<ul>
+  <li><code>auto-open</code>: By default, the tabs will auto open the first tab in the container.  Set the <strong>auto-open</strong> attribute to <strong>false</strong> to change this functionality.</li>
+  <li><code>collapsible</code>: By default, one tab must be open at all times.  Set the <strong>collapsible</strong> attribute to <strong>true</strong> to change this functionality.</li>
+</ul>
+
+<hr />
+
 <h3>Relocate Content</h3>
 
 <p>By default, the content for <code>zf-tabs</code> is placed directly below the tabs header.  This can be changed by using the <code>displaced</code> attribute on the tabs which allows easy positioning of the tab content anywhere in the app using <code>zf-tab-content</code>.  The <code>target</code> for the <code>zf-tab-content</code> must match the desired <code>zf-tabs</code> id.</p>
