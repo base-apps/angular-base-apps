@@ -3617,29 +3617,39 @@ angular.module('markdown', [])
   ZfTabsController.$inject = ['$scope', 'FoundationApi'];
 
   function ZfTabsController($scope, foundationApi) {
-    var controller = this;
-    var tabs       = controller.tabs = $scope.tabs = [];
-    var id         = '';
+    var controller  = this;
+    var tabs        = controller.tabs = $scope.tabs = [];
+    var id          = '';
+    var autoOpen    = true;
+    var collapsible = false;
 
     controller.select = function(selectTab) {
       tabs.forEach(function(tab) {
-        tab.active = false;
-        tab.scope.active = false;
-
         if(tab.scope === selectTab) {
-          foundationApi.publish(id, ['activate', tab]);
+          if (collapsible) {
+            tab.active = !tab.active;
+            tab.scope.active = !tab.scope.active;
+          } else {
+            tab.active = true;
+            tab.scope.active = true;
+          }
 
-          tab.active = true;
-          tab.scope.active = true;
+          if (tab.active) {
+            foundationApi.publish(id, ['activate', tab.scope.id]);
+          } else {
+            foundationApi.publish(id, ['deactivate', tab.scope.id]);
+          }
+        } else {
+          tab.active = false;
+          tab.scope.active = false;
         }
       });
-
     };
 
     controller.addTab = function addTab(tabScope) {
       tabs.push({ scope: tabScope, active: false, parentContent: controller.id });
 
-      if(tabs.length === 1) {
+      if(tabs.length === 1 && autoOpen) {
         tabs[0].active = true;
         tabScope.active = true;
       }
@@ -3651,6 +3661,14 @@ angular.module('markdown', [])
 
     controller.setId = function(newId) {
       id = newId;
+    };
+
+    controller.setAutoOpen = function(val) {
+      autoOpen = val;
+    };
+
+    controller.setCollapsible = function(val) {
+      collapsible = val;
     };
   }
 
@@ -3676,6 +3694,8 @@ angular.module('markdown', [])
       scope.showTabContent = scope.displaced !== 'true';
       attrs.$set('id', scope.id);
       controller.setId(scope.id);
+      controller.setAutoOpen(attrs.autoOpen !== "false");
+      controller.setCollapsible(attrs.collapsible === "true");
 
       //update tabs in case tab-content doesn't have them
       var updateTabs = function() {
@@ -3705,21 +3725,25 @@ angular.module('markdown', [])
 
     return directive;
 
-    function link(scope, element, attrs, ctrl) {
+    function link(scope, element, attrs, controller) {
       scope.tabs = scope.tabs || [];
       var id = scope.target;
 
       foundationApi.subscribe(id, function(msg) {
         if(msg[0] === 'activate') {
-          var tabId = msg[1];
           scope.tabs.forEach(function (tab) {
             tab.scope.active = false;
             tab.active = false;
 
-            if(tab.scope.id === id) {
+            if(tab.scope.id == msg[1]) {
               tab.scope.active = true;
               tab.active = true;
             }
+          });
+        } else if (msg[0] === 'deactivate') {
+          scope.tabs.forEach(function (tab) {
+            tab.scope.active = false;
+            tab.active = false;
           });
         }
       });
@@ -3760,7 +3784,19 @@ angular.module('markdown', [])
 
       foundationApi.subscribe(scope.id, function(msg) {
         if(msg === 'show' || msg === 'open' || msg === 'activate') {
-          scope.makeActive();
+          if (!scope.active) {
+            controller.select(scope);
+          }
+        }
+
+        if(msg === 'hide' || msg === 'close' || msg === 'deactivate') {
+          if (scope.active) {
+            controller.select(scope);
+          }
+        }
+
+        if(msg === 'toggle') {
+          controller.select(scope);
         }
       });
 
@@ -3781,7 +3817,7 @@ angular.module('markdown', [])
 
     return directive;
 
-    function link(scope, element, attrs, ctrl, transclude) {
+    function link(scope, element, attrs, controller, transclude) {
       var tab = scope.$eval(attrs.tab);
       var id = tab.scope.id;
 
@@ -3810,7 +3846,7 @@ angular.module('markdown', [])
 
     return directive;
 
-    function link(scope, element, attrs, ctrl) {
+    function link(scope, element, attrs, controller) {
       var target = attrs.zfTabHref;
 
       foundationApi.subscribe(target, function(msg) {
@@ -3844,7 +3880,7 @@ angular.module('markdown', [])
 
     return directive;
 
-    function link(scope, element, attrs, ctrl, transclude) {
+    function link(scope, element, attrs, controller, transclude) {
       var children = element.children();
       angular.element(children[0]).addClass('is-active');
     }
