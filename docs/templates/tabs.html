@@ -48,9 +48,9 @@ title: Tabs
 
 <hr />
 
-<h3>Advanced HTML</h3>
+<h3>Relocate Content</h3>
 
-<p>You can create Automatic tabs with displaced tab content with this basic directive:</p>
+<p>By default, the content for <code>zf-tabs</code> is placed directly below the tabs header.  This can be changed by using the <code>displaced</code> attribute on the tabs which allows easy positioning of the tab content anywhere in the app using <code>zf-tab-content</code>.  The <code>target</code> for the <code>zf-tab-content</code> must match the desired <code>zf-tabs</code> id.</p>
 
 <div class="grid-block">
   <div class="small-12 medium-6 grid-content">
@@ -66,6 +66,7 @@ title: Tabs
     Tab 3
   </div>
 </div>
+<hr>
 <!-- Displaced content -->
 <div zf-tab-content target="displaced-tabs">
 </div>
@@ -84,7 +85,47 @@ title: Tabs
 		    Tab 3
 		  </div>
 		</div>
-		<div zf-tab-content target="displaced-tabs">
+    <hr>
+    <div zf-tab-content target="displaced-tabs">
+    </div>
+	</div>
+</div>
+
+<p>The code above works great so long as <code>zf-tab-content</code> is rendered after <code>zf-tabs</code>.  Attempting to render <code>zf-tab-content</code> before <code>zf-tabs</code> will break the communication between the two components.  In order to resolve this issue, use <code>ng-if</code> and <code>ng-init</code> as shown below to ensure the components are rendered in the correct order.</p>
+
+<div class="grid-block">
+  <div class="small-12 grid-content">
+<hljs language="html">
+<!-- Displaced content -->
+<div zf-tab-content target="displaced-tabs" ng-if="displacedTabsInit">
+</div>
+<div zf-tabs id="displaced-tabs" displaced="true" ng-init="displacedTabsInit = true">
+  <div zf-tab title="Tab 1">
+    Tab 1
+  </div>
+  <div zf-tab title="Tab 2">
+    Tab 2
+  </div>
+  <div zf-tab title="Tab 3">
+    Tab 3
+  </div>
+</div>
+</hljs>
+  </div>
+
+  <div class="small-12 grid-content">
+    <div zf-tab-content target="displaced-tabs" ng-if="displacedTabsInit">
+    </div>
+    <div zf-tabs id="displaced-tabs" displaced="true" ng-init="displacedTabsInit = true">
+		  <div zf-tab title="Tab 1">
+		    Tab 1
+		  </div>
+		  <div zf-tab title="Tab 2">
+		    Tab 2
+		  </div>
+		  <div zf-tab title="Tab 3">
+		    Tab 3
+		  </div>
 		</div>
 	</div>
 </div>
@@ -94,7 +135,6 @@ title: Tabs
 <h3>Sass Mixins</h3>
 
 <p>Use our mixins to write your own tab classes.</p>
-
 <hljs language="scss">
 // This is the container for your tabstrip
 .custom-tabs {
