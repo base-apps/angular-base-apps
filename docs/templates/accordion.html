@@ -106,7 +106,64 @@ title: Accordion
   </div>
 </div>
 
+<ul>
+  <li><code>auto-open</code>: By default, the first accordion will auto open in the container.  Set the <strong>auto-open</strong> attribute to <strong>false</strong> to change this functionality.</li>
+  <li><code>collapsible</code>: By default, one accordion must be open at all times.  Set the <strong>collapsible</strong> attribute to <strong>true</strong> to change this functionality.  This will enable toggling the accordions.</li>
+  <li><code>multi-open</code>: By default, only one accordion can be expanded at a time.  Set the <strong>multi-open</strong> attribute to <strong>true</strong> to change this functionality.  Setting this functionality implies <strong>collapsible</strong> is set to <strong>true</strong>.</li>
+</ul>
+
 <hr />
+
+<h3>External Triggers</h3>
+
+<p>The accordions can be opened and closed outside the accordion component using the <code>zf-open</code>, <code>zf-close</code>, and <code>zf-toggle</code> directives.</p>
+
+<div class="grid-block align-center">
+  <div class="small-12 grid-content">
+
+<hljs language="html">
+<a class="button" zf-open="trigger-accordion-1">Open 1</a>
+<a class="button" zf-close="trigger-accordion-2">Close 2</a>
+<a class="button" zf-toggle="trigger-accordion-3">Toggle 3</a>
+<zf-accordion auto-open="false" collapsible="true" multi-open="true">
+  <zf-accordion-item id="trigger-accordion-1" title="Auto Open">
+    Auto open opens the first tab on render.
+  </zf-accordion-item>
+  <zf-accordion-item id="trigger-accordion-2" title="Collapsible">
+    Collapsible allows toggable tabs. Click on a tab to open or close it.
+  </zf-accordion-item>
+  <zf-accordion-item id="trigger-accordion-3" title="Multi Open">
+    Multi open allows for multiple tabs to be open at once.
+  </zf-accordion-item>
+</zf-accordion>
+</hljs>
+  </div>
+
+  <div class="small-12 shrink grid-content">
+    <a class="button" zf-open="trigger-accordion-1">Open 1</a>
+    <a class="button" zf-close="trigger-accordion-2">Close 2</a>
+    <a class="button" zf-toggle="trigger-accordion-3">Toggle 3</a>
+    <zf-accordion auto-open="false" collapsible="true" multi-open="true">
+      <zf-accordion-item id="trigger-accordion-1" title="Auto Open">
+        Auto open opens the first tab on render.
+      </zf-accordion-item>
+      <zf-accordion-item id="trigger-accordion-2" title="Collapsible">
+        Collapsible allows toggable tabs. Click on a tab to open or close it.
+      </zf-accordion-item>
+      <zf-accordion-item id="trigger-accordion-3" title="Multi Open">
+        Multi open allows for multiple tabs to be open at once.
+      </zf-accordion-item>
+    </zf-accordion>
+	</div>
+</div>
+
+<hr>
+
+<h3>Accessing Parent Data</h3>
+
+<p>The accordion directive uses an isolated scope, meaning data from the parent scope cannot be accessed directly.  In order to access properties on the parent scope, one must use  <code>$parent</code>.  Refer to the <a ui-sref="tabs">tabs documentation</a> for a complete example of how to use <code>$parent</code>.</p>
+
+<hr>
 
 <h3>Sass Mixins</h3>
 
