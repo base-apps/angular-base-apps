@@ -1127,27 +1127,23 @@ angular.module('markdown', [])
   function zfAccordionController($scope) {
     var controller = this;
     var sections = controller.sections = $scope.sections = [];
-    var multiOpen = controller.multiOpen = $scope.multiOpen = $scope.multiOpen || false;
-    var collapsible = controller.collapsible = $scope.collapsible = $scope.multiOpen || $scope.collapsible || true; //multi open infers a collapsible true
-    var autoOpen = controller.autoOpen = $scope.autoOpen = $scope.autoOpen || true; //auto open opens first tab on render
+    var multiOpen   = false;
+    var collapsible = false;
+    var autoOpen    = true;
 
     controller.select = function(selectSection) {
       sections.forEach(function(section) {
-        //if multi open is allowed, toggle a tab
-        if(controller.multiOpen) {
-          if(section.scope === selectSection) {
+        if(section.scope === selectSection) {
+          if (multiOpen || collapsible) {
             section.scope.active = !section.scope.active;
+          } else {
+            section.scope.active = true;
           }
         } else {
-          //non  multi open will close all tabs and open one
-          if(section.scope === selectSection) {
-            //if collapsible is allowed, a tab will toggle
-            section.scope.active = collapsible ? !section.scope.active : true;
-          } else {
+          if (!multiOpen) {
             section.scope.active = false;
           }
         }
-
       });
     };
 
@@ -1165,6 +1161,18 @@ angular.module('markdown', [])
         section.scope.active = false;
       });
     };
+
+    controller.setAutoOpen = function(val) {
+      autoOpen = val;
+    };
+
+    controller.setCollapsible = function(val) {
+      collapsible = val;
+    };
+
+    controller.setMultiOpen = function(val) {
+      multiOpen = val;
+    };
   }
 
   function zfAccordion() {
@@ -1175,9 +1183,6 @@ angular.module('markdown', [])
       templateUrl: 'components/accordion/accordion.html',
       controller: 'ZfAccordionController',
       scope: {
-        multiOpen: '@?',
-        collapsible: '@?',
-        autoOpen: '@?'
       },
       link: link
     };
@@ -1185,14 +1190,16 @@ angular.module('markdown', [])
     return directive;
 
     function link(scope, element, attrs, controller) {
-      scope.multiOpen = controller.multiOpen = scope.multiOpen === "true" ? true : false;
-      scope.collapsible = controller.collapsible = scope.collapsible === "true" ? true : false;
-      scope.autoOpen = controller.autoOpen = scope.autoOpen === "true" ? true : false;
+      controller.setAutoOpen(attrs.autoOpen !== "false");
+      controller.setCollapsible(attrs.collapsible === "true");
+      controller.setMultiOpen(attrs.multiOpen === "true");
     }
   }
 
   //accordion item
-  function zfAccordionItem() {
+  zfAccordionItem.$inject = ['FoundationApi'];
+
+  function zfAccordionItem(foundationApi) {
     var directive = {
         restrict: 'EA',
         templateUrl: 'components/accordion/accordion-item.html',
@@ -1209,13 +1216,37 @@ angular.module('markdown', [])
     return directive;
 
     function link(scope, element, attrs, controller, transclude) {
+      scope.id = attrs.id || foundationApi.generateUuid();
       scope.active = false;
       controller.addSection(scope);
+
+      foundationApi.subscribe(scope.id, function(msg) {
+        if(msg === 'show' || msg === 'open' || msg === 'activate') {
+          if (!scope.active) {
+            controller.select(scope);
+          }
+        }
+
+        if(msg === 'hide' || msg === 'close' || msg === 'deactivate') {
+          if (scope.active) {
+            controller.select(scope);
+          }
+        }
+
+        if(msg === 'toggle') {
+          controller.select(scope);
+        }
+
+        scope.$digest();
+      });
 
       scope.activate = function() {
         controller.select(scope);
       };
 
+      scope.$on("$destroy", function() {
+        foundationApi.unsubscribe(scope.id);
+      });
     }
   }
 
@@ -1405,6 +1436,10 @@ angular.module('markdown', [])
           scope.active = true;
           return;
         };
+
+        scope.$on("$destroy", function() {
+          foundationApi.unsubscribe(id);
+        });
       }
     }
   }
@@ -2392,6 +2427,10 @@ angular.module('markdown', [])
           return;
         };
 
+        scope.$on("$destroy", function() {
+          foundationApi.unsubscribe(attrs.id);
+        });
+
         //setup
         foundationApi.subscribe(attrs.id, function(msg) {
           if(msg === 'show' || msg === 'open') {
@@ -2726,6 +2765,10 @@ angular.module('markdown', [])
     function link(scope, element, attrs, controller) {
       scope.position = scope.position ? scope.position.split(' ').join('-') : 'top-right';
 
+      scope.$on("$destroy", function() {
+        foundationApi.unsubscribe(attrs.id);
+      });
+
       foundationApi.subscribe(attrs.id, function(msg) {
         if(msg === 'clearall') {
           controller.clearAll();
@@ -2881,6 +2924,10 @@ angular.module('markdown', [])
         var animationIn = attrs.animationIn || 'fadeIn';
         var animationOut = attrs.animationOut || 'fadeOut';
         var animateFn = attrs.hasOwnProperty('zfAdvise') ? foundationApi.animateAndAdvise : foundationApi.animate;
+
+        scope.$on("$destroy", function() {
+          foundationApi.unsubscribe(attrs.id);
+        });
 
         //setup
         foundationApi.subscribe(attrs.id, function(msg) {
@@ -3152,8 +3199,12 @@ angular.module('markdown', [])
 
       function postLink(scope, element, attrs) {
         scope.position = scope.position || 'left';
-
         scope.active = false;
+
+        scope.$on("$destroy", function() {
+          foundationApi.unsubscribe(attrs.id);
+        });
+
         //setup
         foundationApi.subscribe(attrs.id, function(msg) {
           if(msg === 'show' || msg === 'open') {
@@ -3304,6 +3355,9 @@ angular.module('markdown', [])
         //   animationOut = attrs.animationOut || 'slideOutDown';
         // }
 
+        scope.$on("$destroy", function() {
+          foundationApi.unsubscribe(attrs.id);
+        });
 
         //setup
         foundationApi.subscribe(attrs.id, function(msg) {
@@ -3705,6 +3759,10 @@ angular.module('markdown', [])
       foundationApi.subscribe(scope.id + '-get-tabs', function() {
         updateTabs();
       });
+
+      scope.$on("$destroy", function() {
+        foundationApi.unsubscribe(scope.id + '-get-tabs');
+      });
     }
   }
 
@@ -3756,6 +3814,11 @@ angular.module('markdown', [])
 
         foundationApi.publish(id + '-get-tabs', '');
       }
+
+      scope.$on("$destroy", function() {
+        foundationApi.unsubscribe(id);
+        foundationApi.unsubscribe(id + '-tabs');
+      });
     }
   }
 
@@ -3803,6 +3866,10 @@ angular.module('markdown', [])
       scope.makeActive = function() {
         controller.select(scope);
       };
+
+      scope.$on("$destroy", function() {
+        foundationApi.unsubscribe(scope.id);
+      });
     }
   }
 
@@ -3830,6 +3897,9 @@ angular.module('markdown', [])
         scope.$apply();
       });
 
+      scope.$on("$destroy", function() {
+        foundationApi.unsubscribe(tab.scope.id);
+      });
     }
   }
 
@@ -3923,7 +3993,6 @@ angular.module('markdown', [])
           if(el.attr('id') === tabId) {
             el.addClass('is-active');
           }
-
         });
       }
     }
