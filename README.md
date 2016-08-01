@@ -52,7 +52,7 @@ The documentation can be viewed at the same URL as above.
 ### Directory Structure
 
 * `build`: This is where our documentation is assembled. **Don't edit these files directly, as they're overwritten every time you make a change!**
-* `docs`: The Foundation for Apps documentation.
+* `docs`: The Angular Base Apps documentation.
 * `scss`: The Sass components.
 * `js`: The Angular modules and directives, and other external libraries.
 * `iconic`: A set of 24 icons from the folks at [Iconic](https://useiconic.com/).
@@ -61,7 +61,7 @@ The documentation can be viewed at the same URL as above.
 
 ## Versioning
 
-Foundation for Apps follows semver, so we won't introduce breaking changes in minor or patch versions. The `master` branch will always have the newest changes, so it's not necessarily production ready. The `stable` branch will always have the most recent stable version of the framework.
+Angular Base Apps follows semver, so we won't introduce breaking changes in minor or patch versions. The `master` branch will always have the newest changes, so it's not necessarily production ready. The `stable` branch will always have the most recent stable version of the framework.
 
 ## Contributing
 
