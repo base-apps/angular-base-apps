@@ -47,7 +47,10 @@ module.exports = function(options) {
     });
 
     if (options.angular) {
-      content = "angular.module('foundation.dynamicRouting').config(" +
+      content = "angular.module('base.dynamicRouting').config(" +
+        "['$FoundationStateProvider', function(FoundationStateProvider)" +
+        "{ FoundationStateProvider.registerDynamicRoutes(" + JSON.stringify(configs) + "); }]); \n";
+      content += "angular.module('foundation.dynamicRouting').config(" +
         "['$FoundationStateProvider', function(FoundationStateProvider)" +
         "{ FoundationStateProvider.registerDynamicRoutes(" + JSON.stringify(configs) + "); }]); \n";
     } else {
