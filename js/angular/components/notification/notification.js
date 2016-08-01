@@ -258,6 +258,10 @@
         var animationOut = attrs.animationOut || 'fadeOut';
         var animateFn = attrs.hasOwnProperty('zfAdvise') ? foundationApi.animateAndAdvise : foundationApi.animate;
 
+        scope.$on("$destroy", function() {
+          foundationApi.unsubscribe(attrs.id);
+        });
+
         //setup
         foundationApi.subscribe(attrs.id, function(msg) {
           if(msg == 'show' || msg == 'open') {
