@@ -6,9 +6,10 @@
   "scripts": {
     "test": "gulp test",
     "start": "gulp",
-    "publish-patch": "gulp publish:patch && git add --all dist && git push --follow-tags && npm publish",
-    "publish-minor": "gulp publish:minor && git add --all dist && git push --follow-tags && npm publish",
-    "publish-major": "gulp publish:major && git add --all dist && git push --follow-tags && npm publish"
+    "publish-patch": "gulp publish:patch && git push --follow-tags && gulp publish:ghpages && npm publish",
+    "publish-minor": "gulp publish:minor && git push --follow-tags && gulp publish:ghpages && npm publish",
+    "publish-major": "gulp publish:major && git push --follow-tags && gulp publish:ghpages && npm publish",
+    "publish-docs": "gulp build:dist && gulp publish:ghpages"
   },
   "repository": {
     "type": "git",
@@ -37,6 +38,7 @@
     "gulp-concat": "^2.4.1",
     "gulp-connect": "^2.0.6",
     "gulp-filter": "^2.0.0",
+    "gulp-gh-pages": "^0.5.4",
     "gulp-git": "^1.8.0",
     "gulp-highlight": "0.0.3",
     "gulp-if": "^2.0.1",

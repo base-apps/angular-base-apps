@@ -464,6 +464,11 @@ gulp.task('publish:patch', ['build:dist', 'bump:patch'], function() { return pub
 gulp.task('publish:minor', ['build:dist', 'bump:minor'], function() { return publish(); });
 gulp.task('publish:major', ['build:dist', 'bump:major'], function() { return publish(); });
 
+gulp.task('publish:ghpages', function() {
+  return gulp.src('./dist/docs/**/*')
+    .pipe($.ghPages());
+});
+
 function bump(importance) {
   // get all the files to bump version in
   return gulp.src(['./package.json', './bower.json'])
@@ -476,6 +481,7 @@ function bump(importance) {
 function publish() {
   return gulp.src(['./package.json', './bower.json', './dist/**/*'])
     // commit the changes
+    .pipe($.git.add())
     .pipe($.git.commit('bump version'))
     // read only one file to get the version number
     .pipe($.filter('package.json'))
