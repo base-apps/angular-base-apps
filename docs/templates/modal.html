@@ -195,6 +195,99 @@ angular.module('...').controller('...', function(ProgrammaticModal) {
 
 <hr>
 
+<h3>Confirm and Prompt Modals</h3>
+
+<p>Two core functions for the web are <code>Window.confirm()</code> and <code>Window.prompt()</code>.  These functions display a modal to get an acknowledgment or input from the user.  Unfortuneately the styling of these modals is browser dependent, so the look and feel won't match your app across all devices.  These functions are also synchronous, which doesn't work well in an asynchronous angular world.</p>
+
+<p>We've taken care of these issues by creating a <code>ConfirmModal</code> and <code>PromptModal</code>.  These modals provide an asynchronous user interaction and are created using the <code>ModalFactory</code>.  Examples below show how to use these modals.</p>
+
+<div class="grid-block">
+  <div class="grid-content small-12 medium-6">
+    <div class="grid-block">
+      <div class="grid-content text-center">
+        <h4>Enter Clicks</h4>
+        <h6>{{ enterClicks }}</h6>
+      </div>
+      <div class="grid-content text-center">
+        <h4>Cancel Clicks</h4>
+        <h6>{{ cancelClicks }}</h6>
+      </div>
+    </div>
+    <div class="grid-content text-center">
+      <a class="button" ng-click="showConfirm()">Show Confirm</a>
+    </div>
+    <div class="grid-content">
+<hljs language="javascript">
+$scope.enterClicks = 0;
+$scope.cancelClicks = 0;
+$scope.showConfirm = function() {
+  new ConfirmModal({
+    title: "Confirm",
+    content: "Are you sure?",
+    enterCallback: function() {
+      $scope.enterClicks++;
+    },
+    cancelCallback: function() {
+      $scope.cancelClicks++;
+    }
+  });
+};
+</hljs>
+    </div>
+  </div>
+  <div class="grid-content small-12 medium-6">
+    <div class="grid-block">
+      <div class="grid-content text-center">
+        <h4>Your Name</h4>
+        <h6>{{ name }}</h6>
+      </div>
+      <div class="grid-content text-center">
+        <h4>Your Age</h4>
+        <h6>{{ age }}</h6>
+      </div>
+    </div>
+    <div class="grid-content text-center">
+      <a class="button" ng-click="showPrompt1()">Prompt Name</a>
+      <a class="button" ng-click="showPrompt2()">Prompt Age</a>
+    </div>
+    <div class="grid-content">
+<hljs language="javascript">
+$scope.name = "n/a";
+$scope.age = 0;
+$scope.showPrompt1 = function() {
+  new PromptModal({
+    title: "Name",
+    content: "What is your name?",
+    enterCallback: function(value) {
+      $scope.name = value;
+    },
+    cancelCallback: function() {
+      $scope.name = "n/a";
+    }
+  });
+};
+$scope.showPrompt2 = function() {
+  new PromptModal({
+    title: "Age",
+    content: "What is your age?",
+    inputType: "number", // can be any input type
+    enterCallback: function(value) {
+      $scope.age = value;
+    },
+    cancelCallback: function() {
+      $scope.age = 0;
+    }
+  });
+};
+</hljs>
+    </div>
+  </div>
+</div>
+
+<p>The confirm and prompt modals can be styled using the <code>confirm-modal</code> and <code>prompt-modal</code> classes, respectively.  The classes are passed as part of the <strong>class</strong> configuration for the <strong>ModalFactory</strong>.  This means the class is applied to the same element as the <code>modal-overlay</code> class.</p>
+
+<hr>
+
 <h3>Changing the Overlay</h3>
 
 <p>You can override the styling of the default modal overlay by styling <code>.modal-overlay</code> in your Sass. The class name of the modal overlay can be changed by changing the <code>$modal-overlay-class</code> variable in your Sass settings file.</p>

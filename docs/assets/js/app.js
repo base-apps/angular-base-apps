@@ -285,9 +285,9 @@
     }
   }
 
-  ModalController.$inject = ['$scope', '$timeout', 'ModalFactory', 'ProgrammaticModal'];
+  ModalController.$inject = ['$scope', '$timeout', 'ModalFactory', 'ProgrammaticModal', 'ConfirmModal', 'PromptModal'];
 
-  function ModalController($scope, $timeout, ModalFactory, ProgrammaticModal) {
+  function ModalController($scope, $timeout, ModalFactory, ProgrammaticModal, ConfirmModal, PromptModal) {
     $scope.createModal = function() {
       var modal = new ModalFactory({
         class: 'tiny dialog',
@@ -309,6 +309,49 @@
     $scope.createAngularModal = function() {
       var modal = new ProgrammaticModal();
       modal.activate();
+    };
+
+    $scope.enterClicks = 0;
+    $scope.cancelClicks = 0;
+    $scope.showConfirm = function() {
+      new ConfirmModal({
+        title: "Confirm",
+        content: "Are you sure?",
+        enterCallback: function() {
+          $scope.enterClicks++;
+        },
+        cancelCallback: function() {
+          $scope.cancelClicks++;
+        }
+      });
+    };
+
+    $scope.name = "n/a";
+    $scope.age = 0;
+    $scope.showPrompt1 = function() {
+      new PromptModal({
+        title: "Name",
+        content: "What is your name?",
+        enterCallback: function(value) {
+          $scope.name = value;
+        },
+        cancelCallback: function() {
+          $scope.name = "n/a";
+        }
+      });
+    };
+    $scope.showPrompt2 = function() {
+      new PromptModal({
+        title: "Age",
+        content: "What is your age?",
+        inputType: "number", // can be any input type
+        enterCallback: function(value) {
+          $scope.age = value;
+        },
+        cancelCallback: function() {
+          $scope.age = 0;
+        }
+      });
     };
   }
 

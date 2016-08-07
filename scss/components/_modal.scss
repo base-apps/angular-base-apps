@@ -126,4 +126,20 @@ $modal-overlay-background: rgba(#333, 0.7) !default;
       display: flex;
     }
   }
+
+  .confirm-modal, .prompt-modal {
+    text-align: center;
+
+    h1 {
+      font-size: 2em;
+      margin: 0;
+    }
+    p {
+      margin: 0;
+    }
+    a {
+      margin: 0.5em;
+      margin-bottom: 0em;
+    }
+  }
 }

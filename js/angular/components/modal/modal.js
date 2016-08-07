@@ -10,6 +10,8 @@
   angular.module('base.modal', ['base.core'])
     .directive('zfModal', modalDirective)
     .factory('ModalFactory', ModalFactory)
+    .factory('ConfirmModal', ConfirmModal)
+    .factory('PromptModal', PromptModal)
     .service('FoundationModal', FoundationModal)
   ;
 
@@ -348,6 +350,89 @@
 
     }
 
+  }
+
+  ConfirmModal.$inject = ['$timeout', 'ModalFactory'];
+
+  function ConfirmModal($timeout, ModalFactory) {
+    var ConfirmModal = function(config) {
+      var modal = this;
+
+      ModalFactory.call(this, {
+        'class': 'tiny dialog confirm-modal',
+        'overlay': true,
+        'overlayClose': false,
+        'templateUrl': 'components/modal/modal-confirm.html',
+        'contentScope': {
+          title: config.title,
+          content: config.content,
+          enter: function() {
+            config.enterCallback();
+            modal.deactivate();
+            $timeout(function() {
+              modal.destroy();
+            }, 1000);
+          },
+          cancel: function() {
+            config.cancelCallback();
+            modal.deactivate();
+            $timeout(function() {
+              modal.destroy();
+            }, 1000);
+          }
+        }
+      });
+
+      modal.activate();
+    }
+
+    ConfirmModal.prototype = Object.create(ModalFactory.prototype);
+
+    return ConfirmModal;
+  }
+
+  PromptModal.$inject = ['$timeout', 'ModalFactory'];
+
+  function PromptModal($timeout, ModalFactory) {
+    var PromptModal = function(config) {
+      var modal = this;
+      var data = {
+        value: ""
+      };
+
+      ModalFactory.call(this, {
+        'class': 'tiny dialog prompt-modal',
+        'overlay': true,
+        'overlayClose': false,
+        'templateUrl': 'components/modal/modal-prompt.html',
+        'contentScope': {
+          title: config.title,
+          content: config.content,
+          data: data,
+          inputType: config.inputType || "text",
+          enter: function() {
+            config.enterCallback(data.value);
+            modal.deactivate();
+            $timeout(function() {
+              modal.destroy();
+            }, 1000);
+          },
+          cancel: function() {
+            config.cancelCallback();
+            modal.deactivate();
+            $timeout(function() {
+              modal.destroy();
+            }, 1000);
+          }
+        }
+      });
+
+      modal.activate();
+    }
+
+    PromptModal.prototype = Object.create(ModalFactory.prototype);
+
+    return PromptModal;
   }
 
 })();
