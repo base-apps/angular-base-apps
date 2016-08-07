@@ -2323,6 +2323,8 @@ angular.module('markdown', [])
   angular.module('base.modal', ['base.core'])
     .directive('zfModal', modalDirective)
     .factory('ModalFactory', ModalFactory)
+    .factory('ConfirmModal', ConfirmModal)
+    .factory('PromptModal', PromptModal)
     .service('FoundationModal', FoundationModal)
   ;
 
@@ -2661,6 +2663,103 @@ angular.module('markdown', [])
 
     }
 
+  }
+
+  ConfirmModal.$inject = ['$timeout', 'ModalFactory'];
+
+  function ConfirmModal($timeout, ModalFactory) {
+    var ConfirmModal = function(config) {
+      var modal = this;
+
+      ModalFactory.call(this, {
+        'class': 'tiny dialog confirm-modal',
+        'overlay': true,
+        'overlayClose': false,
+        'templateUrl': 'components/modal/modal-confirm.html',
+        'contentScope': {
+          title: config.title,
+          content: config.content,
+          enterText: config.enterText || "Enter",
+          cancelText: config.cancelText || "Cancel",
+          enterFirst: angular.isDefined(config.enterFirst) ? config.enterFirst : true,
+          enter: function() {
+            if (config.enterCallback) {
+              config.enterCallback();
+            }
+            modal.deactivate();
+            $timeout(function() {
+              modal.destroy();
+            }, 1000);
+          },
+          cancel: function() {
+            if (config.cancelCallback) {
+              config.cancelCallback();
+            }
+            modal.deactivate();
+            $timeout(function() {
+              modal.destroy();
+            }, 1000);
+          }
+        }
+      });
+
+      modal.activate();
+    }
+
+    ConfirmModal.prototype = Object.create(ModalFactory.prototype);
+
+    return ConfirmModal;
+  }
+
+  PromptModal.$inject = ['$timeout', 'ModalFactory'];
+
+  function PromptModal($timeout, ModalFactory) {
+    var PromptModal = function(config) {
+      var modal = this;
+      var data = {};
+
+      ModalFactory.call(this, {
+        'class': 'tiny dialog prompt-modal',
+        'overlay': true,
+        'overlayClose': false,
+        'templateUrl': 'components/modal/modal-prompt.html',
+        'contentScope': {
+          title: config.title,
+          content: config.content,
+          data: data,
+          inputType: config.inputType || "text",
+          enterText: config.enterText || "Enter",
+          cancelText: config.cancelText || "Cancel",
+          enterFirst: angular.isDefined(config.enterFirst) ? config.enterFirst : true,
+          enter: function() {
+            if (!config.requireInput || (angular.isDefined(data.value) && data.value !== "")) {
+              if (config.enterCallback) {
+                config.enterCallback(data.value);
+              }
+              modal.deactivate();
+              $timeout(function() {
+                modal.destroy();
+              }, 1000);
+            }
+          },
+          cancel: function() {
+            if (config.cancelCallback) {
+              config.cancelCallback();
+            }
+            modal.deactivate();
+            $timeout(function() {
+              modal.destroy();
+            }, 1000);
+          }
+        }
+      });
+
+      modal.activate();
+    }
+
+    PromptModal.prototype = Object.create(ModalFactory.prototype);
+
+    return PromptModal;
   }
 
 })();

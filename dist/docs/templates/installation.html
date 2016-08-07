@@ -7,7 +7,7 @@
 
 <h3>Quick Install: Using our CLI</h3>
 
-<p>Just like with Foundation for Sites, we wrote an awesome command-line tool to make setting up new Foundation for Apps projects a breeze. The CLI downloads a template project that uses Foundation, Angular, Sass, and Gulp. If you'd rather install our components into your own stack, see our advanced instructions below.</p>
+<p>Just like with Foundation for Sites, we wrote an awesome command-line tool to make setting up new Angular Base Apps projects a breeze. The CLI downloads a template project that uses Foundation, Angular, Sass, and Gulp. If you'd rather install our components into your own stack, see our advanced instructions below.</p>
 
 <div class="grid-block docs-install-req">
   <div class="small-12 medium-6 grid-content">
@@ -42,7 +42,7 @@ npm install -g foundation-cli bower gulp
 foundation-apps new myApp
 </hljs>
 
-<p>Change <code>myApp</code> to the name you'd like the folder to be. This will download our template stack, and install Foundation for Apps, Angular, and Gulp. The whole process takes between 30 seconds and a minute, depending on your Internet connection.</p>
+<p>Change <code>myApp</code> to the name you'd like the folder to be. This will download our template stack, and install Angular Base Apps, Angular, and Gulp. The whole process takes between 30 seconds and a minute, depending on your Internet connection.</p>
 
 <p>Once the installer is done, navigate into the directory using <code>cd</code>:</p>
 
@@ -53,7 +53,7 @@ cd myApp
 <p>Now you can build the app and begin working on it.</p>
 
 <hljs language="bash">
-foundation-apps watch
+gulp
 </hljs>
 
 <p>This will assemble all of the pieces&mdash;the Sass, JavaScript, and view templates&mdash;into a new folder called <code>build</code>, which is your final app. The build process will also setup a temporary server that points to the finished app. You can get to the server by going to this URL in your browser:</p>
@@ -65,11 +65,11 @@ foundation-apps watch
 <section>
   <h3>Manual Install</h3>
 
-  <p>Foundation for Apps can be installed manually through Bower or npm.</p>
+  <p>Angular Base Apps can be installed manually through Bower or npm.</p>
 
 <hljs language="bash">
-bower install foundation-apps --save
-  npm install foundation-apps --save
+bower install angular-base-apps --save
+  npm install angular-base-apps --save
 </hljs>
 
   <p>The package includes these folders:</p>
@@ -90,21 +90,18 @@ bower install foundation-apps --save
 
   <p>The folks at <a href="http://www.jsdelivr.com/">jsDeliver</a> are hosting the Angular Base Apps CSS and JavaScript on their CDN. Just add the files as <code>&lt;link&gt;</code> or <code>&lt;script&gt;</code> tags in the <code>&lt;head&gt;</code> of your HTML file.</p>
 
-  <p>New links are pending...</p>
+<hljs compile="true">
+<!-- CSS -->
+<link rel="stylesheet" href="http://cdn.jsdelivr.net/angular-base-apps/{{ version }}/base-apps.css">
+<link rel="stylesheet" href="http://cdn.jsdelivr.net/angular-base-apps/{{ version }}/base-apps.min.css">
 
-<!--
-<hljs language="html">
-<!-- CSS - ->
-<link rel="stylesheet" href="http://cdn.jsdelivr.net/zurb/foundation-apps-1.2.0.css">
-<link rel="stylesheet" href="http://cdn.jsdelivr.net/zurb/foundation-apps-1.2.0.min.css">
+<!-- JavaScript -->
+<script src="http://cdn.jsdelivr.net/angular-base-apps/{{ version }}/base-apps.js"></script>
+<script src="http://cdn.jsdelivr.net/angular-base-apps/{{ version }}/base-apps.min.js"></script>
 
-<!-- JavaScript - ->
-<script src="http://cdn.jsdelivr.net/zurb/foundation-apps-1.2.0.js"></script>
-<script src="http://cdn.jsdelivr.net/zurb/foundation-apps-1.2.0.min.js"></script>
-
-<!-- JavaScript templates - ->
-<script src="http://cdn.jsdelivr.net/zurb/foundation-apps-templates-1.2.0.js"></script>
-<script src="http://cdn.jsdelivr.net/zurb/foundation-apps-templates-1.2.0.min.js"></script>
+<!-- JavaScript templates -->
+<script src="http://cdn.jsdelivr.net/angular-base-apps/{{ version }}/base-apps-templates.js"></script>
+<script src="http://cdn.jsdelivr.net/angular-base-apps/{{ version }}/base-apps-templates.min.js"></script>
 </hljs>
--->
+
 </section>

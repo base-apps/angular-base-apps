@@ -5925,6 +5925,18 @@ meter {
     display: -ms-flexbox;
     display: flex; }
 
+.confirm-modal, .prompt-modal {
+  text-align: center; }
+  .confirm-modal h1, .prompt-modal h1 {
+    font-size: 2em;
+    margin: 0 0 0.5rem 0; }
+  .confirm-modal p, .prompt-modal p {
+    margin: 0 0 0.5rem 0; }
+  .confirm-modal .button-row, .prompt-modal .button-row {
+    overflow: visible; }
+    .confirm-modal .button-row a, .prompt-modal .button-row a {
+      margin: 0; }
+
 @keyframes shake {
   0%, 10%, 20%, 30%, 40%, 50%, 60%, 70%, 80%, 90% {
     -webkit-transform: translateX(7%);

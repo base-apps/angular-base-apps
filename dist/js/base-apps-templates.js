@@ -47,6 +47,37 @@ angular.module('base').run(['$templateCache', function($templateCache) {
 }]);
 
 angular.module('base').run(['$templateCache', function($templateCache) {
+  $templateCache.put('components/modal/modal-confirm.html',
+    '<h1 ng-show="title">{{ title }}</h1>\n' +
+    '<p ng-show="content">{{ content }}</p>\n' +
+    '<div class="grid-block align-center button-row">\n' +
+    '  <div class="grid-content shrink" ng-class="{\'order-2\': !enterFirst}">\n' +
+    '    <a class="button enter-button" ng-click="enter()">{{ enterText }}</a>\n' +
+    '  </div>\n' +
+    '  <div class="grid-content shrink">\n' +
+    '    <a class="button cancel-button" ng-click="cancel()">{{ cancelText }}</a>\n' +
+    '  </div>\n' +
+    '<div>\n' +
+    '');
+}]);
+
+angular.module('base').run(['$templateCache', function($templateCache) {
+  $templateCache.put('components/modal/modal-prompt.html',
+    '<h1 ng-show="title">{{ title }}</h1>\n' +
+    '<p ng-show="content">{{ content }}</p>\n' +
+    '<input type="{{ inputType }}" ng-model="data.value"></input>\n' +
+    '<div class="grid-block align-center button-row">\n' +
+    '  <div class="grid-content shrink" ng-class="{\'order-2\': !enterFirst}">\n' +
+    '    <a class="button enter-button" ng-click="enter()">{{ enterText }}</a>\n' +
+    '  </div>\n' +
+    '  <div class="grid-content shrink">\n' +
+    '    <a class="button cancel-button" ng-click="cancel()">{{ cancelText }}</a>\n' +
+    '  </div>\n' +
+    '<div>\n' +
+    '');
+}]);
+
+angular.module('base').run(['$templateCache', function($templateCache) {
   $templateCache.put('components/modal/modal.html',
     '<div\n' +
     '  class="modal-overlay"\n' +

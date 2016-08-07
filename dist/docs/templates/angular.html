@@ -181,9 +181,9 @@ abstract: true
 
   <p>To enable HTML5 mode with Angular (using regular URLs unprefixed by "\#"), a server has to support URL rewrites. The UI Router docs have a great <a href="https://github.com/angular-ui/ui-router/wiki/Frequently-Asked-Questions#how-to-configure-your-server-to-work-with-html5mode">write up</a> on working with the HTML5mode and how to enable it on a variety of servers.</p>
 
-  <p>Foundation for Apps supports this out of the box for the development environment; however, for production, additional steps will be necessary.</p>
+  <p>Angular Base Apps supports this out of the box for the development environment; however, for production, additional steps will be necessary.</p>
 
-  <p>If you'd like to run Foundation for Apps without HTML5 mode there is a line of code in the <code>app.js</code> that can be commented out:</p>
+  <p>If you'd like to run Angular Base Apps without HTML5 mode there is a line of code in the <code>app.js</code> that can be commented out:</p>
 
 <hljs language="javascript">
 locationProvider.html5Mode({
@@ -192,7 +192,7 @@ locationProvider.html5Mode({
 });
 </hljs>
 
-  <p>Note that Foundation for Apps cannot be run directly through the browser because it uses XMLHttpRequests to load up templates/partials for directives and pages. Running it directly will cause cross origin issues and will not work with linking.</p>
+  <p>Note that Angular Base Apps cannot be run directly through the browser because it uses XMLHttpRequests to load up templates/partials for directives and pages. Running it directly will cause cross origin issues and will not work with linking.</p>
 
   <p>If you are running in a subdirectory, try setting <code>requireBase</code> to the subdirectory name. So if you're running <code>domain.com/subdirectory</code>, set <code>requireBase: '/subdirectory/'</code>.</p>
 </section>
@@ -202,12 +202,12 @@ locationProvider.html5Mode({
 <section>
   <h3>Angular and UI Router Helpers</h3>
 
-  <p>There are some nuances of Angular itself and some of the libraries Foundation for Apps includes and uses that can make prototyping easier and quicker. Here's a rundown of some of these tools:</p>
+  <p>There are some nuances of Angular itself and some of the libraries Angular Base Apps includes and uses that can make prototyping easier and quicker. Here's a rundown of some of these tools:</p>
 
   <section>
     <h4><pre>ui-sref</pre></h4>
 
-    <p>Instead of using <code>&lt;a href="/my/sub/page"&gt;</a></code> in a page to access another page, it's common practice to use the router. Foundation for Apps uses UI Router for its routing which allows for named route references. For instance, let's say there is a page with this front matter:</p>
+    <p>Instead of using <code>&lt;a href="/my/sub/page"&gt;</a></code> in a page to access another page, it's common practice to use the router. Angular Base Apps uses UI Router for its routing which allows for named route references. For instance, let's say there is a page with this front matter:</p>
 
 <hljs>
 ---
