@@ -8,7 +8,7 @@
 <section>
   <h3>Bootstrapping</h3>
 
-  <p>Our Bower/npm package, as well as the template stack, includes a sample <code>app.js</code> file which bootstraps an Angular application with UI Router, ng-animate, and every Foundation for Apps module.</p>
+  <p>Our Bower/npm package, as well as the template stack, includes a sample <code>app.js</code> file which bootstraps an Angular application with UI Router, ng-animate, and every Angular Base Apps module.</p>
 
   <p>In the below example, a module called <code>foundation</code> imported. This is a shorthand to import every UI component at once. However, it's also possible to import inidividual components, such as <code>foundation.modal</code> or <code>foundation.tabs</code>.</p>
 
@@ -188,7 +188,7 @@ FoundationApi.subscribe('modal', function(message) {
 
     <p>FoundationMQ used to be a part of the Foundation Core but now is available as a supplement to the codebase. It has numerous functions including the Media Query Initiator</p>
 
-    <p>The Media Query initiator uses built-in foundation styles to create a <code>mediaQueries</code> setting under the FoundationApi. This is used for Interchange but it can be used for whatever you need. This module depends on Foundation for Apps css to be present but it will fail silently if you don't want to use this feature.</p>
+    <p>The Media Query initiator uses built-in foundation styles to create a <code>mediaQueries</code> setting under the FoundationApi. This is used for Interchange but it can be used for whatever you need. This module depends on Angular Base Apps css to be present but it will fail silently if you don't want to use this feature.</p>
 
     <p>The Initiator also publishes an event to the <code>FoundationApi</code> called "resize" whenever the window is resized (throttled to happen 50ms at a time).</p>
 
@@ -389,7 +389,7 @@ FoundationMQ.matchesMediaOnly(breakpoint)
 
   <p class="docs-module-deps"><strong>Dependencies:</strong> <span class="pre">ngSVGAttributes</span></p>
 
-  <p>We partnered with the folks at <a href="http://useiconic.com">Iconic</a> to include a sample of 24 icons from their responsive icon set. Foundation for Apps includes the Iconic JavaScript library, which we wrapped in an Angular module.</p>
+  <p>We partnered with the folks at <a href="http://useiconic.com">Iconic</a> to include a sample of 24 icons from their responsive icon set. Angular Base Apps includes the Iconic JavaScript library, which we wrapped in an Angular module.</p>
 
   <section>
     <h4 class="docs-module-name"><pre>zf-iconic</pre> (Directive)</h4>
