@@ -199,7 +199,7 @@ angular.module('...').controller('...', function(ProgrammaticModal) {
 
 <p>Two core functions for the web are <code>Window.confirm()</code> and <code>Window.prompt()</code>.  These functions display a modal to get an acknowledgment or input from the user.  Unfortuneately the styling of these modals is browser dependent, so the look and feel won't match your app across all devices.  These functions are also synchronous, which doesn't work well in an asynchronous angular world.</p>
 
-<p>We've taken care of these issues by creating a <code>ConfirmModal</code> and <code>PromptModal</code>.  These modals provide an asynchronous user interaction and are created using the <code>ModalFactory</code>.  Examples below show how to use these modals:</p>
+<p>We've taken care of these issues by creating a <code>ConfirmModal</code> and <code>PromptModal</code>.  These modals provide an asynchronous user interaction and are created using the <code>ModalFactory</code>.  The modals will auto-open once created and auto-close once one of the buttons are clicked.  Examples below show how to use these modals:</p>
 
 <div class="grid-block">
   <div class="grid-content small-12 medium-6">
