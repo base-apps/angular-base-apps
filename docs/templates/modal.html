@@ -199,7 +199,7 @@ angular.module('...').controller('...', function(ProgrammaticModal) {
 
 <p>Two core functions for the web are <code>Window.confirm()</code> and <code>Window.prompt()</code>.  These functions display a modal to get an acknowledgment or input from the user.  Unfortuneately the styling of these modals is browser dependent, so the look and feel won't match your app across all devices.  These functions are also synchronous, which doesn't work well in an asynchronous angular world.</p>
 
-<p>We've taken care of these issues by creating a <code>ConfirmModal</code> and <code>PromptModal</code>.  These modals provide an asynchronous user interaction and are created using the <code>ModalFactory</code>.  Examples below show how to use these modals.</p>
+<p>We've taken care of these issues by creating a <code>ConfirmModal</code> and <code>PromptModal</code>.  These modals provide an asynchronous user interaction and are created using the <code>ModalFactory</code>.  Examples below show how to use these modals:</p>
 
 <div class="grid-block">
   <div class="grid-content small-12 medium-6">
@@ -256,26 +256,22 @@ $scope.name = "n/a";
 $scope.age = 0;
 $scope.showPrompt1 = function() {
   new PromptModal({
-    title: "Name",
-    content: "What is your name?",
+    title: "Enter your name",
+    requireInput: true,
     enterCallback: function(value) {
       $scope.name = value;
-    },
-    cancelCallback: function() {
-      $scope.name = "n/a";
     }
   });
 };
 $scope.showPrompt2 = function() {
   new PromptModal({
-    title: "Age",
     content: "What is your age?",
-    inputType: "number", // can be any input type
+    inputType: "number",
+    enterText: "Okay",
+    cancelText: "How dare you!",
+    enterFirst: false,
     enterCallback: function(value) {
-      $scope.age = value;
-    },
-    cancelCallback: function() {
-      $scope.age = 0;
+      $scope.age = value || 0;
     }
   });
 };
@@ -284,7 +280,39 @@ $scope.showPrompt2 = function() {
   </div>
 </div>
 
-<p>The confirm and prompt modals can be styled using the <code>confirm-modal</code> and <code>prompt-modal</code> classes, respectively.  The classes are passed as part of the <strong>class</strong> configuration for the <strong>ModalFactory</strong>.  This means the class is applied to the same element as the <code>modal-overlay</code> class.</p>
+<p>The <code>ConfirmModal</code> accepts the following configuration object:</p>
+
+<hljs language="javascript">
+{
+  title: "", // displays content only if not provided
+  content: "", // displays title only if not provided
+  enterText: "Enter", // text for enter button
+  cancelText: "Cancel", // text for enter button
+  enterFirst: true, // whether enter button should come before cancel button
+  enterCallback: function() {}, // callback when enter button clicked
+  cancelCallback: function() {} // callback when cancel button clicked
+}
+</hljs>
+
+<p>The <code>PromptModal</code> accepts the same configuration object as above, with the following overrides:</p>
+
+<hljs language="javascript">
+{
+  inputType: "text", // type for input
+  enterCallback: function(value) {}, // value of input sent as argument to callback
+  requireInput: false // whether value must be entered before enter callback triggered
+}
+</hljs>
+
+<p>The confirm and prompt modals use the <code>confirm-modal</code> and <code>prompt-modal</code> classes, respectively.  The classes are passed as part of the <strong>class</strong> configuration for the <strong>ModalFactory</strong>.  This means the classes are applied to the same element as the <code>modal-overlay</code> class.  The two buttons can be styled using the <code>enter-button</code> and <code>cancel-button</code> classes.  For example, the following SCSS is used to style the cancel button in the modals above:</p>
+
+<hljs language="scss">
+.confirm-modal, .prompt-modal {
+  .cancel-button {
+    @include button-style($alert-color, auto);
+  }
+}
+</hljs>
 
 <hr>
 

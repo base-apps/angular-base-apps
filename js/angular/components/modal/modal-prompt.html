@@ -1,5 +1,11 @@
 <h1 ng-show="title">{{ title }}</h1>
 <p ng-show="content">{{ content }}</p>
 <input type="{{ inputType }}" ng-model="data.value"></input>
-<a class="button" ng-click="enter()">OK</a>
-<a class="button alert" ng-click="cancel()">Cancel</a>
+<div class="grid-block align-center button-row">
+  <div class="grid-content shrink" ng-class="{'order-2': !enterFirst}">
+    <a class="button enter-button" ng-click="enter()">{{ enterText }}</a>
+  </div>
+  <div class="grid-content shrink">
+    <a class="button cancel-button" ng-click="cancel()">{{ cancelText }}</a>
+  </div>
+<div>

@@ -330,26 +330,22 @@
     $scope.age = 0;
     $scope.showPrompt1 = function() {
       new PromptModal({
-        title: "Name",
-        content: "What is your name?",
+        title: "Enter your name",
+        requireInput: true,
         enterCallback: function(value) {
           $scope.name = value;
-        },
-        cancelCallback: function() {
-          $scope.name = "n/a";
         }
       });
     };
     $scope.showPrompt2 = function() {
       new PromptModal({
-        title: "Age",
         content: "What is your age?",
-        inputType: "number", // can be any input type
+        inputType: "number",
+        enterText: "Okay",
+        cancelText: "How dare you!",
+        enterFirst: false,
         enterCallback: function(value) {
-          $scope.age = value;
-        },
-        cancelCallback: function() {
-          $scope.age = 0;
+          $scope.age = value || 0;
         }
       });
     };

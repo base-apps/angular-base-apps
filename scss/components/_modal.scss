@@ -132,14 +132,18 @@ $modal-overlay-background: rgba(#333, 0.7) !default;
 
     h1 {
       font-size: 2em;
-      margin: 0;
+      margin: 0 0 0.5rem 0;
     }
     p {
-      margin: 0;
+      margin: 0 0 0.5rem 0;
     }
-    a {
-      margin: 0.5em;
-      margin-bottom: 0em;
+
+    .button-row {
+      overflow: visible;
+
+      a {
+        margin: 0;
+      }
     }
   }
 }

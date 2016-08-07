@@ -366,15 +366,22 @@
         'contentScope': {
           title: config.title,
           content: config.content,
+          enterText: config.enterText || "Enter",
+          cancelText: config.cancelText || "Cancel",
+          enterFirst: angular.isDefined(config.enterFirst) ? config.enterFirst : true,
           enter: function() {
-            config.enterCallback();
+            if (config.enterCallback) {
+              config.enterCallback();
+            }
             modal.deactivate();
             $timeout(function() {
               modal.destroy();
             }, 1000);
           },
           cancel: function() {
-            config.cancelCallback();
+            if (config.cancelCallback) {
+              config.cancelCallback();
+            }
             modal.deactivate();
             $timeout(function() {
               modal.destroy();
@@ -396,9 +403,7 @@
   function PromptModal($timeout, ModalFactory) {
     var PromptModal = function(config) {
       var modal = this;
-      var data = {
-        value: ""
-      };
+      var data = {};
 
       ModalFactory.call(this, {
         'class': 'tiny dialog prompt-modal',
@@ -410,15 +415,24 @@
           content: config.content,
           data: data,
           inputType: config.inputType || "text",
+          enterText: config.enterText || "Enter",
+          cancelText: config.cancelText || "Cancel",
+          enterFirst: angular.isDefined(config.enterFirst) ? config.enterFirst : true,
           enter: function() {
-            config.enterCallback(data.value);
-            modal.deactivate();
-            $timeout(function() {
-              modal.destroy();
-            }, 1000);
+            if (!config.requireInput || (angular.isDefined(data.value) && data.value !== "")) {
+              if (config.enterCallback) {
+                config.enterCallback(data.value);
+              }
+              modal.deactivate();
+              $timeout(function() {
+                modal.destroy();
+              }, 1000);
+            }
           },
           cancel: function() {
-            config.cancelCallback();
+            if (config.cancelCallback) {
+              config.cancelCallback();
+            }
             modal.deactivate();
             $timeout(function() {
               modal.destroy();

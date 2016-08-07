@@ -136,3 +136,9 @@ div.as-demo {
   color: #fff;
   display: inline;
 }
+
+.confirm-modal, .prompt-modal {
+  .cancel-button {
+    @include button-style($alert-color, auto);
+  }
+}
