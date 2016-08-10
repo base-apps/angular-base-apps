@@ -25,7 +25,7 @@ var gulp        = require('gulp'),
     rimraf      = require('rimraf'),
     runSequence = require('run-sequence'),
     modRewrite  = require('connect-modrewrite'),
-    routes      = require('./bin/gulp-dynamic-routing'),
+    routes      = require('./node_modules/angular-front-router'),
     merge       = require('merge-stream'),
     octophant   = require('octophant'),
     Server      = require('karma').Server;
@@ -80,6 +80,8 @@ var paths = {
       'bower_components/hammerjs/hammer.js'
     ],
     docs: [
+      'node_modules/angular-dynamic-routing/dynamicRouting.js',
+      'node_modules/angular-dynamic-routing/dynamicRouting.animations.js',
       'bower_components/marked/lib/marked.js',
       'bower_components/highlightjs/highlight.pack.js',
       'bower_components/angular-highlightjs/angular-highlightjs.js',

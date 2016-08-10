@@ -8,10 +8,12 @@
     'autocomplete',
     'hljs',
 
-    //foundation
+    // base apps
     'base',
-    'base.dynamicRouting',
-    'base.dynamicRouting.animations'
+
+    // dynamic routing
+    'dynamicRouting',
+    'dynamicRouting.animations'
   ])
     .config(config)
     .controller('MotionUIController', MotionUIController)

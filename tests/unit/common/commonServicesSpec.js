@@ -1,5 +1,5 @@
-describe('Common Foundation Services', function() {
-  beforeEach(module('foundation.core'));
+describe('Common Angular Base Apps Services', function() {
+  beforeEach(module('base.core'));
 
   it('should exist', inject(function(FoundationApi) {
     expect(FoundationApi).not.toEqual(null);

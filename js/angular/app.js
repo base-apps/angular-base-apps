@@ -7,13 +7,13 @@
 
     //foundation
     'foundation',
-    'foundation.dynamicRouting',
-    'foundation.dynamicRouting.animations',
 
     // base
     'base',
-    'base.dynamicRouting',
-    'base.dynamicRouting.animations'
+
+    // dynamic routing
+    'dynamicRouting',
+    'dynamicRouting.animations'
   ])
     .config(config)
   ;
