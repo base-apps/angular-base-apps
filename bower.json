@@ -15,7 +15,7 @@
     "angular-animate": "1.3.x - 1.5.x",
     "hammerjs": "~2.0.4"
   },
-  "homepage": "https://github.com/base-apps/angular-base",
+  "homepage": "https://github.com/base-apps/angular-base-apps",
   "description": "A responsive, Angular-powered framework for web apps based on Foundation for Apps.",
   "keywords": [
     "web apps",
