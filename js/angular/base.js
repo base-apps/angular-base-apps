@@ -2,7 +2,6 @@
   'use strict';
 
   // imports all components and dependencies under a single namespace
-
   angular.module('base', [
     'base.core',
     'base.mediaquery',
@@ -19,6 +18,5 @@
     'base.popup',
     'base.tabs'
   ]);
-
 
 })();

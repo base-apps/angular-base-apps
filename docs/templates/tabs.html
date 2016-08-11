@@ -18,14 +18,14 @@ controller: TabsController
   <div class="small-12 medium-6 grid-content">
 
 <hljs language="html">
-<div zf-tabs>
-  <div zf-tab title="Tab 1">
+<div ba-tabs>
+  <div ba-tab title="Tab 1">
     Tab content 1
   </div>
-  <div zf-tab title="Tab 2">
+  <div ba-tab title="Tab 2">
     Tab content 2
   </div>
-  <div zf-tab title="Tab 3">
+  <div ba-tab title="Tab 3">
     Tab content 3
   </div>
 </div>
@@ -33,14 +33,14 @@ controller: TabsController
   </div>
 
   <div class="small-12 medium-6 grid-content">
-    <div zf-tabs>
-		  <div zf-tab title="Tab 1">
+    <div ba-tabs>
+		  <div ba-tab title="Tab 1">
 		    Tab content 1
 		  </div>
-		  <div zf-tab title="Tab 2">
+		  <div ba-tab title="Tab 2">
 		    Tab content 2
 		  </div>
-		  <div zf-tab title="Tab 3">
+		  <div ba-tab title="Tab 3">
 		    Tab content 3
 		  </div>
   	</div>
@@ -57,14 +57,14 @@ controller: TabsController
   <div class="small-12 medium-6 grid-content">
 
 <hljs language="html">
-<div zf-tabs auto-open="false" collapsible="true">
-  <div zf-tab title="Tab 1">
+<div ba-tabs auto-open="false" collapsible="true">
+  <div ba-tab title="Tab 1">
     Tab content 1
   </div>
-  <div zf-tab title="Tab 2">
+  <div ba-tab title="Tab 2">
     Tab content 2
   </div>
-  <div zf-tab title="Tab 3">
+  <div ba-tab title="Tab 3">
     Tab content 3
   </div>
 </div>
@@ -72,14 +72,14 @@ controller: TabsController
   </div>
 
   <div class="small-12 medium-6 grid-content">
-    <div zf-tabs auto-open="false" collapsible="true">
-		  <div zf-tab title="Tab 1">
+    <div ba-tabs auto-open="false" collapsible="true">
+		  <div ba-tab title="Tab 1">
 		    Tab content 1
 		  </div>
-		  <div zf-tab title="Tab 2">
+		  <div ba-tab title="Tab 2">
 		    Tab content 2
 		  </div>
-		  <div zf-tab title="Tab 3">
+		  <div ba-tab title="Tab 3">
 		    Tab content 3
 		  </div>
   	</div>
@@ -95,23 +95,23 @@ controller: TabsController
 
 <h3>External Triggers</h3>
 
-<p>The tabs can be opened and closed outside the tabs component using the <code>zf-open</code>, <code>zf-close</code>, and <code>zf-toggle</code> directives.</p>
+<p>The tabs can be opened and closed outside the tabs component using the <code>ba-open</code>, <code>ba-close</code>, and <code>ba-toggle</code> directives.</p>
 
 <div class="grid-block align-center">
   <div class="small-12 grid-content">
 
 <hljs language="html">
-<a class="button" zf-open="external-trigger-tabs-1">Open 1</a>
-<a class="button" zf-close="external-trigger-tabs-2">Close 2</a>
-<a class="button" zf-toggle="external-trigger-tabs-3">Toggle 3</a>
-<div zf-tabs auto-open="false" collapsible="true">
-  <div zf-tab title="Tab 1" id="external-trigger-tabs-1">
+<a class="button" ba-open="external-trigger-tabs-1">Open 1</a>
+<a class="button" ba-close="external-trigger-tabs-2">Close 2</a>
+<a class="button" ba-toggle="external-trigger-tabs-3">Toggle 3</a>
+<div ba-tabs auto-open="false" collapsible="true">
+  <div ba-tab title="Tab 1" id="external-trigger-tabs-1">
     Tab content 1
   </div>
-  <div zf-tab title="Tab 2" id="external-trigger-tabs-2">
+  <div ba-tab title="Tab 2" id="external-trigger-tabs-2">
     Tab content 2
   </div>
-  <div zf-tab title="Tab 3" id="external-trigger-tabs-3">
+  <div ba-tab title="Tab 3" id="external-trigger-tabs-3">
     Tab content 3
   </div>
 </div>
@@ -119,17 +119,17 @@ controller: TabsController
   </div>
 
   <div class="small-12 shrink grid-content">
-    <a class="button" zf-open="external-trigger-tabs-1">Open 1</a>
-    <a class="button" zf-close="external-trigger-tabs-2">Close 2</a>
-    <a class="button" zf-toggle="external-trigger-tabs-3">Toggle 3</a>
-    <div zf-tabs auto-open="false" collapsible="true">
-		  <div zf-tab title="Tab 1" id="external-trigger-tabs-1">
+    <a class="button" ba-open="external-trigger-tabs-1">Open 1</a>
+    <a class="button" ba-close="external-trigger-tabs-2">Close 2</a>
+    <a class="button" ba-toggle="external-trigger-tabs-3">Toggle 3</a>
+    <div ba-tabs auto-open="false" collapsible="true">
+		  <div ba-tab title="Tab 1" id="external-trigger-tabs-1">
 		    Tab content 1
 		  </div>
-		  <div zf-tab title="Tab 2" id="external-trigger-tabs-2">
+		  <div ba-tab title="Tab 2" id="external-trigger-tabs-2">
 		    Tab content 2
 		  </div>
-		  <div zf-tab title="Tab 3" id="external-trigger-tabs-3">
+		  <div ba-tab title="Tab 3" id="external-trigger-tabs-3">
 		    Tab content 3
 		  </div>
   	</div>
@@ -140,63 +140,63 @@ controller: TabsController
 
 <h3>Relocate Content</h3>
 
-<p>By default, the content for <code>zf-tabs</code> is placed directly below the tabs header.  This can be changed by using the <code>displaced</code> attribute on the tabs which allows easy positioning of the tab content using <code>zf-tab-content</code>.  The <code>target</code> for the <code>zf-tab-content</code> must match the desired <code>zf-tabs</code> id.</p>
+<p>By default, the content for <code>ba-tabs</code> is placed directly below the tabs header.  This can be changed by using the <code>displaced</code> attribute on the tabs which allows easy positioning of the tab content using <code>ba-tab-content</code>.  The <code>target</code> for the <code>ba-tab-content</code> must match the desired <code>ba-tabs</code> id.</p>
 
 <div class="grid-block">
   <div class="small-12 medium-6 grid-content">
 <hljs language="html">
-<div zf-tabs id="displaced-tabs" displaced="true">
-  <div zf-tab title="Tab 1">
+<div ba-tabs id="displaced-tabs" displaced="true">
+  <div ba-tab title="Tab 1">
     Tab 1
   </div>
-  <div zf-tab title="Tab 2">
+  <div ba-tab title="Tab 2">
     Tab 2
   </div>
-  <div zf-tab title="Tab 3">
+  <div ba-tab title="Tab 3">
     Tab 3
   </div>
 </div>
 <hr>
 <!-- Displaced content -->
-<div zf-tab-content target="displaced-tabs">
+<div ba-tab-content target="displaced-tabs">
 </div>
 </hljs>
   </div>
 
   <div class="small-12 medium-6 grid-content">
-    <div zf-tabs id="displaced-tabs1" displaced="true">
-		  <div zf-tab title="Tab 1">
+    <div ba-tabs id="displaced-tabs1" displaced="true">
+		  <div ba-tab title="Tab 1">
 		    Tab 1
 		  </div>
-		  <div zf-tab title="Tab 2">
+		  <div ba-tab title="Tab 2">
 		    Tab 2
 		  </div>
-		  <div zf-tab title="Tab 3">
+		  <div ba-tab title="Tab 3">
 		    Tab 3
 		  </div>
 		</div>
     <hr>
-    <div zf-tab-content target="displaced-tabs1">
+    <div ba-tab-content target="displaced-tabs1">
     </div>
 	</div>
 </div>
 
-<p>The code above works great so long as <code>zf-tab-content</code> is rendered after <code>zf-tabs</code>.  Attempting to render <code>zf-tab-content</code> before <code>zf-tabs</code> will break the communication between the two components.  In order to resolve this issue, use <code>ng-if</code> and <code>ng-init</code> as shown below to ensure the components are rendered in the correct order.</p>
+<p>The code above works great so long as <code>ba-tab-content</code> is rendered after <code>ba-tabs</code>.  Attempting to render <code>ba-tab-content</code> before <code>ba-tabs</code> will break the communication between the two components.  In order to resolve this issue, use <code>ng-if</code> and <code>ng-init</code> as shown below to ensure the components are rendered in the correct order.</p>
 
 <div class="grid-block align-center">
   <div class="small-12 grid-content">
 <hljs language="html">
 <!-- Displaced content -->
-<div zf-tab-content target="displaced-tabs" ng-if="displacedTabsInit">
+<div ba-tab-content target="displaced-tabs" ng-if="displacedTabsInit">
 </div>
-<div zf-tabs id="displaced-tabs" displaced="true" ng-init="displacedTabsInit = true">
-  <div zf-tab title="Tab 1">
+<div ba-tabs id="displaced-tabs" displaced="true" ng-init="displacedTabsInit = true">
+  <div ba-tab title="Tab 1">
     Tab 1
   </div>
-  <div zf-tab title="Tab 2">
+  <div ba-tab title="Tab 2">
     Tab 2
   </div>
-  <div zf-tab title="Tab 3">
+  <div ba-tab title="Tab 3">
     Tab 3
   </div>
 </div>
@@ -204,16 +204,16 @@ controller: TabsController
   </div>
 
   <div class="small-12 shrink grid-content">
-    <div zf-tab-content target="displaced-tabs2" ng-if="displacedTabsInit">
+    <div ba-tab-content target="displaced-tabs2" ng-if="displacedTabsInit">
     </div>
-    <div zf-tabs id="displaced-tabs2" displaced="true" ng-init="displacedTabsInit = true">
-		  <div zf-tab title="Tab 1">
+    <div ba-tabs id="displaced-tabs2" displaced="true" ng-init="displacedTabsInit = true">
+		  <div ba-tab title="Tab 1">
 		    Tab 1
 		  </div>
-		  <div zf-tab title="Tab 2">
+		  <div ba-tab title="Tab 2">
 		    Tab 2
 		  </div>
-		  <div zf-tab title="Tab 3">
+		  <div ba-tab title="Tab 3">
 		    Tab 3
 		  </div>
 		</div>
@@ -224,22 +224,22 @@ controller: TabsController
 
 <h3>Accessing Parent Data</h3>
 
-<p>The tabs directive uses an isolated scope, meaning data from the parent scope cannot be accessed directly.  In order to access properties on the parent scope, one must use  <code>$parent</code>.  For more information on angular scopes, check the <a href="https://docs.angularjs.org/api/ng/type/$rootScope.Scope">angular docs</a>.  The example below shows how to access data from a parent scope using <code>zf-tabs</code>.</p>
+<p>The tabs directive uses an isolated scope, meaning data from the parent scope cannot be accessed directly.  In order to access properties on the parent scope, one must use  <code>$parent</code>.  For more information on angular scopes, check the <a href="https://docs.angularjs.org/api/ng/type/$rootScope.Scope">angular docs</a>.  The example below shows how to access data from a parent scope using <code>ba-tabs</code>.</p>
 
 <div class="grid-block align-center">
   <div class="small-12 grid-content">
 
 <hljs language="html">
-<div zf-tabs>
-  <div zf-tab title="Text Example">
+<div ba-tabs>
+  <div ba-tab title="Text Example">
     {{ $parent.message }}
   </div>
-  <div zf-tab title="Click Example">
+  <div ba-tab title="Click Example">
     <h6>{{ $parent.clicks }}</h6>
     <a class="button" ng-click="$parent.doClick()">Click Me</a>
     <a class="button secondary" ng-click="$parent.reset()">Reset</a>
   </div>
-  <div zf-tab title="Click Example 2">
+  <div ba-tab title="Click Example 2">
     <h6>{{ $parent.data.clicks2 }}</h6>
     <a class="button" ng-click="$parent.data.clicks2 = $parent.data.clicks2 + 1">Click Me</a>
     <a class="button secondary" ng-click="$parent.data.clicks2 = 0">Reset</a>
@@ -249,16 +249,16 @@ controller: TabsController
   </div>
 
   <div class="small-12 grid-content shrink">
-    <div zf-tabs>
-      <div zf-tab title="Text Example">
+    <div ba-tabs>
+      <div ba-tab title="Text Example">
         {{ $parent.message }}
       </div>
-      <div zf-tab title="Click Example">
+      <div ba-tab title="Click Example">
         <h6>{{ $parent.clicks }}</h6>
         <a class="button" ng-click="$parent.doClick()">Click Me</a>
         <a class="button secondary" ng-click="$parent.reset()">Reset</a>
       </div>
-      <div zf-tab title="Click Example 2">
+      <div ba-tab title="Click Example 2">
         <h6>{{ $parent.data.clicks2 }}</h6>
         <a class="button" ng-click="$parent.data.clicks2 = $parent.data.clicks2 + 1">Click Me</a>
         <a class="button secondary" ng-click="$parent.data.clicks2 = 0">Reset</a>

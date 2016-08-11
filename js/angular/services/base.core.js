@@ -94,7 +94,7 @@
 
       //little trick to produce semi-random IDs
       do {
-        uuid += 'zf-uuid-';
+        uuid += 'ba-uuid-';
         for (var i=0; i<15; i++) {
           uuid += Math.floor(Math.random()*16).toString(16);
         }
@@ -111,9 +111,9 @@
     function closeActiveElements(options) {
       var self = this;
       options = options || {};
-      var activeElements = document.querySelectorAll('.is-active[zf-closable]');
-      // action sheets are nested zf-closable elements, so we have to target the parent
-      var nestedActiveElements = document.querySelectorAll('[zf-closable] > .is-active');
+      var activeElements = document.querySelectorAll('.is-active[ba-closable]');
+      // action sheets are nested ba-closable elements, so we have to target the parent
+      var nestedActiveElements = document.querySelectorAll('[ba-closable] > .is-active');
 
       if (activeElements.length) {
         angular.forEach(activeElements, function(el) {

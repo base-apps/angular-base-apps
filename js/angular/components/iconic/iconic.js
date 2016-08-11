@@ -3,7 +3,7 @@
 
   angular.module('base.iconic', [])
     .provider('Iconic', Iconic)
-    .directive('zfIconic', zfIconic)
+    .directive('baIconic', baIconic)
   ;
 
   // iconic wrapper
@@ -51,9 +51,9 @@
     };
   }
 
-  zfIconic.$inject = ['Iconic', 'FoundationApi', '$compile'];
+  baIconic.$inject = ['Iconic', 'FoundationApi', '$compile'];
 
-  function zfIconic(iconic, foundationApi, $compile) {
+  function baIconic(iconic, foundationApi, $compile) {
     var directive = {
       restrict: 'A',
       template: '<img ng-transclude>',
@@ -231,7 +231,7 @@
 
               for(i = 0; i < origAttrs.length; i++) {
                 // check if attribute should be ignored
-                if (origAttrs[i].name !== 'zf-iconic' &&
+                if (origAttrs[i].name !== 'ba-iconic' &&
                   origAttrs[i].name !== 'ng-transclude' &&
                   origAttrs[i].name !== 'icon' &&
                   origAttrs[i].name !== 'src') {

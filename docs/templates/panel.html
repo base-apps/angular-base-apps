@@ -10,47 +10,47 @@ title: Panel
 
 <hr>
 
-<button class="button" zf-hard-toggle="example-panel-top">Top Panel</button>
-<button class="button" zf-hard-toggle="example-panel-right">Right Panel</button>
-<button class="button" zf-hard-toggle="example-panel-bottom">Bottom Panel</button>
-<button class="button" zf-hard-toggle="example-panel-left">Left Panel</button>
+<button class="button" ba-hard-toggle="example-panel-top">Top Panel</button>
+<button class="button" ba-hard-toggle="example-panel-right">Right Panel</button>
+<button class="button" ba-hard-toggle="example-panel-bottom">Bottom Panel</button>
+<button class="button" ba-hard-toggle="example-panel-left">Left Panel</button>
 
 <hr>
 
 <h3>Basic HTML</h3>
-<p>Create a panel using the <code>zf-panel</code> directive. Each panel should have a unique ID you can use to target it.</p>
+<p>Create a panel using the <code>ba-panel</code> directive. Each panel should have a unique ID you can use to target it.</p>
 <div class="grid-block">
   <div class="small-12 medium-6 grid-content">
 <hljs language="html">
-<div zf-panel id="panel">
-  <a zf-close class="close-button">&times;</a>
+<div ba-panel id="panel">
+  <a ba-close class="close-button">&times;</a>
   <p>This is a basic panel.</p>
 </div>
 </hljs>
   </div>
 
   <div class="small-12 medium-6 grid-content">
-    <a class="button" zf-toggle="example-panel-1">Basic Panel</a>
+    <a class="button" ba-toggle="example-panel-1">Basic Panel</a>
   </div>
 </div>
 
 <h4>Creating Panel Triggers</h4>
 
-<p>Panels use the same trigger directives used to open and close other components. Add the directive <code>zf-open</code>, <code>zf-toggle</code>, or <code>zf-close</code> to an element to create a trigger. The value of the directive should be the ID of the panel you want to target.</p>
+<p>Panels use the same trigger directives used to open and close other components. Add the directive <code>ba-open</code>, <code>ba-toggle</code>, or <code>ba-close</code> to an element to create a trigger. The value of the directive should be the ID of the panel you want to target.</p>
 
 <hljs language="html">
 <!-- These are the three ways to manipulate panels -->
-<a href="#" zf-open="panelName" class="button">Open Panel</a>
-<a href="#" zf-close="panelName" class="button">Close Panel</a>
-<a href="#" zf-toggle="panelName" class="button">Toggle Panel</a>
+<a href="#" ba-open="panelName" class="button">Open Panel</a>
+<a href="#" ba-close="panelName" class="button">Close Panel</a>
+<a href="#" ba-toggle="panelName" class="button">Toggle Panel</a>
 
-<!-- You can also call zf-close from within a panel -->
-<div zf-panel id="panelName">
-  <a zf-close class="button">Close Panel</a>
+<!-- You can also call ba-close from within a panel -->
+<div ba-panel id="panelName">
+  <a ba-close class="button">Close Panel</a>
 </div>
 </hljs>
 
-<p><code>zf-close</code> is a special case; if the element is inside the panel, you don't need to manually set the ID of the panel.</p>
+<p><code>ba-close</code> is a special case; if the element is inside the panel, you don't need to manually set the ID of the panel.</p>
 
 <div class="card docs-callout">
   <p>Links (any element with an <code>href</code> or <code>ui-sref</code> attribute) inside panels automatically close the panel when clicked.</p>
@@ -63,7 +63,7 @@ title: Panel
 <hljs language="html">
 <!-- Wrong: panel is inside a content block -->
 <div class="grid-content">
-  <div zf-panel>
+  <div ba-panel>
     <p>Panel</p>
   </div>
   <h1>Main Content</h1>
@@ -72,7 +72,7 @@ title: Panel
 
 <!-- Right: panel and content block share a wrapper -->
 <div class="grid-block">
-  <div zf-panel>
+  <div ba-panel>
     <p>Panel</p>
   </div>
   <div class="grid-content">
@@ -91,17 +91,17 @@ title: Panel
 <div class="grid-block">
   <div class="small-12 medium-6 grid-content">
 <hljs language="html">
-<div zf-panel position="top">
-  <a zf-close class="close-button">&times;</a>
+<div ba-panel position="top">
+  <a ba-close class="close-button">&times;</a>
   <p>This is a top panel.</p>
 </div>
 </hljs>
   </div>
   <div class="small-12 medium-6 grid-content">
-    <a zf-toggle="example-panel-top" class="button">Top</a>
-    <a zf-toggle="example-panel-right" class="button">Right</a>
-    <a zf-toggle="example-panel-bottom" class="button">Bottom</a>
-    <a zf-toggle="example-panel-left" class="button">Left</a>
+    <a ba-toggle="example-panel-top" class="button">Top</a>
+    <a ba-toggle="example-panel-right" class="button">Right</a>
+    <a ba-toggle="example-panel-bottom" class="button">Bottom</a>
+    <a ba-toggle="example-panel-left" class="button">Left</a>
   </div>
 </div>
 
@@ -115,16 +115,16 @@ title: Panel
   <div class="small-12 medium-6 grid-content">
 <hljs language="html">
 <div class="grid-block">
-  <zf-panel class="panel-fixed" id="fixed-panel">
-    <a href="#" zf-close>&times;</a>
+  <ba-panel class="panel-fixed" id="fixed-panel">
+    <a href="#" ba-close>&times;</a>
     <p>This is a fixed panel.</p>
-  </zf-panel>
+  </ba-panel>
 </div>
 </hljs>
   </div>
 
   <div class="small-12 medium-6 grid-content">
-    <a class="button" zf-toggle="example-panel-fixed">Fixed Panel</a>
+    <a class="button" ba-toggle="example-panel-fixed">Fixed Panel</a>
   </div>
 </div>
 
@@ -140,16 +140,16 @@ title: Panel
 
 <hljs language="html">
 <!-- This is your panel/block hybrid -->
-<zf-panel id="sidebar" position="left" class="medium-grid-block medium-4">
-  <a href="#" zf-close class="close-button">&times;</a>
+<ba-panel id="sidebar" position="left" class="medium-grid-block medium-4">
+  <a href="#" ba-close class="close-button">&times;</a>
   <ul class="menu-bar">
     <li><a href="#">Item</a></li>
     <!-- ... -->
   </ul>
-</zf-panel>
+</ba-panel>
 
 <!-- This toggles the panel -->
-<a class="button" zf-toggle="sidebar" class="hide-for-medium">Toggle Sidebar</a>
+<a class="button" ba-toggle="sidebar" class="hide-for-medium">Toggle Sidebar</a>
 </hljs>
 
 <p>Note in the above example that we're hiding the "Toggle Sidebar" button on medium screens and larger. This is because at those sizes the sidebar is always visible, making the toggle button unnecessary.</p>

@@ -2,18 +2,18 @@
   'use strict';
   
   angular.module('base.common', ['base.core'])
-    .directive('zfClose', zfClose)
-    .directive('zfOpen', zfOpen)
-    .directive('zfToggle', zfToggle)
-    .directive('zfEscClose', zfEscClose)
-    .directive('zfSwipeClose', zfSwipeClose)
-    .directive('zfHardToggle', zfHardToggle)
-    .directive('zfCloseAll', zfCloseAll)
+    .directive('baClose', baClose)
+    .directive('baOpen', baOpen)
+    .directive('baToggle', baToggle)
+    .directive('baEscClose', baEscClose)
+    .directive('baSwipeClose', baSwipeClose)
+    .directive('baHardToggle', baHardToggle)
+    .directive('baCloseAll', baCloseAll)
   ;
 
-  zfClose.$inject = ['FoundationApi'];
+  baClose.$inject = ['FoundationApi'];
 
-  function zfClose(foundationApi) {
+  function baClose(foundationApi) {
     var directive = {
       restrict: 'A',
       link: link
@@ -23,8 +23,8 @@
 
     function link(scope, element, attrs) {
       var targetId = '';
-      if (attrs.zfClose) {
-        targetId = attrs.zfClose;
+      if (attrs.baClose) {
+        targetId = attrs.baClose;
       } else {
         var parentElement= false;
         var tempElement = element.parent();
@@ -34,7 +34,7 @@
             parentElement = '';
           }
 
-          if(typeof tempElement.attr('zf-closable') !== 'undefined' && tempElement.attr('zf-closable') !== false) {
+          if(typeof tempElement.attr('ba-closable') !== 'undefined' && tempElement.attr('ba-closable') !== false) {
             parentElement = tempElement;
           }
 
@@ -49,9 +49,9 @@
     }
   }
 
-  zfOpen.$inject = ['FoundationApi'];
+  baOpen.$inject = ['FoundationApi'];
 
-  function zfOpen(foundationApi) {
+  function baOpen(foundationApi) {
     var directive = {
       restrict: 'A',
       link: link
@@ -61,15 +61,15 @@
 
     function link(scope, element, attrs) {
       element.on('click', function(e) {
-        foundationApi.publish(attrs.zfOpen, 'open');
+        foundationApi.publish(attrs.baOpen, 'open');
         e.preventDefault();
       });
     }
   }
 
-  zfToggle.$inject = ['FoundationApi'];
+  baToggle.$inject = ['FoundationApi'];
 
-  function zfToggle(foundationApi) {
+  function baToggle(foundationApi) {
     var directive = {
       restrict: 'A',
       link: link
@@ -79,15 +79,15 @@
 
     function link(scope, element, attrs) {
       element.on('click', function(e) {
-        foundationApi.publish(attrs.zfToggle, 'toggle');
+        foundationApi.publish(attrs.baToggle, 'toggle');
         e.preventDefault();
       });
     }
   }
 
-  zfEscClose.$inject = ['FoundationApi'];
+  baEscClose.$inject = ['FoundationApi'];
 
-  function zfEscClose(foundationApi) {
+  function baEscClose(foundationApi) {
     var directive = {
       restrict: 'A',
       link: link
@@ -105,9 +105,9 @@
     }
   }
 
-  zfSwipeClose.$inject = ['FoundationApi'];
+  baSwipeClose.$inject = ['FoundationApi'];
 
-  function zfSwipeClose(foundationApi) {
+  function baSwipeClose(foundationApi) {
     var directive = {
       restrict: 'A',
       link: link
@@ -127,7 +127,7 @@
         });
       }
       // detect what direction the directive is pointing
-      switch (attrs.zfSwipeClose) {
+      switch (attrs.baSwipeClose) {
         case 'right':
           swipeDirection = 'swiperight';
           break;
@@ -151,9 +151,9 @@
     }
   }
 
-  zfHardToggle.$inject = ['FoundationApi'];
+  baHardToggle.$inject = ['FoundationApi'];
 
-  function zfHardToggle(foundationApi) {
+  function baHardToggle(foundationApi) {
     var directive = {
       restrict: 'A',
       link: link
@@ -163,16 +163,16 @@
 
     function link(scope, element, attrs) {
       element.on('click', function(e) {
-        foundationApi.closeActiveElements({exclude: attrs.zfHardToggle});
-        foundationApi.publish(attrs.zfHardToggle, 'toggle');
+        foundationApi.closeActiveElements({exclude: attrs.baHardToggle});
+        foundationApi.publish(attrs.baHardToggle, 'toggle');
         e.preventDefault();
       });
     }
   }
 
-  zfCloseAll.$inject = ['FoundationApi'];
+  baCloseAll.$inject = ['FoundationApi'];
 
-  function zfCloseAll(foundationApi) {
+  function baCloseAll(foundationApi) {
     var directive = {
       restrict: 'A',
       link: link
@@ -185,7 +185,7 @@
         var tar = e.target, avoid, activeElements, closedElements, i;
 
         // check if clicked target is designated to open/close another component
-        avoid = ['zf-toggle', 'zf-hard-toggle', 'zf-open', 'zf-close'].filter(function(e){
+        avoid = ['ba-toggle', 'ba-hard-toggle', 'ba-open', 'ba-close'].filter(function(e){
           return e in tar.attributes;
         });
         if(avoid.length > 0) {
@@ -194,17 +194,17 @@
         }
 
         // check if clicked element is inside active closable parent
-        if (getParentsUntil(tar, 'zf-closable') !== false) {
+        if (getParentsUntil(tar, 'ba-closable') !== false) {
           // do nothing
           return;
         }
 
         // close all active elements
-        activeElements = document.querySelectorAll('.is-active[zf-closable]');
+        activeElements = document.querySelectorAll('.is-active[ba-closable]');
         closedElements = 0;
         if(activeElements.length > 0) {
           for(i = 0; i < activeElements.length; i++) {
-            if (!activeElements[i].hasAttribute('zf-ignore-all-close')) {
+            if (!activeElements[i].hasAttribute('ba-ignore-all-close')) {
               foundationApi.publish(activeElements[i].id, 'close');
               closedElements++;
             }

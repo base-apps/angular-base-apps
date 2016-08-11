@@ -2,11 +2,11 @@
   'use strict';
 
   angular.module('base.notification', ['base.core'])
-    .controller('ZfNotificationController', ZfNotificationController)
-    .directive('zfNotificationSet', zfNotificationSet)
-    .directive('zfNotification', zfNotification)
-    .directive('zfNotificationStatic', zfNotificationStatic)
-    .directive('zfNotify', zfNotify)
+    .controller('baNotificationController', baNotificationController)
+    .directive('baNotificationSet', baNotificationSet)
+    .directive('baNotification', baNotification)
+    .directive('baNotificationStatic', baNotificationStatic)
+    .directive('baNotify', baNotify)
     .factory('NotificationFactory', NotificationFactory)
     .service('FoundationNotification', FoundationNotification)
   ;
@@ -41,9 +41,9 @@
   }
 
 
-  ZfNotificationController.$inject = ['$scope', 'FoundationApi'];
+  baNotificationController.$inject = ['$scope', 'FoundationApi'];
 
-  function ZfNotificationController($scope, foundationApi) {
+  function baNotificationController($scope, foundationApi) {
     var controller    = this;
     controller.notifications = $scope.notifications = $scope.notifications || [];
 
@@ -69,13 +69,13 @@
     };
   }
 
-  zfNotificationSet.$inject = ['FoundationApi'];
+  baNotificationSet.$inject = ['FoundationApi'];
 
-  function zfNotificationSet(foundationApi) {
+  function baNotificationSet(foundationApi) {
     var directive = {
       restrict: 'EA',
       templateUrl: 'components/notification/notification-set.html',
-      controller: 'ZfNotificationController',
+      controller: 'baNotificationController',
       replace: true,
       scope: {
         position: '@'
@@ -106,15 +106,15 @@
     }
   }
 
-  zfNotification.$inject = ['FoundationApi', '$sce'];
+  baNotification.$inject = ['FoundationApi', '$sce'];
 
-  function zfNotification(foundationApi, $sce) {
+  function baNotification(foundationApi, $sce) {
     var directive = {
       restrict: 'EA',
       templateUrl: 'components/notification/notification.html',
       replace: true,
       transclude: true,
-      require: '^zfNotificationSet',
+      require: '^baNotificationSet',
       controller: function() { },
       scope: {
         title: '=?',
@@ -137,7 +137,7 @@
       };
 
       function preLink(scope, iElement, iAttrs) {
-        iAttrs.$set('zf-closable', 'notification');
+        iAttrs.$set('ba-closable', 'notification');
         if (iAttrs['title']) {
           scope.$watch('title', function(value) {
             if (value) {
@@ -151,7 +151,7 @@
         scope.active = false;
         var animationIn  = attrs.animationIn || 'fadeIn';
         var animationOut = attrs.animationOut || 'fadeOut';
-        var animate = attrs.hasOwnProperty('zfAdvise') ? foundationApi.animateAndAdvise : foundationApi.animate;
+        var animate = attrs.hasOwnProperty('baAdvise') ? foundationApi.animateAndAdvise : foundationApi.animate;
         var hammerElem;
 
         //due to dynamic insertion of DOM, we need to wait for it to show up and get working!
@@ -198,7 +198,7 @@
         }
 
         function adviseActiveChanged() {
-          if (!angular.isUndefined(attrs.zfAdvise)) {
+          if (!angular.isUndefined(attrs.baAdvise)) {
             foundationApi.publish(attrs.id, scope.active ? 'activated' : 'deactivated');
           }
         }
@@ -206,9 +206,9 @@
     }
   }
 
-  zfNotificationStatic.$inject = ['FoundationApi', '$sce'];
+  baNotificationStatic.$inject = ['FoundationApi', '$sce'];
 
-  function zfNotificationStatic(foundationApi, $sce) {
+  function baNotificationStatic(foundationApi, $sce) {
     var directive = {
       restrict: 'EA',
       templateUrl: 'components/notification/notification-static.html',
@@ -235,7 +235,7 @@
       };
 
       function preLink(scope, iElement, iAttrs, controller) {
-        iAttrs.$set('zf-closable', type);
+        iAttrs.$set('ba-closable', type);
         if (iAttrs['title']) {
           scope.trustedTitle = $sce.trustAsHtml(iAttrs['title']);
         }
@@ -246,7 +246,7 @@
 
         var animationIn = attrs.animationIn || 'fadeIn';
         var animationOut = attrs.animationOut || 'fadeOut';
-        var animateFn = attrs.hasOwnProperty('zfAdvise') ? foundationApi.animateAndAdvise : foundationApi.animate;
+        var animateFn = attrs.hasOwnProperty('baAdvise') ? foundationApi.animateAndAdvise : foundationApi.animate;
 
         scope.$on("$destroy", function() {
           foundationApi.unsubscribe(attrs.id);
@@ -306,7 +306,7 @@
         };
 
         function adviseActiveChanged() {
-          if (!angular.isUndefined(attrs.zfAdvise)) {
+          if (!angular.isUndefined(attrs.baAdvise)) {
             foundationApi.publish(attrs.id, scope.active ? 'activated' : 'deactivated');
           }
         }
@@ -314,9 +314,9 @@
     }
   }
 
-  zfNotify.$inject = ['FoundationApi'];
+  baNotify.$inject = ['FoundationApi'];
 
-  function zfNotify(foundationApi) {
+  function baNotify(foundationApi) {
     var directive = {
       restrict: 'A',
       scope: {
@@ -333,7 +333,7 @@
 
     function link(scope, element, attrs, controller) {
       element.on('click', function(e) {
-        foundationApi.publish(attrs.zfNotify, {
+        foundationApi.publish(attrs.baNotify, {
           title: scope.title,
           content: scope.content,
           color: scope.color,
@@ -414,7 +414,7 @@
         if (document.getElementById(id)) {
           return;
         }
-        html = '<zf-notification-set id="' + id + '"></zf-notification-set>';
+        html = '<ba-notification-set id="' + id + '"></ba-notification-set>';
 
         element = angular.element(html);
 

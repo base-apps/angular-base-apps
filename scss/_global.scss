@@ -116,7 +116,7 @@ $foundation-colors: (
   }
 
   // Give all anchors and interactive directives the hover cusor
-  a, [ui-sref], [zf-open], [zf-close], [zf-toggle] {
+  a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
     cursor: pointer;
   }
 

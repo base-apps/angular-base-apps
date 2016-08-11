@@ -2,23 +2,23 @@
   'use strict';
 
   angular.module('base.interchange', ['base.core', 'base.mediaquery'])
-    .directive('zfInterchange', zfInterchange)
+    .directive('baInterchange', baInterchange)
     /*
      * Final directive to perform media queries, other directives set up this one
      * (See: http://stackoverflow.com/questions/19224028/add-directives-from-directive-in-angularjs)
      */
-    .directive('zfQuery', zfQuery)
+    .directive('baQuery', baQuery)
     /*
-     * zf-if / zf-show / zf-hide
+     * ba-if / ba-show / ba-hide
      */
-    .directive('zfIf', zfQueryDirective('ng-if', 'zf-if'))
-    .directive('zfShow', zfQueryDirective('ng-show', 'zf-show'))
-    .directive('zfHide', zfQueryDirective('ng-hide', 'zf-hide'))
+    .directive('baIf', baQueryDirective('ng-if', 'ba-if'))
+    .directive('baShow', baQueryDirective('ng-show', 'ba-show'))
+    .directive('baHide', baQueryDirective('ng-hide', 'ba-hide'))
   ;
 
-  zfInterchange.$inject = [ '$compile', '$http', '$templateCache', 'FoundationApi', 'FoundationMQ'];
+  baInterchange.$inject = [ '$compile', '$http', '$templateCache', 'FoundationApi', 'FoundationMQ'];
 
-  function zfInterchange($compile, $http, $templateCache, foundationApi, foundationMQ) {
+  function baInterchange($compile, $http, $templateCache, foundationApi, foundationMQ) {
 
     var directive = {
       restrict: 'EA',
@@ -108,12 +108,12 @@
   }
 
   /*
-   * This directive will configure ng-if/ng-show/ng-hide and zf-query directives and then recompile the element
+   * This directive will configure ng-if/ng-show/ng-hide and ba-query directives and then recompile the element
    */
-  function zfQueryDirective(angularDirective, directiveName) {
+  function baQueryDirective(angularDirective, directiveName) {
     return ['$compile', 'FoundationApi', function ($compile, foundationApi) {
-      // create unique scope property for media query result, must be unique to avoid collision with other zf-query directives
-      // property set upon element compilation or else all similar directives (i.e. zf-if-*/zf-show-*/zf-hide-*) will get the same value
+      // create unique scope property for media query result, must be unique to avoid collision with other ba-query directives
+      // property set upon element compilation or else all similar directives (i.e. ba-if-*/ba-show-*/ba-hide-*) will get the same value
       var queryResult;
 
       return {
@@ -132,33 +132,33 @@
         queryResult = (directiveName + foundationApi.generateUuid()).replace(/-/g,'');
 
         // set default configuration
-        element.attr('zf-query-not', false);
-        element.attr('zf-query-only', false);
-        element.attr('zf-query-or-smaller', false);
-        element.attr('zf-query-scope-prop', queryResult);
+        element.attr('ba-query-not', false);
+        element.attr('ba-query-only', false);
+        element.attr('ba-query-or-smaller', false);
+        element.attr('ba-query-scope-prop', queryResult);
 
         // parse directive attribute for query parameters
         element.attr(directiveName).split(' ').forEach(function(param) {
           if (param) {
-            // add zf-query directive and configuration attributes
+            // add ba-query directive and configuration attributes
             switch (param) {
               case "not":
-                element.attr('zf-query-not', true);
-                element.attr('zf-query-only', true);
+                element.attr('ba-query-not', true);
+                element.attr('ba-query-only', true);
                 break;
               case "only":
-                element.attr('zf-query-only', true);
+                element.attr('ba-query-only', true);
                 break;
               case "or":
                 break;
               case "smaller":
                 // allow usage of smaller keyword if preceeded by 'or' keyword
                 if (previousParam === "or") {
-                  element.attr('zf-query-or-smaller', true);
+                  element.attr('ba-query-or-smaller', true);
                 }
                 break;
               default:
-                element.attr('zf-query', param);
+                element.attr('ba-query', param);
                 break;
             }
 
@@ -189,21 +189,21 @@
     }];
   }
 
-  zfQuery.$inject = ['FoundationApi', 'FoundationMQ'];
-  function zfQuery(foundationApi, foundationMQ) {
+  baQuery.$inject = ['FoundationApi', 'FoundationMQ'];
+  function baQuery(foundationApi, foundationMQ) {
     return {
       priority: 601, // must compile before ng-if (600)
       restrict: 'A',
       compile: function compile(element, attrs) {
-        return compileWrapper(attrs['zfQueryScopeProp'],
-                              attrs['zfQuery'],
-                              attrs['zfQueryOnly'] === "true",
-                              attrs['zfQueryNot'] === "true",
-                              attrs['zfQueryOrSmaller'] === "true");
+        return compileWrapper(attrs['baQueryScopeProp'],
+                              attrs['baQuery'],
+                              attrs['baQueryOnly'] === "true",
+                              attrs['baQueryNot'] === "true",
+                              attrs['baQueryOrSmaller'] === "true");
       }
     };
 
-    // parameters will be populated with values provided from zf-query-* attributes
+    // parameters will be populated with values provided from ba-query-* attributes
     function compileWrapper(queryResult, namedQuery, queryOnly, queryNot, queryOrSmaller) {
       // set defaults
       queryOnly = queryOnly || false;

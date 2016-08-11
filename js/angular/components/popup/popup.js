@@ -2,8 +2,8 @@
   'use strict';
 
   angular.module('base.popup', ['base.core'])
-    .directive('zfPopup', zfPopup)
-    .directive('zfPopupToggle', zfPopupToggle)
+    .directive('baPopup', baPopup)
+    .directive('baPopupToggle', baPopupToggle)
     .service('FoundationPopup', FoundationPopup)
   ;
 
@@ -32,9 +32,9 @@
     }
   }
 
-  zfPopup.$inject = ['FoundationApi'];
+  baPopup.$inject = ['FoundationApi'];
 
-  function zfPopup(foundationApi) {
+  function baPopup(foundationApi) {
     var directive = {
       restrict: 'EA',
       transclude: true,
@@ -57,7 +57,7 @@
       };
 
       function preLink(scope, iElement, iAttrs) {
-        iAttrs.$set('zf-closable', 'popup');
+        iAttrs.$set('ba-closable', 'popup');
       }
 
       function postLink(scope, element, attrs) {
@@ -151,7 +151,7 @@
         }
 
         function adviseActiveChanged() {
-          if (!angular.isUndefined(attrs.zfAdvise)) {
+          if (!angular.isUndefined(attrs.baAdvise)) {
             foundationApi.publish(attrs.id, scope.active ? 'activated' : 'deactivated');
           }
         }
@@ -159,9 +159,9 @@
     }
   }
 
-  zfPopupToggle.$inject = ['FoundationApi'];
+  baPopupToggle.$inject = ['FoundationApi'];
 
-  function zfPopupToggle(foundationApi) {
+  function baPopupToggle(foundationApi) {
     var directive = {
       restrict: 'A',
       link: link
@@ -170,7 +170,7 @@
     return directive;
 
     function link(scope, element, attrs) {
-      var target = attrs.zfPopupToggle;
+      var target = attrs.baPopupToggle;
       var id = attrs.id || foundationApi.generateUuid();
       attrs.$set('id', id);
 

@@ -2,7 +2,7 @@
   'use strict';
 
   angular.module('base.panel', ['base.core'])
-    .directive('zfPanel', zfPanel)
+    .directive('baPanel', baPanel)
     .service('FoundationPanel', FoundationPanel)
   ;
 
@@ -27,9 +27,9 @@
     }
   }
 
-  zfPanel.$inject = ['FoundationApi', '$window'];
+  baPanel.$inject = ['FoundationApi', '$window'];
 
-  function zfPanel(foundationApi, $window) {
+  function baPanel(foundationApi, $window) {
     var directive = {
       restrict: 'EA',
       templateUrl: 'components/panel/panel.html',
@@ -45,7 +45,7 @@
 
     function compile(tElement, tAttrs, transclude) {
       var type = 'panel';
-      var animate = tAttrs.hasOwnProperty('zfAdvise') ? foundationApi.animateAndAdvise : foundationApi.animate;
+      var animate = tAttrs.hasOwnProperty('baAdvise') ? foundationApi.animateAndAdvise : foundationApi.animate;
       var forceAnimation = tAttrs.hasOwnProperty('forceAnimation');
 
       return {
@@ -54,7 +54,7 @@
       };
 
       function preLink(scope, iElement, iAttrs, controller) {
-        iAttrs.$set('zf-closable', type);
+        iAttrs.$set('ba-closable', type);
         scope.position = scope.position || 'left';
         scope.positionClass = 'panel-' + scope.position;
       }
@@ -166,7 +166,7 @@
         });
 
         function adviseActiveChanged() {
-          if (!angular.isUndefined(attrs.zfAdvise)) {
+          if (!angular.isUndefined(attrs.baAdvise)) {
             foundationApi.publish(attrs.id, scope.active ? 'activated' : 'deactivated');
           }
         }

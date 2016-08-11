@@ -2,10 +2,10 @@
   'use strict';
 
   angular.module('base.loader', [])
-    .directive('abSpinKit', abSpinKit)
+    .directive('baSpinKit', baSpinKit)
   ;
 
-  function abSpinKit() {
+  function baSpinKit() {
     var directive = {
       restrict: 'EA',
       replace: true,

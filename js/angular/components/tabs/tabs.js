@@ -2,14 +2,14 @@
   'use strict';
 
   angular.module('base.tabs', ['base.core'])
-    .controller('ZfTabsController', ZfTabsController)
-    .directive('zfTabs', zfTabs)
-    .directive('zfTabContent', zfTabContent)
-    .directive('zfTab', zfTab)
-    .directive('zfTabIndividual', zfTabIndividual)
-    .directive('zfTabHref', zfTabHref)
-    .directive('zfTabCustom', zfTabCustom)
-    .directive('zfTabContentCustom', zfTabContentCustom)
+    .controller('baTabsController', baTabsController)
+    .directive('baTabs', baTabs)
+    .directive('baTabContent', baTabContent)
+    .directive('baTab', baTab)
+    .directive('baTabIndividual', baTabIndividual)
+    .directive('baTabHref', baTabHref)
+    .directive('baTabCustom', baTabCustom)
+    .directive('baTabContentCustom', baTabContentCustom)
     .service('FoundationTabs', FoundationTabs)
   ;
 
@@ -29,9 +29,9 @@
 
   }
 
-  ZfTabsController.$inject = ['$scope', 'FoundationApi'];
+  baTabsController.$inject = ['$scope', 'FoundationApi'];
 
-  function ZfTabsController($scope, foundationApi) {
+  function baTabsController($scope, foundationApi) {
     var controller  = this;
     var tabs        = controller.tabs = $scope.tabs = [];
     var id          = '';
@@ -87,15 +87,15 @@
     };
   }
 
-  zfTabs.$inject = ['FoundationApi'];
+  baTabs.$inject = ['FoundationApi'];
 
-  function zfTabs(foundationApi) {
+  function baTabs(foundationApi) {
     var directive = {
       restrict: 'EA',
       transclude: 'true',
       replace: true,
       templateUrl: 'components/tabs/tabs.html',
-      controller: 'ZfTabsController',
+      controller: 'baTabsController',
       scope: {
         displaced: '@?'
       },
@@ -127,9 +127,9 @@
     }
   }
 
-  zfTabContent.$inject = ['FoundationApi'];
+  baTabContent.$inject = ['FoundationApi'];
 
-  function zfTabContent(foundationApi) {
+  function baTabContent(foundationApi) {
     var directive = {
       restrict: 'A',
       transclude: 'true',
@@ -183,9 +183,9 @@
     }
   }
 
-  zfTab.$inject = ['FoundationApi'];
+  baTab.$inject = ['FoundationApi'];
 
-  function zfTab(foundationApi) {
+  function baTab(foundationApi) {
     var directive = {
       restrict: 'EA',
       templateUrl: 'components/tabs/tab.html',
@@ -193,7 +193,7 @@
       scope: {
         title: '@'
       },
-      require: '^zfTabs',
+      require: '^baTabs',
       replace: true,
       link: link
     };
@@ -234,9 +234,9 @@
     }
   }
 
-  zfTabIndividual.$inject = ['FoundationApi'];
+  baTabIndividual.$inject = ['FoundationApi'];
 
-  function zfTabIndividual(foundationApi) {
+  function baTabIndividual(foundationApi) {
     var directive = {
       restrict: 'EA',
       transclude: 'true',
@@ -266,9 +266,9 @@
 
   //custom tabs
 
-  zfTabHref.$inject = ['FoundationApi'];
+  baTabHref.$inject = ['FoundationApi'];
 
-  function zfTabHref(foundationApi) {
+  function baTabHref(foundationApi) {
     var directive = {
       restrict: 'A',
       replace: false,
@@ -278,7 +278,7 @@
     return directive;
 
     function link(scope, element, attrs, controller) {
-      var target = attrs.zfTabHref;
+      var target = attrs.baTabHref;
 
       foundationApi.subscribe(target, function(msg) {
         if(msg === 'activate' || msg === 'show' || msg === 'open') {
@@ -300,9 +300,9 @@
     }
   }
 
-  zfTabCustom.$inject = ['FoundationApi'];
+  baTabCustom.$inject = ['FoundationApi'];
 
-  function zfTabCustom(foundationApi) {
+  function baTabCustom(foundationApi) {
     var directive = {
       restrict: 'A',
       replace: false,
@@ -317,9 +317,9 @@
     }
   }
 
-  zfTabContentCustom.$inject = ['FoundationApi'];
+  baTabContentCustom.$inject = ['FoundationApi'];
 
-  function zfTabContentCustom(foundationApi) {
+  function baTabContentCustom(foundationApi) {
     return {
       restrict: 'A',
       link: link

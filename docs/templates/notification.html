@@ -16,12 +16,12 @@ title: Notification
   	  content="Notification example that closes in 3 seconds!"
   	  color="success"
       autoclose="3000"
-  	  zf-notify="test-docs-notifications">Dynamic Notification</a>
-  	<a class="button" href="#" zf-open="static-example">Static Notification</a>
-    <zf-notification-set position="bottom-left" id="test-docs-notifications"></zf-notification-set>
-    <zf-notification-static id="static-example" title="My static notification" image="http://www.clipartbest.com/cliparts/acq/X8R/acqX8RdcM.jpeg" position="top left">
+  	  ba-notify="test-docs-notifications">Dynamic Notification</a>
+  	<a class="button" href="#" ba-open="static-example">Static Notification</a>
+    <ba-notification-set position="bottom-left" id="test-docs-notifications"></ba-notification-set>
+    <ba-notification-static id="static-example" title="My static notification" image="http://www.clipartbest.com/cliparts/acq/X8R/acqX8RdcM.jpeg" position="top left">
   	  This notification is static, it works similarly to a programmatic with some subtle differences. I'll stay here until you close me!
-  	</zf-notification-static>
+  	</ba-notification-static>
   </div>
 </div>
 
@@ -37,17 +37,17 @@ title: Notification
   <div class="small-12 medium-6 grid-content">
 <hljs language="html">
 <!-- notification trigger -->
-<a class="button" href="#" zf-open="my-notify">Static Notification</a>
+<a class="button" href="#" ba-open="my-notify">Static Notification</a>
 <!-- notification content -->
-<zf-notification-static id="my-notify" title="My static notification" image="http://placehold.it/40x40">
+<ba-notification-static id="my-notify" title="My static notification" image="http://placehold.it/40x40">
 	  <p>This notification is static, it works similarly to a programmatic with some subtle differences.</p>
-	</zf-notification-static>
+	</ba-notification-static>
 </hljs>
   </div>
   <div class="small-12 medium-6 grid-content">
-		<a class="button" href="#" zf-open="my-notify">Static Notification</a>
-		<zf-notification-static id="my-notify" title="My static notification" image="http://placehold.it/40x40" content="This notification is static, it works similarly to a programmatic with some subtle differences.">
-	</zf-notification-static>
+		<a class="button" href="#" ba-open="my-notify">Static Notification</a>
+		<ba-notification-static id="my-notify" title="My static notification" image="http://placehold.it/40x40" content="This notification is static, it works similarly to a programmatic with some subtle differences.">
+	</ba-notification-static>
   </div>
 </div>
 
@@ -64,8 +64,8 @@ title: Notification
     	content="Notification example"
     	color="success"
       autoclose="3000"
-    	zf-notify="main-notifications">Dynamic Notification</a>
-    <zf-notification-set id="main-notifications" position="top-left"></zf-notification-set>
+    	ba-notify="main-notifications">Dynamic Notification</a>
+    <ba-notification-set id="main-notifications" position="top-left"></ba-notification-set>
     </hljs>
   </div>
   <div class="small-12 medium-6 grid-content">
@@ -74,8 +74,8 @@ title: Notification
 		content="Notification example"
 		color="success"
     autoclose="3000"
-		zf-notify="main-notifications">Dynamic Notification</a>
-    <zf-notification-set id="main-notifications" position="top-left"></zf-notification-set>
+		ba-notify="main-notifications">Dynamic Notification</a>
+    <ba-notification-set id="main-notifications" position="top-left"></ba-notification-set>
   </div>
 </div>
 
@@ -85,10 +85,10 @@ title: Notification
 foundationApi.publish('main-notifications', { title: 'Test', content: 'Test2' });
 </hljs>
 
-<p>You can also use the `zf-notify` directive for simpler messages and prototyping:</p>
+<p>You can also use the `ba-notify` directive for simpler messages and prototyping:</p>
 
 <hljs language="html">
-<a href="#" zf-notify title="Title of notification" content="Content of notification">Launch notification</a>
+<a href="#" ba-notify title="Title of notification" content="Content of notification">Launch notification</a>
 </hljs>
 
 <h4>Additional Options</h4>

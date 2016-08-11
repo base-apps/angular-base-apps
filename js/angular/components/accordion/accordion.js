@@ -2,14 +2,14 @@
   'use strict';
 
   angular.module('base.accordion', [])
-    .controller('ZfAccordionController', zfAccordionController)
-    .directive('zfAccordion', zfAccordion)
-    .directive('zfAccordionItem', zfAccordionItem)
+    .controller('baAccordionController', baAccordionController)
+    .directive('baAccordion', baAccordion)
+    .directive('baAccordionItem', baAccordionItem)
   ;
 
-  zfAccordionController.$inject = ['$scope'];
+  baAccordionController.$inject = ['$scope'];
 
-  function zfAccordionController($scope) {
+  function baAccordionController($scope) {
     var controller = this;
     var sections = controller.sections = $scope.sections = [];
     var multiOpen   = false;
@@ -60,13 +60,13 @@
     };
   }
 
-  function zfAccordion() {
+  function baAccordion() {
     var directive = {
       restrict: 'EA',
       transclude: 'true',
       replace: true,
       templateUrl: 'components/accordion/accordion.html',
-      controller: 'ZfAccordionController',
+      controller: 'baAccordionController',
       scope: {
       },
       link: link
@@ -82,9 +82,9 @@
   }
 
   //accordion item
-  zfAccordionItem.$inject = ['FoundationApi'];
+  baAccordionItem.$inject = ['FoundationApi'];
 
-  function zfAccordionItem(foundationApi) {
+  function baAccordionItem(foundationApi) {
     var directive = {
         restrict: 'EA',
         templateUrl: 'components/accordion/accordion-item.html',
@@ -92,7 +92,7 @@
         scope: {
           title: '@'
         },
-        require: '^zfAccordion',
+        require: '^baAccordion',
         replace: true,
         controller: function() {},
         link: link

@@ -2,10 +2,10 @@
   'use strict';
 
   angular.module('base.actionsheet', ['base.core'])
-    .controller('ZfActionSheetController', zfActionSheetController)
-    .directive('zfActionSheet', zfActionSheet)
-    .directive('zfAsContent', zfAsContent)
-    .directive('zfAsButton', zfAsButton)
+    .controller('baActionSheetController', baActionSheetController)
+    .directive('baActionSheet', baActionSheet)
+    .directive('baAsContent', baAsContent)
+    .directive('baAsButton', baAsButton)
     .service('FoundationActionSheet', FoundationActionSheet)
   ;
 
@@ -30,9 +30,9 @@
     }
   }
 
-  zfActionSheetController.$inject = ['$scope', 'FoundationApi'];
+  baActionSheetController.$inject = ['$scope', 'FoundationApi'];
 
-  function zfActionSheetController($scope, foundationApi) {
+  function baActionSheetController($scope, foundationApi) {
     var controller = this;
     var content = controller.content = $scope.content;
     var container = controller.container = $scope.container;
@@ -74,7 +74,7 @@
 
       if(!insideActionSheet) {
         // if the element has a toggle attribute, do nothing
-        if (e.target.attributes['zf-toggle'] || e.target.attributes['zf-hard-toggle']) {
+        if (e.target.attributes['ba-toggle'] || e.target.attributes['ba-hard-toggle']) {
           return;
         };
         // if the element is outside the action sheet and is NOT a toggle element, hide
@@ -113,15 +113,15 @@
     }
   }
 
-  zfActionSheet.$inject = ['FoundationApi'];
+  baActionSheet.$inject = ['FoundationApi'];
 
-  function zfActionSheet(foundationApi) {
+  function baActionSheet(foundationApi) {
     var directive = {
       restrict: 'EA',
       transclude: true,
       replace: true,
       templateUrl: 'components/actionsheet/actionsheet.html',
-      controller: 'ZfActionSheetController',
+      controller: 'baActionSheetController',
       compile: compile
     };
 
@@ -135,7 +135,7 @@
       };
 
       function preLink(scope, iElement, iAttrs) {
-        iAttrs.$set('zf-closable', 'actionsheet');
+        iAttrs.$set('ba-closable', 'actionsheet');
       }
 
       function postLink(scope, element, attrs, controller) {
@@ -182,15 +182,15 @@
     }
   }
 
-  zfAsContent.$inject = ['FoundationApi'];
+  baAsContent.$inject = ['FoundationApi'];
 
-  function zfAsContent(foundationApi) {
+  function baAsContent(foundationApi) {
     var directive = {
       restrict: 'EA',
       transclude: true,
       replace: true,
       templateUrl: 'components/actionsheet/actionsheet-content.html',
-      require: '^zfActionSheet',
+      require: '^baActionSheet',
       scope: {
         position: '@?'
       },
@@ -229,15 +229,15 @@
     }
   }
 
-  zfAsButton.$inject = ['FoundationApi'];
+  baAsButton.$inject = ['FoundationApi'];
 
-  function zfAsButton(foundationApi) {
+  function baAsButton(foundationApi) {
     var directive = {
       restrict: 'EA',
       transclude: true,
       replace: true,
       templateUrl: 'components/actionsheet/actionsheet-button.html',
-      require: '^zfActionSheet',
+      require: '^baActionSheet',
       scope: {
         title: '@?'
       },

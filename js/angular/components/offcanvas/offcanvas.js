@@ -2,7 +2,7 @@
   'use strict';
 
   angular.module('base.offcanvas', ['base.core'])
-    .directive('zfOffcanvas', zfOffcanvas)
+    .directive('baOffcanvas', baOffcanvas)
     .service('FoundationOffcanvas', FoundationOffcanvas)
   ;
 
@@ -31,9 +31,9 @@
     }
   }
 
-  zfOffcanvas.$inject = ['FoundationApi'];
+  baOffcanvas.$inject = ['FoundationApi'];
 
-  function zfOffcanvas(foundationApi) {
+  function baOffcanvas(foundationApi) {
     var directive = {
       restrict: 'EA',
       templateUrl: 'components/offcanvas/offcanvas.html',
@@ -56,7 +56,7 @@
       };
 
       function preLink(scope, iElement, iAttrs, controller) {
-        iAttrs.$set('zf-closable', type);
+        iAttrs.$set('ba-closable', type);
         document.body.classList.add('has-off-canvas');
       }
 
@@ -104,7 +104,7 @@
         };
 
         function adviseActiveChanged() {
-          if (!angular.isUndefined(attrs.zfAdvise)) {
+          if (!angular.isUndefined(attrs.baAdvise)) {
             foundationApi.publish(attrs.id, scope.active ? 'activated' : 'deactivated');
           }
         }

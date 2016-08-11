@@ -2,7 +2,7 @@
   'use strict';
 
   angular.module('base.modal', ['base.core'])
-    .directive('zfModal', modalDirective)
+    .directive('baModal', modalDirective)
     .factory('ModalFactory', ModalFactory)
     .factory('ConfirmModal', ConfirmModal)
     .factory('PromptModal', PromptModal)
@@ -60,12 +60,12 @@
       };
 
       function preLink(scope, iElement, iAttrs, controller) {
-          iAttrs.$set('zf-closable', type);
+          iAttrs.$set('ba-closable', type);
       }
 
       function postLink(scope, element, attrs) {
         var dialog = angular.element(element.children()[0]);
-        var animateFn = attrs.hasOwnProperty('zfAdvise') ? foundationApi.animateAndAdvise : foundationApi.animate;
+        var animateFn = attrs.hasOwnProperty('baAdvise') ? foundationApi.animateAndAdvise : foundationApi.animate;
 
         scope.active = false;
         scope.overlay = attrs.overlay === 'false' ? false : true;
@@ -148,7 +148,7 @@
         });
 
         function adviseActiveChanged() {
-          if (!angular.isUndefined(attrs.zfAdvise)) {
+          if (!angular.isUndefined(attrs.baAdvise)) {
             foundationApi.publish(attrs.id, scope.active ? 'activated' : 'deactivated');
           }
         }
@@ -297,7 +297,7 @@
           return;
         }
 
-        html = '<zf-modal id="' + id + '">' + html + '</zf-modal>';
+        html = '<ba-modal id="' + id + '">' + html + '</ba-modal>';
 
         element = angular.element(html);
 
@@ -324,7 +324,7 @@
                 element.attr('destroy-on-close', (config[prop] === 'true' || config[prop] === true) ? 'true' : 'false');
                 break;
               case 'ignoreAllClose':
-                element.attr('zf-ignore-all-close', 'zf-ignore-all-close');
+                element.attr('ba-ignore-all-close', 'ba-ignore-all-close');
                 break;
               case 'class':
                 if (angular.isString(config[prop])) {
