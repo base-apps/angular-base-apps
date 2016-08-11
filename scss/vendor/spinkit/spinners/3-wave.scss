@@ -40,7 +40,7 @@ $spinkit-wave-css-export: true !default;
   font-size: $width / $child-count;
 
   .sk-rect {
-    width: $width / $child-count * 3/5;
+    width: $width / $child-count * 0.6;
   }
 }
 
