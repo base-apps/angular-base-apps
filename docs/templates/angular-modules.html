@@ -16,7 +16,7 @@ controller: AngularModsController
 
   <p>Our Bower/npm package, as well as the template stack, includes a sample <code>app.js</code> file which bootstraps an Angular application with UI Router, ng-animate, and every Angular Base Apps module.</p>
 
-  <p>In the below example, a module called <code>base</code> is imported. This is a shorthand to import every UI component at once. However, it's also possible to import inidividual components, such as <code>foundation.modal</code> or <code>foundation.tabs</code>.</p>
+  <p>In the below example, a module called <code>base</code> is imported. This is a shorthand to import every UI component at once. However, it's also possible to import inidividual components, such as <code>base.modal</code> or <code>base.tabs</code>.</p>
 
   <p>When writing your own bootstrapping code, the only essential configuration is setting up the <code>$urlProvider</code> and <code>$locationProvider</code></p>
 
@@ -29,7 +29,7 @@ controller: AngularModsController
     'ui.router',
     'ngAnimate',
 
-    // Foundation UI components
+    // Angular Base Apps components
     'base',
 
     // Routing with front matter
@@ -65,13 +65,13 @@ controller: AngularModsController
 <hr>
 
 <section>
-  <h3 class="docs-module-name"><pre>foundation.core</pre> (Module)</h3>
+  <h3 class="docs-module-name"><pre>base.core</pre> (Module)</h3>
   <p>The core module should not be required directly, as nearly every other component requires it already. It includes a media query helper, the component API, and a few utilities.</p>
 
   <section>
     <h4 class="docs-module-name"><pre>foundationApi</pre> (Service)</h4>
 
-    <p>FoundationApi is what runs all of Foundation's modules. It's the master puppeteer. It currently has a total of 8 methods but will probably expand to have more.</p>
+    <p>FoundationApi is what powers all of modules in Angular Base Apps. It's the master puppeteer. It currently has a total of 8 methods but will probably expand to have more.</p>
 
 <hljs language="javascript">
 FoundationApi.subscribe('identifier', callback)
@@ -119,7 +119,7 @@ FoundationApi.toggleAnimation(element, futureState)
 FoundationApi.animate(element, futureState, animationIn, animationOut)
 </hljs>
 
-    <p>Another helper that works by replicating Angular's built-in <code>ngAnimate</code> functionality with several custom additions to work with Foundation's internal MotionUI. These are mostly for internal use; however, you can easily animate in and animate out any element the same way <code>$animate</code> works.  This function returns a <code>$q</code> promise which is resolved when the animation completes or rejected when the animation is aborted.</p>
+    <p>Another helper that works by replicating Angular's built-in <code>ngAnimate</code> functionality with several custom additions to work with Angular Base Apps's internal MotionUI. These are mostly for internal use; however, you can easily animate in and animate out any element the same way <code>$animate</code> works.  This function returns a <code>$q</code> promise which is resolved when the animation completes or rejected when the animation is aborted.</p>
 
 <hljs language="javascript">
 FoundationApi.animateAndAdvise(element, futureState, animationIn, animationOut)
@@ -141,7 +141,7 @@ FoundationApi.animateAndAdvise(element, futureState, animationIn, animationOut)
 FoundationApi.closeActiveElements(options)
 </hljs>
 
-    <p>This utility is used to close all foundation closable elements. It selects any element that has an <code>is-active</code> class and an <code>zf-closable</code> attribute. You're welcome to make your own directives and plugins work with it. It publishes a <code>close</code> message to the ID of the selected element.</p>
+    <p>This utility is used to close all closable components provided by Angular Base Apps. It selects any element that has an <code>is-active</code> class and an <code>zf-closable</code> attribute. You're welcome to make your own directives and plugins work with it. It publishes a <code>close</code> message to the ID of the selected element.</p>
   </section>
 
   <section>
@@ -185,16 +185,16 @@ FoundationApi.subscribe('modal', function(message) {
 <hr>
 
 <section>
-  <h3 class="docs-module-name"><pre>foundation.mediaquery</pre> (Module)</h3>
+  <h3 class="docs-module-name"><pre>base.mediaquery</pre> (Module)</h3>
 
-  <p class="docs-module-deps"><strong>Dependencies:</strong> <span class="pre">foundation.core</span></p>
+  <p class="docs-module-deps"><strong>Dependencies:</strong> <span class="pre">base.core</span></p>
 
   <section>
     <h4 class="docs-module-name"><pre>FoundationMQ</pre> (Service)</h4>
 
-    <p>FoundationMQ used to be a part of the Foundation Core but now is available as a supplement to the codebase. It has numerous functions including the Media Query Initiator</p>
+    <p>FoundationMQ has numerous functions useful for media queries, including the Media Query Initiator.</p>
 
-    <p>The Media Query initiator uses built-in foundation styles to create a <code>mediaQueries</code> setting under the FoundationApi. This is used for Interchange but it can be used for whatever you need. This module depends on Angular Base Apps css to be present but it will fail silently if you don't want to use this feature.</p>
+    <p>The Media Query initiator uses built-in Angular Base Apps styles to create a <code>mediaQueries</code> setting under the FoundationApi. This is used for Interchange but it can be used for whatever you need. This module depends on Angular Base Apps css to be present but it will fail silently if you don't want to use this feature.</p>
 
     <p>The Initiator also publishes an event to the <code>FoundationApi</code> called "resize" whenever the window is resized (throttled to happen 50ms at a time).</p>
 
@@ -239,9 +239,11 @@ FoundationMQ.matchesMediaOnly(breakpoint)
 <hr>
 
 <section>
-  <h3 class="docs-module-name"><pre>foundation.dynamicRouting</pre> (Module)</h3>
+  <h3 class="docs-module-name"><pre>dynamicRouting</pre> (Module)</h3>
 
   <p class="docs-module-deps"><strong>Dependencies:</strong> <span class="pre">ui.router</span></p>
+
+  <p><strong>As of version 2.0, this module has been moved into its own respository: <a href="https://github.com/base-apps/angular-dynamic-routing" class="pre">angular-dynamic-routing</a></strong></p>
 
   <p>The Angular page describes how to take advantage of the Dynamic Routing; however, it does not discuss the code and the many different options that come with dynamic routing.</p>
 
@@ -253,9 +255,11 @@ FoundationMQ.matchesMediaOnly(breakpoint)
 <hr>
 
 <section>
-  <h3 class="docs-module-name"><pre>foundation.dynamicRouting.animations</pre> (Module)</h3>
+  <h3 class="docs-module-name"><pre>dynamicRouting.animations</pre> (Module)</h3>
 
-  <p class="docs-module-deps"><strong>Dependencies:</strong> <span class="pre">ngAnimate</span>, <span class="pre">foundation.dynamicRouting</span></p>
+  <p class="docs-module-deps"><strong>Dependencies:</strong> <span class="pre">ngAnimate</span>, <span class="pre">dynamicRouting</span></p>
+
+  <p><strong>As of version 2.0, this module has been moved into its own respository: <a href="https://github.com/base-apps/angular-dynamic-routing" class="pre">angular-dynamic-routing</a></strong></p>
 
   <p>This module is an optional add-on which allows the dynamically routed views to animate as long as there is an <code>animationIn</code> and an <code>animationOut</code> in the front-matter of the template</p>
 </section>
@@ -263,11 +267,11 @@ FoundationMQ.matchesMediaOnly(breakpoint)
 <hr>
 
 <section>
-  <h3 class="docs-module-name"><pre>foundation.common</pre> (Module)</h3>
+  <h3 class="docs-module-name"><pre>base.common</pre> (Module)</h3>
 
-  <p class="docs-module-deps"><strong>Dependencies:</strong> <span class="pre">foundation.core</span></p>
+  <p class="docs-module-deps"><strong>Dependencies:</strong> <span class="pre">base.core</span></p>
 
-  <p>A set of common directives used to manipulate other Foundation components.</p>
+  <p>A set of common directives used to manipulate other Angular Base Apps components.</p>
 
   <section>
     <h4 class="docs-module-name"><pre>zf-open</pre> (Directive)</h4>
@@ -367,7 +371,7 @@ FoundationMQ.matchesMediaOnly(breakpoint)
 <hr>
 
 <section>
-  <h3 class="docs-module-name"><pre>foundation.accordion</pre> (Module)</h3>
+  <h3 class="docs-module-name"><pre>base.accordion</pre> (Module)</h3>
 
   <p>Includes the <code>zf-accordion</code> and <code>zf-accordion-item</code> directives, for creating accordions.</p>
 
@@ -377,9 +381,9 @@ FoundationMQ.matchesMediaOnly(breakpoint)
 <hr>
 
 <section>
-  <h3 class="docs-module-name"><pre>foundation.actionsheet</pre> (Module)</h3>
+  <h3 class="docs-module-name"><pre>base.actionsheet</pre> (Module)</h3>
 
-  <p class="docs-module-deps"><strong>Dependencies:</strong> <span class="pre">foundation.core</span></p>
+  <p class="docs-module-deps"><strong>Dependencies:</strong> <span class="pre">base.core</span></p>
 
   <p>Includes the <code>zf-action-sheet</code>, <code>zf-as-button</code>, and <code>zf-as-content</code> direcitves, for creating responsive dropdowns/action sheets.</p>
 
@@ -391,7 +395,7 @@ FoundationMQ.matchesMediaOnly(breakpoint)
 <hr>
 
 <section>
-  <h3 class="docs-module-name"><pre>foundation.iconic</pre> (Module)</h3>
+  <h3 class="docs-module-name"><pre>base.iconic</pre> (Module)</h3>
 
   <p class="docs-module-deps"><strong>Dependencies:</strong> <span class="pre">ngSVGAttributes</span></p>
 
@@ -419,9 +423,9 @@ FoundationMQ.matchesMediaOnly(breakpoint)
 <hr>
 
 <section>
-  <h3 class="docs-module-name"><pre>foundation.interchange</pre> (Module)</h3>
+  <h3 class="docs-module-name"><pre>base.interchange</pre> (Module)</h3>
 
-  <p class="docs-module-deps"><strong>Dependencies:</strong> <span class="pre">foundation.core</span>, <span class="pre">foundation.mediaquery</span></p>
+  <p class="docs-module-deps"><strong>Dependencies:</strong> <span class="pre">base.core</span>, <span class="pre">base.mediaquery</span></p>
 
   <p>Includes the <code>zf-interchange</code>, <code>zf-if</code>, <code>zf-show</code>, and <code>zf-hide</code> directives for dynamically rendering content responsively.</p>
 
@@ -431,9 +435,9 @@ FoundationMQ.matchesMediaOnly(breakpoint)
 <hr>
 
 <section>
-  <h3 class="docs-module-name"><pre>foundation.modal</pre> (Module)</h3>
+  <h3 class="docs-module-name"><pre>base.modal</pre> (Module)</h3>
 
-  <p class="docs-module-deps"><strong>Dependencies:</strong> <span class="pre">foundation.core</span></p>
+  <p class="docs-module-deps"><strong>Dependencies:</strong> <span class="pre">base.core</span></p>
 
   <p>Includes the <code>zf-modal</code> directive for creating modals.</p>
 
@@ -474,9 +478,9 @@ $scope.modal = new ModalFactory(config);
 <hr>
 
 <section>
-  <h3 class="docs-module-name"><pre>foundation.notification</pre> (Module)</h3>
+  <h3 class="docs-module-name"><pre>base.notification</pre> (Module)</h3>
 
-  <p class="docs-module-deps"><strong>Dependencies:</strong> <span class="pre">foundation.core</span></p>
+  <p class="docs-module-deps"><strong>Dependencies:</strong> <span class="pre">base.core</span></p>
 
   <section>
     <h4 class="docs-module-name"><pre>zf-static-notification</pre> (Directive)</h4>
@@ -536,9 +540,9 @@ notifSet.addNotification({
 <hr>
 
 <section>
-  <h3 class="docs-module-name"><pre>foundation.offcanvas</pre> (Module)</h3>
+  <h3 class="docs-module-name"><pre>base.offcanvas</pre> (Module)</h3>
 
-  <p class="docs-module-deps"><strong>Dependencies:</strong> <span class="pre">foundation.core</span></p>
+  <p class="docs-module-deps"><strong>Dependencies:</strong> <span class="pre">base.core</span></p>
 
   <p>Includes the <code>zf-offcanvas</code> directive, for creating off-canvas panels.</p>
 
@@ -550,9 +554,9 @@ notifSet.addNotification({
 <hr>
 
 <section>
-  <h3 class="docs-module-name"><pre>foundation.panel</pre> (Module)</h3>
+  <h3 class="docs-module-name"><pre>base.panel</pre> (Module)</h3>
 
-  <p class="docs-module-deps"><strong>Dependencies:</strong> <span class="pre">foundation.core</span></p>
+  <p class="docs-module-deps"><strong>Dependencies:</strong> <span class="pre">base.core</span></p>
 
   <p>Includes the <code>zf-panel</code> directive, for creating slide-out panels.</p>
 
@@ -564,9 +568,9 @@ notifSet.addNotification({
 <hr>
 
 <section>
-  <h3 class="docs-module-name"><pre>foundation.popup</pre> (Module)</h3>
+  <h3 class="docs-module-name"><pre>base.popup</pre> (Module)</h3>
 
-  <p class="docs-module-deps"><strong>Dependencies:</strong> <span class="pre">foundation.core</span></p>
+  <p class="docs-module-deps"><strong>Dependencies:</strong> <span class="pre">base.core</span></p>
 
   <p>Includes the <code>zf-popup</code> directive, for creating fixed popup panels. Requires the <a href="http://github.hubspot.com/tether/">Tether</a> JavaScript library.</p>
 
@@ -578,9 +582,9 @@ notifSet.addNotification({
 <hr>
 
 <section>
-  <h3 class="docs-module-name"><pre>foundation.tabs</pre> (Module)</h3>
+  <h3 class="docs-module-name"><pre>base.tabs</pre> (Module)</h3>
 
-  <p class="docs-module-deps"><strong>Dependencies:</strong> <span class="pre">foundation.core</span></p>
+  <p class="docs-module-deps"><strong>Dependencies:</strong> <span class="pre">base.core</span></p>
 
   <p>Includes the <code>zf-tabs</code>, <code>zf-tab</code>, and <code>zf-tab-content</code> directives, for creating tabbed content.</p>
 
