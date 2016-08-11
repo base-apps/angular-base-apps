@@ -43,6 +43,18 @@ title: Loading Symbols
 
 <hr>
 
+<h3>Loading Symbol Directive</h3>
+
+<p>Loading symbols can be created using the <code>ab-spin-kit</code> directive.</p>
+
+<hljs language="html">
+<ab-spin-kit loader="cube-grid"></ab-spin-kit>
+</hljs>
+
+The <code>loader</code> attribute defines which loading symbol to display.  Find the complete list of available names below.
+
+<hr>
+
 <h3>Loading Symbol Names</h3>
 
 <div class="grid-block docs-spinkit-names">
@@ -50,23 +62,80 @@ title: Loading Symbols
     <ul class="no-bullet">
       <li><ab-spin-kit loader="rotating-plane" class="primary"></ab-spin-kit><span>rotating-plane</span></li>
       <li><ab-spin-kit loader="double-bounce" class="dark"></ab-spin-kit><span>double-bounce</span></li>
-      <li><ab-spin-kit loader="wave" class="success"></ab-spin-kit><span>wave</span></li>
+      <li><ab-spin-kit loader="pulse" class="success"></ab-spin-kit><span>pulse</span></li>
       <li><ab-spin-kit loader="wandering-cubes" class="alert"></ab-spin-kit><span>wandering-cubes</span></li>
     </ul>
   </div>
   <div class="small-12 medium-4 grid-content">
     <ul class="no-bullet">
-      <li><ab-spin-kit loader="pulse" class="primary"></ab-spin-kit><span>pulse</span></li>
+      <li><ab-spin-kit loader="folding-cube" class="primary"></ab-spin-kit><span>folding-cube</span></li>
       <li><ab-spin-kit loader="chasing-dots" class="dark"></ab-spin-kit><span>chasing-dots</span></li>
-      <li><ab-spin-kit loader="three-bounce" class="success"></ab-spin-kit><span>three-bounce</span></li>
-      <li><ab-spin-kit loader="circle" class="alert"></ab-spin-kit><span>circle</span></li>
+      <li><ab-spin-kit loader="circle" class="success"></ab-spin-kit><span>circle</span></li>
+      <li><ab-spin-kit loader="wave" class="alert"></ab-spin-kit><span>wave</span></li>
     </ul>
   </div>
   <div class="small-12 medium-4 grid-content">
     <ul class="no-bullet">
       <li><ab-spin-kit loader="cube-grid" class="primary"></ab-spin-kit><span>cube-grid</span></li>
-      <li><ab-spin-kit loader="fading-circle" class="dark"></ab-spin-kit><span>fading-circle</span></li>
-      <li><ab-spin-kit loader="folding-cube" class="success"></ab-spin-kit><span>folding-cube</span></li>
+      <li><ab-spin-kit loader="three-bounce" class="dark"></ab-spin-kit><span>three-bounce</span></li>
+      <li><ab-spin-kit loader="fading-circle" class="success"></ab-spin-kit><span>fading-circle</span></li>
+    </ul>
+  </div>
+</div>
+
+<hr>
+
+<h3>Loading Symbol Colors</h3>
+
+<p>The color of the loading symbol can be customized by simply adding the desired class.</p>
+
+<div class="grid-block">
+  <div class="small-12 medium-6 grid-content">
+<hljs language="html">
+<ab-spin-kit loader="cube-grid" class="primary"></ab-spin-kit>
+<ab-spin-kit loader="cube-grid" class="secondary"></ab-spin-kit>
+<ab-spin-kit loader="cube-grid" class="success"></ab-spin-kit>
+<ab-spin-kit loader="cube-grid" class="info"></ab-spin-kit>
+<ab-spin-kit loader="cube-grid" class="warning"></ab-spin-kit>
+<ab-spin-kit loader="cube-grid" class="alert"></ab-spin-kit>
+<ab-spin-kit loader="cube-grid" class="dark"></ab-spin-kit>
+</hljs>
+  </div>
+  <div class="small-12 medium-6 grid-content">
+    <ul class="no-bullet">
+      <li><ab-spin-kit loader="cube-grid" class="primary"></ab-spin-kit><span class="icon-label">Primary color</span></li>
+      <li><ab-spin-kit loader="cube-grid" class="secondary"></ab-spin-kit><span class="icon-label">Secondary color</span></li>
+      <li><ab-spin-kit loader="cube-grid" class="success"></ab-spin-kit><span class="icon-label">Success color</span></li>
+      <li><ab-spin-kit loader="cube-grid" class="info"></ab-spin-kit><span class="icon-label">Info color</span></li>
+      <li><ab-spin-kit loader="cube-grid" class="warning"></ab-spin-kit><span class="icon-label">Warning color</span></li>
+      <li><ab-spin-kit loader="cube-grid" class="alert"></ab-spin-kit><span class="icon-label">Alert color</span></li>
+      <li><ab-spin-kit loader="cube-grid" class="dark"></ab-spin-kit><span class="icon-label">Dark color</span></li>
+    </ul>
+  </div>
+</div>
+
+
+<hr>
+
+<h3>Loading Symbol Sizes</h3>
+
+<p>The size of the loading symbol can be customized by simply adding the desired class.</p>
+
+<div class="grid-block">
+  <div class="small-12 medium-6 grid-content">
+<hljs language="html">
+<ab-spin-kit loader="cube-grid" class="tiny"></ab-spin-kit>
+<ab-spin-kit loader="cube-grid" class="small"></ab-spin-kit>
+<ab-spin-kit loader="cube-grid" class="medium"></ab-spin-kit>
+<ab-spin-kit loader="cube-grid" class="large"></ab-spin-kit>
+</hljs>
+  </div>
+  <div class="small-12 medium-6 grid-content">
+    <ul class="no-bullet">
+      <li><ab-spin-kit loader="cube-grid" class="tiny"></ab-spin-kit><span class="icon-label">Tiny</span></li>
+      <li><ab-spin-kit loader="cube-grid" class="small"></ab-spin-kit><span class="icon-label">Small</span></li>
+      <li><ab-spin-kit loader="cube-grid" class="medium"></ab-spin-kit><span class="icon-label">Medium</span></li>
+      <li><ab-spin-kit loader="cube-grid" class="large"></ab-spin-kit><span class="icon-label">Large</span></li>
     </ul>
   </div>
 </div>

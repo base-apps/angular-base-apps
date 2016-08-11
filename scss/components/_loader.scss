@@ -31,6 +31,10 @@ $loader-sizes: (
   "../vendor/spinkit/spinners/11-folding-cube";
 
 @include exports(loader) {
+  .sk-loader {
+    display: inline-block;
+  }
+
   .sk-rotating-plane {
     @include sk-rotating-plane($margin: 0);
 

@@ -106,9 +106,11 @@ hr {
 
     li {
       margin-bottom: 1rem;
-      
+
       .sk-loader {
         margin: auto;
+        display: block;
+        height: 40px;
       }
     }
   }
