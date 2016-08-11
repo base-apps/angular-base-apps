@@ -401,7 +401,7 @@
   InstallationController.$inject = ['$scope'];
 
   function InstallationController($scope) {
-    $scope.version = "1.2.6";
+    $scope.version = "2.0.0";
   }
 
 })();
