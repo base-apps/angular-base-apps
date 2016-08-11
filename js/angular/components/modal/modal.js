@@ -75,6 +75,7 @@
 
         scope.active = false;
         scope.overlay = attrs.overlay === 'false' ? false : true;
+        scope.destroyOnClose = attrs.destroyOnClose === 'true' ? true : false;
         scope.overlayClose = attrs.overlayClose === 'false' ? false : true;
 
         var animationIn = attrs.animationIn || 'fadeIn';
@@ -93,7 +94,22 @@
           if (scope.active) {
             scope.active = false;
             adviseActiveChanged();
-            animate();
+
+            if (scope.destroyOnClose) {
+              animate().then(function() {
+                element.remove();
+                scope.$destroy();
+              });
+            } else {
+              animate();
+            }
+          } else {
+            if (scope.destroyOnClose) {
+              $timeout(function() {
+                element.remove();
+                scope.$destroy();
+              }, 0, false);
+            }
           }
           return;
         };
@@ -159,7 +175,7 @@
             element.addClass('is-active');
           }
 
-          animateFn(dialog, scope.active, animationIn, animationOut);
+          return animateFn(dialog, scope.active, animationIn, animationOut);
         }
       }
     }
@@ -189,6 +205,7 @@
         'animationOut',
         'overlay',
         'overlayClose',
+        'destroyOnClose',
         'ignoreAllClose',
         'class'
       ];
@@ -305,7 +322,12 @@
                 element.attr('animation-out', config[prop]);
                 break;
               case 'overlayClose':
-                element.attr('overlay-close', (config[prop] === 'false' || config[prop] === false) ? 'false' : 'true'); // must be string, see postLink() above
+                // must be string, see postLink() above
+                element.attr('overlay-close', (config[prop] === 'false' || config[prop] === false) ? 'false' : 'true');
+                break;
+              case 'destroyOnClose':
+                // must be string, see postLink() above
+                element.attr('destroy-on-close', (config[prop] === 'true' || config[prop] === true) ? 'true' : 'false');
                 break;
               case 'ignoreAllClose':
                 element.attr('zf-ignore-all-close', 'zf-ignore-all-close');
@@ -362,6 +384,7 @@
         'class': 'tiny dialog confirm-modal',
         'overlay': true,
         'overlayClose': false,
+        'destroyOnClose': true,
         'templateUrl': 'components/modal/modal-confirm.html',
         'contentScope': {
           title: config.title,
@@ -374,18 +397,12 @@
               config.enterCallback();
             }
             modal.deactivate();
-            $timeout(function() {
-              modal.destroy();
-            }, 1000);
           },
           cancel: function() {
             if (config.cancelCallback) {
               config.cancelCallback();
             }
             modal.deactivate();
-            $timeout(function() {
-              modal.destroy();
-            }, 1000);
           }
         }
       });
@@ -409,6 +426,7 @@
         'class': 'tiny dialog prompt-modal',
         'overlay': true,
         'overlayClose': false,
+        'destroyOnClose': true,
         'templateUrl': 'components/modal/modal-prompt.html',
         'contentScope': {
           title: config.title,
@@ -424,9 +442,6 @@
                 config.enterCallback(data.value);
               }
               modal.deactivate();
-              $timeout(function() {
-                modal.destroy();
-              }, 1000);
             }
           },
           cancel: function() {
@@ -434,9 +449,6 @@
               config.cancelCallback();
             }
             modal.deactivate();
-            $timeout(function() {
-              modal.destroy();
-            }, 1000);
           }
         }
       });
