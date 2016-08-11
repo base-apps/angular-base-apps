@@ -1,12 +1,6 @@
 (function() {
   'use strict';
 
-  angular.module('foundation.popup', ['foundation.core'])
-    .directive('zfPopup', zfPopup)
-    .directive('zfPopupToggle', zfPopupToggle)
-    .service('FoundationPopup', FoundationPopup)
-  ;
-
   angular.module('base.popup', ['base.core'])
     .directive('zfPopup', zfPopup)
     .directive('zfPopupToggle', zfPopupToggle)

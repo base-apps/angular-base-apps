@@ -1,11 +1,6 @@
 (function() {
   'use strict';
 
-  angular.module('foundation.offcanvas', ['foundation.core'])
-    .directive('zfOffcanvas', zfOffcanvas)
-    .service('FoundationOffcanvas', FoundationOffcanvas)
-  ;
-
   angular.module('base.offcanvas', ['base.core'])
     .directive('zfOffcanvas', zfOffcanvas)
     .service('FoundationOffcanvas', FoundationOffcanvas)

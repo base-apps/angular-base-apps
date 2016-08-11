@@ -60,11 +60,6 @@ var paths = {
     ]
   },
   javascript: {
-    foundation: [
-      'js/vendor/**/*.js',
-      'js/angular/**/*.js',
-      '!js/angular/app.js'
-    ],
     base: [
       'js/vendor/**/*.js',
       'js/angular/**/*.js',
@@ -138,22 +133,9 @@ gulp.task('copy:templates', ['javascript'], function() {
   ;
 });
 
-// Copy Foundation directive partials
+// Copy directive partials
 gulp.task('copy:partials', ['clean:partials'], function() {
   var merged = merge();
-
-  // legacy package
-  merged.add(gulp.src(paths.html.partials)
-  .pipe($.ngHtml2js({
-    prefix: 'components/',
-    moduleName: 'foundation',
-    declareModule: false
-  }))
-  .pipe($.concat('foundation-apps-templates.js'))
-  .pipe(gulp.dest('./build/assets/js'))
-  .pipe($.if(production, $.uglify()))
-  .pipe($.rename('foundation-apps-templates.min.js'))
-  .pipe(gulp.dest('./build/assets/js')));
 
   // base package
   merged.add(gulp.src(paths.html.partials)
@@ -194,21 +176,6 @@ gulp.task('css', ['sass'], function() {
 // Compile stylesheets
 gulp.task('sass', function() {
   var merged = merge();
-
-  // legacy package
-  merged.add(gulp.src('scss/foundation.scss')
-    .pipe($.sass({
-      outputStyle: 'nested',
-      errLogToConsole: true
-    }))
-    .pipe($.autoprefixer({
-      browsers: ['> 1%', 'last 2 versions', 'ie >= 10', 'iOS >= 7', 'Safari >= 7', 'Opera >= 25']
-    }))
-    .pipe($.rename('foundation-apps.css'))
-    .pipe(gulp.dest('./build/assets/css'))
-    .pipe($.if(production, $.minifyCss()))
-    .pipe($.rename('foundation-apps.min.css'))
-    .pipe(gulp.dest('./build/assets/css')));
 
   // base package
   merged.add(gulp.src('scss/base.scss')
@@ -251,7 +218,7 @@ gulp.task('sass:settings', function() {
     'scss/components/_button.scss',
     'scss/components/*.scss'
   ], {
-    title: 'Foundation for Apps Settings'.toUpperCase(),
+    title: 'Angular Base Apps Settings'.toUpperCase(),
     partialsPath: 'docs/partials/scss',
     settingsPath: 'scss'
   });
@@ -260,17 +227,9 @@ gulp.task('sass:settings', function() {
 // 6. JAVASCRIPT
 // - - - - - - - - - - - - - - -
 
-// Compile Foundation JavaScript
+// Compile JavaScript
 gulp.task('javascript', function() {
   var merged = merge();
-
-  // legacy package
-  merged.add(gulp.src(paths.javascript.foundation)
-    .pipe($.concat('foundation-apps.js'))
-    .pipe(gulp.dest('./build/assets/js'))
-    .pipe($.if(production, $.uglify()))
-    .pipe($.rename('foundation-apps.min.js'))
-    .pipe(gulp.dest('./build/assets/js')));
 
   // base package
   merged.add(gulp.src(paths.javascript.base)
@@ -371,14 +330,12 @@ gulp.task('copy:dist', function() {
 
   // copy javascript
   merged.add(gulp.src([
-      "./build/assets/js/foundation-apps*.js",
       "./build/assets/js/base-apps*.js"
     ])
     .pipe(gulp.dest('./dist/js')));
 
   // copy css
   merged.add(gulp.src([
-      "./build/assets/css/foundation-apps*.css",
       "./build/assets/css/base-apps*.css"
     ])
     .pipe(gulp.dest('./dist/css')));
@@ -436,7 +393,7 @@ gulp.task('default', ['build', 'server:start'], function() {
   gulp.watch(['./docs/assets/scss/**/*', './scss/**/*'], ['css']);
 
   // Watch JavaScript
-  gulp.watch(paths.javascript.foundation.concat(paths.javascript.docs), ['javascript']);
+  gulp.watch(paths.javascript.base.concat(paths.javascript.docs), ['javascript']);
 });
 
 // Build the documentation, start a test server, and re-compile when files change
@@ -455,7 +412,7 @@ gulp.task('default:dist', ['build:dist', 'server:start:dist'], function() {
   gulp.watch(['./docs/assets/scss/**/*', './scss/**/*'], ['css', 'copy:dist']);
 
   // Watch JavaScript
-  gulp.watch(paths.javascript.foundation.concat(paths.javascript.docs), ['javascript', 'copy:dist']);
+  gulp.watch(paths.javascript.base.concat(paths.javascript.docs), ['javascript', 'copy:dist']);
 });
 
 gulp.task('bump:patch', function() { return bump('patch'); });

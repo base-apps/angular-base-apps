@@ -1,12 +1,6 @@
 (function() {
   'use strict';
 
-  angular.module('foundation.modal', ['foundation.core'])
-    .directive('zfModal', modalDirective)
-    .factory('ModalFactory', ModalFactory)
-    .service('FoundationModal', FoundationModal)
-  ;
-
   angular.module('base.modal', ['base.core'])
     .directive('zfModal', modalDirective)
     .factory('ModalFactory', ModalFactory)

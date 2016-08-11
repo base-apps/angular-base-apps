@@ -1,14 +1,6 @@
 (function() {
   'use strict';
 
-  angular.module('foundation.mediaquery', ['foundation.core'])
-    .run(mqInitRun)
-    .factory('FoundationMQInit', FoundationMQInit)
-    .factory('mqHelpers', mqHelpers)
-    .service('FoundationMQ', FoundationMQ)
-  ;
-
-
   angular.module('base.mediaquery', ['base.core'])
     .run(mqInitRun)
     .factory('FoundationMQInit', FoundationMQInit)

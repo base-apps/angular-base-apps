@@ -1,11 +1,6 @@
 (function() {
   'use strict';
 
-  angular.module('foundation.panel', ['foundation.core'])
-    .directive('zfPanel', zfPanel)
-    .service('FoundationPanel', FoundationPanel)
-  ;
-
   angular.module('base.panel', ['base.core'])
     .directive('zfPanel', zfPanel)
     .service('FoundationPanel', FoundationPanel)

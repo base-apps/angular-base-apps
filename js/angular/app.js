@@ -5,9 +5,6 @@
     'ui.router',
     'ngAnimate',
 
-    //foundation
-    'foundation',
-
     // base
     'base',
 

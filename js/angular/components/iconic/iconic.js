@@ -1,11 +1,6 @@
 (function () {
   'use strict';
 
-  angular.module('foundation.iconic', [])
-    .provider('Iconic', Iconic)
-    .directive('zfIconic', zfIconic)
-  ;
-
   angular.module('base.iconic', [])
     .provider('Iconic', Iconic)
     .directive('zfIconic', zfIconic)

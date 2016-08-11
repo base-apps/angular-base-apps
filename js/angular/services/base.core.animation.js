@@ -1,10 +1,6 @@
 (function() {
   'use strict';
 
-  angular.module('foundation.core.animation', [])
-    .service('FoundationAnimation', FoundationAnimation)
-  ;
-
   angular.module('base.core.animation', [])
     .service('FoundationAnimation', FoundationAnimation)
   ;

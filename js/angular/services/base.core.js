@@ -1,16 +1,6 @@
 (function() {
   'use strict';
 
-  angular.module('foundation.core', [
-      'foundation.core.animation'
-    ])
-    .service('FoundationApi', FoundationApi)
-    .service('FoundationAdapter', FoundationAdapter)
-    .factory('Utils', Utils)
-    .run(Setup);
-  ;
-
-
   angular.module('base.core', [
       'base.core.animation'
     ])

@@ -1,12 +1,19 @@
 (function() {
   'use strict';
 
-  angular.module('foundation.interchange', ['foundation.core', 'foundation.mediaquery'])
-    .directive('zfInterchange', zfInterchange)
-  ;
-
   angular.module('base.interchange', ['base.core', 'base.mediaquery'])
     .directive('zfInterchange', zfInterchange)
+    /*
+     * Final directive to perform media queries, other directives set up this one
+     * (See: http://stackoverflow.com/questions/19224028/add-directives-from-directive-in-angularjs)
+     */
+    .directive('zfQuery', zfQuery)
+    /*
+     * zf-if / zf-show / zf-hide
+     */
+    .directive('zfIf', zfQueryDirective('ng-if', 'zf-if'))
+    .directive('zfShow', zfQueryDirective('ng-show', 'zf-show'))
+    .directive('zfHide', zfQueryDirective('ng-hide', 'zf-hide'))
   ;
 
   zfInterchange.$inject = [ '$compile', '$http', '$templateCache', 'FoundationApi', 'FoundationMQ'];
@@ -99,20 +106,6 @@
       }
     }
   }
-
-  angular.module('foundation.interchange')
-  /*
-   * Final directive to perform media queries, other directives set up this one
-   * (See: http://stackoverflow.com/questions/19224028/add-directives-from-directive-in-angularjs)
-   */
-    .directive('zfQuery', zfQuery)
-  /*
-   * zf-if / zf-show / zf-hide
-   */
-    .directive('zfIf', zfQueryDirective('ng-if', 'zf-if'))
-    .directive('zfShow', zfQueryDirective('ng-show', 'zf-show'))
-    .directive('zfHide', zfQueryDirective('ng-hide', 'zf-hide'))
-  ;
 
   /*
    * This directive will configure ng-if/ng-show/ng-hide and zf-query directives and then recompile the element
