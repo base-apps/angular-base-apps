@@ -135,7 +135,7 @@ $loader-sizes: (
     }
   }
   .sk-three-bounce {
-    @include sk-three-bounce($margin: 0);
+    @include sk-three-bounce($margin: 0, $height: auto);
 
     @each $color in map-keys($foundation-colors) {
       $color-value: map-get($foundation-colors, $color);
@@ -147,7 +147,7 @@ $loader-sizes: (
     @each $size in map-keys($loader-sizes) {
       &.#{$size} {
         $size-value: map-get($loader-sizes, $size);
-        @include sk-three-bounce-size($size-value * 2, $size-value * 2);
+        @include sk-three-bounce-size($size-value * 2, auto);
       }
     }
   }

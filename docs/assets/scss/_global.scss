@@ -100,6 +100,20 @@ hr {
   width: 87px;
 }
 
+.docs-spinkit-names {
+  ul {
+    text-align: center;
+
+    li {
+      margin-bottom: 1rem;
+      
+      .sk-loader {
+        margin: auto;
+      }
+    }
+  }
+}
+
 .icon-label {
   margin-left: 1rem;
 }
