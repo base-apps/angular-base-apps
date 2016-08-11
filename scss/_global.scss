@@ -69,6 +69,7 @@ $foundation-colors: (
   warning: $warning-color,
   alert: $alert-color,
   dark: $dark-color,
+  info: $info-color
 );
 
 @include exports(global) {
