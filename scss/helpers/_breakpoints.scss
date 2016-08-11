@@ -146,6 +146,6 @@ $breakpoint-classes: (small medium large) !default;
 // Used to provide media query values for javascript components.
 // Forward slash placed around everything to convince PhantomJS to read the value.
 
-meta.foundation-mq {
+meta.base-apps-mq {
   font-family: "#{map-serialize($breakpoints)}";
 }
