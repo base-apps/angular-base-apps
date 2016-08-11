@@ -1,0 +1,222 @@
+$spinkit-rotating-plane-css-export: false;
+$spinkit-double-bounce-css-export: false;
+$spinkit-wave-css-export: false;
+$spinkit-wandering-cube-css-export: false;
+$spinkit-pulse-css-export: false;
+$spinkit-chasing-dots-css-export: false;
+$spinkit-three-bounce-css-export: false;
+$spinkit-circle-css-export: false;
+$spinkit-cube-grid-css-export: false;
+$spinkit-fading-circle-css-export: false;
+$spinkit-folding-cube-css-export: false;
+
+$loader-sizes: (
+  tiny: 10px,
+  small: 20px,
+  medium: 40px,
+  large: 60px
+) !default;
+
+@import
+  "../vendor/spinkit/spinners/1-rotating-plane",
+  "../vendor/spinkit/spinners/2-double-bounce",
+  "../vendor/spinkit/spinners/3-wave",
+  "../vendor/spinkit/spinners/4-wandering-cubes",
+  "../vendor/spinkit/spinners/5-pulse",
+  "../vendor/spinkit/spinners/6-chasing-dots",
+  "../vendor/spinkit/spinners/7-three-bounce",
+  "../vendor/spinkit/spinners/8-circle",
+  "../vendor/spinkit/spinners/9-cube-grid",
+  "../vendor/spinkit/spinners/10-fading-circle",
+  "../vendor/spinkit/spinners/11-folding-cube";
+
+@include exports(loader) {
+  .sk-rotating-plane {
+    @include sk-rotating-plane($margin: 0);
+
+    @each $color in map-keys($foundation-colors) {
+      $color-value: map-get($foundation-colors, $color);
+      &.#{$color} {
+        @include sk-rotating-plane-color($color-value);
+      }
+    }
+
+    @each $size in map-keys($loader-sizes) {
+      &.#{$size} {
+        $size-value: map-get($loader-sizes, $size);
+        @include sk-rotating-plane-size($size-value, $size-value);
+      }
+    }
+  }
+  .sk-double-bounce {
+    @include sk-double-bounce($margin: 0);
+
+    @each $color in map-keys($foundation-colors) {
+      $color-value: map-get($foundation-colors, $color);
+      &.#{$color} {
+        @include sk-double-bounce-color($color-value);
+      }
+    }
+
+    @each $size in map-keys($loader-sizes) {
+      &.#{$size} {
+        $size-value: map-get($loader-sizes, $size);
+        @include sk-double-bounce-size($size-value, $size-value);
+      }
+    }
+  }
+  .sk-wave {
+    @include sk-wave($margin: 0);
+
+    @each $color in map-keys($foundation-colors) {
+      $color-value: map-get($foundation-colors, $color);
+      &.#{$color} {
+        @include sk-wave-color($color-value);
+      }
+    }
+
+    @each $size in map-keys($loader-sizes) {
+      &.#{$size} {
+        $size-value: map-get($loader-sizes, $size);
+        @include sk-wave-size($size-value * 1.25, $size-value);
+      }
+    }
+  }
+  .sk-wandering-cubes {
+    @include sk-wandering-cubes($margin: 0);
+
+    @each $color in map-keys($foundation-colors) {
+      $color-value: map-get($foundation-colors, $color);
+      &.#{$color} {
+        @include sk-wandering-cubes-color($color-value);
+      }
+    }
+
+    @each $size in map-keys($loader-sizes) {
+      &.#{$size} {
+        $size-value: map-get($loader-sizes, $size);
+        @include sk-wandering-cubes-size($size-value, $size-value);
+        @include sk-wandering-cubes-animation($size-value, $size-value);
+      }
+    }
+  }
+  .sk-pulse {
+    @include sk-pulse($margin: 0);
+
+    @each $color in map-keys($foundation-colors) {
+      $color-value: map-get($foundation-colors, $color);
+      &.#{$color} {
+        @include sk-pulse-color($color-value);
+      }
+    }
+
+    @each $size in map-keys($loader-sizes) {
+      &.#{$size} {
+        $size-value: map-get($loader-sizes, $size);
+        @include sk-pulse-size($size-value, $size-value);
+      }
+    }
+  }
+  .sk-chasing-dots {
+    @include sk-chasing-dots($margin: 0);
+
+    @each $color in map-keys($foundation-colors) {
+      $color-value: map-get($foundation-colors, $color);
+      &.#{$color} {
+        @include sk-chasing-dots-color($color-value);
+      }
+    }
+
+    @each $size in map-keys($loader-sizes) {
+      &.#{$size} {
+        $size-value: map-get($loader-sizes, $size);
+        @include sk-chasing-dots-size($size-value, $size-value);
+      }
+    }
+  }
+  .sk-three-bounce {
+    @include sk-three-bounce($margin: 0);
+
+    @each $color in map-keys($foundation-colors) {
+      $color-value: map-get($foundation-colors, $color);
+      &.#{$color} {
+        @include sk-three-bounce-color($color-value);
+      }
+    }
+
+    @each $size in map-keys($loader-sizes) {
+      &.#{$size} {
+        $size-value: map-get($loader-sizes, $size);
+        @include sk-three-bounce-size($size-value * 2, $size-value * 2);
+      }
+    }
+  }
+  .sk-circle {
+    @include sk-circle($margin: 0);
+
+    @each $color in map-keys($foundation-colors) {
+      $color-value: map-get($foundation-colors, $color);
+      &.#{$color} {
+        @include sk-circle-color($color-value);
+      }
+    }
+
+    @each $size in map-keys($loader-sizes) {
+      &.#{$size} {
+        $size-value: map-get($loader-sizes, $size);
+        @include sk-circle-size($size-value, $size-value);
+      }
+    }
+  }
+  .sk-cube-grid {
+    @include sk-cube-grid($margin: 0);
+
+    @each $color in map-keys($foundation-colors) {
+      $color-value: map-get($foundation-colors, $color);
+      &.#{$color} {
+        @include sk-cube-grid-color($color-value);
+      }
+    }
+
+    @each $size in map-keys($loader-sizes) {
+      &.#{$size} {
+        $size-value: map-get($loader-sizes, $size);
+        @include sk-cube-grid-size($size-value, $size-value);
+      }
+    }
+  }
+  .sk-fading-circle {
+    @include sk-fading-circle($margin: 0);
+
+    @each $color in map-keys($foundation-colors) {
+      $color-value: map-get($foundation-colors, $color);
+      &.#{$color} {
+        @include sk-fading-circle-color($color-value);
+      }
+    }
+
+    @each $size in map-keys($loader-sizes) {
+      &.#{$size} {
+        $size-value: map-get($loader-sizes, $size);
+        @include sk-fading-circle-size($size-value, $size-value);
+      }
+    }
+  }
+  .sk-folding-cube {
+    @include sk-folding-cube($margin: 0);
+
+    @each $color in map-keys($foundation-colors) {
+      $color-value: map-get($foundation-colors, $color);
+      &.#{$color} {
+        @include sk-folding-cube-color($color-value);
+      }
+    }
+
+    @each $size in map-keys($loader-sizes) {
+      &.#{$size} {
+        $size-value: map-get($loader-sizes, $size);
+        @include sk-folding-cube-size($size-value, $size-value);
+      }
+    }
+  }
+}

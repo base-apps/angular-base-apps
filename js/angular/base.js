@@ -27,6 +27,7 @@
     'base.common',
     'base.iconic',
     'base.interchange',
+    'base.loader',
     'base.modal',
     'base.notification',
     'base.offcanvas',

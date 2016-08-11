@@ -1,0 +1,122 @@
+/*
+ *  Usage:
+ *
+      <div class="sk-fading-circle">
+        <div class="sk-circle1 sk-circle"></div>
+        <div class="sk-circle2 sk-circle"></div>
+        <div class="sk-circle3 sk-circle"></div>
+        <div class="sk-circle4 sk-circle"></div>
+        <div class="sk-circle5 sk-circle"></div>
+        <div class="sk-circle6 sk-circle"></div>
+        <div class="sk-circle7 sk-circle"></div>
+        <div class="sk-circle8 sk-circle"></div>
+        <div class="sk-circle9 sk-circle"></div>
+        <div class="sk-circle10 sk-circle"></div>
+        <div class="sk-circle11 sk-circle"></div>
+        <div class="sk-circle12 sk-circle"></div>
+      </div>
+ *
+ */
+@import "../variables";
+
+$spinkit-spinner-margin: 40px auto !default;
+$spinkit-size: 40px !default;
+$spinkit-spinner-color: #333 !default;
+
+$spinkit-fading-circle-child-count: 12 !default;
+$spinkit-fading-circle-width: $spinkit-size;
+$spinkit-fading-circle-height: $spinkit-size;
+$spinkit-fading-circle-margin: $spinkit-spinner-margin;
+$spinkit-fading-circle-background-color: $spinkit-spinner-color;
+$spinkit-fading-circle-animation-duration: 1.2s !default;
+$spinkit-fading-circle-css-export: true !default;
+
+@keyframes sk-circleFadeDelay {
+  0%, 39%, 100% { opacity: 0 }
+  40% { opacity: 1 }
+}
+@mixin sk-fading-circle-size(
+  $width: $spinkit-fading-circle-width,
+  $height: $spinkit-fading-circle-height
+) {
+  width: $width;
+  height: $height;
+}
+
+@mixin sk-fading-circle-color(
+  $color: $spinkit-fading-circle-background-color
+) {
+  .sk-circle:before {
+    background-color: $color;
+  }
+}
+
+@mixin sk-fading-circle-style(
+  $width: $spinkit-fading-circle-width,
+  $height: $spinkit-fading-circle-height,
+  $color: $spinkit-fading-circle-background-color,
+  $margin: $spinkit-fading-circle-margin
+) {
+  width: $width;
+  height: $height;
+  margin: $margin;
+
+  @include sk-fading-circle-size(
+    $width: $width,
+    $height: $height
+  );
+
+  @include sk-fading-circle-color(
+    $color: $color
+  );
+}
+
+@mixin sk-fading-circle(
+  $width: $spinkit-fading-circle-width,
+  $height: $spinkit-fading-circle-height,
+  $color: $spinkit-fading-circle-background-color,
+  $margin: $spinkit-fading-circle-margin,
+  $duration: $spinkit-fading-circle-animation-duration,
+  $child-count: $spinkit-fading-circle-child-count
+) {
+  position: relative;
+
+  .sk-circle {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
+  .sk-circle:before {
+    content: '';
+    display: block;
+    margin: 0 auto;
+    width: 15%;
+    height: 15%;
+    border-radius: 100%;
+    animation: sk-circleFadeDelay $duration infinite ease-in-out both;
+  }
+
+  @for $i from 2 through $child-count {
+    .sk-circle#{$i} { transform: rotate(360deg / $child-count * ($i - 1)); }
+  }
+
+  @for $i from 2 through $child-count {
+    .sk-circle#{$i}:before { animation-delay: - $duration + $duration / $child-count * ($i - 1); }
+  }
+
+  @include sk-fading-circle-style(
+    $width: $width,
+    $height: $height,
+    $color: $color,
+    $margin: $margin
+  );
+}
+
+@if ($spinkit-fading-circle-css-export) {
+  .sk-fading-circle {
+    @include sk-fading-circle;
+  }
+}
