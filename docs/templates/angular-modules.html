@@ -126,7 +126,7 @@ BaseAppsApi.animateAndAdvise(element, futureState, animationIn, animationOut)
 </hljs>
 
     <p class="docs-module-api-desc">Does the same thing as BaseAppsApi.animate, with the addition of firing notification events based on the status of the component. Events are sent using <code>BaseAppsApi.publish</code> with the provided element's <code>id</code>.  The following notifications are sent:</p>
-    <ul>
+    <ul class="no-bullet">
       <li><code>'activated'</code> - sent when the component considers itself active</li>
       <li><code>'deactivated'</code> - sent when the component considers itself deactivated</li>
       <li><code>'animation-open-started'</code> - sent when the component starts the open animation</li>
@@ -260,7 +260,7 @@ BaseAppsMediaQuery.matchesMediaOnly(breakpoint)
   <h3 class="docs-module-name"><pre>dynamicRouting.animations</pre> (Module)</h3>
 
   <p class="docs-module-deps"><strong>Dependencies:</strong> <span class="pre">ngAnimate</span>, <span class="pre">dynamicRouting</span></p>
-  
+
   <div class="card docs-callout">
     <p><strong>As of version 2.0, this feature is no longer part of the core framework.</strong>  It can be included as an optional dependency by installing <a href="https://github.com/base-apps/angular-dynamic-routing" class="pre">angular-dynamic-routing</a>.</p>
   </div>
