@@ -69,63 +69,63 @@ controller: AngularModsController
   <p>The core module should not be required directly, as nearly every other component requires it already. It includes a media query helper, the component API, and a few utilities.</p>
 
   <section>
-    <h4 class="docs-module-name"><pre>foundationApi</pre> (Service)</h4>
+    <h4 class="docs-module-name"><pre>BaseAppsApi</pre> (Service)</h4>
 
-    <p>FoundationApi is what powers all of modules in Angular Base Apps. It's the master puppeteer. It currently has a total of 8 methods but will probably expand to have more.</p>
+    <p>BaseAppsApi is what powers all of modules in Angular Base Apps. It's the master puppeteer. It currently has a total of 8 methods but will probably expand to have more.</p>
 
 <hljs language="javascript">
-FoundationApi.subscribe('identifier', callback)
+BaseAppsApi.subscribe('identifier', callback)
 </hljs>
 
-    <p>FoundationApi has its own pub/sub system that is meant to work as a message system of sorts, or an event system. Basically, using a unique identifier, a directive (or other modules) can subscribe to any messages posted to that identifier. Each idenitifier can have its own list of subscribers (rather than a single subscriber). Make sure the callback accepts messages in a format your publishers are aware of. For example, most directive can be opened or closed by publishing <code>open</code>, <code>close</code>, or <code>toggle</code> to their identifier.</p>
+    <p>BaseAppsApi has its own pub/sub system that is meant to work as a message system of sorts, or an event system. Basically, using a unique identifier, a directive (or other modules) can subscribe to any messages posted to that identifier. Each idenitifier can have its own list of subscribers (rather than a single subscriber). Make sure the callback accepts messages in a format your publishers are aware of. For example, most directive can be opened or closed by publishing <code>open</code>, <code>close</code>, or <code>toggle</code> to their identifier.</p>
 
 <hljs language="javascript">
-FoundationApi.unsubscribe('identifier', callback)
+BaseAppsApi.unsubscribe('identifier', callback)
 </hljs>
 
     <p>This method is used to unsubscribe any listeners from an object. Note that once a directive is unsubscribed, it will not contain any listeners until otherwise specified by re-initiating the <code>.subscribe</code> method. It takes in element's unique identifier as an argument with an optional callback to run after the element has been unsubscribed.</p>
 
 <hljs language="javascript">
-FoundationApi.publish('identifier', 'message')
+BaseAppsApi.publish('identifier', 'message')
 </hljs>
 
     <p>The publishing part of the Api is as simple as the subscriber part. Note that you can publish to a non-existing identifier without getting any sort of error. This is a safeguard for directives or services that publish upon invokation but do not necessarily have any subscribers. One of them is the <code>resize</code> publisher in the Media Query initiator.</p>
 
 <hljs language="javascript">
-FoundationApi.getSettings()
+BaseAppsApi.getSettings()
 </hljs>
 
-    <p>FoundationApi has a <code>settings</code> object that can be shared between different modules which may want access to it. Because FoundationApi is an Angular service, it operates as a singleton so every module that has access is accessing the same exact instance of it. The only default setting so far is the <code>mediaQueries</code> object.</p>
+    <p>BaseAppsApi has a <code>settings</code> object that can be shared between different modules which may want access to it. Because BaseAppsApi is an Angular service, it operates as a singleton so every module that has access is accessing the same exact instance of it. The only default setting so far is the <code>mediaQueries</code> object.</p>
 
 <hljs language="javascript">
-FoundationApi.modifySettings(tree)
+BaseAppsApi.modifySettings(tree)
 </hljs>
 
-    <p>Using Angular's <code>.extend()</code> function, FoundationApi can extend the settings object with custom settings. You may use these for yourself and your own setup.</p>
+    <p>Using Angular's <code>.extend()</code> function, BaseAppsApi can extend the settings object with custom settings. You may use these for yourself and your own setup.</p>
 
 <hljs language="javascript">
-FoundationApi.generateUuid()
+BaseAppsApi.generateUuid()
 </hljs>
 
-    <p>FoundationApi keeps an internal store of unique IDs it generates. <code>generateUuid()</code> creates such IDs and saves them. This is to prevent any possible ID clashes. These IDs are used for several directives but you can use them for your own purposes.</p>
+    <p>BaseAppsApi keeps an internal store of unique IDs it generates. <code>generateUuid()</code> creates such IDs and saves them. This is to prevent any possible ID clashes. These IDs are used for several directives but you can use them for your own purposes.</p>
 
 <hljs language="javascript">
-FoundationApi.toggleAnimation(element, futureState)
+BaseAppsApi.toggleAnimation(element, futureState)
 </hljs>
 
     <p>A simple helper which either adds or removes an <code>activeClass</code> (<code>is-active</code>) from an element</p>
 
 <hljs language="javascript">
-FoundationApi.animate(element, futureState, animationIn, animationOut)
+BaseAppsApi.animate(element, futureState, animationIn, animationOut)
 </hljs>
 
     <p>Another helper that works by replicating Angular's built-in <code>ngAnimate</code> functionality with several custom additions to work with Angular Base Apps's internal MotionUI. These are mostly for internal use; however, you can easily animate in and animate out any element the same way <code>$animate</code> works.  This function returns a <code>$q</code> promise which is resolved when the animation completes or rejected when the animation is aborted.</p>
 
 <hljs language="javascript">
-FoundationApi.animateAndAdvise(element, futureState, animationIn, animationOut)
+BaseAppsApi.animateAndAdvise(element, futureState, animationIn, animationOut)
 </hljs>
 
-    <p class="docs-module-api-desc">Does the same thing as FoundationApi.animate, with the addition of firing notification events based on the status of the component. Events are sent using <code>FoundationApi.publish</code> with the provided element's <code>id</code>.  The following notifications are sent:</p>
+    <p class="docs-module-api-desc">Does the same thing as BaseAppsApi.animate, with the addition of firing notification events based on the status of the component. Events are sent using <code>BaseAppsApi.publish</code> with the provided element's <code>id</code>.  The following notifications are sent:</p>
     <ul>
       <li><code>'activated'</code> - sent when the component considers itself active</li>
       <li><code>'deactivated'</code> - sent when the component considers itself deactivated</li>
@@ -138,7 +138,7 @@ FoundationApi.animateAndAdvise(element, futureState, animationIn, animationOut)
     </ul>
 
 <hljs language="javascript">
-FoundationApi.closeActiveElements(options)
+BaseAppsApi.closeActiveElements(options)
 </hljs>
 
     <p>This utility is used to close all closable components provided by Angular Base Apps. It selects any element that has an <code>is-active</code> class and an <code>ba-closable</code> attribute. You're welcome to make your own directives and plugins work with it. It publishes a <code>close</code> message to the ID of the selected element.</p>
@@ -147,7 +147,7 @@ FoundationApi.closeActiveElements(options)
   <section>
     <h4 class="docs-module-name"><pre>ba-advise</pre> (Attribute)</h4>
 
-    <p>Use the ba-advise attribute on any component to enable the component to send notification events (see <code>FoundationApi.animateAndAdvise</code>).</p>
+    <p>Use the ba-advise attribute on any component to enable the component to send notification events (see <code>BaseAppsApi.animateAndAdvise</code>).</p>
 
 <hljs language="html">
 <div id="modal" ba-modal="" ba-advise="">
@@ -156,7 +156,7 @@ FoundationApi.closeActiveElements(options)
 </hljs>
 
 <hljs language="javascript">
-FoundationApi.subscribe('modal', function(message) {
+BaseAppsApi.subscribe('modal', function(message) {
   switch (message) {
     case 'activated': ...,
     case 'deactivated': ...,
@@ -190,47 +190,47 @@ FoundationApi.subscribe('modal', function(message) {
   <p class="docs-module-deps"><strong>Dependencies:</strong> <span class="pre">base.core</span></p>
 
   <section>
-    <h4 class="docs-module-name"><pre>FoundationMQ</pre> (Service)</h4>
+    <h4 class="docs-module-name"><pre>BaseAppsMediaQuery</pre> (Service)</h4>
 
-    <p>FoundationMQ has numerous functions useful for media queries, including the Media Query Initiator.</p>
+    <p>BaseAppsMediaQuery has numerous functions useful for media queries, including the Media Query Initiator.</p>
 
-    <p>The Media Query initiator uses built-in Angular Base Apps styles to create a <code>mediaQueries</code> setting under the FoundationApi. This is used for Interchange but it can be used for whatever you need. This module depends on Angular Base Apps css to be present but it will fail silently if you don't want to use this feature.</p>
+    <p>The Media Query initiator uses built-in Angular Base Apps styles to create a <code>mediaQueries</code> setting under the BaseAppsApi. This is used for Interchange but it can be used for whatever you need. This module depends on Angular Base Apps css to be present but it will fail silently if you don't want to use this feature.</p>
 
-    <p>The Initiator also publishes an event to the <code>FoundationApi</code> called "resize" whenever the window is resized (throttled to happen 50ms at a time).</p>
+    <p>The Initiator also publishes an event to the <code>BaseAppsApi</code> called "resize" whenever the window is resized (throttled to happen 50ms at a time).</p>
 
-    <p>The FoundationMQ service is used to get the media query settings by shorthand instead of using FoundationAPI. There are several helper functions that allow Interchange to exist but can be used outside of Interchange as well to sort through various MediaQuery scenarios to get a list of media queries that match the current browser configuration and also to gather these scenarios from a parent element that holds Interchange-style elements.  These methods are used by the <code>ba-if</code>, <code>ba-show</code> and <code>ba-hide</code> directives.</p>
+    <p>The BaseAppsMediaQuery service is used to get the media query settings by shorthand instead of using BaseAppsApi. There are several helper functions that allow Interchange to exist but can be used outside of Interchange as well to sort through various MediaQuery scenarios to get a list of media queries that match the current browser configuration and also to gather these scenarios from a parent element that holds Interchange-style elements.  These methods are used by the <code>ba-if</code>, <code>ba-show</code> and <code>ba-hide</code> directives.</p>
 
 <hljs language="javascript">
-FoundationMQ.matchesMedia(breakpoint)
+BaseAppsMediaQuery.matchesMedia(breakpoint)
 </hljs>
 
     <p class="docs-module-api-desc">Returns <code>true</code> if the media matches the breakpoint otherwise returns <code>false</code>.</p>
     <ul>
-      <li>On a large device, the query <code>FoundationMQ.matchesMedia('medium')</code> returns <strong>true</strong></li>
-      <li>On a medium device, the query <code>FoundationMQ.matchesMedia('medium')</code> returns <strong>true</strong></li>
-      <li>On a small device, the query <code>FoundationMQ.matchesMedia('medium')</code> returns <strong>false</strong></li>
+      <li>On a large device, the query <code>BaseAppsMediaQuery.matchesMedia('medium')</code> returns <strong>true</strong></li>
+      <li>On a medium device, the query <code>BaseAppsMediaQuery.matchesMedia('medium')</code> returns <strong>true</strong></li>
+      <li>On a small device, the query <code>BaseAppsMediaQuery.matchesMedia('medium')</code> returns <strong>false</strong></li>
     </ul>
 
 <hljs language="javascript">
-FoundationMQ.matchesMediaOrSmaller(breakpoint)
+BaseAppsMediaQuery.matchesMediaOrSmaller(breakpoint)
 </hljs>
 
     <p class="docs-module-api-desc">Returns <code>true</code> if the media matches the breakpoint exactly or if a smaller breakpoint matches otherwise returns <code>false</code>.</p>
     <ul>
-      <li>On a large device, the query <code>FoundationMQ.matchesMediaOrSmaller('medium')</code> returns <strong>false</strong></li>
-      <li>On a medium device, the query <code>FoundationMQ.matchesMediaOrSmaller('medium')</code> returns <strong>true</strong></li>
-      <li>On a small device, the query <code>FoundationMQ.matchesMediaOrSmaller('medium')</code> returns <strong>true</strong></li>
+      <li>On a large device, the query <code>BaseAppsMediaQuery.matchesMediaOrSmaller('medium')</code> returns <strong>false</strong></li>
+      <li>On a medium device, the query <code>BaseAppsMediaQuery.matchesMediaOrSmaller('medium')</code> returns <strong>true</strong></li>
+      <li>On a small device, the query <code>BaseAppsMediaQuery.matchesMediaOrSmaller('medium')</code> returns <strong>true</strong></li>
     </ul>
 
 <hljs language="javascript">
-FoundationMQ.matchesMediaOnly(breakpoint)
+BaseAppsMediaQuery.matchesMediaOnly(breakpoint)
 </hljs>
 
     <p class="docs-module-api-desc">Returns <code>true</code> if the media matches the breakpoint exactly otherwise returns <code>false</code>.</p>
     <ul>
-      <li>On a large device, the query <code>FoundationMQ.matchesMediaOnly('medium')</code> returns <strong>false</strong></li>
-      <li>On a medium device, the query <code>FoundationMQ.matchesMediaOnly('medium')</code> returns <strong>true</strong></li>
-      <li>On a small device, the query <code>FoundationMQ.matchesMediaOnly('medium')</code> returns <strong>false</strong></li>
+      <li>On a large device, the query <code>BaseAppsMediaQuery.matchesMediaOnly('medium')</code> returns <strong>false</strong></li>
+      <li>On a medium device, the query <code>BaseAppsMediaQuery.matchesMediaOnly('medium')</code> returns <strong>true</strong></li>
+      <li>On a small device, the query <code>BaseAppsMediaQuery.matchesMediaOnly('medium')</code> returns <strong>false</strong></li>
     </ul>
 
   </section>

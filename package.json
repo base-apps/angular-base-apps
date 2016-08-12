@@ -2,7 +2,7 @@
   "name": "angular-base-apps",
   "version": "1.2.6",
   "license": "MIT",
-  "description": "A responsive, Angular-powered framework for web apps based on Foundation for Apps.",
+  "description": "A responsive, Angular-powered framework for web apps",
   "scripts": {
     "test": "gulp test",
     "start": "gulp",
@@ -16,7 +16,6 @@
     "url": "https://github.com/base-apps/angular-base-apps"
   },
   "keywords": [
-    "Foundation",
     "angular",
     "base-apps",
     "responsive",

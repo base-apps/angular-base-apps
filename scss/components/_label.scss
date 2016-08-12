@@ -2,7 +2,7 @@
   Label
 */
 
-/// @Foundation.settings
+/// @BaseApps.settings
 // Label
 $label-fontsize: 0.8rem !default;
 $label-padding: ($global-padding / 3) ($global-padding / 2) !default;
@@ -63,9 +63,9 @@ $badge-color: #fff !default;
   .label {
     @include label;
 
-    @each $color in map-keys($foundation-colors) {
+    @each $color in map-keys($base-apps-colors) {
       &.#{$color} {
-        $color-value: map-get($foundation-colors, $color);
+        $color-value: map-get($base-apps-colors, $color);
         @include label-style($color-value, auto);
       }
     }
@@ -124,9 +124,9 @@ $badge-color: #fff !default;
     &.secondary {
       @include badge-style($secondary-color, auto);
     }
-    @each $color in map-keys($foundation-colors) {
+    @each $color in map-keys($base-apps-colors) {
       &.#{$color} {
-        $color-value: map-get($foundation-colors, $color);
+        $color-value: map-get($base-apps-colors, $color);
         @include badge-style($color-value, auto);
       }
     }

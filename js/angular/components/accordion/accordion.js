@@ -82,9 +82,9 @@
   }
 
   //accordion item
-  baAccordionItem.$inject = ['FoundationApi'];
+  baAccordionItem.$inject = ['BaseAppsApi'];
 
-  function baAccordionItem(foundationApi) {
+  function baAccordionItem(BaseAppsApi) {
     var directive = {
         restrict: 'EA',
         templateUrl: 'components/accordion/accordion-item.html',
@@ -101,11 +101,11 @@
     return directive;
 
     function link(scope, element, attrs, controller, transclude) {
-      scope.id = attrs.id || foundationApi.generateUuid();
+      scope.id = attrs.id || BaseAppsApi.generateUuid();
       scope.active = false;
       controller.addSection(scope);
 
-      foundationApi.subscribe(scope.id, function(msg) {
+      BaseAppsApi.subscribe(scope.id, function(msg) {
         if(msg === 'show' || msg === 'open' || msg === 'activate') {
           if (!scope.active) {
             controller.select(scope);
@@ -130,7 +130,7 @@
       };
 
       scope.$on("$destroy", function() {
-        foundationApi.unsubscribe(scope.id);
+        BaseAppsApi.unsubscribe(scope.id);
       });
     }
   }

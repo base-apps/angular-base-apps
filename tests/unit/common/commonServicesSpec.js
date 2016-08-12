@@ -1,13 +1,13 @@
 describe('Common Angular Base Apps Services', function() {
   beforeEach(module('base.core'));
 
-  it('should exist', inject(function(FoundationApi) {
-    expect(FoundationApi).not.toEqual(null);
+  it('should exist', inject(function(BaseAppsApi) {
+    expect(BaseAppsApi).not.toEqual(null);
   }));
 
 
   //testing listeners
-  it('should subscribe and fire a new listener', inject(function(FoundationApi) {
+  it('should subscribe and fire a new listener', inject(function(BaseAppsApi) {
     var response = '';
     var listenerName = 'testListener';
     var listener = function() {
@@ -15,18 +15,18 @@ describe('Common Angular Base Apps Services', function() {
       return true;
     };
 
-    FoundationApi.subscribe(listenerName, listener);
+    BaseAppsApi.subscribe(listenerName, listener);
 
     //make sure cb didn't get fired
     expect(response).toEqual('');
 
-    FoundationApi.publish(listenerName, '');
+    BaseAppsApi.publish(listenerName, '');
 
     expect(response).toEqual('fired');
 
   }));
 
-  it('should pass on a message', inject(function(FoundationApi) {
+  it('should pass on a message', inject(function(BaseAppsApi) {
     var response = '';
     var listenerName = 'testListener';
     var listener = function(msg) {
@@ -34,24 +34,24 @@ describe('Common Angular Base Apps Services', function() {
       return true;
     };
 
-    FoundationApi.subscribe(listenerName, listener);
+    BaseAppsApi.subscribe(listenerName, listener);
 
     //make sure cb didn't get fired
     expect(response).toEqual('');
 
     //fire a listener
-    FoundationApi.publish(listenerName, 'fired');
+    BaseAppsApi.publish(listenerName, 'fired');
 
     expect(response).toEqual('fired');
 
     //make sure response changes with each message
-    FoundationApi.publish(listenerName, 'fired again');
+    BaseAppsApi.publish(listenerName, 'fired again');
 
     expect(response).toEqual('fired again');
 
   }));
 
-  it('should fire all subscribed listeners', inject(function(FoundationApi) {
+  it('should fire all subscribed listeners', inject(function(BaseAppsApi) {
     var response = '';
     var response2 = '';
     var listenerName = 'testListener';
@@ -65,44 +65,44 @@ describe('Common Angular Base Apps Services', function() {
       return true;
     };
 
-    FoundationApi.subscribe(listenerName, listener);
-    FoundationApi.subscribe(listenerName, listener2);
+    BaseAppsApi.subscribe(listenerName, listener);
+    BaseAppsApi.subscribe(listenerName, listener2);
 
     //make sure cb didn't get fired
     expect(response).toEqual('');
     expect(response2).toEqual('');
 
     //fire a listener
-    FoundationApi.publish(listenerName, 'fired');
+    BaseAppsApi.publish(listenerName, 'fired');
 
     expect(response).toEqual('fired');
     expect(response2).toEqual('fired');
   }));
 
-  it('should modify and get settings', inject(function(FoundationApi) {
+  it('should modify and get settings', inject(function(BaseAppsApi) {
     var settings     = {};
     var testSettings = { testSettings: 1 };
     var newSettings  = { testSettings: 2 };
 
-    FoundationApi.modifySettings(testSettings);
+    BaseAppsApi.modifySettings(testSettings);
 
-    settings = FoundationApi.getSettings();
+    settings = BaseAppsApi.getSettings();
 
     //make sure settings are empty
     expect(settings.testSettings).toEqual(1);
 
     //extend settings
-    settings = FoundationApi.modifySettings(newSettings);
+    settings = BaseAppsApi.modifySettings(newSettings);
 
     expect(settings.testSettings).toEqual(2);
   }));
 
-  it('should generate unique IDs', inject(function(FoundationApi) {
+  it('should generate unique IDs', inject(function(BaseAppsApi) {
     var ids = [];
     var duplicates = [];
 
     for(var i = 0; i < 100; i++) {
-      var generatedId = FoundationApi.generateUuid();
+      var generatedId = BaseAppsApi.generateUuid();
       if(ids.indexOf(generatedId) > -1) {
         duplicates.push(generatedId);
       }

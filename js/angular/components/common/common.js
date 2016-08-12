@@ -1,6 +1,6 @@
 (function() {
   'use strict';
-  
+
   angular.module('base.common', ['base.core'])
     .directive('baClose', baClose)
     .directive('baOpen', baOpen)
@@ -11,9 +11,9 @@
     .directive('baCloseAll', baCloseAll)
   ;
 
-  baClose.$inject = ['FoundationApi'];
+  baClose.$inject = ['BaseAppsApi'];
 
-  function baClose(foundationApi) {
+  function baClose(BaseAppsApi) {
     var directive = {
       restrict: 'A',
       link: link
@@ -43,15 +43,15 @@
         targetId = parentElement.attr('id');
       }
       element.on('click', function(e) {
-        foundationApi.publish(targetId, 'close');
+        BaseAppsApi.publish(targetId, 'close');
         e.preventDefault();
       });
     }
   }
 
-  baOpen.$inject = ['FoundationApi'];
+  baOpen.$inject = ['BaseAppsApi'];
 
-  function baOpen(foundationApi) {
+  function baOpen(BaseAppsApi) {
     var directive = {
       restrict: 'A',
       link: link
@@ -61,15 +61,15 @@
 
     function link(scope, element, attrs) {
       element.on('click', function(e) {
-        foundationApi.publish(attrs.baOpen, 'open');
+        BaseAppsApi.publish(attrs.baOpen, 'open');
         e.preventDefault();
       });
     }
   }
 
-  baToggle.$inject = ['FoundationApi'];
+  baToggle.$inject = ['BaseAppsApi'];
 
-  function baToggle(foundationApi) {
+  function baToggle(BaseAppsApi) {
     var directive = {
       restrict: 'A',
       link: link
@@ -79,15 +79,15 @@
 
     function link(scope, element, attrs) {
       element.on('click', function(e) {
-        foundationApi.publish(attrs.baToggle, 'toggle');
+        BaseAppsApi.publish(attrs.baToggle, 'toggle');
         e.preventDefault();
       });
     }
   }
 
-  baEscClose.$inject = ['FoundationApi'];
+  baEscClose.$inject = ['BaseAppsApi'];
 
-  function baEscClose(foundationApi) {
+  function baEscClose(BaseAppsApi) {
     var directive = {
       restrict: 'A',
       link: link
@@ -98,16 +98,16 @@
     function link(scope, element, attrs) {
       element.on('keyup', function(e) {
         if (e.keyCode === 27) {
-          foundationApi.closeActiveElements();
+          BaseAppsApi.closeActiveElements();
         }
         e.preventDefault();
       });
     }
   }
 
-  baSwipeClose.$inject = ['FoundationApi'];
+  baSwipeClose.$inject = ['BaseAppsApi'];
 
-  function baSwipeClose(foundationApi) {
+  function baSwipeClose(BaseAppsApi) {
     var directive = {
       restrict: 'A',
       link: link
@@ -145,15 +145,15 @@
       }
       if(typeof(hammerElem) !== 'undefined'){
         hammerElem.on(swipeDirection, function() {
-          foundationApi.publish(attrs.id, 'close');
+          BaseAppsApi.publish(attrs.id, 'close');
         });
       }
     }
   }
 
-  baHardToggle.$inject = ['FoundationApi'];
+  baHardToggle.$inject = ['BaseAppsApi'];
 
-  function baHardToggle(foundationApi) {
+  function baHardToggle(BaseAppsApi) {
     var directive = {
       restrict: 'A',
       link: link
@@ -163,16 +163,16 @@
 
     function link(scope, element, attrs) {
       element.on('click', function(e) {
-        foundationApi.closeActiveElements({exclude: attrs.baHardToggle});
-        foundationApi.publish(attrs.baHardToggle, 'toggle');
+        BaseAppsApi.closeActiveElements({exclude: attrs.baHardToggle});
+        BaseAppsApi.publish(attrs.baHardToggle, 'toggle');
         e.preventDefault();
       });
     }
   }
 
-  baCloseAll.$inject = ['FoundationApi'];
+  baCloseAll.$inject = ['BaseAppsApi'];
 
-  function baCloseAll(foundationApi) {
+  function baCloseAll(BaseAppsApi) {
     var directive = {
       restrict: 'A',
       link: link
@@ -205,7 +205,7 @@
         if(activeElements.length > 0) {
           for(i = 0; i < activeElements.length; i++) {
             if (!activeElements[i].hasAttribute('ba-ignore-all-close')) {
-              foundationApi.publish(activeElements[i].id, 'close');
+              BaseAppsApi.publish(activeElements[i].id, 'close');
               closedElements++;
             }
           }

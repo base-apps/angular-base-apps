@@ -1,8 +1,8 @@
-// Foundation for Apps
+// Angular Base Apps
 //
 // BREAKPOINTS
 // -----------
-// Foundation for Apps has three core breakpoints: small (> 0), medium (>= 640), and large (>= 1024).
+// Angular Base Apps has three core breakpoints: small (> 0), medium (>= 640), and large (>= 1024).
 // There are two additional breakpoints, xlarge, and xxlarge, which (by default) do not output as sizing classes.
 // Access named breakpoints using the mixin breakpoint($size), where $size is a breakpoint value.
 // You can also pass an em, rem, or pixel value into this mixin to generate an em-based media query.
@@ -12,7 +12,7 @@
 // 1. Variables
 // - - - - - - - - - - - - - - -
 
-/// @Foundation.settings
+/// @BaseApps.settings
 // Breakpoints
 // These are our named breakpoints. You can use them in our breakpoint function like this: @include breakpoint(medium) { // Medium and larger styles }
 $breakpoints: (

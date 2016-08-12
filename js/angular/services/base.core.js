@@ -4,15 +4,15 @@
   angular.module('base.core', [
       'base.core.animation'
     ])
-    .service('FoundationApi', FoundationApi)
-    .service('FoundationAdapter', FoundationAdapter)
+    .service('BaseAppsApi', BaseAppsApi)
+    .service('BaseAppsAdapter', BaseAppsAdapter)
     .factory('Utils', Utils)
     .run(Setup);
   ;
 
-  FoundationApi.$inject = ['FoundationAnimation'];
+  BaseAppsApi.$inject = ['BaseAppsAnimation'];
 
-  function FoundationApi(FoundationAnimation) {
+  function BaseAppsApi(BaseAppsAnimation) {
     var listeners  = {};
     var settings   = {};
     var uniqueIds  = [];
@@ -105,7 +105,7 @@
     }
 
     function toggleAnimate(element, futureState) {
-      FoundationAnimation.toggleAnimate(element, futureState);
+      BaseAppsAnimation.toggleAnimate(element, futureState);
     }
 
     function closeActiveElements(options) {
@@ -133,13 +133,13 @@
     }
 
     function animate(element, futureState, animationIn, animationOut) {
-      return FoundationAnimation.animate(element, futureState, animationIn, animationOut);
+      return BaseAppsAnimation.animate(element, futureState, animationIn, animationOut);
     }
 
     function animateAndAdvise(element, futureState, animationIn, animationOut) {
       var msgPrefix = "animation-" + (futureState ? "open" : "close");
       publish(element[0].id, msgPrefix + "-started");
-      var promise = FoundationAnimation.animate(element, futureState, animationIn, animationOut);
+      var promise = BaseAppsAnimation.animate(element, futureState, animationIn, animationOut);
       promise.then(function() {
         publish(element[0].id, msgPrefix + "-finished");
       }, function() {
@@ -149,9 +149,9 @@
     }
   }
 
-  FoundationAdapter.$inject = ['FoundationApi'];
+  BaseAppsAdapter.$inject = ['BaseAppsApi'];
 
-  function FoundationAdapter(foundationApi) {
+  function BaseAppsAdapter(BaseAppsApi) {
 
     var service    = {};
 
@@ -161,11 +161,11 @@
     return service;
 
     function activate(target) {
-      foundationApi.publish(target, 'show');
+      BaseAppsApi.publish(target, 'show');
     }
 
     function deactivate(target) {
-      foundationApi.publish(target, 'hide');
+      BaseAppsApi.publish(target, 'hide');
     }
   }
 

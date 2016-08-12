@@ -3,20 +3,20 @@
 
   angular.module('base.mediaquery', ['base.core'])
     .run(mqInitRun)
-    .factory('FoundationMQInit', FoundationMQInit)
+    .factory('BaseAppsMediaQueryInit', BaseAppsMediaQueryInit)
     .factory('mqHelpers', mqHelpers)
-    .service('FoundationMQ', FoundationMQ)
+    .service('BaseAppsMediaQuery', BaseAppsMediaQuery)
   ;
 
-  mqInitRun.$inject = ['FoundationMQInit'];
+  mqInitRun.$inject = ['BaseAppsMediaQueryInit'];
 
   function mqInitRun(mqInit) {
     mqInit.init();
   }
 
-  FoundationMQInit.$inject = ['mqHelpers', 'FoundationApi', 'Utils', 'FoundationMQ'];
+  BaseAppsMediaQueryInit.$inject = ['mqHelpers', 'BaseAppsApi', 'Utils', 'BaseAppsMediaQuery'];
 
-  function FoundationMQInit(helpers, foundationApi, u, foundationMQ){
+  function BaseAppsMediaQueryInit(helpers, BaseAppsApi, u, BaseAppsMediaQuery){
     var factory = {};
     var namedQueries = {
       'default' : 'only screen',
@@ -77,16 +77,16 @@
         }
       }
 
-      foundationApi.modifySettings({
+      BaseAppsApi.modifySettings({
         mediaQueries: angular.extend(mediaQueries, namedQueries),
         mediaMap: mediaMap
       });
 
       window.addEventListener('resize', u.throttle(function() {
         // any resize event causes a clearing of the media cache
-        foundationMQ.clearCache();
+        BaseAppsMediaQuery.clearCache();
 
-        foundationApi.publish('resize', 'window resized');
+        BaseAppsApi.publish('resize', 'window resized');
       }, 50));
     }
   }
@@ -159,9 +159,9 @@
     }
   }
 
-  FoundationMQ.$inject = ['FoundationApi'];
+  BaseAppsMediaQuery.$inject = ['BaseAppsApi'];
 
-  function FoundationMQ(foundationApi) {
+  function BaseAppsMediaQuery(BaseAppsApi) {
     var service = [],
         mediaQueryResultCache = {},
         queryMinWidthCache = {};
@@ -182,11 +182,11 @@
     }
 
     function getMediaQueries() {
-      return foundationApi.getSettings().mediaQueries;
+      return BaseAppsApi.getSettings().mediaQueries;
     }
 
     function getNextLargestMediaQuery(media) {
-      var mediaMapEntry = foundationApi.getSettings().mediaMap[media];
+      var mediaMapEntry = BaseAppsApi.getSettings().mediaMap[media];
       if (mediaMapEntry) {
         return mediaMapEntry.up;
       } else {
@@ -195,7 +195,7 @@
     }
 
     function getNextSmallestMediaQuery(media) {
-      var mediaMapEntry = foundationApi.getSettings().mediaMap[media];
+      var mediaMapEntry = BaseAppsApi.getSettings().mediaMap[media];
       if (mediaMapEntry) {
         return mediaMapEntry.down;
       } else {
