@@ -3,12 +3,12 @@
 
   angular.module('base.offcanvas', ['base.core'])
     .directive('baOffcanvas', baOffcanvas)
-    .service('FoundationOffcanvas', FoundationOffcanvas)
+    .service('BaseAppsOffcanvas', BaseAppsOffcanvas)
   ;
 
-  FoundationOffcanvas.$inject = ['FoundationApi'];
+  BaseAppsOffcanvas.$inject = ['BaseAppsApi'];
 
-  function FoundationOffcanvas(foundationApi) {
+  function BaseAppsOffcanvas(BaseAppsApi) {
     var service    = {};
 
     service.activate = activate;
@@ -18,22 +18,22 @@
 
     //target should be element ID
     function activate(target) {
-      foundationApi.publish(target, 'show');
+      BaseAppsApi.publish(target, 'show');
     }
 
     //target should be element ID
     function deactivate(target) {
-      foundationApi.publish(target, 'hide');
+      BaseAppsApi.publish(target, 'hide');
     }
 
     function toggle(target) {
-      foundationApi.publish(target, 'toggle');
+      BaseAppsApi.publish(target, 'toggle');
     }
   }
 
-  baOffcanvas.$inject = ['FoundationApi'];
+  baOffcanvas.$inject = ['BaseAppsApi'];
 
-  function baOffcanvas(foundationApi) {
+  function baOffcanvas(BaseAppsApi) {
     var directive = {
       restrict: 'EA',
       templateUrl: 'components/offcanvas/offcanvas.html',
@@ -65,11 +65,11 @@
         scope.active = false;
 
         scope.$on("$destroy", function() {
-          foundationApi.unsubscribe(attrs.id);
+          BaseAppsApi.unsubscribe(attrs.id);
         });
 
         //setup
-        foundationApi.subscribe(attrs.id, function(msg) {
+        BaseAppsApi.subscribe(attrs.id, function(msg) {
           if(msg === 'show' || msg === 'open') {
             scope.show();
           } else if (msg === 'close' || msg === 'hide') {
@@ -105,7 +105,7 @@
 
         function adviseActiveChanged() {
           if (!angular.isUndefined(attrs.baAdvise)) {
-            foundationApi.publish(attrs.id, scope.active ? 'activated' : 'deactivated');
+            BaseAppsApi.publish(attrs.id, scope.active ? 'activated' : 'deactivated');
           }
         }
       }

@@ -9,7 +9,7 @@
 //  - Coloring mixin
 //  - Angular support
 
-/// @Foundation.settings
+/// @BaseApps.settings
 // Iconic
 $iconic-primary-fill: $primary-color !default;
 $iconic-primary-stroke: $primary-color !default;
@@ -84,9 +84,9 @@ $iconic-accent-stroke: $iconic-accent-fill !default;
     }
   }
 
-  @each $color in map-keys($foundation-colors) {
+  @each $color in map-keys($base-apps-colors) {
     .iconic-color-#{$color}, .iconic.iconic-color-#{$color}, a.iconic-color-#{$color} > .iconic {
-      @include color-icon(map-get($foundation-colors, $color));
+      @include color-icon(map-get($base-apps-colors, $color));
     }
   }
   .iconic-color-secondary, a > .iconic.iconic-color-secondary {

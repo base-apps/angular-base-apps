@@ -2,12 +2,12 @@
   'use strict';
 
   angular.module('base.core.animation', [])
-    .service('FoundationAnimation', FoundationAnimation)
+    .service('BaseAppsAnimation', BaseAppsAnimation)
   ;
 
-  FoundationAnimation.$inject = ['$q'];
+  BaseAppsAnimation.$inject = ['$q'];
 
-  function FoundationAnimation($q) {
+  function BaseAppsAnimation($q) {
     var animations = [];
     var service = {};
 

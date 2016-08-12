@@ -38,8 +38,8 @@ $loader-sizes: (
   .sk-rotating-plane {
     @include sk-rotating-plane($margin: 0);
 
-    @each $color in map-keys($foundation-colors) {
-      $color-value: map-get($foundation-colors, $color);
+    @each $color in map-keys($base-apps-colors) {
+      $color-value: map-get($base-apps-colors, $color);
       &.#{$color} {
         @include sk-rotating-plane-color($color-value);
       }
@@ -55,8 +55,8 @@ $loader-sizes: (
   .sk-double-bounce {
     @include sk-double-bounce($margin: 0);
 
-    @each $color in map-keys($foundation-colors) {
-      $color-value: map-get($foundation-colors, $color);
+    @each $color in map-keys($base-apps-colors) {
+      $color-value: map-get($base-apps-colors, $color);
       &.#{$color} {
         @include sk-double-bounce-color($color-value);
       }
@@ -72,8 +72,8 @@ $loader-sizes: (
   .sk-wave {
     @include sk-wave($margin: 0);
 
-    @each $color in map-keys($foundation-colors) {
-      $color-value: map-get($foundation-colors, $color);
+    @each $color in map-keys($base-apps-colors) {
+      $color-value: map-get($base-apps-colors, $color);
       &.#{$color} {
         @include sk-wave-color($color-value);
       }
@@ -89,8 +89,8 @@ $loader-sizes: (
   .sk-wandering-cubes {
     @include sk-wandering-cubes($margin: 0);
 
-    @each $color in map-keys($foundation-colors) {
-      $color-value: map-get($foundation-colors, $color);
+    @each $color in map-keys($base-apps-colors) {
+      $color-value: map-get($base-apps-colors, $color);
       &.#{$color} {
         @include sk-wandering-cubes-color($color-value);
       }
@@ -107,8 +107,8 @@ $loader-sizes: (
   .sk-pulse {
     @include sk-pulse($margin: 0);
 
-    @each $color in map-keys($foundation-colors) {
-      $color-value: map-get($foundation-colors, $color);
+    @each $color in map-keys($base-apps-colors) {
+      $color-value: map-get($base-apps-colors, $color);
       &.#{$color} {
         @include sk-pulse-color($color-value);
       }
@@ -124,8 +124,8 @@ $loader-sizes: (
   .sk-chasing-dots {
     @include sk-chasing-dots($margin: 0);
 
-    @each $color in map-keys($foundation-colors) {
-      $color-value: map-get($foundation-colors, $color);
+    @each $color in map-keys($base-apps-colors) {
+      $color-value: map-get($base-apps-colors, $color);
       &.#{$color} {
         @include sk-chasing-dots-color($color-value);
       }
@@ -141,8 +141,8 @@ $loader-sizes: (
   .sk-three-bounce {
     @include sk-three-bounce($margin: 0, $height: auto);
 
-    @each $color in map-keys($foundation-colors) {
-      $color-value: map-get($foundation-colors, $color);
+    @each $color in map-keys($base-apps-colors) {
+      $color-value: map-get($base-apps-colors, $color);
       &.#{$color} {
         @include sk-three-bounce-color($color-value);
       }
@@ -158,8 +158,8 @@ $loader-sizes: (
   .sk-circle {
     @include sk-circle($margin: 0);
 
-    @each $color in map-keys($foundation-colors) {
-      $color-value: map-get($foundation-colors, $color);
+    @each $color in map-keys($base-apps-colors) {
+      $color-value: map-get($base-apps-colors, $color);
       &.#{$color} {
         @include sk-circle-color($color-value);
       }
@@ -175,8 +175,8 @@ $loader-sizes: (
   .sk-cube-grid {
     @include sk-cube-grid($margin: 0);
 
-    @each $color in map-keys($foundation-colors) {
-      $color-value: map-get($foundation-colors, $color);
+    @each $color in map-keys($base-apps-colors) {
+      $color-value: map-get($base-apps-colors, $color);
       &.#{$color} {
         @include sk-cube-grid-color($color-value);
       }
@@ -192,8 +192,8 @@ $loader-sizes: (
   .sk-fading-circle {
     @include sk-fading-circle($margin: 0);
 
-    @each $color in map-keys($foundation-colors) {
-      $color-value: map-get($foundation-colors, $color);
+    @each $color in map-keys($base-apps-colors) {
+      $color-value: map-get($base-apps-colors, $color);
       &.#{$color} {
         @include sk-fading-circle-color($color-value);
       }
@@ -209,8 +209,8 @@ $loader-sizes: (
   .sk-folding-cube {
     @include sk-folding-cube($margin: 0);
 
-    @each $color in map-keys($foundation-colors) {
-      $color-value: map-get($foundation-colors, $color);
+    @each $color in map-keys($base-apps-colors) {
+      $color-value: map-get($base-apps-colors, $color);
       &.#{$color} {
         @include sk-folding-cube-color($color-value);
       }

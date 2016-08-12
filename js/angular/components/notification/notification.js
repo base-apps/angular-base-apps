@@ -8,12 +8,12 @@
     .directive('baNotificationStatic', baNotificationStatic)
     .directive('baNotify', baNotify)
     .factory('NotificationFactory', NotificationFactory)
-    .service('FoundationNotification', FoundationNotification)
+    .service('BaseAppsNotification', BaseAppsNotification)
   ;
 
-  FoundationNotification.$inject = ['FoundationApi', 'NotificationFactory'];
+  BaseAppsNotification.$inject = ['BaseAppsApi', 'NotificationFactory'];
 
-  function FoundationNotification(foundationApi, NotificationFactory) {
+  function BaseAppsNotification(BaseAppsApi, NotificationFactory) {
     var service    = {};
 
     service.activate = activate;
@@ -23,16 +23,16 @@
 
     //target should be element ID
     function activate(target) {
-      foundationApi.publish(target, 'show');
+      BaseAppsApi.publish(target, 'show');
     }
 
     //target should be element ID
     function deactivate(target) {
-      foundationApi.publish(target, 'hide');
+      BaseAppsApi.publish(target, 'hide');
     }
 
     function toggle(target) {
-      foundationApi.publish(target, 'toggle');
+      BaseAppsApi.publish(target, 'toggle');
     }
 
     function createNotificationSet(config) {
@@ -41,14 +41,14 @@
   }
 
 
-  baNotificationController.$inject = ['$scope', 'FoundationApi'];
+  baNotificationController.$inject = ['$scope', 'BaseAppsApi'];
 
-  function baNotificationController($scope, foundationApi) {
+  function baNotificationController($scope, BaseAppsApi) {
     var controller    = this;
     controller.notifications = $scope.notifications = $scope.notifications || [];
 
     controller.addNotification = function(info) {
-      var id  = foundationApi.generateUuid();
+      var id  = BaseAppsApi.generateUuid();
       info.id = id;
       $scope.notifications.push(info);
     };
@@ -69,9 +69,9 @@
     };
   }
 
-  baNotificationSet.$inject = ['FoundationApi'];
+  baNotificationSet.$inject = ['BaseAppsApi'];
 
-  function baNotificationSet(foundationApi) {
+  function baNotificationSet(BaseAppsApi) {
     var directive = {
       restrict: 'EA',
       templateUrl: 'components/notification/notification-set.html',
@@ -89,10 +89,10 @@
       scope.position = scope.position ? scope.position.split(' ').join('-') : 'top-right';
 
       scope.$on("$destroy", function() {
-        foundationApi.unsubscribe(attrs.id);
+        BaseAppsApi.unsubscribe(attrs.id);
       });
 
-      foundationApi.subscribe(attrs.id, function(msg) {
+      BaseAppsApi.subscribe(attrs.id, function(msg) {
         if(msg === 'clearall') {
           controller.clearAll();
         }
@@ -106,9 +106,9 @@
     }
   }
 
-  baNotification.$inject = ['FoundationApi', '$sce'];
+  baNotification.$inject = ['BaseAppsApi', '$sce'];
 
-  function baNotification(foundationApi, $sce) {
+  function baNotification(BaseAppsApi, $sce) {
     var directive = {
       restrict: 'EA',
       templateUrl: 'components/notification/notification.html',
@@ -151,7 +151,7 @@
         scope.active = false;
         var animationIn  = attrs.animationIn || 'fadeIn';
         var animationOut = attrs.animationOut || 'fadeOut';
-        var animate = attrs.hasOwnProperty('baAdvise') ? foundationApi.animateAndAdvise : foundationApi.animate;
+        var animate = attrs.hasOwnProperty('baAdvise') ? BaseAppsApi.animateAndAdvise : BaseAppsApi.animate;
         var hammerElem;
 
         //due to dynamic insertion of DOM, we need to wait for it to show up and get working!
@@ -199,16 +199,16 @@
 
         function adviseActiveChanged() {
           if (!angular.isUndefined(attrs.baAdvise)) {
-            foundationApi.publish(attrs.id, scope.active ? 'activated' : 'deactivated');
+            BaseAppsApi.publish(attrs.id, scope.active ? 'activated' : 'deactivated');
           }
         }
       }
     }
   }
 
-  baNotificationStatic.$inject = ['FoundationApi', '$sce'];
+  baNotificationStatic.$inject = ['BaseAppsApi', '$sce'];
 
-  function baNotificationStatic(foundationApi, $sce) {
+  function baNotificationStatic(BaseAppsApi, $sce) {
     var directive = {
       restrict: 'EA',
       templateUrl: 'components/notification/notification-static.html',
@@ -246,14 +246,14 @@
 
         var animationIn = attrs.animationIn || 'fadeIn';
         var animationOut = attrs.animationOut || 'fadeOut';
-        var animateFn = attrs.hasOwnProperty('baAdvise') ? foundationApi.animateAndAdvise : foundationApi.animate;
+        var animateFn = attrs.hasOwnProperty('baAdvise') ? BaseAppsApi.animateAndAdvise : BaseAppsApi.animate;
 
         scope.$on("$destroy", function() {
-          foundationApi.unsubscribe(attrs.id);
+          BaseAppsApi.unsubscribe(attrs.id);
         });
 
         //setup
-        foundationApi.subscribe(attrs.id, function(msg) {
+        BaseAppsApi.subscribe(attrs.id, function(msg) {
           if(msg == 'show' || msg == 'open') {
             scope.show();
             // close if autoclose
@@ -307,16 +307,16 @@
 
         function adviseActiveChanged() {
           if (!angular.isUndefined(attrs.baAdvise)) {
-            foundationApi.publish(attrs.id, scope.active ? 'activated' : 'deactivated');
+            BaseAppsApi.publish(attrs.id, scope.active ? 'activated' : 'deactivated');
           }
         }
       }
     }
   }
 
-  baNotify.$inject = ['FoundationApi'];
+  baNotify.$inject = ['BaseAppsApi'];
 
-  function baNotify(foundationApi) {
+  function baNotify(BaseAppsApi) {
     var directive = {
       restrict: 'A',
       scope: {
@@ -333,7 +333,7 @@
 
     function link(scope, element, attrs, controller) {
       element.on('click', function(e) {
-        foundationApi.publish(attrs.baNotify, {
+        BaseAppsApi.publish(attrs.baNotify, {
           title: scope.title,
           content: scope.content,
           color: scope.color,
@@ -345,15 +345,15 @@
     }
   }
 
-  NotificationFactory.$inject = ['$http', '$templateCache', '$rootScope', '$compile', '$timeout', 'FoundationApi', '$sce'];
+  NotificationFactory.$inject = ['$http', '$templateCache', '$rootScope', '$compile', '$timeout', 'BaseAppsApi', '$sce'];
 
-  function NotificationFactory($http, $templateCache, $rootScope, $compile, $timeout, foundationApi, $sce) {
+  function NotificationFactory($http, $templateCache, $rootScope, $compile, $timeout, BaseAppsApi, $sce) {
     return notificationFactory;
 
     function notificationFactory(config) {
       var self = this, //for prototype functions
           container = angular.element(config.container || document.body),
-          id = config.id || foundationApi.generateUuid(),
+          id = config.id || BaseAppsApi.generateUuid(),
           attached = false,
           destroyed = false,
           html,
@@ -387,14 +387,14 @@
       function addNotification(notification) {
         checkStatus();
         $timeout(function() {
-          foundationApi.publish(id, notification);
+          BaseAppsApi.publish(id, notification);
         }, 0, false);
       }
 
       function clearAll() {
         checkStatus();
         $timeout(function() {
-          foundationApi.publish(id, 'clearall');
+          BaseAppsApi.publish(id, 'clearall');
         }, 0, false);
       }
 
@@ -445,7 +445,7 @@
           element.remove();
           destroyed = true;
         }, 3000);
-        foundationApi.unsubscribe(id);
+        BaseAppsApi.unsubscribe(id);
       }
 
     }

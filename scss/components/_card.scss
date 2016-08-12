@@ -7,7 +7,7 @@
   lists
 */
 
-/// @Foundation.settings
+/// @BaseApps.settings
 // Card
 $card-background: #fff !default;
 $card-color: isitlight($card-background) !default;
@@ -68,9 +68,9 @@ $card-divider-background: smartscale($card-background, 7%) !default;
   .card {
     @include card-container;
 
-    @each $color in map-keys($foundation-colors) {
+    @each $color in map-keys($base-apps-colors) {
       &.#{$color} {
-        $color-value: map-get($foundation-colors, $color);
+        $color-value: map-get($base-apps-colors, $color);
         @include card-container(
           $background: $color-value,
           $color: isitlight($color-value),

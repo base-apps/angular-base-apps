@@ -3,12 +3,12 @@
 
   angular.module('base.panel', ['base.core'])
     .directive('baPanel', baPanel)
-    .service('FoundationPanel', FoundationPanel)
+    .service('BaseAppsPanel', BaseAppsPanel)
   ;
 
-  FoundationPanel.$inject = ['FoundationApi'];
+  BaseAppsPanel.$inject = ['BaseAppsApi'];
 
-  function FoundationPanel(foundationApi) {
+  function BaseAppsPanel(BaseAppsApi) {
     var service    = {};
 
     service.activate = activate;
@@ -18,18 +18,18 @@
 
     //target should be element ID
     function activate(target) {
-      foundationApi.publish(target, 'show');
+      BaseAppsApi.publish(target, 'show');
     }
 
     //target should be element ID
     function deactivate(target) {
-      foundationApi.publish(target, 'hide');
+      BaseAppsApi.publish(target, 'hide');
     }
   }
 
-  baPanel.$inject = ['FoundationApi', '$window'];
+  baPanel.$inject = ['BaseAppsApi', '$window'];
 
-  function baPanel(foundationApi, $window) {
+  function baPanel(BaseAppsApi, $window) {
     var directive = {
       restrict: 'EA',
       templateUrl: 'components/panel/panel.html',
@@ -45,7 +45,7 @@
 
     function compile(tElement, tAttrs, transclude) {
       var type = 'panel';
-      var animate = tAttrs.hasOwnProperty('baAdvise') ? foundationApi.animateAndAdvise : foundationApi.animate;
+      var animate = tAttrs.hasOwnProperty('baAdvise') ? BaseAppsApi.animateAndAdvise : BaseAppsApi.animate;
       var forceAnimation = tAttrs.hasOwnProperty('forceAnimation');
 
       return {
@@ -62,7 +62,7 @@
       function postLink(scope, element, attrs) {
         scope.active = false;
         var animationIn, animationOut;
-        var globalQueries = foundationApi.getSettings().mediaQueries;
+        var globalQueries = BaseAppsApi.getSettings().mediaQueries;
         var setAnim = {
           left: function(){
             animationIn  = attrs.animationIn || 'slideInRight';
@@ -98,11 +98,11 @@
         // }
 
         scope.$on("$destroy", function() {
-          foundationApi.unsubscribe(attrs.id);
+          BaseAppsApi.unsubscribe(attrs.id);
         });
 
         //setup
-        foundationApi.subscribe(attrs.id, function(msg) {
+        BaseAppsApi.subscribe(attrs.id, function(msg) {
           var panelPosition = $window.getComputedStyle(element[0]).getPropertyValue("position");
 
           if (!forceAnimation) {
@@ -167,7 +167,7 @@
 
         function adviseActiveChanged() {
           if (!angular.isUndefined(attrs.baAdvise)) {
-            foundationApi.publish(attrs.id, scope.active ? 'activated' : 'deactivated');
+            BaseAppsApi.publish(attrs.id, scope.active ? 'activated' : 'deactivated');
           }
         }
       }

@@ -1,6 +1,6 @@
 'use strict';
 
-// Foundation for Apps
+// Angular Base Apps
 //
 // We use this Gulpfile to assemble the documentation, run unit tests,
 // and deploy changes to the live documentation and CDN.

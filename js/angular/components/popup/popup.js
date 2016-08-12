@@ -4,12 +4,12 @@
   angular.module('base.popup', ['base.core'])
     .directive('baPopup', baPopup)
     .directive('baPopupToggle', baPopupToggle)
-    .service('FoundationPopup', FoundationPopup)
+    .service('BaseAppsPopup', BaseAppsPopup)
   ;
 
-  FoundationPopup.$inject = ['FoundationApi'];
+  BaseAppsPopup.$inject = ['BaseAppsApi'];
 
-  function FoundationPopup(foundationApi) {
+  function BaseAppsPopup(BaseAppsApi) {
     var service    = {};
 
     service.activate = activate;
@@ -19,22 +19,22 @@
 
     //target should be element ID
     function activate(target) {
-      foundationApi.publish(target, ['show']);
+      BaseAppsApi.publish(target, ['show']);
     }
 
     //target should be element ID
     function deactivate(target) {
-      foundationApi.publish(target, ['hide']);
+      BaseAppsApi.publish(target, ['hide']);
     }
 
     function toggle(target, popupTarget) {
-      foundationApi.publish(target, ['toggle', popupTarget]);
+      BaseAppsApi.publish(target, ['toggle', popupTarget]);
     }
   }
 
-  baPopup.$inject = ['FoundationApi'];
+  baPopup.$inject = ['BaseAppsApi'];
 
-  function baPopup(foundationApi) {
+  function baPopup(BaseAppsApi) {
     var directive = {
       restrict: 'EA',
       transclude: true,
@@ -70,7 +70,7 @@
         var tether     = {};
 
         //setup
-        foundationApi.subscribe(attrs.id, function(msg) {
+        BaseAppsApi.subscribe(attrs.id, function(msg) {
           if(msg[0] === 'show' || msg[0] === 'open') {
             scope.show(msg[1]);
           } else if (msg[0] === 'close' || msg[0] === 'hide') {
@@ -122,7 +122,7 @@
         };
 
         scope.$on('$destroy', function() {
-          foundationApi.unsubscribe(attrs.id);
+          BaseAppsApi.unsubscribe(attrs.id);
 
           scope.active = false;
           if(tetherInit) {
@@ -152,16 +152,16 @@
 
         function adviseActiveChanged() {
           if (!angular.isUndefined(attrs.baAdvise)) {
-            foundationApi.publish(attrs.id, scope.active ? 'activated' : 'deactivated');
+            BaseAppsApi.publish(attrs.id, scope.active ? 'activated' : 'deactivated');
           }
         }
       }
     }
   }
 
-  baPopupToggle.$inject = ['FoundationApi'];
+  baPopupToggle.$inject = ['BaseAppsApi'];
 
-  function baPopupToggle(foundationApi) {
+  function baPopupToggle(BaseAppsApi) {
     var directive = {
       restrict: 'A',
       link: link
@@ -171,11 +171,11 @@
 
     function link(scope, element, attrs) {
       var target = attrs.baPopupToggle;
-      var id = attrs.id || foundationApi.generateUuid();
+      var id = attrs.id || BaseAppsApi.generateUuid();
       attrs.$set('id', id);
 
       element.on('click', function(e) {
-        foundationApi.publish(target, ['toggle', id]);
+        BaseAppsApi.publish(target, ['toggle', id]);
         e.preventDefault();
       });
     }

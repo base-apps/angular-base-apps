@@ -16,9 +16,9 @@
     .directive('baHide', baQueryDirective('ng-hide', 'ba-hide'))
   ;
 
-  baInterchange.$inject = [ '$compile', '$http', '$templateCache', 'FoundationApi', 'FoundationMQ'];
+  baInterchange.$inject = [ '$compile', '$http', '$templateCache', 'BaseAppsApi', 'BaseAppsMediaQuery'];
 
-  function baInterchange($compile, $http, $templateCache, foundationApi, foundationMQ) {
+  function baInterchange($compile, $http, $templateCache, BaseAppsApi, BaseAppsMediaQuery) {
 
     var directive = {
       restrict: 'EA',
@@ -36,24 +36,24 @@
     function link(scope, element, attrs, ctrl, transclude) {
       var childScope, current, scenarios, innerTemplates;
 
-      var globalQueries = foundationMQ.getMediaQueries();
+      var globalQueries = BaseAppsMediaQuery.getMediaQueries();
 
       // subscribe for resize events
-      foundationApi.subscribe('resize', resize);
+      BaseAppsApi.subscribe('resize', resize);
 
       scope.$on("$destroy", function() {
-        foundationApi.unsubscribe('resize', resize);
+        BaseAppsApi.unsubscribe('resize', resize);
       });
 
       //init
-      foundationApi.publish('resize', 'initial resize');
+      BaseAppsApi.publish('resize', 'initial resize');
 
       function templateLoader(templateUrl) {
         return $http.get(templateUrl, {cache: $templateCache});
       }
 
       function collectInformation(el) {
-        var data = foundationMQ.collectScenariosFromElement(el);
+        var data = BaseAppsMediaQuery.collectScenariosFromElement(el);
 
         scenarios = data.scenarios;
         innerTemplates = data.templates;
@@ -69,7 +69,7 @@
             collectInformation(clone);
           }
 
-          var ruleMatches = foundationMQ.match(scenarios);
+          var ruleMatches = BaseAppsMediaQuery.match(scenarios);
           var scenario = ruleMatches.length === 0 ? null : scenarios[ruleMatches[0].ind];
 
           //this could use some love
@@ -111,7 +111,7 @@
    * This directive will configure ng-if/ng-show/ng-hide and ba-query directives and then recompile the element
    */
   function baQueryDirective(angularDirective, directiveName) {
-    return ['$compile', 'FoundationApi', function ($compile, foundationApi) {
+    return ['$compile', 'BaseAppsApi', function ($compile, BaseAppsApi) {
       // create unique scope property for media query result, must be unique to avoid collision with other ba-query directives
       // property set upon element compilation or else all similar directives (i.e. ba-if-*/ba-show-*/ba-hide-*) will get the same value
       var queryResult;
@@ -129,7 +129,7 @@
         var previousParam;
 
         // set unique property
-        queryResult = (directiveName + foundationApi.generateUuid()).replace(/-/g,'');
+        queryResult = (directiveName + BaseAppsApi.generateUuid()).replace(/-/g,'');
 
         // set default configuration
         element.attr('ba-query-not', false);
@@ -189,8 +189,8 @@
     }];
   }
 
-  baQuery.$inject = ['FoundationApi', 'FoundationMQ'];
-  function baQuery(foundationApi, foundationMQ) {
+  baQuery.$inject = ['BaseAppsApi', 'BaseAppsMediaQuery'];
+  function baQuery(BaseAppsApi, BaseAppsMediaQuery) {
     return {
       priority: 601, // must compile before ng-if (600)
       restrict: 'A',
@@ -222,10 +222,10 @@
 
       function postLink(scope, element, attrs) {
         // subscribe for resize events
-        foundationApi.subscribe('resize', resize);
+        BaseAppsApi.subscribe('resize', resize);
 
         scope.$on("$destroy", function() {
-          foundationApi.unsubscribe('resize', resize);
+          BaseAppsApi.unsubscribe('resize', resize);
         });
 
         // run first media query check
@@ -235,18 +235,18 @@
           if (!queryOnly) {
             if (!queryOrSmaller) {
               // Check if matches media or LARGER
-              scope[queryResult] = foundationMQ.matchesMedia(namedQuery);
+              scope[queryResult] = BaseAppsMediaQuery.matchesMedia(namedQuery);
             } else {
               // Check if matches media or SMALLER
-              scope[queryResult] = foundationMQ.matchesMediaOrSmaller(namedQuery);
+              scope[queryResult] = BaseAppsMediaQuery.matchesMediaOrSmaller(namedQuery);
             }
           } else {
             if (!queryNot) {
               // Check that media ONLY matches named query and nothing else
-              scope[queryResult] = foundationMQ.matchesMediaOnly(namedQuery);
+              scope[queryResult] = BaseAppsMediaQuery.matchesMediaOnly(namedQuery);
             } else {
               // Check that media does NOT match named query
-              scope[queryResult] = !foundationMQ.matchesMediaOnly(namedQuery);
+              scope[queryResult] = !BaseAppsMediaQuery.matchesMediaOnly(namedQuery);
             }
           }
         }

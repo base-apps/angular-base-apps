@@ -5,7 +5,7 @@
   THE GRID
   --------
 
-  Foundation's magical, flexbox-powered grid.
+  Angular Base Apps's magical, flexbox-powered grid.
 
   Features:
    - Horizontal or vertical grids
@@ -16,7 +16,7 @@
    - Offsets
 */
 
-/// @Foundation.settings
+/// @BaseApps.settings
 // Grid
 $container-width: rem-calc(900) !default;
 $block-padding: $global-padding !default;
@@ -31,8 +31,8 @@ $block-grid-max-size: 6 !default;
   If set to "shrink", the block will contract and only fill as much space as it needs for its content.
 
   If set to a number, the block will be given a percentage width, based on the total number of columns (12 by default). Percentage widths don't work if a block is inside a vertical grid.
-  
-  If $gutter-width set to a number that is not "0", grid blocks will have "justify-content: space-between" like flex styles with a fixed space. 
+
+  If $gutter-width set to a number that is not "0", grid blocks will have "justify-content: space-between" like flex styles with a fixed space.
 
   @group grid
 
@@ -47,7 +47,7 @@ $block-grid-max-size: 6 !default;
   @if (type-of($size) == 'number' and strip-unit($gutter-width) != 0) {
     $pct: percentage($size / $total-columns);
 
-    // use calc to gutters between relative columns 
+    // use calc to gutters between relative columns
     flex: 0 0 calc(#{$pct} - #{$gutter-width});
     // max-width prevents columns from wrapping early in IE10/11
     max-width: calc(#{$pct} - #{$gutter-width});
@@ -165,7 +165,7 @@ $block-grid-max-size: 6 !default;
   }
 }
 /*
-  Constrain the size of a block to the size of the average grid row, and center-align it. This imitates the behavior of ordinary Foundation rows.
+  Constrain the size of a block to the size of the average grid row, and center-align it. This imitates the behavior of ordinary Angular Base Apps rows.
 
   @group grid
 
@@ -268,7 +268,7 @@ $block-grid-max-size: 6 !default;
 }
 
 /*
-  Groups are collections of content items. They're the "rows" of Foundation for Apps.
+  Groups are collections of content items. They're the "rows" of Angular Base Apps.
 */
 @mixin grid-block($size: expand, $orientation: horizontal, $wrap: false, $align: left, $order: 0) {
   @include grid-frame($size, $orientation, $wrap, $align, $order, auto);
@@ -287,7 +287,7 @@ $block-grid-max-size: 6 !default;
 }
 
 /*
-  Blocks are containers for actual content. They're the "columns" of Foundation for Apps.
+  Blocks are containers for actual content. They're the "columns" of Angular Base Apps.
 */
 @mixin grid-content($size: expand, $offset: null, $order: null) {
   // Content blocks are not flex items and have padding
@@ -337,8 +337,8 @@ $block-grid-max-size: 6 !default;
   &.align-spaced  { @include grid-align(spaced); }
 
   // Allow child elements to wrap
-  &.wrap { 
-    @include grid-wrap(true); 
+  &.wrap {
+    @include grid-wrap(true);
   }
 
   // Allow for gutters

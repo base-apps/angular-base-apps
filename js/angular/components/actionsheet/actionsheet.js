@@ -6,12 +6,12 @@
     .directive('baActionSheet', baActionSheet)
     .directive('baAsContent', baAsContent)
     .directive('baAsButton', baAsButton)
-    .service('FoundationActionSheet', FoundationActionSheet)
+    .service('BaseAppsActionSheet', BaseAppsActionSheet)
   ;
 
-  FoundationActionSheet.$inject = ['FoundationApi'];
+  BaseAppsActionSheet.$inject = ['BaseAppsApi'];
 
-  function FoundationActionSheet(foundationApi) {
+  function BaseAppsActionSheet(BaseAppsApi) {
     var service    = {};
 
     service.activate = activate;
@@ -21,18 +21,18 @@
 
     //target should be element ID
     function activate(target) {
-      foundationApi.publish(target, 'show');
+      BaseAppsApi.publish(target, 'show');
     }
 
     //target should be element ID
     function deactivate(target) {
-      foundationApi.publish(target, 'hide');
+      BaseAppsApi.publish(target, 'hide');
     }
   }
 
-  baActionSheetController.$inject = ['$scope', 'FoundationApi'];
+  baActionSheetController.$inject = ['$scope', 'BaseAppsApi'];
 
-  function baActionSheetController($scope, foundationApi) {
+  function baActionSheetController($scope, BaseAppsApi) {
     var controller = this;
     var content = controller.content = $scope.content;
     var container = controller.container = $scope.container;
@@ -113,9 +113,9 @@
     }
   }
 
-  baActionSheet.$inject = ['FoundationApi'];
+  baActionSheet.$inject = ['BaseAppsApi'];
 
-  function baActionSheet(foundationApi) {
+  function baActionSheet(BaseAppsApi) {
     var directive = {
       restrict: 'EA',
       transclude: true,
@@ -139,12 +139,12 @@
       }
 
       function postLink(scope, element, attrs, controller) {
-        var id = attrs.id || foundationApi.generateUuid();
+        var id = attrs.id || BaseAppsApi.generateUuid();
         attrs.$set('id', id);
 
         scope.active = false;
 
-        foundationApi.subscribe(id, function(msg) {
+        BaseAppsApi.subscribe(id, function(msg) {
           if (msg === 'toggle') {
             controller.toggle();
           }
@@ -176,15 +176,15 @@
         };
 
         scope.$on("$destroy", function() {
-          foundationApi.unsubscribe(id);
+          BaseAppsApi.unsubscribe(id);
         });
       }
     }
   }
 
-  baAsContent.$inject = ['FoundationApi'];
+  baAsContent.$inject = ['BaseAppsApi'];
 
-  function baAsContent(foundationApi) {
+  function baAsContent(BaseAppsApi) {
     var directive = {
       restrict: 'EA',
       transclude: true,
@@ -229,9 +229,9 @@
     }
   }
 
-  baAsButton.$inject = ['FoundationApi'];
+  baAsButton.$inject = ['BaseAppsApi'];
 
-  function baAsButton(foundationApi) {
+  function baAsButton(BaseAppsApi) {
     var directive = {
       restrict: 'EA',
       transclude: true,

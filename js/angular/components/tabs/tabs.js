@@ -10,12 +10,12 @@
     .directive('baTabHref', baTabHref)
     .directive('baTabCustom', baTabCustom)
     .directive('baTabContentCustom', baTabContentCustom)
-    .service('FoundationTabs', FoundationTabs)
+    .service('BaseAppsTabs', BaseAppsTabs)
   ;
 
-  FoundationTabs.$inject = ['FoundationApi'];
+  BaseAppsTabs.$inject = ['BaseAppsApi'];
 
-  function FoundationTabs(foundationApi) {
+  function BaseAppsTabs(BaseAppsApi) {
     var service    = {};
 
     service.activate = activate;
@@ -24,14 +24,14 @@
 
     //target should be element ID
     function activate(target) {
-      foundationApi.publish(target, 'show');
+      BaseAppsApi.publish(target, 'show');
     }
 
   }
 
-  baTabsController.$inject = ['$scope', 'FoundationApi'];
+  baTabsController.$inject = ['$scope', 'BaseAppsApi'];
 
-  function baTabsController($scope, foundationApi) {
+  function baTabsController($scope, BaseAppsApi) {
     var controller  = this;
     var tabs        = controller.tabs = $scope.tabs = [];
     var id          = '';
@@ -50,9 +50,9 @@
           }
 
           if (tab.active) {
-            foundationApi.publish(id, ['activate', tab.scope.id]);
+            BaseAppsApi.publish(id, ['activate', tab.scope.id]);
           } else {
-            foundationApi.publish(id, ['deactivate', tab.scope.id]);
+            BaseAppsApi.publish(id, ['deactivate', tab.scope.id]);
           }
         } else {
           tab.active = false;
@@ -87,9 +87,9 @@
     };
   }
 
-  baTabs.$inject = ['FoundationApi'];
+  baTabs.$inject = ['BaseAppsApi'];
 
-  function baTabs(foundationApi) {
+  function baTabs(BaseAppsApi) {
     var directive = {
       restrict: 'EA',
       transclude: 'true',
@@ -105,7 +105,7 @@
     return directive;
 
     function link(scope, element, attrs, controller) {
-      scope.id = attrs.id || foundationApi.generateUuid();
+      scope.id = attrs.id || BaseAppsApi.generateUuid();
       scope.showTabContent = scope.displaced !== 'true';
       attrs.$set('id', scope.id);
       controller.setId(scope.id);
@@ -114,22 +114,22 @@
 
       //update tabs in case tab-content doesn't have them
       var updateTabs = function() {
-        foundationApi.publish(scope.id + '-tabs', scope.tabs);
+        BaseAppsApi.publish(scope.id + '-tabs', scope.tabs);
       };
 
-      foundationApi.subscribe(scope.id + '-get-tabs', function() {
+      BaseAppsApi.subscribe(scope.id + '-get-tabs', function() {
         updateTabs();
       });
 
       scope.$on("$destroy", function() {
-        foundationApi.unsubscribe(scope.id + '-get-tabs');
+        BaseAppsApi.unsubscribe(scope.id + '-get-tabs');
       });
     }
   }
 
-  baTabContent.$inject = ['FoundationApi'];
+  baTabContent.$inject = ['BaseAppsApi'];
 
-  function baTabContent(foundationApi) {
+  function baTabContent(BaseAppsApi) {
     var directive = {
       restrict: 'A',
       transclude: 'true',
@@ -148,7 +148,7 @@
       scope.tabs = scope.tabs || [];
       var id = scope.target;
 
-      foundationApi.subscribe(id, function(msg) {
+      BaseAppsApi.subscribe(id, function(msg) {
         if(msg[0] === 'activate') {
           scope.tabs.forEach(function (tab) {
             tab.scope.active = false;
@@ -169,23 +169,23 @@
 
       //if tabs empty, request tabs
       if(scope.tabs.length === 0) {
-        foundationApi.subscribe(id + '-tabs', function(tabs) {
+        BaseAppsApi.subscribe(id + '-tabs', function(tabs) {
           scope.tabs = tabs;
         });
 
-        foundationApi.publish(id + '-get-tabs', '');
+        BaseAppsApi.publish(id + '-get-tabs', '');
       }
 
       scope.$on("$destroy", function() {
-        foundationApi.unsubscribe(id);
-        foundationApi.unsubscribe(id + '-tabs');
+        BaseAppsApi.unsubscribe(id);
+        BaseAppsApi.unsubscribe(id + '-tabs');
       });
     }
   }
 
-  baTab.$inject = ['FoundationApi'];
+  baTab.$inject = ['BaseAppsApi'];
 
-  function baTab(foundationApi) {
+  function baTab(BaseAppsApi) {
     var directive = {
       restrict: 'EA',
       templateUrl: 'components/tabs/tab.html',
@@ -201,12 +201,12 @@
     return directive;
 
     function link(scope, element, attrs, controller, transclude) {
-      scope.id = attrs.id || foundationApi.generateUuid();
+      scope.id = attrs.id || BaseAppsApi.generateUuid();
       scope.active = false;
       scope.transcludeFn = transclude;
       controller.addTab(scope);
 
-      foundationApi.subscribe(scope.id, function(msg) {
+      BaseAppsApi.subscribe(scope.id, function(msg) {
         if(msg === 'show' || msg === 'open' || msg === 'activate') {
           if (!scope.active) {
             controller.select(scope);
@@ -229,14 +229,14 @@
       };
 
       scope.$on("$destroy", function() {
-        foundationApi.unsubscribe(scope.id);
+        BaseAppsApi.unsubscribe(scope.id);
       });
     }
   }
 
-  baTabIndividual.$inject = ['FoundationApi'];
+  baTabIndividual.$inject = ['BaseAppsApi'];
 
-  function baTabIndividual(foundationApi) {
+  function baTabIndividual(BaseAppsApi) {
     var directive = {
       restrict: 'EA',
       transclude: 'true',
@@ -253,22 +253,22 @@
         element.append(tabContent);
       });
 
-      foundationApi.subscribe(tab.scope.id, function(msg) {
-        foundationApi.publish(tab.parentContent, ['activate', tab.scope.id]);
+      BaseAppsApi.subscribe(tab.scope.id, function(msg) {
+        BaseAppsApi.publish(tab.parentContent, ['activate', tab.scope.id]);
         scope.$apply();
       });
 
       scope.$on("$destroy", function() {
-        foundationApi.unsubscribe(tab.scope.id);
+        BaseAppsApi.unsubscribe(tab.scope.id);
       });
     }
   }
 
   //custom tabs
 
-  baTabHref.$inject = ['FoundationApi'];
+  baTabHref.$inject = ['BaseAppsApi'];
 
-  function baTabHref(foundationApi) {
+  function baTabHref(BaseAppsApi) {
     var directive = {
       restrict: 'A',
       replace: false,
@@ -280,7 +280,7 @@
     function link(scope, element, attrs, controller) {
       var target = attrs.baTabHref;
 
-      foundationApi.subscribe(target, function(msg) {
+      BaseAppsApi.subscribe(target, function(msg) {
         if(msg === 'activate' || msg === 'show' || msg === 'open') {
           makeActive();
         }
@@ -288,7 +288,7 @@
 
 
       element.on('click', function(e) {
-        foundationApi.publish(target, 'activate');
+        BaseAppsApi.publish(target, 'activate');
         makeActive();
         e.preventDefault();
       });
@@ -300,9 +300,9 @@
     }
   }
 
-  baTabCustom.$inject = ['FoundationApi'];
+  baTabCustom.$inject = ['BaseAppsApi'];
 
-  function baTabCustom(foundationApi) {
+  function baTabCustom(BaseAppsApi) {
     var directive = {
       restrict: 'A',
       replace: false,
@@ -317,9 +317,9 @@
     }
   }
 
-  baTabContentCustom.$inject = ['FoundationApi'];
+  baTabContentCustom.$inject = ['BaseAppsApi'];
 
-  function baTabContentCustom(foundationApi) {
+  function baTabContentCustom(BaseAppsApi) {
     return {
       restrict: 'A',
       link: link
@@ -333,7 +333,7 @@
         if(node.id) {
           var tabId = node.id;
           tabs.push(tabId);
-          foundationApi.subscribe(tabId, function(msg) {
+          BaseAppsApi.subscribe(tabId, function(msg) {
             if(msg === 'activate' || msg === 'show' || msg === 'open') {
               activateTabs(tabId);
             }

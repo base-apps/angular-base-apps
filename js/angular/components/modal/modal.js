@@ -6,12 +6,12 @@
     .factory('ModalFactory', ModalFactory)
     .factory('ConfirmModal', ConfirmModal)
     .factory('PromptModal', PromptModal)
-    .service('FoundationModal', FoundationModal)
+    .service('BaseAppsModal', BaseAppsModal)
   ;
 
-  FoundationModal.$inject = ['FoundationApi', 'ModalFactory'];
+  BaseAppsModal.$inject = ['BaseAppsApi', 'ModalFactory'];
 
-  function FoundationModal(foundationApi, ModalFactory) {
+  function BaseAppsModal(BaseAppsApi, ModalFactory) {
     var service    = {};
 
     service.activate = activate;
@@ -22,12 +22,12 @@
 
     //target should be element ID
     function activate(target) {
-      foundationApi.publish(target, 'show');
+      BaseAppsApi.publish(target, 'show');
     }
 
     //target should be element ID
     function deactivate(target) {
-      foundationApi.publish(target, 'hide');
+      BaseAppsApi.publish(target, 'hide');
     }
 
     //new modal has to be controlled via the new instance
@@ -36,9 +36,9 @@
     }
   }
 
-  modalDirective.$inject = ['FoundationApi'];
+  modalDirective.$inject = ['BaseAppsApi'];
 
-  function modalDirective(foundationApi) {
+  function modalDirective(BaseAppsApi) {
 
     var directive = {
       restrict: 'EA',
@@ -65,7 +65,7 @@
 
       function postLink(scope, element, attrs) {
         var dialog = angular.element(element.children()[0]);
-        var animateFn = attrs.hasOwnProperty('baAdvise') ? foundationApi.animateAndAdvise : foundationApi.animate;
+        var animateFn = attrs.hasOwnProperty('baAdvise') ? BaseAppsApi.animateAndAdvise : BaseAppsApi.animate;
 
         scope.active = false;
         scope.overlay = attrs.overlay === 'false' ? false : true;
@@ -80,7 +80,7 @@
 
         scope.hideOverlay = function($event) {
           if($event.target.id == attrs.id && scope.overlayClose) {
-            foundationApi.publish(attrs.id, 'close');
+            BaseAppsApi.publish(attrs.id, 'close');
           }
         };
 
@@ -127,11 +127,11 @@
         };
 
         scope.$on("$destroy", function() {
-          foundationApi.unsubscribe(attrs.id);
+          BaseAppsApi.unsubscribe(attrs.id);
         });
 
         //setup
-        foundationApi.subscribe(attrs.id, function(msg) {
+        BaseAppsApi.subscribe(attrs.id, function(msg) {
           if(msg === 'show' || msg === 'open') {
             scope.show();
           } else if (msg === 'close' || msg === 'hide') {
@@ -149,7 +149,7 @@
 
         function adviseActiveChanged() {
           if (!angular.isUndefined(attrs.baAdvise)) {
-            foundationApi.publish(attrs.id, scope.active ? 'activated' : 'deactivated');
+            BaseAppsApi.publish(attrs.id, scope.active ? 'activated' : 'deactivated');
           }
         }
 
@@ -163,7 +163,7 @@
           // due to a bug where the overlay fadeIn is essentially covering up
           // the dialog's animation
           if (!scope.active) {
-            foundationApi.animate(element, scope.active, overlayIn, overlayOut);
+            BaseAppsApi.animate(element, scope.active, overlayIn, overlayOut);
           }
           else {
             element.addClass('is-active');
@@ -175,15 +175,15 @@
     }
   }
 
-  ModalFactory.$inject = ['$http', '$templateCache', '$rootScope', '$compile', '$timeout', '$q', 'FoundationApi'];
+  ModalFactory.$inject = ['$http', '$templateCache', '$rootScope', '$compile', '$timeout', '$q', 'BaseAppsApi'];
 
-  function ModalFactory($http, $templateCache, $rootScope, $compile, $timeout, $q, foundationApi) {
+  function ModalFactory($http, $templateCache, $rootScope, $compile, $timeout, $q, BaseAppsApi) {
     return modalFactory;
 
     function modalFactory(config) {
       var self = this, //for prototype functions
           container = angular.element(config.container || document.body),
-          id = config.id || foundationApi.generateUuid(),
+          id = config.id || BaseAppsApi.generateUuid(),
           attached = false,
           destroyed = false,
           activated = false,
@@ -283,10 +283,10 @@
 
           if (delayMsg) {
             $timeout(function() {
-              foundationApi.publish(id, msg);
+              BaseAppsApi.publish(id, msg);
             }, 0, false);
           } else {
-            foundationApi.publish(id, msg);
+            BaseAppsApi.publish(id, msg);
           }
         });
       }
@@ -361,7 +361,7 @@
           element.remove();
           destroyed = true;
         }, 0, false);
-        foundationApi.unsubscribe(id);
+        BaseAppsApi.unsubscribe(id);
       }
 
     }

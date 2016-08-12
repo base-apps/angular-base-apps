@@ -52,7 +52,7 @@ title: Notification
 </div>
 
 <h3>Advanced HTML</h3>
-<p>The Foundation Api service is pretty useful, one function of it is to send information from directives, controllers, and other parts to other directives, controllers, etc. It's a messaging system for the entire application.</p>
+<p>The BaseAppsApi service is pretty useful, one function of it is to send information from directives, controllers, and other parts to other directives, controllers, etc. It's a messaging system for the entire application.</p>
 
 <p>You can create a Dynamic Notification with this basic HTML:</p>
 <div class="grid-block">
@@ -79,10 +79,10 @@ title: Notification
   </div>
 </div>
 
-<p>And then send it a notification with via FoundationApi:</p>
+<p>And then send it a notification with via BaseAppsApi:</p>
 
 <hljs language="javascript">
-foundationApi.publish('main-notifications', { title: 'Test', content: 'Test2' });
+BaseAppsApi.publish('main-notifications', { title: 'Test', content: 'Test2' });
 </hljs>
 
 <p>You can also use the `ba-notify` directive for simpler messages and prototyping:</p>

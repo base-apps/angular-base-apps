@@ -40,9 +40,9 @@
       $locationProvider.hashPrefix('!');
   }
 
-  AngularModsController.$inject = ['$scope', '$state', '$window', 'FoundationApi', 'ModalFactory', 'NotificationFactory'];
+  AngularModsController.$inject = ['$scope', '$state', '$window', 'BaseAppsApi', 'ModalFactory', 'NotificationFactory'];
 
-  function AngularModsController($scope, $state, $window, FoundationApi, ModalFactory, NotificationFactory) {
+  function AngularModsController($scope, $state, $window, BaseAppsApi, ModalFactory, NotificationFactory) {
     $scope.foo = "Bloop!";
     $scope.bar = "Blee!";
 
@@ -73,9 +73,9 @@
     }
   };
 
-  MotionUIController.$inject = ['$scope', '$state', '$animate', '$window', 'FoundationApi'];
+  MotionUIController.$inject = ['$scope', '$state', '$animate', '$window', 'BaseAppsApi'];
 
-  function MotionUIController($scope, $state, $animate, $window, FoundationApi) {
+  function MotionUIController($scope, $state, $animate, $window, BaseAppsApi) {
     $scope.current = $state.current.name;
     $scope.element = {};
     $scope.speeds = [
