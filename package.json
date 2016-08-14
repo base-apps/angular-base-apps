@@ -6,7 +6,7 @@
   "scripts": {
     "test": "gulp test",
     "start": "gulp",
-    "publish-prerelease": "gulp publish:prerelease && git push --follow-tags && gulp publish:ghpages && npm publish",
+    "publish-prerelease": "gulp publish:prerelease && git push --follow-tags && npm publish",
     "publish-patch": "gulp publish:patch && git push --follow-tags && gulp publish:ghpages && npm publish",
     "publish-minor": "gulp publish:minor && git push --follow-tags && gulp publish:ghpages && npm publish",
     "publish-major": "gulp publish:major && git push --follow-tags && gulp publish:ghpages && npm publish",
