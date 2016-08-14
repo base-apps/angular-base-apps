@@ -415,10 +415,12 @@ gulp.task('default:dist', ['build:dist', 'server:start:dist'], function() {
   gulp.watch(paths.javascript.base.concat(paths.javascript.docs), ['javascript', 'copy:dist']);
 });
 
+gulp.task('bump:prerelease', function() { return bump('prerelease'); });
 gulp.task('bump:patch', function() { return bump('patch'); });
 gulp.task('bump:minor', function() { return bump('minor'); });
 gulp.task('bump:major', function() { return bump('major'); });
 
+gulp.task('publish:prerelease', ['build:dist', 'bump:prerelease'], function() { return publish(); });
 gulp.task('publish:patch', ['build:dist', 'bump:patch'], function() { return publish(); });
 gulp.task('publish:minor', ['build:dist', 'bump:minor'], function() { return publish(); });
 gulp.task('publish:major', ['build:dist', 'bump:major'], function() { return publish(); });
