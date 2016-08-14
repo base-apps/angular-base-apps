@@ -56,6 +56,7 @@ var paths = {
     testPaths: [
       'scss',
       'docs/assets/scss',
+      'node_modules/angular-icons/scss/mixins',
       'bower_components/bootcamp/dist'
     ]
   },
@@ -73,6 +74,9 @@ var paths = {
       'bower_components/hammerjs/hammer.js'
     ],
     docs: [
+      'js/vendor/**/*.js',
+      'node_modules/angular-icons/lib/iconic.min.js',
+      'node_modules/angular-icons/iconic.js',
       'node_modules/angular-dynamic-routing/dynamicRouting.js',
       'node_modules/angular-dynamic-routing/dynamicRouting.animations.js',
       'bower_components/marked/lib/marked.js',
@@ -114,7 +118,7 @@ gulp.task('copy', function() {
   })
     .pipe(gulp.dest('build')));
 
-  merged.add(gulp.src('./iconic/**/*')
+  merged.add(gulp.src('./node_modules/angular-icons/icons/iconic/**/*')
     .pipe(gulp.dest('build/assets/img/iconic/')));
 
   return merged;

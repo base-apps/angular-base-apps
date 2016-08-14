@@ -11,6 +11,9 @@
     // base apps
     'base',
 
+    // icons
+    'angularIcons.iconic',
+
     // dynamic routing
     'dynamicRouting',
     'dynamicRouting.animations'

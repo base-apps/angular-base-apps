@@ -8,7 +8,6 @@
     'base.accordion',
     'base.actionsheet',
     'base.common',
-    'base.iconic',
     'base.interchange',
     'base.loader',
     'base.modal',

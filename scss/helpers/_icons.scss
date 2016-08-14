@@ -1,0 +1,48 @@
+// Angular Base Apps
+//
+// Icons
+// ------
+// The framework comes with a number of mixins that help you easily style icons
+
+@mixin color-icon(
+  $fill,
+  $stroke: null,
+  $fillAccent: null,
+  $strokeAccent: null
+) {
+  * {
+    fill: $fill;
+
+    // Use the fill color if no stroke is provided
+    @if hasvalue($stroke) {
+      stroke: $stroke;
+    }
+    @else {
+      stroke: $fill;
+    }
+
+    &.iconic-property-accent {
+      // Use the fill color if no accent is provided
+      @if hasvalue($fillAccent) {
+        fill: $fillAccent;
+      }
+      @else {
+        fill: $fill;
+      }
+
+      // Use the normal stroke color if no accent is provided
+      @if hasvalue($strokeAccent) {
+        stroke: $strokeAccent;
+      }
+      @else {
+        // ...or use the fill if no normal stroke is provided
+        @if hasvalue($stroke) {
+          stroke: $stroke;
+        }
+        @else {
+          stroke: $fill;
+        }
+      }
+    }
+  }
+}
