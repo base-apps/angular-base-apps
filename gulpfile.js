@@ -61,9 +61,7 @@ var paths = {
   },
   javascript: {
     base: [
-      'js/vendor/**/*.js',
-      'js/angular/**/*.js',
-      '!js/angular/app.js'
+      'js/angular/**/*.js'
     ],
     libs: [
       'bower_components/fastclick/lib/fastclick.js',
