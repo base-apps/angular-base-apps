@@ -7,17 +7,13 @@
 (function() {
   'use strict';
 
-  angular.module('foundation.core.animation', [])
-    .service('FoundationAnimation', FoundationAnimation)
-  ;
-
   angular.module('base.core.animation', [])
-    .service('FoundationAnimation', FoundationAnimation)
+    .service('BaseAppsAnimation', BaseAppsAnimation)
   ;
 
-  FoundationAnimation.$inject = ['$q'];
+  BaseAppsAnimation.$inject = ['$q'];
 
-  function FoundationAnimation($q) {
+  function BaseAppsAnimation($q) {
     var animations = [];
     var service = {};
 
@@ -158,28 +154,18 @@
 (function() {
   'use strict';
 
-  angular.module('foundation.core', [
-      'foundation.core.animation'
-    ])
-    .service('FoundationApi', FoundationApi)
-    .service('FoundationAdapter', FoundationAdapter)
-    .factory('Utils', Utils)
-    .run(Setup);
-  ;
-
-
   angular.module('base.core', [
       'base.core.animation'
     ])
-    .service('FoundationApi', FoundationApi)
-    .service('FoundationAdapter', FoundationAdapter)
+    .service('BaseAppsApi', BaseAppsApi)
+    .service('BaseAppsAdapter', BaseAppsAdapter)
     .factory('Utils', Utils)
     .run(Setup);
   ;
 
-  FoundationApi.$inject = ['FoundationAnimation'];
+  BaseAppsApi.$inject = ['BaseAppsAnimation'];
 
-  function FoundationApi(FoundationAnimation) {
+  function BaseAppsApi(BaseAppsAnimation) {
     var listeners  = {};
     var settings   = {};
     var uniqueIds  = [];
@@ -261,7 +247,7 @@
 
       //little trick to produce semi-random IDs
       do {
-        uuid += 'zf-uuid-';
+        uuid += 'ba-uuid-';
         for (var i=0; i<15; i++) {
           uuid += Math.floor(Math.random()*16).toString(16);
         }
@@ -272,15 +258,15 @@
     }
 
     function toggleAnimate(element, futureState) {
-      FoundationAnimation.toggleAnimate(element, futureState);
+      BaseAppsAnimation.toggleAnimate(element, futureState);
     }
 
     function closeActiveElements(options) {
       var self = this;
       options = options || {};
-      var activeElements = document.querySelectorAll('.is-active[zf-closable]');
-      // action sheets are nested zf-closable elements, so we have to target the parent
-      var nestedActiveElements = document.querySelectorAll('[zf-closable] > .is-active');
+      var activeElements = document.querySelectorAll('.is-active[ba-closable]');
+      // action sheets are nested ba-closable elements, so we have to target the parent
+      var nestedActiveElements = document.querySelectorAll('[ba-closable] > .is-active');
 
       if (activeElements.length) {
         angular.forEach(activeElements, function(el) {
@@ -300,13 +286,13 @@
     }
 
     function animate(element, futureState, animationIn, animationOut) {
-      return FoundationAnimation.animate(element, futureState, animationIn, animationOut);
+      return BaseAppsAnimation.animate(element, futureState, animationIn, animationOut);
     }
 
     function animateAndAdvise(element, futureState, animationIn, animationOut) {
       var msgPrefix = "animation-" + (futureState ? "open" : "close");
       publish(element[0].id, msgPrefix + "-started");
-      var promise = FoundationAnimation.animate(element, futureState, animationIn, animationOut);
+      var promise = BaseAppsAnimation.animate(element, futureState, animationIn, animationOut);
       promise.then(function() {
         publish(element[0].id, msgPrefix + "-finished");
       }, function() {
@@ -316,9 +302,9 @@
     }
   }
 
-  FoundationAdapter.$inject = ['FoundationApi'];
+  BaseAppsAdapter.$inject = ['BaseAppsApi'];
 
-  function FoundationAdapter(foundationApi) {
+  function BaseAppsAdapter(BaseAppsApi) {
 
     var service    = {};
 
@@ -328,11 +314,11 @@
     return service;
 
     function activate(target) {
-      foundationApi.publish(target, 'show');
+      BaseAppsApi.publish(target, 'show');
     }
 
     function deactivate(target) {
-      foundationApi.publish(target, 'hide');
+      BaseAppsApi.publish(target, 'hide');
     }
   }
 
@@ -377,330 +363,22 @@
 (function() {
   'use strict';
 
-  angular.module('foundation.dynamicRouting.animations', ['foundation.dynamicRouting'])
-    .directive('uiView', uiView)
-  ;
-
-  angular.module('base.dynamicRouting.animations', ['base.dynamicRouting'])
-    .directive('uiView', uiView)
-  ;
-
-  uiView.$inject = ['$rootScope', '$state'];
-
-  function uiView($rootScope, $state) {
-    var directive = {
-      restrict : 'ECA',
-      priority : -400,
-      link     : link
-    };
-
-    return directive;
-
-    function link(scope, element) {
-      var animation = {};
-      var animationEnded = false;
-      var presetHeight;
-
-      var cleanup = [
-        $rootScope.$on('$stateChangeStart', onStateChangeStart),
-        $rootScope.$on('$stateChangeError', onStateChangeError),
-        scope.$on('$stateChangeSuccess', onStateChangeSuccess),
-        scope.$on('$viewContentAnimationEnded', onViewContentAnimationEnded)
-      ];
-
-      var destroyed = scope.$on('$destroy', function onDestroy() {
-        angular.forEach(cleanup, function (cb) {
-          if (angular.isFunction(cb)) {
-            cb();
-          }
-        });
-
-        destroyed();
-      });
-
-      function onStateChangeStart(event, toState, toParams, fromState, fromParams) {
-
-        if (fromState.animation) {
-          if (!fromState.animation.leave && !toState.animation.leave) {
-            return;
-          }
-          else {
-             animationRouter(event, toState, fromState);
-          }
-        }
-      }
-
-      function animationRouter(event, toState, fromState) {
-        if (!animationEnded) {
-          resetParent();
-          prepareParent();
-
-          element.removeClass(fromState.animation.leave);
-        }
-        else {
-          prepareParent();
-
-          element.addClass(fromState.animation.leave);
-        }
-
-      }
-
-      function onStateChangeError() {
-        if(animation.leave) {
-          element.removeClass(animation.leave);
-        }
-
-        resetParent(); //reset parent if state change fails
-      }
-
-      function onStateChangeSuccess() {
-        resetParent();
-        if ($state.includes(getState()) && animation.enter) {
-          element.addClass(animation.enter);
-        }
-      }
-
-      function onViewContentAnimationEnded(event) {
-        if (event.targetScope === scope && animation.enter) {
-          element.removeClass(animation.enter);
-        }
-
-        animationEnded = true;
-
-      }
-
-      function getState() {
-        var view  = element.data('$uiView');
-        var state = view && view.state && view.state.self;
-
-        if (state) {
-          angular.extend(animation, state.animation);
-        }
-
-        return state;
-      }
-
-      function resetParent() {
-        element.parent().removeClass('position-absolute');
-        if(element.parent()[0] && presetHeight !== true) {
-          element.parent()[0].style.height = null;
-        }
-      }
-
-      function prepareParent() {
-        if (element.parent()[0]) {
-          var parentHeight = parseInt(element.parent()[0].style.height);
-          var elHeight = parseInt(window.getComputedStyle(element[0], null).getPropertyValue('height'));
-          var tempHeight = parentHeight > 0 ? parentHeight : elHeight > 0 ? elHeight : '';
-
-          if(parentHeight > 0) {
-            presetHeight = true;
-          }
-
-          element.parent()[0].style.height = tempHeight + 'px';
-          element.parent().addClass('position-absolute');
-        }
-      }
-    }
-  }
-
-})();
-
-(function() {
-  'use strict';
-
-  angular.module('foundation.dynamicRouting', ['ui.router'])
-    .provider('$FoundationState', FoundationState)
-    .controller('DefaultController', DefaultController)
-    .config(DynamicRoutingConfig)
-    .run(DynamicRoutingRun)
-  ;
-
-  angular.module('base.dynamicRouting', ['ui.router'])
-    .provider('$FoundationState', FoundationState)
-    .controller('DefaultController', DefaultController)
-    .config(DynamicRoutingConfig)
-    .run(DynamicRoutingRun)
-  ;
-
-  FoundationState.$inject = ['$stateProvider'];
-
-  function FoundationState($stateProvider) {
-    var complexViews = {};
-
-    this.registerDynamicRoutes = function(routes) {
-      var dynamicRoutes = routes || foundationRoutes;
-
-      angular.forEach(dynamicRoutes, function(page) {
-        if (page.hasComposed) {
-          if (!angular.isDefined(complexViews[page.parent])) {
-            complexViews[page.parent] = { children: {} };
-          }
-
-          if (page.controller) {
-            page.controller = getController(page);
-          }
-
-          complexViews[page.parent].children[page.name] = page;
-
-        } else if (page.composed) {
-          if(!angular.isDefined(complexViews[page.name])) {
-            complexViews[page.name] = { children: {} };
-          }
-
-          if (page.controller) {
-            page.controller = getController(page);
-          }
-
-          angular.extend(complexViews[page.name], page);
-        } else {
-          var state = {
-            url: page.url,
-            templateUrl: page.path,
-            abstract: page.abstract || false,
-            parent: page.parent || '',
-            controller: getController(page),
-            data: getData(page),
-            animation: buildAnimations(page),
-            resolve: {}
-          };
-
-          $stateProvider.state(page.name, state);
-        }
-      });
-
-      angular.forEach(complexViews, function(page) {
-          var state = {
-            url: page.url,
-            parent: page.parent || '',
-            abstract: page.abstract || false,
-            data: getData(page),
-            animation: buildAnimations(page),
-            views: {
-              '': buildState(page.path, page)
-            }
-          };
-
-          angular.forEach(page.children, function(sub) {
-            state.views[sub.name + '@' + page.name] = buildState(sub.path, page);
-          });
-
-          $stateProvider.state(page.name, state);
-      });
-    };
-
-    this.$get = angular.noop;
-
-    function getData(page) {
-      var data = { vars: {} };
-      if (page.data) {
-        if (typeof page.data.vars === "object") {
-          data.vars = page.data.vars;
-        }
-        delete page.data.vars;
-        angular.extend(data, page.data);
-      }
-      delete page.data;
-      angular.extend(data.vars, page);
-      return data;
-    }
-
-    function buildState(path, state) {
-      return {
-        templateUrl: path,
-        controller: getController(state),
-      };
-    }
-
-    function getController(state) {
-      var ctrl = state.controller || 'DefaultController';
-
-      if (!/\w\s+as\s+\w/.test(ctrl)) {
-        ctrl += ' as PageCtrl';
-      }
-
-      return ctrl;
-    }
-
-    function buildAnimations(state) {
-      var animations = {};
-
-      if (state.animationIn) {
-        animations.enter = state.animationIn;
-      }
-
-      if (state.animationOut) {
-        animations.leave = state.animationOut;
-      }
-
-      return animations;
-    }
-  }
-
-  DefaultController.$inject = ['$scope', '$stateParams', '$state'];
-
-  function DefaultController($scope, $stateParams, $state) {
-    var params = {};
-    angular.forEach($stateParams, function(value, key) {
-      params[key] = value;
-    });
-
-    $scope.params = params;
-    $scope.current = $state.current.name;
-
-    if($state.current.views) {
-      $scope.vars = $state.current.data.vars;
-      $scope.composed = $state.current.data.vars.children;
-    } else {
-      $scope.vars = $state.current.data.vars;
-    }
-  }
-
-  DynamicRoutingConfig.$inject = ['$FoundationStateProvider'];
-
-  function DynamicRoutingConfig(FoundationStateProvider) {
-    // Don't error out if Front Router is not being used
-    var foundationRoutes = window.foundationRoutes || [];
-
-    FoundationStateProvider.registerDynamicRoutes(foundationRoutes);
-  }
-
-  DynamicRoutingRun.$inject = ['$rootScope', '$state', '$stateParams'];
-
-  function DynamicRoutingRun($rootScope, $state, $stateParams) {
-    $rootScope.$state = $state;
-    $rootScope.$stateParams = $stateParams;
-  }
-
-})();
-
-(function() {
-  'use strict';
-
-  angular.module('foundation.mediaquery', ['foundation.core'])
-    .run(mqInitRun)
-    .factory('FoundationMQInit', FoundationMQInit)
-    .factory('mqHelpers', mqHelpers)
-    .service('FoundationMQ', FoundationMQ)
-  ;
-
-
   angular.module('base.mediaquery', ['base.core'])
     .run(mqInitRun)
-    .factory('FoundationMQInit', FoundationMQInit)
+    .factory('BaseAppsMediaQueryInit', BaseAppsMediaQueryInit)
     .factory('mqHelpers', mqHelpers)
-    .service('FoundationMQ', FoundationMQ)
+    .service('BaseAppsMediaQuery', BaseAppsMediaQuery)
   ;
 
-  mqInitRun.$inject = ['FoundationMQInit'];
+  mqInitRun.$inject = ['BaseAppsMediaQueryInit'];
 
   function mqInitRun(mqInit) {
     mqInit.init();
   }
 
-  FoundationMQInit.$inject = ['mqHelpers', 'FoundationApi', 'Utils', 'FoundationMQ'];
+  BaseAppsMediaQueryInit.$inject = ['mqHelpers', 'BaseAppsApi', 'Utils', 'BaseAppsMediaQuery'];
 
-  function FoundationMQInit(helpers, foundationApi, u, foundationMQ){
+  function BaseAppsMediaQueryInit(helpers, BaseAppsApi, u, BaseAppsMediaQuery){
     var factory = {};
     var namedQueries = {
       'default' : 'only screen',
@@ -725,8 +403,8 @@
       var mediaMap;
       var key;
 
-      helpers.headerHelper(['foundation-mq']);
-      extractedMedia = helpers.getStyle('.foundation-mq', 'font-family');
+      helpers.headerHelper(['base-apps-mq']);
+      extractedMedia = helpers.getStyle('.base-apps-mq', 'font-family');
 
       if (!extractedMedia.match(/([\w]+=[\d]+[a-z]*&?)+/)) {
         extractedMedia = 'small=0&medium=40rem&large=75rem&xlarge=90rem&xxlarge=120rem';
@@ -761,16 +439,16 @@
         }
       }
 
-      foundationApi.modifySettings({
+      BaseAppsApi.modifySettings({
         mediaQueries: angular.extend(mediaQueries, namedQueries),
         mediaMap: mediaMap
       });
 
       window.addEventListener('resize', u.throttle(function() {
         // any resize event causes a clearing of the media cache
-        foundationMQ.clearCache();
+        BaseAppsMediaQuery.clearCache();
 
-        foundationApi.publish('resize', 'window resized');
+        BaseAppsApi.publish('resize', 'window resized');
       }, 50));
     }
   }
@@ -843,9 +521,9 @@
     }
   }
 
-  FoundationMQ.$inject = ['FoundationApi'];
+  BaseAppsMediaQuery.$inject = ['BaseAppsApi'];
 
-  function FoundationMQ(foundationApi) {
+  function BaseAppsMediaQuery(BaseAppsApi) {
     var service = [],
         mediaQueryResultCache = {},
         queryMinWidthCache = {};
@@ -866,11 +544,11 @@
     }
 
     function getMediaQueries() {
-      return foundationApi.getSettings().mediaQueries;
+      return BaseAppsApi.getSettings().mediaQueries;
     }
 
     function getNextLargestMediaQuery(media) {
-      var mediaMapEntry = foundationApi.getSettings().mediaMap[media];
+      var mediaMapEntry = BaseAppsApi.getSettings().mediaMap[media];
       if (mediaMapEntry) {
         return mediaMapEntry.up;
       } else {
@@ -879,7 +557,7 @@
     }
 
     function getNextSmallestMediaQuery(media) {
-      var mediaMapEntry = foundationApi.getSettings().mediaMap[media];
+      var mediaMapEntry = BaseAppsApi.getSettings().mediaMap[media];
       if (mediaMapEntry) {
         return mediaMapEntry.down;
       } else {
@@ -1109,22 +787,15 @@ angular.module('markdown', [])
 (function() {
   'use strict';
 
-  angular.module('foundation.accordion', [])
-    .controller('ZfAccordionController', zfAccordionController)
-    .directive('zfAccordion', zfAccordion)
-    .directive('zfAccordionItem', zfAccordionItem)
-  ;
-
-
   angular.module('base.accordion', [])
-    .controller('ZfAccordionController', zfAccordionController)
-    .directive('zfAccordion', zfAccordion)
-    .directive('zfAccordionItem', zfAccordionItem)
+    .controller('baAccordionController', baAccordionController)
+    .directive('baAccordion', baAccordion)
+    .directive('baAccordionItem', baAccordionItem)
   ;
 
-  zfAccordionController.$inject = ['$scope'];
+  baAccordionController.$inject = ['$scope'];
 
-  function zfAccordionController($scope) {
+  function baAccordionController($scope) {
     var controller = this;
     var sections = controller.sections = $scope.sections = [];
     var multiOpen   = false;
@@ -1175,13 +846,13 @@ angular.module('markdown', [])
     };
   }
 
-  function zfAccordion() {
+  function baAccordion() {
     var directive = {
       restrict: 'EA',
       transclude: 'true',
       replace: true,
       templateUrl: 'components/accordion/accordion.html',
-      controller: 'ZfAccordionController',
+      controller: 'baAccordionController',
       scope: {
       },
       link: link
@@ -1197,9 +868,9 @@ angular.module('markdown', [])
   }
 
   //accordion item
-  zfAccordionItem.$inject = ['FoundationApi'];
+  baAccordionItem.$inject = ['BaseAppsApi'];
 
-  function zfAccordionItem(foundationApi) {
+  function baAccordionItem(BaseAppsApi) {
     var directive = {
         restrict: 'EA',
         templateUrl: 'components/accordion/accordion-item.html',
@@ -1207,7 +878,7 @@ angular.module('markdown', [])
         scope: {
           title: '@'
         },
-        require: '^zfAccordion',
+        require: '^baAccordion',
         replace: true,
         controller: function() {},
         link: link
@@ -1216,11 +887,11 @@ angular.module('markdown', [])
     return directive;
 
     function link(scope, element, attrs, controller, transclude) {
-      scope.id = attrs.id || foundationApi.generateUuid();
+      scope.id = attrs.id || BaseAppsApi.generateUuid();
       scope.active = false;
       controller.addSection(scope);
 
-      foundationApi.subscribe(scope.id, function(msg) {
+      BaseAppsApi.subscribe(scope.id, function(msg) {
         if(msg === 'show' || msg === 'open' || msg === 'activate') {
           if (!scope.active) {
             controller.select(scope);
@@ -1245,7 +916,7 @@ angular.module('markdown', [])
       };
 
       scope.$on("$destroy", function() {
-        foundationApi.unsubscribe(scope.id);
+        BaseAppsApi.unsubscribe(scope.id);
       });
     }
   }
@@ -1255,25 +926,252 @@ angular.module('markdown', [])
 (function() {
   'use strict';
 
-  angular.module('foundation.actionsheet', ['foundation.core'])
-    .controller('ZfActionSheetController', zfActionSheetController)
-    .directive('zfActionSheet', zfActionSheet)
-    .directive('zfAsContent', zfAsContent)
-    .directive('zfAsButton', zfAsButton)
-    .service('FoundationActionSheet', FoundationActionSheet)
+  angular.module('base.common', ['base.core'])
+    .directive('baClose', baClose)
+    .directive('baOpen', baOpen)
+    .directive('baToggle', baToggle)
+    .directive('baEscClose', baEscClose)
+    .directive('baSwipeClose', baSwipeClose)
+    .directive('baHardToggle', baHardToggle)
+    .directive('baCloseAll', baCloseAll)
   ;
+
+  baClose.$inject = ['BaseAppsApi'];
+
+  function baClose(BaseAppsApi) {
+    var directive = {
+      restrict: 'A',
+      link: link
+    };
+
+    return directive;
+
+    function link(scope, element, attrs) {
+      var targetId = '';
+      if (attrs.baClose) {
+        targetId = attrs.baClose;
+      } else {
+        var parentElement= false;
+        var tempElement = element.parent();
+        //find parent modal
+        while(parentElement === false) {
+          if(tempElement[0].nodeName == 'BODY') {
+            parentElement = '';
+          }
+
+          if(typeof tempElement.attr('ba-closable') !== 'undefined' && tempElement.attr('ba-closable') !== false) {
+            parentElement = tempElement;
+          }
+
+          tempElement = tempElement.parent();
+        }
+        targetId = parentElement.attr('id');
+      }
+      element.on('click', function(e) {
+        BaseAppsApi.publish(targetId, 'close');
+        e.preventDefault();
+      });
+    }
+  }
+
+  baOpen.$inject = ['BaseAppsApi'];
+
+  function baOpen(BaseAppsApi) {
+    var directive = {
+      restrict: 'A',
+      link: link
+    };
+
+    return directive;
+
+    function link(scope, element, attrs) {
+      element.on('click', function(e) {
+        BaseAppsApi.publish(attrs.baOpen, 'open');
+        e.preventDefault();
+      });
+    }
+  }
+
+  baToggle.$inject = ['BaseAppsApi'];
+
+  function baToggle(BaseAppsApi) {
+    var directive = {
+      restrict: 'A',
+      link: link
+    }
+
+    return directive;
+
+    function link(scope, element, attrs) {
+      element.on('click', function(e) {
+        BaseAppsApi.publish(attrs.baToggle, 'toggle');
+        e.preventDefault();
+      });
+    }
+  }
+
+  baEscClose.$inject = ['BaseAppsApi'];
+
+  function baEscClose(BaseAppsApi) {
+    var directive = {
+      restrict: 'A',
+      link: link
+    };
+
+    return directive;
+
+    function link(scope, element, attrs) {
+      element.on('keyup', function(e) {
+        if (e.keyCode === 27) {
+          BaseAppsApi.closeActiveElements();
+        }
+        e.preventDefault();
+      });
+    }
+  }
+
+  baSwipeClose.$inject = ['BaseAppsApi'];
+
+  function baSwipeClose(BaseAppsApi) {
+    var directive = {
+      restrict: 'A',
+      link: link
+    };
+    return directive;
+
+    function link($scope, element, attrs) {
+      var swipeDirection;
+      var hammerElem;
+      if (typeof(Hammer)!=='undefined') {
+        hammerElem = new Hammer(element[0]);
+        // set the options for swipe (to make them a bit more forgiving in detection)
+        hammerElem.get('swipe').set({
+          direction: Hammer.DIRECTION_ALL,
+          threshold: 5, // this is how far the swipe has to travel
+          velocity: 0.5 // and this is how fast the swipe must travel
+        });
+      }
+      // detect what direction the directive is pointing
+      switch (attrs.baSwipeClose) {
+        case 'right':
+          swipeDirection = 'swiperight';
+          break;
+        case 'left':
+          swipeDirection = 'swipeleft';
+          break;
+        case 'up':
+          swipeDirection = 'swipeup';
+          break;
+        case 'down':
+          swipeDirection = 'swipedown';
+          break;
+        default:
+          swipeDirection = 'swipe';
+      }
+      if(typeof(hammerElem) !== 'undefined'){
+        hammerElem.on(swipeDirection, function() {
+          BaseAppsApi.publish(attrs.id, 'close');
+        });
+      }
+    }
+  }
+
+  baHardToggle.$inject = ['BaseAppsApi'];
+
+  function baHardToggle(BaseAppsApi) {
+    var directive = {
+      restrict: 'A',
+      link: link
+    };
+
+    return directive;
+
+    function link(scope, element, attrs) {
+      element.on('click', function(e) {
+        BaseAppsApi.closeActiveElements({exclude: attrs.baHardToggle});
+        BaseAppsApi.publish(attrs.baHardToggle, 'toggle');
+        e.preventDefault();
+      });
+    }
+  }
+
+  baCloseAll.$inject = ['BaseAppsApi'];
+
+  function baCloseAll(BaseAppsApi) {
+    var directive = {
+      restrict: 'A',
+      link: link
+    };
+
+    return directive;
+
+    function link(scope, element, attrs) {
+      element.on('click', function(e) {
+        var tar = e.target, avoid, activeElements, closedElements, i;
+
+        // check if clicked target is designated to open/close another component
+        avoid = ['ba-toggle', 'ba-hard-toggle', 'ba-open', 'ba-close'].filter(function(e){
+          return e in tar.attributes;
+        });
+        if(avoid.length > 0) {
+          // do nothing
+          return;
+        }
+
+        // check if clicked element is inside active closable parent
+        if (getParentsUntil(tar, 'ba-closable') !== false) {
+          // do nothing
+          return;
+        }
+
+        // close all active elements
+        activeElements = document.querySelectorAll('.is-active[ba-closable]');
+        closedElements = 0;
+        if(activeElements.length > 0) {
+          for(i = 0; i < activeElements.length; i++) {
+            if (!activeElements[i].hasAttribute('ba-ignore-all-close')) {
+              BaseAppsApi.publish(activeElements[i].id, 'close');
+              closedElements++;
+            }
+          }
+
+          // if one or more elements were closed,
+          // prevent the default action
+          if (closedElements > 0) {
+            e.preventDefault();
+          }
+        }
+      });
+    }
+    /** special thanks to Chris Ferdinandi for this solution.
+     * http://gomakethings.com/climbing-up-and-down-the-dom-tree-with-vanilla-javascript/
+     */
+    function getParentsUntil(elem, parent) {
+      for ( ; elem && elem !== document.body; elem = elem.parentNode ) {
+        if(elem.hasAttribute(parent)){
+          if(elem.classList.contains('is-active')){ return elem; }
+          break;
+        }
+      }
+      return false;
+    }
+  }
+})();
+
+(function() {
+  'use strict';
 
   angular.module('base.actionsheet', ['base.core'])
-    .controller('ZfActionSheetController', zfActionSheetController)
-    .directive('zfActionSheet', zfActionSheet)
-    .directive('zfAsContent', zfAsContent)
-    .directive('zfAsButton', zfAsButton)
-    .service('FoundationActionSheet', FoundationActionSheet)
+    .controller('baActionSheetController', baActionSheetController)
+    .directive('baActionSheet', baActionSheet)
+    .directive('baAsContent', baAsContent)
+    .directive('baAsButton', baAsButton)
+    .service('BaseAppsActionSheet', BaseAppsActionSheet)
   ;
 
-  FoundationActionSheet.$inject = ['FoundationApi'];
+  BaseAppsActionSheet.$inject = ['BaseAppsApi'];
 
-  function FoundationActionSheet(foundationApi) {
+  function BaseAppsActionSheet(BaseAppsApi) {
     var service    = {};
 
     service.activate = activate;
@@ -1283,18 +1181,18 @@ angular.module('markdown', [])
 
     //target should be element ID
     function activate(target) {
-      foundationApi.publish(target, 'show');
+      BaseAppsApi.publish(target, 'show');
     }
 
     //target should be element ID
     function deactivate(target) {
-      foundationApi.publish(target, 'hide');
+      BaseAppsApi.publish(target, 'hide');
     }
   }
 
-  zfActionSheetController.$inject = ['$scope', 'FoundationApi'];
+  baActionSheetController.$inject = ['$scope', 'BaseAppsApi'];
 
-  function zfActionSheetController($scope, foundationApi) {
+  function baActionSheetController($scope, BaseAppsApi) {
     var controller = this;
     var content = controller.content = $scope.content;
     var container = controller.container = $scope.container;
@@ -1336,7 +1234,7 @@ angular.module('markdown', [])
 
       if(!insideActionSheet) {
         // if the element has a toggle attribute, do nothing
-        if (e.target.attributes['zf-toggle'] || e.target.attributes['zf-hard-toggle']) {
+        if (e.target.attributes['ba-toggle'] || e.target.attributes['ba-hard-toggle']) {
           return;
         };
         // if the element is outside the action sheet and is NOT a toggle element, hide
@@ -1375,15 +1273,15 @@ angular.module('markdown', [])
     }
   }
 
-  zfActionSheet.$inject = ['FoundationApi'];
+  baActionSheet.$inject = ['BaseAppsApi'];
 
-  function zfActionSheet(foundationApi) {
+  function baActionSheet(BaseAppsApi) {
     var directive = {
       restrict: 'EA',
       transclude: true,
       replace: true,
       templateUrl: 'components/actionsheet/actionsheet.html',
-      controller: 'ZfActionSheetController',
+      controller: 'baActionSheetController',
       compile: compile
     };
 
@@ -1397,16 +1295,16 @@ angular.module('markdown', [])
       };
 
       function preLink(scope, iElement, iAttrs) {
-        iAttrs.$set('zf-closable', 'actionsheet');
+        iAttrs.$set('ba-closable', 'actionsheet');
       }
 
       function postLink(scope, element, attrs, controller) {
-        var id = attrs.id || foundationApi.generateUuid();
+        var id = attrs.id || BaseAppsApi.generateUuid();
         attrs.$set('id', id);
 
         scope.active = false;
 
-        foundationApi.subscribe(id, function(msg) {
+        BaseAppsApi.subscribe(id, function(msg) {
           if (msg === 'toggle') {
             controller.toggle();
           }
@@ -1438,21 +1336,21 @@ angular.module('markdown', [])
         };
 
         scope.$on("$destroy", function() {
-          foundationApi.unsubscribe(id);
+          BaseAppsApi.unsubscribe(id);
         });
       }
     }
   }
 
-  zfAsContent.$inject = ['FoundationApi'];
+  baAsContent.$inject = ['BaseAppsApi'];
 
-  function zfAsContent(foundationApi) {
+  function baAsContent(BaseAppsApi) {
     var directive = {
       restrict: 'EA',
       transclude: true,
       replace: true,
       templateUrl: 'components/actionsheet/actionsheet-content.html',
-      require: '^zfActionSheet',
+      require: '^baActionSheet',
       scope: {
         position: '@?'
       },
@@ -1491,15 +1389,15 @@ angular.module('markdown', [])
     }
   }
 
-  zfAsButton.$inject = ['FoundationApi'];
+  baAsButton.$inject = ['BaseAppsApi'];
 
-  function zfAsButton(foundationApi) {
+  function baAsButton(BaseAppsApi) {
     var directive = {
       restrict: 'EA',
       transclude: true,
       replace: true,
       templateUrl: 'components/actionsheet/actionsheet-button.html',
-      require: '^zfActionSheet',
+      require: '^baActionSheet',
       scope: {
         title: '@?'
       },
@@ -1520,262 +1418,12 @@ angular.module('markdown', [])
 
 })();
 
-(function() {
-  'use strict';
-
-  angular.module('foundation.common', ['foundation.core'])
-    .directive('zfClose', zfClose)
-    .directive('zfOpen', zfOpen)
-    .directive('zfToggle', zfToggle)
-    .directive('zfEscClose', zfEscClose)
-    .directive('zfSwipeClose', zfSwipeClose)
-    .directive('zfHardToggle', zfHardToggle)
-    .directive('zfCloseAll', zfCloseAll)
-  ;
-
-  angular.module('base.common', ['base.core'])
-    .directive('zfClose', zfClose)
-    .directive('zfOpen', zfOpen)
-    .directive('zfToggle', zfToggle)
-    .directive('zfEscClose', zfEscClose)
-    .directive('zfSwipeClose', zfSwipeClose)
-    .directive('zfHardToggle', zfHardToggle)
-    .directive('zfCloseAll', zfCloseAll)
-  ;
-
-  zfClose.$inject = ['FoundationApi'];
-
-  function zfClose(foundationApi) {
-    var directive = {
-      restrict: 'A',
-      link: link
-    };
-
-    return directive;
-
-    function link(scope, element, attrs) {
-      var targetId = '';
-      if (attrs.zfClose) {
-        targetId = attrs.zfClose;
-      } else {
-        var parentElement= false;
-        var tempElement = element.parent();
-        //find parent modal
-        while(parentElement === false) {
-          if(tempElement[0].nodeName == 'BODY') {
-            parentElement = '';
-          }
-
-          if(typeof tempElement.attr('zf-closable') !== 'undefined' && tempElement.attr('zf-closable') !== false) {
-            parentElement = tempElement;
-          }
-
-          tempElement = tempElement.parent();
-        }
-        targetId = parentElement.attr('id');
-      }
-      element.on('click', function(e) {
-        foundationApi.publish(targetId, 'close');
-        e.preventDefault();
-      });
-    }
-  }
-
-  zfOpen.$inject = ['FoundationApi'];
-
-  function zfOpen(foundationApi) {
-    var directive = {
-      restrict: 'A',
-      link: link
-    };
-
-    return directive;
-
-    function link(scope, element, attrs) {
-      element.on('click', function(e) {
-        foundationApi.publish(attrs.zfOpen, 'open');
-        e.preventDefault();
-      });
-    }
-  }
-
-  zfToggle.$inject = ['FoundationApi'];
-
-  function zfToggle(foundationApi) {
-    var directive = {
-      restrict: 'A',
-      link: link
-    }
-
-    return directive;
-
-    function link(scope, element, attrs) {
-      element.on('click', function(e) {
-        foundationApi.publish(attrs.zfToggle, 'toggle');
-        e.preventDefault();
-      });
-    }
-  }
-
-  zfEscClose.$inject = ['FoundationApi'];
-
-  function zfEscClose(foundationApi) {
-    var directive = {
-      restrict: 'A',
-      link: link
-    };
-
-    return directive;
-
-    function link(scope, element, attrs) {
-      element.on('keyup', function(e) {
-        if (e.keyCode === 27) {
-          foundationApi.closeActiveElements();
-        }
-        e.preventDefault();
-      });
-    }
-  }
-
-  zfSwipeClose.$inject = ['FoundationApi'];
-
-  function zfSwipeClose(foundationApi) {
-    var directive = {
-      restrict: 'A',
-      link: link
-    };
-    return directive;
-
-    function link($scope, element, attrs) {
-      var swipeDirection;
-      var hammerElem;
-      if (typeof(Hammer)!=='undefined') {
-        hammerElem = new Hammer(element[0]);
-        // set the options for swipe (to make them a bit more forgiving in detection)
-        hammerElem.get('swipe').set({
-          direction: Hammer.DIRECTION_ALL,
-          threshold: 5, // this is how far the swipe has to travel
-          velocity: 0.5 // and this is how fast the swipe must travel
-        });
-      }
-      // detect what direction the directive is pointing
-      switch (attrs.zfSwipeClose) {
-        case 'right':
-          swipeDirection = 'swiperight';
-          break;
-        case 'left':
-          swipeDirection = 'swipeleft';
-          break;
-        case 'up':
-          swipeDirection = 'swipeup';
-          break;
-        case 'down':
-          swipeDirection = 'swipedown';
-          break;
-        default:
-          swipeDirection = 'swipe';
-      }
-      if(typeof(hammerElem) !== 'undefined'){
-        hammerElem.on(swipeDirection, function() {
-          foundationApi.publish(attrs.id, 'close');
-        });
-      }
-    }
-  }
-
-  zfHardToggle.$inject = ['FoundationApi'];
-
-  function zfHardToggle(foundationApi) {
-    var directive = {
-      restrict: 'A',
-      link: link
-    };
-
-    return directive;
-
-    function link(scope, element, attrs) {
-      element.on('click', function(e) {
-        foundationApi.closeActiveElements({exclude: attrs.zfHardToggle});
-        foundationApi.publish(attrs.zfHardToggle, 'toggle');
-        e.preventDefault();
-      });
-    }
-  }
-
-  zfCloseAll.$inject = ['FoundationApi'];
-
-  function zfCloseAll(foundationApi) {
-    var directive = {
-      restrict: 'A',
-      link: link
-    };
-
-    return directive;
-
-    function link(scope, element, attrs) {
-      element.on('click', function(e) {
-        var tar = e.target, avoid, activeElements, closedElements, i;
-
-        // check if clicked target is designated to open/close another component
-        avoid = ['zf-toggle', 'zf-hard-toggle', 'zf-open', 'zf-close'].filter(function(e){
-          return e in tar.attributes;
-        });
-        if(avoid.length > 0) {
-          // do nothing
-          return;
-        }
-
-        // check if clicked element is inside active closable parent
-        if (getParentsUntil(tar, 'zf-closable') !== false) {
-          // do nothing
-          return;
-        }
-
-        // close all active elements
-        activeElements = document.querySelectorAll('.is-active[zf-closable]');
-        closedElements = 0;
-        if(activeElements.length > 0) {
-          for(i = 0; i < activeElements.length; i++) {
-            if (!activeElements[i].hasAttribute('zf-ignore-all-close')) {
-              foundationApi.publish(activeElements[i].id, 'close');
-              closedElements++;
-            }
-          }
-
-          // if one or more elements were closed,
-          // prevent the default action
-          if (closedElements > 0) {
-            e.preventDefault();
-          }
-        }
-      });
-    }
-    /** special thanks to Chris Ferdinandi for this solution.
-     * http://gomakethings.com/climbing-up-and-down-the-dom-tree-with-vanilla-javascript/
-     */
-    function getParentsUntil(elem, parent) {
-      for ( ; elem && elem !== document.body; elem = elem.parentNode ) {
-        if(elem.hasAttribute(parent)){
-          if(elem.classList.contains('is-active')){ return elem; }
-          break;
-        }
-      }
-      return false;
-    }
-  }
-})();
-
 (function () {
   'use strict';
 
-  angular.module('foundation.iconic', [])
-    .provider('Iconic', Iconic)
-    .directive('zfIconic', zfIconic)
-  ;
-
   angular.module('base.iconic', [])
     .provider('Iconic', Iconic)
-    .directive('zfIconic', zfIconic)
+    .directive('baIconic', baIconic)
   ;
 
   // iconic wrapper
@@ -1823,9 +1471,9 @@ angular.module('markdown', [])
     };
   }
 
-  zfIconic.$inject = ['Iconic', 'FoundationApi', '$compile'];
+  baIconic.$inject = ['Iconic', 'BaseAppsApi', '$compile'];
 
-  function zfIconic(iconic, foundationApi, $compile) {
+  function baIconic(iconic, BaseAppsApi, $compile) {
     var directive = {
       restrict: 'A',
       template: '<img ng-transclude>',
@@ -1920,10 +1568,10 @@ angular.module('markdown', [])
         injectSvg(element[0]);
 
         // subscribe for resize events
-        foundationApi.subscribe('resize', resize);
+        BaseAppsApi.subscribe('resize', resize);
 
         scope.$on("$destroy", function() {
-          foundationApi.unsubscribe('resize', resize);
+          BaseAppsApi.unsubscribe('resize', resize);
         });
 
         // handle dynamic updating of src
@@ -2003,7 +1651,7 @@ angular.module('markdown', [])
 
               for(i = 0; i < origAttrs.length; i++) {
                 // check if attribute should be ignored
-                if (origAttrs[i].name !== 'zf-iconic' &&
+                if (origAttrs[i].name !== 'ba-iconic' &&
                   origAttrs[i].name !== 'ng-transclude' &&
                   origAttrs[i].name !== 'icon' &&
                   origAttrs[i].name !== 'src') {
@@ -2041,17 +1689,24 @@ angular.module('markdown', [])
 (function() {
   'use strict';
 
-  angular.module('foundation.interchange', ['foundation.core', 'foundation.mediaquery'])
-    .directive('zfInterchange', zfInterchange)
-  ;
-
   angular.module('base.interchange', ['base.core', 'base.mediaquery'])
-    .directive('zfInterchange', zfInterchange)
+    .directive('baInterchange', baInterchange)
+    /*
+     * Final directive to perform media queries, other directives set up this one
+     * (See: http://stackoverflow.com/questions/19224028/add-directives-from-directive-in-angularjs)
+     */
+    .directive('baQuery', baQuery)
+    /*
+     * ba-if / ba-show / ba-hide
+     */
+    .directive('baIf', baQueryDirective('ng-if', 'ba-if'))
+    .directive('baShow', baQueryDirective('ng-show', 'ba-show'))
+    .directive('baHide', baQueryDirective('ng-hide', 'ba-hide'))
   ;
 
-  zfInterchange.$inject = [ '$compile', '$http', '$templateCache', 'FoundationApi', 'FoundationMQ'];
+  baInterchange.$inject = [ '$compile', '$http', '$templateCache', 'BaseAppsApi', 'BaseAppsMediaQuery'];
 
-  function zfInterchange($compile, $http, $templateCache, foundationApi, foundationMQ) {
+  function baInterchange($compile, $http, $templateCache, BaseAppsApi, BaseAppsMediaQuery) {
 
     var directive = {
       restrict: 'EA',
@@ -2069,24 +1724,24 @@ angular.module('markdown', [])
     function link(scope, element, attrs, ctrl, transclude) {
       var childScope, current, scenarios, innerTemplates;
 
-      var globalQueries = foundationMQ.getMediaQueries();
+      var globalQueries = BaseAppsMediaQuery.getMediaQueries();
 
       // subscribe for resize events
-      foundationApi.subscribe('resize', resize);
+      BaseAppsApi.subscribe('resize', resize);
 
       scope.$on("$destroy", function() {
-        foundationApi.unsubscribe('resize', resize);
+        BaseAppsApi.unsubscribe('resize', resize);
       });
 
       //init
-      foundationApi.publish('resize', 'initial resize');
+      BaseAppsApi.publish('resize', 'initial resize');
 
       function templateLoader(templateUrl) {
         return $http.get(templateUrl, {cache: $templateCache});
       }
 
       function collectInformation(el) {
-        var data = foundationMQ.collectScenariosFromElement(el);
+        var data = BaseAppsMediaQuery.collectScenariosFromElement(el);
 
         scenarios = data.scenarios;
         innerTemplates = data.templates;
@@ -2102,7 +1757,7 @@ angular.module('markdown', [])
             collectInformation(clone);
           }
 
-          var ruleMatches = foundationMQ.match(scenarios);
+          var ruleMatches = BaseAppsMediaQuery.match(scenarios);
           var scenario = ruleMatches.length === 0 ? null : scenarios[ruleMatches[0].ind];
 
           //this could use some love
@@ -2140,27 +1795,13 @@ angular.module('markdown', [])
     }
   }
 
-  angular.module('foundation.interchange')
   /*
-   * Final directive to perform media queries, other directives set up this one
-   * (See: http://stackoverflow.com/questions/19224028/add-directives-from-directive-in-angularjs)
+   * This directive will configure ng-if/ng-show/ng-hide and ba-query directives and then recompile the element
    */
-    .directive('zfQuery', zfQuery)
-  /*
-   * zf-if / zf-show / zf-hide
-   */
-    .directive('zfIf', zfQueryDirective('ng-if', 'zf-if'))
-    .directive('zfShow', zfQueryDirective('ng-show', 'zf-show'))
-    .directive('zfHide', zfQueryDirective('ng-hide', 'zf-hide'))
-  ;
-
-  /*
-   * This directive will configure ng-if/ng-show/ng-hide and zf-query directives and then recompile the element
-   */
-  function zfQueryDirective(angularDirective, directiveName) {
-    return ['$compile', 'FoundationApi', function ($compile, foundationApi) {
-      // create unique scope property for media query result, must be unique to avoid collision with other zf-query directives
-      // property set upon element compilation or else all similar directives (i.e. zf-if-*/zf-show-*/zf-hide-*) will get the same value
+  function baQueryDirective(angularDirective, directiveName) {
+    return ['$compile', 'BaseAppsApi', function ($compile, BaseAppsApi) {
+      // create unique scope property for media query result, must be unique to avoid collision with other ba-query directives
+      // property set upon element compilation or else all similar directives (i.e. ba-if-*/ba-show-*/ba-hide-*) will get the same value
       var queryResult;
 
       return {
@@ -2176,36 +1817,36 @@ angular.module('markdown', [])
         var previousParam;
 
         // set unique property
-        queryResult = (directiveName + foundationApi.generateUuid()).replace(/-/g,'');
+        queryResult = (directiveName + BaseAppsApi.generateUuid()).replace(/-/g,'');
 
         // set default configuration
-        element.attr('zf-query-not', false);
-        element.attr('zf-query-only', false);
-        element.attr('zf-query-or-smaller', false);
-        element.attr('zf-query-scope-prop', queryResult);
+        element.attr('ba-query-not', false);
+        element.attr('ba-query-only', false);
+        element.attr('ba-query-or-smaller', false);
+        element.attr('ba-query-scope-prop', queryResult);
 
         // parse directive attribute for query parameters
         element.attr(directiveName).split(' ').forEach(function(param) {
           if (param) {
-            // add zf-query directive and configuration attributes
+            // add ba-query directive and configuration attributes
             switch (param) {
               case "not":
-                element.attr('zf-query-not', true);
-                element.attr('zf-query-only', true);
+                element.attr('ba-query-not', true);
+                element.attr('ba-query-only', true);
                 break;
               case "only":
-                element.attr('zf-query-only', true);
+                element.attr('ba-query-only', true);
                 break;
               case "or":
                 break;
               case "smaller":
                 // allow usage of smaller keyword if preceeded by 'or' keyword
                 if (previousParam === "or") {
-                  element.attr('zf-query-or-smaller', true);
+                  element.attr('ba-query-or-smaller', true);
                 }
                 break;
               default:
-                element.attr('zf-query', param);
+                element.attr('ba-query', param);
                 break;
             }
 
@@ -2236,21 +1877,21 @@ angular.module('markdown', [])
     }];
   }
 
-  zfQuery.$inject = ['FoundationApi', 'FoundationMQ'];
-  function zfQuery(foundationApi, foundationMQ) {
+  baQuery.$inject = ['BaseAppsApi', 'BaseAppsMediaQuery'];
+  function baQuery(BaseAppsApi, BaseAppsMediaQuery) {
     return {
       priority: 601, // must compile before ng-if (600)
       restrict: 'A',
       compile: function compile(element, attrs) {
-        return compileWrapper(attrs['zfQueryScopeProp'],
-                              attrs['zfQuery'],
-                              attrs['zfQueryOnly'] === "true",
-                              attrs['zfQueryNot'] === "true",
-                              attrs['zfQueryOrSmaller'] === "true");
+        return compileWrapper(attrs['baQueryScopeProp'],
+                              attrs['baQuery'],
+                              attrs['baQueryOnly'] === "true",
+                              attrs['baQueryNot'] === "true",
+                              attrs['baQueryOrSmaller'] === "true");
       }
     };
 
-    // parameters will be populated with values provided from zf-query-* attributes
+    // parameters will be populated with values provided from ba-query-* attributes
     function compileWrapper(queryResult, namedQuery, queryOnly, queryNot, queryOrSmaller) {
       // set defaults
       queryOnly = queryOnly || false;
@@ -2269,10 +1910,10 @@ angular.module('markdown', [])
 
       function postLink(scope, element, attrs) {
         // subscribe for resize events
-        foundationApi.subscribe('resize', resize);
+        BaseAppsApi.subscribe('resize', resize);
 
         scope.$on("$destroy", function() {
-          foundationApi.unsubscribe('resize', resize);
+          BaseAppsApi.unsubscribe('resize', resize);
         });
 
         // run first media query check
@@ -2282,18 +1923,18 @@ angular.module('markdown', [])
           if (!queryOnly) {
             if (!queryOrSmaller) {
               // Check if matches media or LARGER
-              scope[queryResult] = foundationMQ.matchesMedia(namedQuery);
+              scope[queryResult] = BaseAppsMediaQuery.matchesMedia(namedQuery);
             } else {
               // Check if matches media or SMALLER
-              scope[queryResult] = foundationMQ.matchesMediaOrSmaller(namedQuery);
+              scope[queryResult] = BaseAppsMediaQuery.matchesMediaOrSmaller(namedQuery);
             }
           } else {
             if (!queryNot) {
               // Check that media ONLY matches named query and nothing else
-              scope[queryResult] = foundationMQ.matchesMediaOnly(namedQuery);
+              scope[queryResult] = BaseAppsMediaQuery.matchesMediaOnly(namedQuery);
             } else {
               // Check that media does NOT match named query
-              scope[queryResult] = !foundationMQ.matchesMediaOnly(namedQuery);
+              scope[queryResult] = !BaseAppsMediaQuery.matchesMediaOnly(namedQuery);
             }
           }
         }
@@ -2314,23 +1955,37 @@ angular.module('markdown', [])
 (function() {
   'use strict';
 
-  angular.module('foundation.modal', ['foundation.core'])
-    .directive('zfModal', modalDirective)
-    .factory('ModalFactory', ModalFactory)
-    .service('FoundationModal', FoundationModal)
+  angular.module('base.loader', [])
+    .directive('baSpinKit', baSpinKit)
   ;
 
+  function baSpinKit() {
+    var directive = {
+      restrict: 'EA',
+      replace: true,
+      templateUrl: function(element, attrs) {
+        return "components/loader/spinkit-" + (attrs.loader || "rotating-plane") + ".html";
+      }
+    };
+
+    return directive;
+  }
+})();
+
+(function() {
+  'use strict';
+
   angular.module('base.modal', ['base.core'])
-    .directive('zfModal', modalDirective)
+    .directive('baModal', modalDirective)
     .factory('ModalFactory', ModalFactory)
     .factory('ConfirmModal', ConfirmModal)
     .factory('PromptModal', PromptModal)
-    .service('FoundationModal', FoundationModal)
+    .service('BaseAppsModal', BaseAppsModal)
   ;
 
-  FoundationModal.$inject = ['FoundationApi', 'ModalFactory'];
+  BaseAppsModal.$inject = ['BaseAppsApi', 'ModalFactory'];
 
-  function FoundationModal(foundationApi, ModalFactory) {
+  function BaseAppsModal(BaseAppsApi, ModalFactory) {
     var service    = {};
 
     service.activate = activate;
@@ -2341,12 +1996,12 @@ angular.module('markdown', [])
 
     //target should be element ID
     function activate(target) {
-      foundationApi.publish(target, 'show');
+      BaseAppsApi.publish(target, 'show');
     }
 
     //target should be element ID
     function deactivate(target) {
-      foundationApi.publish(target, 'hide');
+      BaseAppsApi.publish(target, 'hide');
     }
 
     //new modal has to be controlled via the new instance
@@ -2355,9 +2010,9 @@ angular.module('markdown', [])
     }
   }
 
-  modalDirective.$inject = ['FoundationApi'];
+  modalDirective.$inject = ['BaseAppsApi'];
 
-  function modalDirective(foundationApi) {
+  function modalDirective(BaseAppsApi) {
 
     var directive = {
       restrict: 'EA',
@@ -2379,15 +2034,16 @@ angular.module('markdown', [])
       };
 
       function preLink(scope, iElement, iAttrs, controller) {
-          iAttrs.$set('zf-closable', type);
+          iAttrs.$set('ba-closable', type);
       }
 
       function postLink(scope, element, attrs) {
         var dialog = angular.element(element.children()[0]);
-        var animateFn = attrs.hasOwnProperty('zfAdvise') ? foundationApi.animateAndAdvise : foundationApi.animate;
+        var animateFn = attrs.hasOwnProperty('baAdvise') ? BaseAppsApi.animateAndAdvise : BaseAppsApi.animate;
 
         scope.active = false;
         scope.overlay = attrs.overlay === 'false' ? false : true;
+        scope.destroyOnClose = attrs.destroyOnClose === 'true' ? true : false;
         scope.overlayClose = attrs.overlayClose === 'false' ? false : true;
 
         var animationIn = attrs.animationIn || 'fadeIn';
@@ -2398,7 +2054,7 @@ angular.module('markdown', [])
 
         scope.hideOverlay = function($event) {
           if($event.target.id == attrs.id && scope.overlayClose) {
-            foundationApi.publish(attrs.id, 'close');
+            BaseAppsApi.publish(attrs.id, 'close');
           }
         };
 
@@ -2406,7 +2062,22 @@ angular.module('markdown', [])
           if (scope.active) {
             scope.active = false;
             adviseActiveChanged();
-            animate();
+
+            if (scope.destroyOnClose) {
+              animate().then(function() {
+                element.remove();
+                scope.$destroy();
+              });
+            } else {
+              animate();
+            }
+          } else {
+            if (scope.destroyOnClose) {
+              $timeout(function() {
+                element.remove();
+                scope.$destroy();
+              }, 0, false);
+            }
           }
           return;
         };
@@ -2430,11 +2101,11 @@ angular.module('markdown', [])
         };
 
         scope.$on("$destroy", function() {
-          foundationApi.unsubscribe(attrs.id);
+          BaseAppsApi.unsubscribe(attrs.id);
         });
 
         //setup
-        foundationApi.subscribe(attrs.id, function(msg) {
+        BaseAppsApi.subscribe(attrs.id, function(msg) {
           if(msg === 'show' || msg === 'open') {
             scope.show();
           } else if (msg === 'close' || msg === 'hide') {
@@ -2451,8 +2122,8 @@ angular.module('markdown', [])
         });
 
         function adviseActiveChanged() {
-          if (!angular.isUndefined(attrs.zfAdvise)) {
-            foundationApi.publish(attrs.id, scope.active ? 'activated' : 'deactivated');
+          if (!angular.isUndefined(attrs.baAdvise)) {
+            BaseAppsApi.publish(attrs.id, scope.active ? 'activated' : 'deactivated');
           }
         }
 
@@ -2466,27 +2137,27 @@ angular.module('markdown', [])
           // due to a bug where the overlay fadeIn is essentially covering up
           // the dialog's animation
           if (!scope.active) {
-            foundationApi.animate(element, scope.active, overlayIn, overlayOut);
+            BaseAppsApi.animate(element, scope.active, overlayIn, overlayOut);
           }
           else {
             element.addClass('is-active');
           }
 
-          animateFn(dialog, scope.active, animationIn, animationOut);
+          return animateFn(dialog, scope.active, animationIn, animationOut);
         }
       }
     }
   }
 
-  ModalFactory.$inject = ['$http', '$templateCache', '$rootScope', '$compile', '$timeout', '$q', 'FoundationApi'];
+  ModalFactory.$inject = ['$http', '$templateCache', '$rootScope', '$compile', '$timeout', '$q', 'BaseAppsApi'];
 
-  function ModalFactory($http, $templateCache, $rootScope, $compile, $timeout, $q, foundationApi) {
+  function ModalFactory($http, $templateCache, $rootScope, $compile, $timeout, $q, BaseAppsApi) {
     return modalFactory;
 
     function modalFactory(config) {
       var self = this, //for prototype functions
           container = angular.element(config.container || document.body),
-          id = config.id || foundationApi.generateUuid(),
+          id = config.id || BaseAppsApi.generateUuid(),
           attached = false,
           destroyed = false,
           activated = false,
@@ -2502,6 +2173,7 @@ angular.module('markdown', [])
         'animationOut',
         'overlay',
         'overlayClose',
+        'destroyOnClose',
         'ignoreAllClose',
         'class'
       ];
@@ -2585,10 +2257,10 @@ angular.module('markdown', [])
 
           if (delayMsg) {
             $timeout(function() {
-              foundationApi.publish(id, msg);
+              BaseAppsApi.publish(id, msg);
             }, 0, false);
           } else {
-            foundationApi.publish(id, msg);
+            BaseAppsApi.publish(id, msg);
           }
         });
       }
@@ -2599,7 +2271,7 @@ angular.module('markdown', [])
           return;
         }
 
-        html = '<zf-modal id="' + id + '">' + html + '</zf-modal>';
+        html = '<ba-modal id="' + id + '">' + html + '</ba-modal>';
 
         element = angular.element(html);
 
@@ -2618,10 +2290,15 @@ angular.module('markdown', [])
                 element.attr('animation-out', config[prop]);
                 break;
               case 'overlayClose':
-                element.attr('overlay-close', (config[prop] === 'false' || config[prop] === false) ? 'false' : 'true'); // must be string, see postLink() above
+                // must be string, see postLink() above
+                element.attr('overlay-close', (config[prop] === 'false' || config[prop] === false) ? 'false' : 'true');
+                break;
+              case 'destroyOnClose':
+                // must be string, see postLink() above
+                element.attr('destroy-on-close', (config[prop] === 'true' || config[prop] === true) ? 'true' : 'false');
                 break;
               case 'ignoreAllClose':
-                element.attr('zf-ignore-all-close', 'zf-ignore-all-close');
+                element.attr('ba-ignore-all-close', 'ba-ignore-all-close');
                 break;
               case 'class':
                 if (angular.isString(config[prop])) {
@@ -2658,7 +2335,7 @@ angular.module('markdown', [])
           element.remove();
           destroyed = true;
         }, 0, false);
-        foundationApi.unsubscribe(id);
+        BaseAppsApi.unsubscribe(id);
       }
 
     }
@@ -2675,6 +2352,7 @@ angular.module('markdown', [])
         'class': 'tiny dialog confirm-modal',
         'overlay': true,
         'overlayClose': false,
+        'destroyOnClose': true,
         'templateUrl': 'components/modal/modal-confirm.html',
         'contentScope': {
           title: config.title,
@@ -2687,18 +2365,12 @@ angular.module('markdown', [])
               config.enterCallback();
             }
             modal.deactivate();
-            $timeout(function() {
-              modal.destroy();
-            }, 1000);
           },
           cancel: function() {
             if (config.cancelCallback) {
               config.cancelCallback();
             }
             modal.deactivate();
-            $timeout(function() {
-              modal.destroy();
-            }, 1000);
           }
         }
       });
@@ -2722,6 +2394,7 @@ angular.module('markdown', [])
         'class': 'tiny dialog prompt-modal',
         'overlay': true,
         'overlayClose': false,
+        'destroyOnClose': true,
         'templateUrl': 'components/modal/modal-prompt.html',
         'contentScope': {
           title: config.title,
@@ -2737,9 +2410,6 @@ angular.module('markdown', [])
                 config.enterCallback(data.value);
               }
               modal.deactivate();
-              $timeout(function() {
-                modal.destroy();
-              }, 1000);
             }
           },
           cancel: function() {
@@ -2747,9 +2417,6 @@ angular.module('markdown', [])
               config.cancelCallback();
             }
             modal.deactivate();
-            $timeout(function() {
-              modal.destroy();
-            }, 1000);
           }
         }
       });
@@ -2767,29 +2434,19 @@ angular.module('markdown', [])
 (function() {
   'use strict';
 
-  angular.module('foundation.notification', ['foundation.core'])
-    .controller('ZfNotificationController', ZfNotificationController)
-    .directive('zfNotificationSet', zfNotificationSet)
-    .directive('zfNotification', zfNotification)
-    .directive('zfNotificationStatic', zfNotificationStatic)
-    .directive('zfNotify', zfNotify)
-    .factory('NotificationFactory', NotificationFactory)
-    .service('FoundationNotification', FoundationNotification)
-  ;
-
   angular.module('base.notification', ['base.core'])
-    .controller('ZfNotificationController', ZfNotificationController)
-    .directive('zfNotificationSet', zfNotificationSet)
-    .directive('zfNotification', zfNotification)
-    .directive('zfNotificationStatic', zfNotificationStatic)
-    .directive('zfNotify', zfNotify)
+    .controller('baNotificationController', baNotificationController)
+    .directive('baNotificationSet', baNotificationSet)
+    .directive('baNotification', baNotification)
+    .directive('baNotificationStatic', baNotificationStatic)
+    .directive('baNotify', baNotify)
     .factory('NotificationFactory', NotificationFactory)
-    .service('FoundationNotification', FoundationNotification)
+    .service('BaseAppsNotification', BaseAppsNotification)
   ;
 
-  FoundationNotification.$inject = ['FoundationApi', 'NotificationFactory'];
+  BaseAppsNotification.$inject = ['BaseAppsApi', 'NotificationFactory'];
 
-  function FoundationNotification(foundationApi, NotificationFactory) {
+  function BaseAppsNotification(BaseAppsApi, NotificationFactory) {
     var service    = {};
 
     service.activate = activate;
@@ -2799,16 +2456,16 @@ angular.module('markdown', [])
 
     //target should be element ID
     function activate(target) {
-      foundationApi.publish(target, 'show');
+      BaseAppsApi.publish(target, 'show');
     }
 
     //target should be element ID
     function deactivate(target) {
-      foundationApi.publish(target, 'hide');
+      BaseAppsApi.publish(target, 'hide');
     }
 
     function toggle(target) {
-      foundationApi.publish(target, 'toggle');
+      BaseAppsApi.publish(target, 'toggle');
     }
 
     function createNotificationSet(config) {
@@ -2817,14 +2474,14 @@ angular.module('markdown', [])
   }
 
 
-  ZfNotificationController.$inject = ['$scope', 'FoundationApi'];
+  baNotificationController.$inject = ['$scope', 'BaseAppsApi'];
 
-  function ZfNotificationController($scope, foundationApi) {
+  function baNotificationController($scope, BaseAppsApi) {
     var controller    = this;
     controller.notifications = $scope.notifications = $scope.notifications || [];
 
     controller.addNotification = function(info) {
-      var id  = foundationApi.generateUuid();
+      var id  = BaseAppsApi.generateUuid();
       info.id = id;
       $scope.notifications.push(info);
     };
@@ -2845,13 +2502,13 @@ angular.module('markdown', [])
     };
   }
 
-  zfNotificationSet.$inject = ['FoundationApi'];
+  baNotificationSet.$inject = ['BaseAppsApi'];
 
-  function zfNotificationSet(foundationApi) {
+  function baNotificationSet(BaseAppsApi) {
     var directive = {
       restrict: 'EA',
       templateUrl: 'components/notification/notification-set.html',
-      controller: 'ZfNotificationController',
+      controller: 'baNotificationController',
       replace: true,
       scope: {
         position: '@'
@@ -2865,10 +2522,10 @@ angular.module('markdown', [])
       scope.position = scope.position ? scope.position.split(' ').join('-') : 'top-right';
 
       scope.$on("$destroy", function() {
-        foundationApi.unsubscribe(attrs.id);
+        BaseAppsApi.unsubscribe(attrs.id);
       });
 
-      foundationApi.subscribe(attrs.id, function(msg) {
+      BaseAppsApi.subscribe(attrs.id, function(msg) {
         if(msg === 'clearall') {
           controller.clearAll();
         }
@@ -2882,15 +2539,15 @@ angular.module('markdown', [])
     }
   }
 
-  zfNotification.$inject = ['FoundationApi', '$sce'];
+  baNotification.$inject = ['BaseAppsApi', '$sce'];
 
-  function zfNotification(foundationApi, $sce) {
+  function baNotification(BaseAppsApi, $sce) {
     var directive = {
       restrict: 'EA',
       templateUrl: 'components/notification/notification.html',
       replace: true,
       transclude: true,
-      require: '^zfNotificationSet',
+      require: '^baNotificationSet',
       controller: function() { },
       scope: {
         title: '=?',
@@ -2913,7 +2570,7 @@ angular.module('markdown', [])
       };
 
       function preLink(scope, iElement, iAttrs) {
-        iAttrs.$set('zf-closable', 'notification');
+        iAttrs.$set('ba-closable', 'notification');
         if (iAttrs['title']) {
           scope.$watch('title', function(value) {
             if (value) {
@@ -2927,7 +2584,7 @@ angular.module('markdown', [])
         scope.active = false;
         var animationIn  = attrs.animationIn || 'fadeIn';
         var animationOut = attrs.animationOut || 'fadeOut';
-        var animate = attrs.hasOwnProperty('zfAdvise') ? foundationApi.animateAndAdvise : foundationApi.animate;
+        var animate = attrs.hasOwnProperty('baAdvise') ? BaseAppsApi.animateAndAdvise : BaseAppsApi.animate;
         var hammerElem;
 
         //due to dynamic insertion of DOM, we need to wait for it to show up and get working!
@@ -2974,17 +2631,17 @@ angular.module('markdown', [])
         }
 
         function adviseActiveChanged() {
-          if (!angular.isUndefined(attrs.zfAdvise)) {
-            foundationApi.publish(attrs.id, scope.active ? 'activated' : 'deactivated');
+          if (!angular.isUndefined(attrs.baAdvise)) {
+            BaseAppsApi.publish(attrs.id, scope.active ? 'activated' : 'deactivated');
           }
         }
       }
     }
   }
 
-  zfNotificationStatic.$inject = ['FoundationApi', '$sce'];
+  baNotificationStatic.$inject = ['BaseAppsApi', '$sce'];
 
-  function zfNotificationStatic(foundationApi, $sce) {
+  function baNotificationStatic(BaseAppsApi, $sce) {
     var directive = {
       restrict: 'EA',
       templateUrl: 'components/notification/notification-static.html',
@@ -3011,7 +2668,7 @@ angular.module('markdown', [])
       };
 
       function preLink(scope, iElement, iAttrs, controller) {
-        iAttrs.$set('zf-closable', type);
+        iAttrs.$set('ba-closable', type);
         if (iAttrs['title']) {
           scope.trustedTitle = $sce.trustAsHtml(iAttrs['title']);
         }
@@ -3022,14 +2679,14 @@ angular.module('markdown', [])
 
         var animationIn = attrs.animationIn || 'fadeIn';
         var animationOut = attrs.animationOut || 'fadeOut';
-        var animateFn = attrs.hasOwnProperty('zfAdvise') ? foundationApi.animateAndAdvise : foundationApi.animate;
+        var animateFn = attrs.hasOwnProperty('baAdvise') ? BaseAppsApi.animateAndAdvise : BaseAppsApi.animate;
 
         scope.$on("$destroy", function() {
-          foundationApi.unsubscribe(attrs.id);
+          BaseAppsApi.unsubscribe(attrs.id);
         });
 
         //setup
-        foundationApi.subscribe(attrs.id, function(msg) {
+        BaseAppsApi.subscribe(attrs.id, function(msg) {
           if(msg == 'show' || msg == 'open') {
             scope.show();
             // close if autoclose
@@ -3082,17 +2739,17 @@ angular.module('markdown', [])
         };
 
         function adviseActiveChanged() {
-          if (!angular.isUndefined(attrs.zfAdvise)) {
-            foundationApi.publish(attrs.id, scope.active ? 'activated' : 'deactivated');
+          if (!angular.isUndefined(attrs.baAdvise)) {
+            BaseAppsApi.publish(attrs.id, scope.active ? 'activated' : 'deactivated');
           }
         }
       }
     }
   }
 
-  zfNotify.$inject = ['FoundationApi'];
+  baNotify.$inject = ['BaseAppsApi'];
 
-  function zfNotify(foundationApi) {
+  function baNotify(BaseAppsApi) {
     var directive = {
       restrict: 'A',
       scope: {
@@ -3109,7 +2766,7 @@ angular.module('markdown', [])
 
     function link(scope, element, attrs, controller) {
       element.on('click', function(e) {
-        foundationApi.publish(attrs.zfNotify, {
+        BaseAppsApi.publish(attrs.baNotify, {
           title: scope.title,
           content: scope.content,
           color: scope.color,
@@ -3121,15 +2778,15 @@ angular.module('markdown', [])
     }
   }
 
-  NotificationFactory.$inject = ['$http', '$templateCache', '$rootScope', '$compile', '$timeout', 'FoundationApi', '$sce'];
+  NotificationFactory.$inject = ['$http', '$templateCache', '$rootScope', '$compile', '$timeout', 'BaseAppsApi', '$sce'];
 
-  function NotificationFactory($http, $templateCache, $rootScope, $compile, $timeout, foundationApi, $sce) {
+  function NotificationFactory($http, $templateCache, $rootScope, $compile, $timeout, BaseAppsApi, $sce) {
     return notificationFactory;
 
     function notificationFactory(config) {
       var self = this, //for prototype functions
           container = angular.element(config.container || document.body),
-          id = config.id || foundationApi.generateUuid(),
+          id = config.id || BaseAppsApi.generateUuid(),
           attached = false,
           destroyed = false,
           html,
@@ -3163,14 +2820,14 @@ angular.module('markdown', [])
       function addNotification(notification) {
         checkStatus();
         $timeout(function() {
-          foundationApi.publish(id, notification);
+          BaseAppsApi.publish(id, notification);
         }, 0, false);
       }
 
       function clearAll() {
         checkStatus();
         $timeout(function() {
-          foundationApi.publish(id, 'clearall');
+          BaseAppsApi.publish(id, 'clearall');
         }, 0, false);
       }
 
@@ -3190,7 +2847,7 @@ angular.module('markdown', [])
         if (document.getElementById(id)) {
           return;
         }
-        html = '<zf-notification-set id="' + id + '"></zf-notification-set>';
+        html = '<ba-notification-set id="' + id + '"></ba-notification-set>';
 
         element = angular.element(html);
 
@@ -3221,7 +2878,7 @@ angular.module('markdown', [])
           element.remove();
           destroyed = true;
         }, 3000);
-        foundationApi.unsubscribe(id);
+        BaseAppsApi.unsubscribe(id);
       }
 
     }
@@ -3232,19 +2889,14 @@ angular.module('markdown', [])
 (function() {
   'use strict';
 
-  angular.module('foundation.offcanvas', ['foundation.core'])
-    .directive('zfOffcanvas', zfOffcanvas)
-    .service('FoundationOffcanvas', FoundationOffcanvas)
-  ;
-
   angular.module('base.offcanvas', ['base.core'])
-    .directive('zfOffcanvas', zfOffcanvas)
-    .service('FoundationOffcanvas', FoundationOffcanvas)
+    .directive('baOffcanvas', baOffcanvas)
+    .service('BaseAppsOffcanvas', BaseAppsOffcanvas)
   ;
 
-  FoundationOffcanvas.$inject = ['FoundationApi'];
+  BaseAppsOffcanvas.$inject = ['BaseAppsApi'];
 
-  function FoundationOffcanvas(foundationApi) {
+  function BaseAppsOffcanvas(BaseAppsApi) {
     var service    = {};
 
     service.activate = activate;
@@ -3254,22 +2906,22 @@ angular.module('markdown', [])
 
     //target should be element ID
     function activate(target) {
-      foundationApi.publish(target, 'show');
+      BaseAppsApi.publish(target, 'show');
     }
 
     //target should be element ID
     function deactivate(target) {
-      foundationApi.publish(target, 'hide');
+      BaseAppsApi.publish(target, 'hide');
     }
 
     function toggle(target) {
-      foundationApi.publish(target, 'toggle');
+      BaseAppsApi.publish(target, 'toggle');
     }
   }
 
-  zfOffcanvas.$inject = ['FoundationApi'];
+  baOffcanvas.$inject = ['BaseAppsApi'];
 
-  function zfOffcanvas(foundationApi) {
+  function baOffcanvas(BaseAppsApi) {
     var directive = {
       restrict: 'EA',
       templateUrl: 'components/offcanvas/offcanvas.html',
@@ -3292,7 +2944,7 @@ angular.module('markdown', [])
       };
 
       function preLink(scope, iElement, iAttrs, controller) {
-        iAttrs.$set('zf-closable', type);
+        iAttrs.$set('ba-closable', type);
         document.body.classList.add('has-off-canvas');
       }
 
@@ -3301,11 +2953,11 @@ angular.module('markdown', [])
         scope.active = false;
 
         scope.$on("$destroy", function() {
-          foundationApi.unsubscribe(attrs.id);
+          BaseAppsApi.unsubscribe(attrs.id);
         });
 
         //setup
-        foundationApi.subscribe(attrs.id, function(msg) {
+        BaseAppsApi.subscribe(attrs.id, function(msg) {
           if(msg === 'show' || msg === 'open') {
             scope.show();
           } else if (msg === 'close' || msg === 'hide') {
@@ -3340,8 +2992,8 @@ angular.module('markdown', [])
         };
 
         function adviseActiveChanged() {
-          if (!angular.isUndefined(attrs.zfAdvise)) {
-            foundationApi.publish(attrs.id, scope.active ? 'activated' : 'deactivated');
+          if (!angular.isUndefined(attrs.baAdvise)) {
+            BaseAppsApi.publish(attrs.id, scope.active ? 'activated' : 'deactivated');
           }
         }
       }
@@ -3353,19 +3005,14 @@ angular.module('markdown', [])
 (function() {
   'use strict';
 
-  angular.module('foundation.panel', ['foundation.core'])
-    .directive('zfPanel', zfPanel)
-    .service('FoundationPanel', FoundationPanel)
-  ;
-
   angular.module('base.panel', ['base.core'])
-    .directive('zfPanel', zfPanel)
-    .service('FoundationPanel', FoundationPanel)
+    .directive('baPanel', baPanel)
+    .service('BaseAppsPanel', BaseAppsPanel)
   ;
 
-  FoundationPanel.$inject = ['FoundationApi'];
+  BaseAppsPanel.$inject = ['BaseAppsApi'];
 
-  function FoundationPanel(foundationApi) {
+  function BaseAppsPanel(BaseAppsApi) {
     var service    = {};
 
     service.activate = activate;
@@ -3375,18 +3022,18 @@ angular.module('markdown', [])
 
     //target should be element ID
     function activate(target) {
-      foundationApi.publish(target, 'show');
+      BaseAppsApi.publish(target, 'show');
     }
 
     //target should be element ID
     function deactivate(target) {
-      foundationApi.publish(target, 'hide');
+      BaseAppsApi.publish(target, 'hide');
     }
   }
 
-  zfPanel.$inject = ['FoundationApi', '$window'];
+  baPanel.$inject = ['BaseAppsApi', '$window'];
 
-  function zfPanel(foundationApi, $window) {
+  function baPanel(BaseAppsApi, $window) {
     var directive = {
       restrict: 'EA',
       templateUrl: 'components/panel/panel.html',
@@ -3402,7 +3049,7 @@ angular.module('markdown', [])
 
     function compile(tElement, tAttrs, transclude) {
       var type = 'panel';
-      var animate = tAttrs.hasOwnProperty('zfAdvise') ? foundationApi.animateAndAdvise : foundationApi.animate;
+      var animate = tAttrs.hasOwnProperty('baAdvise') ? BaseAppsApi.animateAndAdvise : BaseAppsApi.animate;
       var forceAnimation = tAttrs.hasOwnProperty('forceAnimation');
 
       return {
@@ -3411,7 +3058,7 @@ angular.module('markdown', [])
       };
 
       function preLink(scope, iElement, iAttrs, controller) {
-        iAttrs.$set('zf-closable', type);
+        iAttrs.$set('ba-closable', type);
         scope.position = scope.position || 'left';
         scope.positionClass = 'panel-' + scope.position;
       }
@@ -3419,7 +3066,7 @@ angular.module('markdown', [])
       function postLink(scope, element, attrs) {
         scope.active = false;
         var animationIn, animationOut;
-        var globalQueries = foundationApi.getSettings().mediaQueries;
+        var globalQueries = BaseAppsApi.getSettings().mediaQueries;
         var setAnim = {
           left: function(){
             animationIn  = attrs.animationIn || 'slideInRight';
@@ -3455,11 +3102,11 @@ angular.module('markdown', [])
         // }
 
         scope.$on("$destroy", function() {
-          foundationApi.unsubscribe(attrs.id);
+          BaseAppsApi.unsubscribe(attrs.id);
         });
 
         //setup
-        foundationApi.subscribe(attrs.id, function(msg) {
+        BaseAppsApi.subscribe(attrs.id, function(msg) {
           var panelPosition = $window.getComputedStyle(element[0]).getPropertyValue("position");
 
           if (!forceAnimation) {
@@ -3523,8 +3170,8 @@ angular.module('markdown', [])
         });
 
         function adviseActiveChanged() {
-          if (!angular.isUndefined(attrs.zfAdvise)) {
-            foundationApi.publish(attrs.id, scope.active ? 'activated' : 'deactivated');
+          if (!angular.isUndefined(attrs.baAdvise)) {
+            BaseAppsApi.publish(attrs.id, scope.active ? 'activated' : 'deactivated');
           }
         }
       }
@@ -3536,21 +3183,15 @@ angular.module('markdown', [])
 (function() {
   'use strict';
 
-  angular.module('foundation.popup', ['foundation.core'])
-    .directive('zfPopup', zfPopup)
-    .directive('zfPopupToggle', zfPopupToggle)
-    .service('FoundationPopup', FoundationPopup)
-  ;
-
   angular.module('base.popup', ['base.core'])
-    .directive('zfPopup', zfPopup)
-    .directive('zfPopupToggle', zfPopupToggle)
-    .service('FoundationPopup', FoundationPopup)
+    .directive('baPopup', baPopup)
+    .directive('baPopupToggle', baPopupToggle)
+    .service('BaseAppsPopup', BaseAppsPopup)
   ;
 
-  FoundationPopup.$inject = ['FoundationApi'];
+  BaseAppsPopup.$inject = ['BaseAppsApi'];
 
-  function FoundationPopup(foundationApi) {
+  function BaseAppsPopup(BaseAppsApi) {
     var service    = {};
 
     service.activate = activate;
@@ -3560,22 +3201,22 @@ angular.module('markdown', [])
 
     //target should be element ID
     function activate(target) {
-      foundationApi.publish(target, ['show']);
+      BaseAppsApi.publish(target, ['show']);
     }
 
     //target should be element ID
     function deactivate(target) {
-      foundationApi.publish(target, ['hide']);
+      BaseAppsApi.publish(target, ['hide']);
     }
 
     function toggle(target, popupTarget) {
-      foundationApi.publish(target, ['toggle', popupTarget]);
+      BaseAppsApi.publish(target, ['toggle', popupTarget]);
     }
   }
 
-  zfPopup.$inject = ['FoundationApi'];
+  baPopup.$inject = ['BaseAppsApi'];
 
-  function zfPopup(foundationApi) {
+  function baPopup(BaseAppsApi) {
     var directive = {
       restrict: 'EA',
       transclude: true,
@@ -3598,7 +3239,7 @@ angular.module('markdown', [])
       };
 
       function preLink(scope, iElement, iAttrs) {
-        iAttrs.$set('zf-closable', 'popup');
+        iAttrs.$set('ba-closable', 'popup');
       }
 
       function postLink(scope, element, attrs) {
@@ -3611,7 +3252,7 @@ angular.module('markdown', [])
         var tether     = {};
 
         //setup
-        foundationApi.subscribe(attrs.id, function(msg) {
+        BaseAppsApi.subscribe(attrs.id, function(msg) {
           if(msg[0] === 'show' || msg[0] === 'open') {
             scope.show(msg[1]);
           } else if (msg[0] === 'close' || msg[0] === 'hide') {
@@ -3663,7 +3304,7 @@ angular.module('markdown', [])
         };
 
         scope.$on('$destroy', function() {
-          foundationApi.unsubscribe(attrs.id);
+          BaseAppsApi.unsubscribe(attrs.id);
 
           scope.active = false;
           if(tetherInit) {
@@ -3692,17 +3333,17 @@ angular.module('markdown', [])
         }
 
         function adviseActiveChanged() {
-          if (!angular.isUndefined(attrs.zfAdvise)) {
-            foundationApi.publish(attrs.id, scope.active ? 'activated' : 'deactivated');
+          if (!angular.isUndefined(attrs.baAdvise)) {
+            BaseAppsApi.publish(attrs.id, scope.active ? 'activated' : 'deactivated');
           }
         }
       }
     }
   }
 
-  zfPopupToggle.$inject = ['FoundationApi'];
+  baPopupToggle.$inject = ['BaseAppsApi'];
 
-  function zfPopupToggle(foundationApi) {
+  function baPopupToggle(BaseAppsApi) {
     var directive = {
       restrict: 'A',
       link: link
@@ -3711,12 +3352,12 @@ angular.module('markdown', [])
     return directive;
 
     function link(scope, element, attrs) {
-      var target = attrs.zfPopupToggle;
-      var id = attrs.id || foundationApi.generateUuid();
+      var target = attrs.baPopupToggle;
+      var id = attrs.id || BaseAppsApi.generateUuid();
       attrs.$set('id', id);
 
       element.on('click', function(e) {
-        foundationApi.publish(target, ['toggle', id]);
+        BaseAppsApi.publish(target, ['toggle', id]);
         e.preventDefault();
       });
     }
@@ -3727,33 +3368,21 @@ angular.module('markdown', [])
 (function() {
   'use strict';
 
-  angular.module('foundation.tabs', ['foundation.core'])
-    .controller('ZfTabsController', ZfTabsController)
-    .directive('zfTabs', zfTabs)
-    .directive('zfTabContent', zfTabContent)
-    .directive('zfTab', zfTab)
-    .directive('zfTabIndividual', zfTabIndividual)
-    .directive('zfTabHref', zfTabHref)
-    .directive('zfTabCustom', zfTabCustom)
-    .directive('zfTabContentCustom', zfTabContentCustom)
-    .service('FoundationTabs', FoundationTabs)
-  ;
-
   angular.module('base.tabs', ['base.core'])
-    .controller('ZfTabsController', ZfTabsController)
-    .directive('zfTabs', zfTabs)
-    .directive('zfTabContent', zfTabContent)
-    .directive('zfTab', zfTab)
-    .directive('zfTabIndividual', zfTabIndividual)
-    .directive('zfTabHref', zfTabHref)
-    .directive('zfTabCustom', zfTabCustom)
-    .directive('zfTabContentCustom', zfTabContentCustom)
-    .service('FoundationTabs', FoundationTabs)
+    .controller('baTabsController', baTabsController)
+    .directive('baTabs', baTabs)
+    .directive('baTabContent', baTabContent)
+    .directive('baTab', baTab)
+    .directive('baTabIndividual', baTabIndividual)
+    .directive('baTabHref', baTabHref)
+    .directive('baTabCustom', baTabCustom)
+    .directive('baTabContentCustom', baTabContentCustom)
+    .service('BaseAppsTabs', BaseAppsTabs)
   ;
 
-  FoundationTabs.$inject = ['FoundationApi'];
+  BaseAppsTabs.$inject = ['BaseAppsApi'];
 
-  function FoundationTabs(foundationApi) {
+  function BaseAppsTabs(BaseAppsApi) {
     var service    = {};
 
     service.activate = activate;
@@ -3762,14 +3391,14 @@ angular.module('markdown', [])
 
     //target should be element ID
     function activate(target) {
-      foundationApi.publish(target, 'show');
+      BaseAppsApi.publish(target, 'show');
     }
 
   }
 
-  ZfTabsController.$inject = ['$scope', 'FoundationApi'];
+  baTabsController.$inject = ['$scope', 'BaseAppsApi'];
 
-  function ZfTabsController($scope, foundationApi) {
+  function baTabsController($scope, BaseAppsApi) {
     var controller  = this;
     var tabs        = controller.tabs = $scope.tabs = [];
     var id          = '';
@@ -3788,9 +3417,9 @@ angular.module('markdown', [])
           }
 
           if (tab.active) {
-            foundationApi.publish(id, ['activate', tab.scope.id]);
+            BaseAppsApi.publish(id, ['activate', tab.scope.id]);
           } else {
-            foundationApi.publish(id, ['deactivate', tab.scope.id]);
+            BaseAppsApi.publish(id, ['deactivate', tab.scope.id]);
           }
         } else {
           tab.active = false;
@@ -3825,15 +3454,15 @@ angular.module('markdown', [])
     };
   }
 
-  zfTabs.$inject = ['FoundationApi'];
+  baTabs.$inject = ['BaseAppsApi'];
 
-  function zfTabs(foundationApi) {
+  function baTabs(BaseAppsApi) {
     var directive = {
       restrict: 'EA',
       transclude: 'true',
       replace: true,
       templateUrl: 'components/tabs/tabs.html',
-      controller: 'ZfTabsController',
+      controller: 'baTabsController',
       scope: {
         displaced: '@?'
       },
@@ -3843,7 +3472,7 @@ angular.module('markdown', [])
     return directive;
 
     function link(scope, element, attrs, controller) {
-      scope.id = attrs.id || foundationApi.generateUuid();
+      scope.id = attrs.id || BaseAppsApi.generateUuid();
       scope.showTabContent = scope.displaced !== 'true';
       attrs.$set('id', scope.id);
       controller.setId(scope.id);
@@ -3852,22 +3481,22 @@ angular.module('markdown', [])
 
       //update tabs in case tab-content doesn't have them
       var updateTabs = function() {
-        foundationApi.publish(scope.id + '-tabs', scope.tabs);
+        BaseAppsApi.publish(scope.id + '-tabs', scope.tabs);
       };
 
-      foundationApi.subscribe(scope.id + '-get-tabs', function() {
+      BaseAppsApi.subscribe(scope.id + '-get-tabs', function() {
         updateTabs();
       });
 
       scope.$on("$destroy", function() {
-        foundationApi.unsubscribe(scope.id + '-get-tabs');
+        BaseAppsApi.unsubscribe(scope.id + '-get-tabs');
       });
     }
   }
 
-  zfTabContent.$inject = ['FoundationApi'];
+  baTabContent.$inject = ['BaseAppsApi'];
 
-  function zfTabContent(foundationApi) {
+  function baTabContent(BaseAppsApi) {
     var directive = {
       restrict: 'A',
       transclude: 'true',
@@ -3886,7 +3515,7 @@ angular.module('markdown', [])
       scope.tabs = scope.tabs || [];
       var id = scope.target;
 
-      foundationApi.subscribe(id, function(msg) {
+      BaseAppsApi.subscribe(id, function(msg) {
         if(msg[0] === 'activate') {
           scope.tabs.forEach(function (tab) {
             tab.scope.active = false;
@@ -3907,23 +3536,23 @@ angular.module('markdown', [])
 
       //if tabs empty, request tabs
       if(scope.tabs.length === 0) {
-        foundationApi.subscribe(id + '-tabs', function(tabs) {
+        BaseAppsApi.subscribe(id + '-tabs', function(tabs) {
           scope.tabs = tabs;
         });
 
-        foundationApi.publish(id + '-get-tabs', '');
+        BaseAppsApi.publish(id + '-get-tabs', '');
       }
 
       scope.$on("$destroy", function() {
-        foundationApi.unsubscribe(id);
-        foundationApi.unsubscribe(id + '-tabs');
+        BaseAppsApi.unsubscribe(id);
+        BaseAppsApi.unsubscribe(id + '-tabs');
       });
     }
   }
 
-  zfTab.$inject = ['FoundationApi'];
+  baTab.$inject = ['BaseAppsApi'];
 
-  function zfTab(foundationApi) {
+  function baTab(BaseAppsApi) {
     var directive = {
       restrict: 'EA',
       templateUrl: 'components/tabs/tab.html',
@@ -3931,7 +3560,7 @@ angular.module('markdown', [])
       scope: {
         title: '@'
       },
-      require: '^zfTabs',
+      require: '^baTabs',
       replace: true,
       link: link
     };
@@ -3939,12 +3568,12 @@ angular.module('markdown', [])
     return directive;
 
     function link(scope, element, attrs, controller, transclude) {
-      scope.id = attrs.id || foundationApi.generateUuid();
+      scope.id = attrs.id || BaseAppsApi.generateUuid();
       scope.active = false;
       scope.transcludeFn = transclude;
       controller.addTab(scope);
 
-      foundationApi.subscribe(scope.id, function(msg) {
+      BaseAppsApi.subscribe(scope.id, function(msg) {
         if(msg === 'show' || msg === 'open' || msg === 'activate') {
           if (!scope.active) {
             controller.select(scope);
@@ -3967,14 +3596,14 @@ angular.module('markdown', [])
       };
 
       scope.$on("$destroy", function() {
-        foundationApi.unsubscribe(scope.id);
+        BaseAppsApi.unsubscribe(scope.id);
       });
     }
   }
 
-  zfTabIndividual.$inject = ['FoundationApi'];
+  baTabIndividual.$inject = ['BaseAppsApi'];
 
-  function zfTabIndividual(foundationApi) {
+  function baTabIndividual(BaseAppsApi) {
     var directive = {
       restrict: 'EA',
       transclude: 'true',
@@ -3991,22 +3620,22 @@ angular.module('markdown', [])
         element.append(tabContent);
       });
 
-      foundationApi.subscribe(tab.scope.id, function(msg) {
-        foundationApi.publish(tab.parentContent, ['activate', tab.scope.id]);
+      BaseAppsApi.subscribe(tab.scope.id, function(msg) {
+        BaseAppsApi.publish(tab.parentContent, ['activate', tab.scope.id]);
         scope.$apply();
       });
 
       scope.$on("$destroy", function() {
-        foundationApi.unsubscribe(tab.scope.id);
+        BaseAppsApi.unsubscribe(tab.scope.id);
       });
     }
   }
 
   //custom tabs
 
-  zfTabHref.$inject = ['FoundationApi'];
+  baTabHref.$inject = ['BaseAppsApi'];
 
-  function zfTabHref(foundationApi) {
+  function baTabHref(BaseAppsApi) {
     var directive = {
       restrict: 'A',
       replace: false,
@@ -4016,9 +3645,9 @@ angular.module('markdown', [])
     return directive;
 
     function link(scope, element, attrs, controller) {
-      var target = attrs.zfTabHref;
+      var target = attrs.baTabHref;
 
-      foundationApi.subscribe(target, function(msg) {
+      BaseAppsApi.subscribe(target, function(msg) {
         if(msg === 'activate' || msg === 'show' || msg === 'open') {
           makeActive();
         }
@@ -4026,7 +3655,7 @@ angular.module('markdown', [])
 
 
       element.on('click', function(e) {
-        foundationApi.publish(target, 'activate');
+        BaseAppsApi.publish(target, 'activate');
         makeActive();
         e.preventDefault();
       });
@@ -4038,9 +3667,9 @@ angular.module('markdown', [])
     }
   }
 
-  zfTabCustom.$inject = ['FoundationApi'];
+  baTabCustom.$inject = ['BaseAppsApi'];
 
-  function zfTabCustom(foundationApi) {
+  function baTabCustom(BaseAppsApi) {
     var directive = {
       restrict: 'A',
       replace: false,
@@ -4055,9 +3684,9 @@ angular.module('markdown', [])
     }
   }
 
-  zfTabContentCustom.$inject = ['FoundationApi'];
+  baTabContentCustom.$inject = ['BaseAppsApi'];
 
-  function zfTabContentCustom(foundationApi) {
+  function baTabContentCustom(BaseAppsApi) {
     return {
       restrict: 'A',
       link: link
@@ -4071,7 +3700,7 @@ angular.module('markdown', [])
         if(node.id) {
           var tabId = node.id;
           tabs.push(tabId);
-          foundationApi.subscribe(tabId, function(msg) {
+          BaseAppsApi.subscribe(tabId, function(msg) {
             if(msg === 'activate' || msg === 'show' || msg === 'open') {
               activateTabs(tabId);
             }
@@ -4103,23 +3732,6 @@ angular.module('markdown', [])
   'use strict';
 
   // imports all components and dependencies under a single namespace
-
-  angular.module('foundation', [
-    'foundation.core',
-    'foundation.mediaquery',
-    'foundation.accordion',
-    'foundation.actionsheet',
-    'foundation.common',
-    'foundation.iconic',
-    'foundation.interchange',
-    'foundation.modal',
-    'foundation.notification',
-    'foundation.offcanvas',
-    'foundation.panel',
-    'foundation.popup',
-    'foundation.tabs'
-  ]);
-
   angular.module('base', [
     'base.core',
     'base.mediaquery',
@@ -4128,6 +3740,7 @@ angular.module('markdown', [])
     'base.common',
     'base.iconic',
     'base.interchange',
+    'base.loader',
     'base.modal',
     'base.notification',
     'base.offcanvas',
@@ -4135,6 +3748,5 @@ angular.module('markdown', [])
     'base.popup',
     'base.tabs'
   ]);
-
 
 })();

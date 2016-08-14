@@ -80,14 +80,14 @@ bower update
 </ul>
 
 <hljs language="html">
-<div zf-if="medium"></div>
+<div ba-if="medium"></div>
 
-<div zf-if="not large"></div>
+<div ba-if="not large"></div>
 </hljs>
 
 <ul>
 <li><strong>Animation methods with promises.</strong> <code>FoundationApi.animateAndAdvise</code> allows you to animate an element and get a promise back, which resolves when the animation finishes.</li>
-<li><strong>Click outside of things to close them!</strong> Panels and off-canvas menus can be configured to be closed when they're clicked/tapped outside of. To enable it, add the directive <code>zf-close-all</code> to the <code>&lt;body&gt;</code> element. #430</li>
+<li><strong>Click outside of things to close them!</strong> Panels and off-canvas menus can be configured to be closed when they're clicked/tapped outside of. To enable it, add the directive <code>ba-close-all</code> to the <code>&lt;body&gt;</code> element. #430</li>
 <li>Front Router now outputs an entire Angular module instead of a global variable, to avoid polluting the global namespace.</li>
 <li>Added the method <code>.isActive</code> to <code>ModalFactory</code>, which tells you if a modal is open. #580</li>
 </ul>
@@ -180,7 +180,7 @@ $stateProvider
 <ul>
 <li>#461: Added a <code>$background-hover</code> parameter to the <code>button-style()</code> mixin. You can pass in a color, or the <code>auto</code> keyword to automatically set a color based on the <code>$background</code> parameter.</li>
 <li>#462: Added styles for disabled form elements. They're automatically applied to any <code>&lt;input&gt;</code> element with the <code>disabled</code> or <code>readonly</code> attributes, or a <code>&lt;fieldset&gt;</code> with <code>disabled</code>. The styles can also be added manually by adding the <code>.disabled</code> class.</li>
-<li>#475: The path the <code>zf-iconic</code> directive uses to search for icon files can now be changed width the <code>IconicProvider</code> provider. Use <code>IconicProvider.setAssetPath(path)</code> to set the path. Thanks to @gjungb for implementing this!</li>
+<li>#475: The path the <code>ba-iconic</code> directive uses to search for icon files can now be changed width the <code>IconicProvider</code> provider. Use <code>IconicProvider.setAssetPath(path)</code> to set the path. Thanks to @gjungb for implementing this!</li>
 <li>#495: The front matter routing plugin now supports ui-router's abstract states. Just add <code>abstract: true</code> to a view template to make it go.</li>
 <li>Added support for ngAnimate's "show" and "hide" events. This means you can now use Motion UI classes with <code>ng-show</code> and <code>ng-hide</code>.</li>
 <li>Added a <code>.noscroll</code> class for grid blocks and content blocks. I bet you can guess what it does!</li>
@@ -202,7 +202,7 @@ $stateProvider
 <li>#511: Panels that have converted into a block won't play their in/out animations if triggered by an open or close event.</li>
 <li>#530: Visibility classes will not conflict with Angular's <code>.ng-hide</code> class.</li>
 <li>The <code>&lt;button&gt;</code> tag is no longer styled as a <code>.button</code> element by default.</li>
-<li>Any element with <code>zf-open</code>, <code>zf-close</code>, or <code>zf-toggle</code> applied gets the <code>cursor: pointer</code> property.</li>
+<li>Any element with <code>ba-open</code>, <code>ba-close</code>, or <code>ba-toggle</code> applied gets the <code>cursor: pointer</code> property.</li>
 <li>Removed the dropdown arrow that Internet Explorer 10+ adds to <code>&lt;select&gt;</code> elements.</li>
 <li>Prevented ghosting issues in WebKit with views that are mid-transition, by adding <code>-webkit-transform-style: preserve3d</code>.</li>
 <li>Fixed landscape/portrait visibility classes not hiding properly.</li>
@@ -277,7 +277,7 @@ $stateProvider
 <p><strong>JavaScript:</strong></p>
 
 <ul>
-<li>#363: Fixed <code>zf-close</code> not working when placed outside of a component.</li>
+<li>#363: Fixed <code>ba-close</code> not working when placed outside of a component.</li>
 <li>#420: Fixed panel/block animations triggering even though the element is in block mode.</li>
 <li>#427: Fixed the <code>pin-at</code> directive not passing its value to Tether.</li>
 <li>#448: Fixed invalid <code>$scope.params</code> property on the DefaultController controller.</li>
@@ -329,11 +329,11 @@ $stateProvider
 <ul>
 <li><strong>Touch support!</strong> We added the <a href="http://ryanmullins.github.io/angular-hammer/">Hammer.js Angular library</a> to our codebase, which allows you to trigger functions with touch gestures, using directives like <code>hm-swipeup</code> and <code>hm-pinchin</code>.
 <ul>
-<li>We added one custom directive, <code>zf-touch-close</code>, which allows you to trigger the <code>close</code> event on an element by swiping. We'll add more features in future versions.</li>
+<li>We added one custom directive, <code>ba-touch-close</code>, which allows you to trigger the <code>close</code> event on an element by swiping. We'll add more features in future versions.</li>
 </ul></li>
 <li>#301: Menu bars can now switch between the expanded and condensed styles at different screen sizes, using these classes: <code>condense</code>, <code>medium-condense</code>, <code>large-condense</code>, <code>medium-expand</code>, <code>large-expand</code>.</li>
 <li>#335: Menu bars can now be wrapped in a <code>menu-bar-group</code> container, which allows two menu bars to sit on the same row, aligned to the left and the right. Learn more <a href="http://foundation.zurb.com/apps/docs/#!/menu-bar">here</a>.</li>
-<li>#342: The <code>src</code> attribute of an Iconic icon can now be dynamically inserted. Instead of <code>data-src</code>, define the icon's source with the <code>dyn-src</code> attribute on a <code>zf-iconic</code> element.</li>
+<li>#342: The <code>src</code> attribute of an Iconic icon can now be dynamically inserted. Instead of <code>data-src</code>, define the icon's source with the <code>dyn-src</code> attribute on a <code>ba-iconic</code> element.</li>
 </ul>
 
 
@@ -364,7 +364,7 @@ $stateProvider
 <h4>JavaScript</h4>
 
 <ul>
-  <li>Added the `zf-hard-toggle` directive, to force other open components to close when the targeted component opens.</li>
+  <li>Added the `ba-hard-toggle` directive, to force other open components to close when the targeted component opens.</li>
   <li>Integrated the FastClick library.</li>
   <li>#199: Modals can be configured to not close when clicked outside of.</li>
   <li>#258: Accordions can be set to allow every item to be closed at once with `collapsible="true"`.</li>
