@@ -2,16 +2,12 @@
  *  Usage:
  *
       <div class="sk-chasing-dots">
-        <div class="sk-child sk-dot1"></div>
-        <div class="sk-child sk-dot2"></div>
+        <div class="sk-child"></div>
+        <div class="sk-child"></div>
       </div>
  *
  */
 @import "../variables";
-
-$spinkit-spinner-margin: 40px auto !default;
-$spinkit-size: 40px !default;
-$spinkit-spinner-color: #333 !default;
 
 $spinkit-chasing-dots-width: $spinkit-size;
 $spinkit-chasing-dots-height: $spinkit-size;
@@ -79,19 +75,19 @@ $spinkit-chasing-dots-css-export: true !default;
   animation: sk-chasingDotsRotate $duration infinite linear;
 
   .sk-child {
-    width: 60%;
-    height: 60%;
+    width: 50%;
+    height: 50%;
     display: inline-block;
     position: absolute;
     top: 0;
     border-radius: 100%;
     animation: sk-chasingDotsBounce $duration infinite ease-in-out;
-  }
 
-  .sk-dot2 {
-    top: auto;
-    bottom: 0;
-    animation-delay: - $duration/2;
+    &:nth-child(2) {
+      top: auto;
+      bottom: 0;
+      animation-delay: - $duration/2;
+    }
   }
 
   @include sk-chasing-dots-style(

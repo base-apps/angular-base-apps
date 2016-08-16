@@ -2,16 +2,12 @@
  *  Usage:
  *
       <div class="sk-double-bounce">
-        <div class="sk-child sk-double-bounce1"></div>
-        <div class="sk-child sk-double-bounce2"></div>
+        <div class="sk-child"></div>
+        <div class="sk-child"></div>
       </div>
  *
  */
 @import "../variables";
-
-$spinkit-spinner-margin: 40px auto !default;
-$spinkit-size: 40px !default;
-$spinkit-spinner-color: #333 !default;
 
 $spinkit-double-bounce-width: $spinkit-size;
 $spinkit-double-bounce-height: $spinkit-size;
@@ -77,10 +73,10 @@ $spinkit-double-bounce-css-export: true !default;
     top: 0;
     left: 0;
     animation: sk-doubleBounce $duration infinite ease-in-out;
-  }
 
-  &2 {
-    animation-delay: -$duration / 2;
+    &:nth-child(2) {
+      animation-delay: -$duration / 2;
+    }
   }
 
   @include sk-double-bounce-style(

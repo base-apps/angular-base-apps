@@ -135,6 +135,11 @@ $menubar-icon-spacing: $menubar-item-padding !default;
   @if using(iconic) {
     .iconic { @include color-icon($color); }
   }
+
+  // Loaders
+  @if using(loader) {
+    .sk-loader { @include color-loaders($color); }
+  }
 }
 
 @mixin menu-bar-icons(
@@ -143,7 +148,7 @@ $menubar-icon-spacing: $menubar-item-padding !default;
 ) {
   > li {
     // Sizing
-    > img, > .iconic {
+    > img, > .iconic, > .sk-loader {
       margin: 0;
 
       @if $menubar-icon-size != false {
@@ -162,25 +167,25 @@ $menubar-icon-spacing: $menubar-item-padding !default;
       > a {
         flex-flow: row nowrap;
         align-items: center;
-        > img, > .iconic { margin: 0 $menubar-icon-spacing 0 0; }
+        > img, > .iconic, > .sk-loader { margin: 0 $menubar-icon-spacing 0 0; }
       }
     }
     @if $position == top {
       > a {
         flex-flow: column nowrap;
-        > img, > .iconic { margin: 0 0 $menubar-icon-spacing 0; }
+        > img, > .iconic, > .sk-loader { margin: 0 0 $menubar-icon-spacing 0; }
       }
     }
     @if $position == right {
       > a {
         flex-flow: row-reverse nowrap;
-        > img, > .iconic { margin: 0 0 0 $menubar-icon-spacing; }
+        > img, > .iconic, > .sk-loader { margin: 0 0 0 $menubar-icon-spacing; }
       }
     }
     @if $position == bottom {
       > a {
         flex-flow: column-reverse nowrap;
-        > img, > .iconic { margin: $menubar-icon-spacing 0 0 0; }
+        > img, > .iconic, > .sk-loader { margin: $menubar-icon-spacing 0 0 0; }
       }
     }
   }

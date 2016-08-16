@@ -10,10 +10,6 @@
  */
  @import "../variables";
 
- $spinkit-spinner-margin: 40px auto !default;
- $spinkit-size: 40px !default;
- $spinkit-spinner-color: #333 !default;
-
  $spinkit-three-bounce-width: $spinkit-size * 2;
  $spinkit-three-bounce-height: $spinkit-size * 2;
  $spinkit-three-bounce-margin: $spinkit-spinner-margin;
@@ -86,6 +82,11 @@
    border-radius: 100%;
    display: inline-block;
    animation: sk-three-bounce $duration ease-in-out 0s infinite both;
+
+   &:last-child {
+     // fix issue with last dot flowing onto next line
+     margin-right: -2px;
+   }
  }
 
  .sk-bounce1 { animation-delay: -$delay-range; }

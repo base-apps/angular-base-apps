@@ -67,6 +67,16 @@ $button-tag-selector: false !default;
       margin-top: -2px; // The icons are oddly misaligned
     }
   }
+
+  @if using(loader) {
+    .sk-loader {
+      vertical-align: middle;
+      margin-right: 0.25em;
+      margin-top: -2px; // The icons are oddly misaligned
+
+      @include size-loaders(1em, 1em);
+    }
+  }
 }
 
 @mixin button-expand($expand: true) {
@@ -145,6 +155,22 @@ $button-tag-selector: false !default;
     @else {
       .iconic {
         @include color-icon($color);
+      }
+    }
+  }
+
+  @if using(loader) {
+    @if $style == hollow {
+      .sk-loader {
+        @include color-loaders($background);
+      }
+      &:hover .sk-loader {
+        @include color-loaders(scale-color($background, $lightness: 25%));
+      }
+    }
+    @else {
+      .sk-loader {
+        @include color-loaders($color);
       }
     }
   }

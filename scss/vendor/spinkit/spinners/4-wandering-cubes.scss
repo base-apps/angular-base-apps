@@ -2,16 +2,12 @@
  *  Usage:
  *
       <div class="sk-wandering-cubes">
-        <div class="sk-cube sk-cube1"></div>
-        <div class="sk-cube sk-cube2"></div>
+        <div class="sk-cube"></div>
+        <div class="sk-cube"></div>
       </div>
  *
  */
 @import "../variables";
-
-$spinkit-spinner-margin: 40px auto !default;
-$spinkit-size: 40px !default;
-$spinkit-spinner-color: #333 !default;
 
 $spinkit-wandering-cube-width: $spinkit-size;
 $spinkit-wandering-cube-height: $spinkit-size;
@@ -47,10 +43,10 @@ $spinkit-wandering-cube-css-export: true !default;
 
   .sk-cube {
     animation: #{$keyframeName} $duration ease-in-out #{-$duration} infinite both;
-  }
 
-  .sk-cube2 {
-    animation-delay: -$duration / 2;
+    &:nth-child(2) {
+      animation-delay: -$duration / 2;
+    }
   }
 }
 

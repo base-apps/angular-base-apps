@@ -12,10 +12,6 @@
  */
 @import "../variables";
 
-$spinkit-spinner-margin: 40px auto !default;
-$spinkit-size: 40px !default;
-$spinkit-spinner-color: #333 !default;
-
 $spinkit-wave-child-count: 5 !default;
 $spinkit-wave-width: $spinkit-size * 1.25;
 $spinkit-wave-height: $spinkit-size;
@@ -87,6 +83,11 @@ $spinkit-wave-css-export: true !default;
     height: 100%;
     display: inline-block;
     animation: sk-waveStretchDelay $duration infinite ease-in-out;
+
+    &:first-child {
+      // fix issue with last rect flowing onto next line
+      margin-left: -4px;
+    }
   }
 
   @for $i from 1 through $child-count {
