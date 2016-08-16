@@ -9,6 +9,7 @@ $spinkit-circle-css-export: false;
 $spinkit-cube-grid-css-export: false;
 $spinkit-fading-circle-css-export: false;
 $spinkit-folding-cube-css-export: false;
+$spinkit-solid-circle-css-export: false;
 
 @import
   "../vendor/spinkit/spinners/1-rotating-plane",
@@ -21,7 +22,8 @@ $spinkit-folding-cube-css-export: false;
   "../vendor/spinkit/spinners/8-circle",
   "../vendor/spinkit/spinners/9-cube-grid",
   "../vendor/spinkit/spinners/10-fading-circle",
-  "../vendor/spinkit/spinners/11-folding-cube";
+  "../vendor/spinkit/spinners/11-folding-cube",
+  "../vendor/spinkit/spinners/12-solid-circle";
 
 @mixin color-loaders($color) {
   &.sk-rotating-plane { @include sk-rotating-plane-color($color); }
@@ -35,13 +37,14 @@ $spinkit-folding-cube-css-export: false;
   &.sk-cube-grid { @include sk-cube-grid-color($color); }
   &.sk-fading-circle { @include sk-fading-circle-color($color); }
   &.sk-folding-cube { @include sk-folding-cube-color($color); }
+  &.sk-solid-circle { @include sk-solid-circle-color($color); }
 }
 
 @mixin size-loaders($width, $height) {
   &.sk-rotating-plane { @include sk-rotating-plane-size($width, $height); }
   &.sk-double-bounce { @include sk-double-bounce-size($width, $height); }
   &.sk-wave { @include sk-wave-size($width * 2, $height); }
-  &.sk-wandering-cubes { 
+  &.sk-wandering-cubes {
     @include sk-wandering-cubes-size($width, $height);
     @include sk-wandering-cubes-animation($width, $height);
   }
@@ -52,4 +55,5 @@ $spinkit-folding-cube-css-export: false;
   &.sk-cube-grid { @include sk-cube-grid-size($width, $height); }
   &.sk-fading-circle { @include sk-fading-circle-size($width, $height); }
   &.sk-folding-cube { @include sk-folding-cube-size($width, $height); }
+  &.sk-solid-circle { @include sk-solid-circle-size($width, $height); }
 }

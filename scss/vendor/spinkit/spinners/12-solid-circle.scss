@@ -1,0 +1,86 @@
+@import "../variables";
+
+$spinkit-solid-circle-width: $spinkit-size;
+$spinkit-solid-circle-height: $spinkit-size;
+$spinkit-solid-circle-margin: $spinkit-spinner-margin;
+$spinkit-solid-circle-background-color: $spinkit-spinner-color;
+$spinkit-solid-circle-animation-duration: 1.2s !default;
+$spinkit-solid-circle-css-export: true !default;
+
+@keyframes sk-solid-circle-animation {
+	0%   {
+    transform: rotate(0deg);
+  }
+	100% {
+    transform: rotate(360deg);
+  }
+}
+
+@mixin sk-solid-circle-size(
+  $width: $spinkit-solid-circle-width,
+  $height: $spinkit-solid-circle-height
+) {
+  width: $width;
+  height: $height;
+
+  .sk-child {
+    width: $width;
+    height: $height;
+    border-width: $width/8;
+  }
+}
+
+@mixin sk-solid-circle-color(
+  $color: $spinkit-solid-circle-background-color
+) {
+  .sk-child {
+    border-top-color:  $color;
+    border-left-color: $color;
+  }
+}
+
+@mixin sk-solid-circle-style(
+  $width: $spinkit-solid-circle-width,
+  $height: $spinkit-solid-circle-height,
+  $color: $spinkit-solid-circle-background-color,
+  $margin: $spinkit-solid-circle-margin
+) {
+  margin: $margin;
+
+  @include sk-solid-circle-size(
+    $width: $width,
+    $height: $height
+  );
+
+  @include sk-solid-circle-color(
+    $color: $color
+  );
+}
+
+@mixin sk-solid-circle(
+  $width: $spinkit-solid-circle-width,
+  $height: $spinkit-solid-circle-height,
+  $color: $spinkit-solid-circle-background-color,
+  $margin: $spinkit-solid-circle-margin,
+  $duration: $spinkit-solid-circle-animation-duration
+) {
+  .sk-child {
+  	border-style: solid;
+    border-color: transparent;
+  	border-radius: 50%;
+    animation: sk-solid-circle-animation $duration linear infinite;
+  }
+
+  @include sk-solid-circle-style(
+    $width: $width,
+    $height: $height,
+    $color: $color,
+    $margin: $margin
+  );
+}
+
+@if ($spinkit-solid-circle-css-export) {
+  .sk-solid-circle {
+    @include sk-solid-circle;
+  }
+}

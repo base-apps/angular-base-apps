@@ -20,6 +20,7 @@ $loader-sizes: (
     &.sk-cube-grid { @include sk-cube-grid($margin: 0); }
     &.sk-fading-circle { @include sk-fading-circle($margin: 0); }
     &.sk-folding-cube { @include sk-folding-cube($margin: 0); }
+    &.sk-solid-circle { @include sk-solid-circle($margin: 0); }
 
     @each $color in map-keys($base-apps-colors) {
       $color-value: map-get($base-apps-colors, $color);
