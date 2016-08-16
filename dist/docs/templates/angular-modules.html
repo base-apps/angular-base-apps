@@ -26,6 +26,9 @@
     // Angular Base Apps components
     'base',
 
+    // Angular Icons
+    'angularIcons.iconic',
+
     // Routing with front matter
     'dynamicRouting',
 
@@ -381,29 +384,13 @@ BaseAppsMediaQuery.matchesMediaOnly(breakpoint)
 <hr>
 
 <section>
-  <h3 class="docs-module-name"><pre>base.iconic</pre> (Module)</h3>
+  <h3 class="docs-module-name"><pre>angularIcons.iconic</pre> (Module)</h3>
 
-  <p class="docs-module-deps"><strong>Dependencies:</strong> <span class="pre">ngSVGAttributes</span></p>
+  <div class="card docs-callout">
+    <p><strong>As of version 2.0, this feature is no longer part of the core framework.</strong>  It can be included as an optional dependency by installing <a href="https://github.com/base-apps/angular-icons" class="pre">angular-icons</a>.</p>
+  </div>
 
-  <p>We partnered with the folks at <a href="http://useiconic.com">Iconic</a> to include a sample of 24 icons from their responsive icon set. Angular Base Apps includes the Iconic JavaScript library, which we wrapped in an Angular module.</p>
-
-  <section>
-    <h4 class="docs-module-name"><pre>ba-iconic</pre> (Directive)</h4>
-
-    <p>A wrapper for the Iconic data attributes, which allows you to specify the name of an icon insteead of the entire file path.</p>
-
-<hljs language="html">
-<img ba-iconic icon="thumb" size="medium">
-</hljs>
-  </section>
-
-  <section>
-    <h4 class="docs-module-name"><pre>Iconic</pre> (Service)</h4>
-
-    <p>A wrapper for the <code>IconicJS</code> object the Iconic JavaScript places on the <code>window</code> object. Learn more about how the Iconic JavaScript works <a href="https://useiconic.com/tools/iconic-js/">here</a>.</p>
-  </section>
-
-  <p>Check out the <a ui-sref="iconic">documentation for Iconic</a> to learn how to use it.</p>
+  <p>Only the JS code has been moved to the new repository.  The SCSS styling for icons remains part of Angular Base Apps.  Check out the <a ui-sref="iconic">documentation for Iconic</a> to learn how to use the icons.</p>
 </section>
 
 <hr>
