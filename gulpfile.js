@@ -74,7 +74,7 @@ var paths = {
       'bower_components/hammerjs/hammer.js'
     ],
     docs: [
-      'js/vendor/**/*.js',
+      'docs/assets/js/vendor/**/*.js',
       'node_modules/angular-icons/lib/iconic.min.js',
       'node_modules/angular-icons/iconic.js',
       'node_modules/angular-dynamic-routing/dynamicRouting.js',

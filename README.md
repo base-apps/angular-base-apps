@@ -55,7 +55,6 @@ The documentation can be viewed at the same URL as above.
 * `docs`: The Angular Base Apps documentation.
 * `scss`: The Sass components.
 * `js`: The Angular modules and directives, and other external libraries.
-* `iconic`: A set of 24 icons from the folks at [Iconic](https://useiconic.com/).
 * `dist`: Compiled CSS and JavaScript files, in minified and unmified flavors.
 * `tests`: Unit tests for the Angular modules.
 
