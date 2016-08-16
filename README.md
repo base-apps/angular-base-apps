@@ -60,7 +60,7 @@ The documentation can be viewed at the same URL as above.
 
 ## Versioning
 
-Angular Base Apps follows semver, so we won't introduce breaking changes in minor or patch versions. The `master` branch will always have the newest changes, so it's not necessarily production ready. The `stable` branch will always have the most recent stable version of the framework.
+Angular Base Apps follows semver, so we won't introduce breaking changes in minor or patch versions. The `master` branch will always have the newest changes, so it's not necessarily production ready.
 
 ## Contributing
 
