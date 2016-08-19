@@ -49,8 +49,8 @@ angular.module('base').run(['$templateCache', function($templateCache) {
 angular.module('base').run(['$templateCache', function($templateCache) {
   $templateCache.put('components/loader/spinkit-chasing-dots.html',
     '<div class="sk-loader sk-chasing-dots">\n' +
-    '  <div class="sk-child sk-dot1"></div>\n' +
-    '  <div class="sk-child sk-dot2"></div>\n' +
+    '  <div class="sk-child"></div>\n' +
+    '  <div class="sk-child"></div>\n' +
     '</div>\n' +
     '');
 }]);
@@ -93,8 +93,8 @@ angular.module('base').run(['$templateCache', function($templateCache) {
 angular.module('base').run(['$templateCache', function($templateCache) {
   $templateCache.put('components/loader/spinkit-double-bounce.html',
     '<div class="sk-loader sk-double-bounce">\n' +
-    '  <div class="sk-child sk-double-bounce1"></div>\n' +
-    '  <div class="sk-child sk-double-bounce2"></div>\n' +
+    '  <div class="sk-child"></div>\n' +
+    '  <div class="sk-child"></div>\n' +
     '</div>\n' +
     '');
 }]);
@@ -142,6 +142,14 @@ angular.module('base').run(['$templateCache', function($templateCache) {
 }]);
 
 angular.module('base').run(['$templateCache', function($templateCache) {
+  $templateCache.put('components/loader/spinkit-solid-circle.html',
+    '<div class="sk-loader sk-solid-circle">\n' +
+    '  <div class="sk-child"></div>\n' +
+    '</div>\n' +
+    '');
+}]);
+
+angular.module('base').run(['$templateCache', function($templateCache) {
   $templateCache.put('components/loader/spinkit-three-bounce.html',
     '<div class="sk-loader sk-three-bounce">\n' +
     '  <div class="sk-child sk-bounce1"></div>\n' +
@@ -154,8 +162,8 @@ angular.module('base').run(['$templateCache', function($templateCache) {
 angular.module('base').run(['$templateCache', function($templateCache) {
   $templateCache.put('components/loader/spinkit-wandering-cubes.html',
     '<div class="sk-loader sk-wandering-cubes">\n' +
-    '  <div class="sk-cube sk-cube1"></div>\n' +
-    '  <div class="sk-cube sk-cube2"></div>\n' +
+    '  <div class="sk-cube"></div>\n' +
+    '  <div class="sk-cube"></div>\n' +
     '</div>\n' +
     '');
 }]);
