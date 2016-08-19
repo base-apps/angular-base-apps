@@ -115,23 +115,12 @@ gulp.task('clean:dist', function(cb) {
 
 // Copy static files (but not the Angular templates, Sass, or JS)
 gulp.task('copy', function() {
-  var merged = merge();
-
-  merged.add(gulp.src(paths.html.base, {
-    base: './docs/'
-  })
-    .pipe(gulp.dest('build')));
-
-  merged.add(gulp.src('./node_modules/angular-icons/dist/icons/iconic/**/*')
-    .pipe(gulp.dest('build/assets/img/iconic/')));
-
-  merged.add(gulp.src('./node_modules/angular-icons/dist/icons/ionicons/**/*')
-    .pipe(gulp.dest('build/assets/img/ionicons/')));
-
-  merged.add(gulp.src('./node_modules/angular-icons/dist/icons/material-icons/**/*')
-    .pipe(gulp.dest('build/assets/img/material-icons/')));
-
-  return merged;
+  return gulp.src(paths.html.base, {
+      base: './docs/'
+    })
+    // update CDN links
+    .pipe($.replace(/https:\/\/cdn\.jsdelivr\.net\/angular-base-apps\/0\.0\.0/g, 'https://cdn.jsdelivr.net/angular-base-apps/' + version))
+    .pipe(gulp.dest('build'));
 });
 
 // Copy page templates and generate routes
