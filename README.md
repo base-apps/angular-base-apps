@@ -4,7 +4,7 @@ An open source, community-driven fork of [Foundation for Apps by Zurb](https://g
 
 [![Build Status](https://travis-ci.org/base-apps/angular-base-apps.svg)](https://travis-ci.org/base-apps/angular-base-apps)
 
-This is Angular Base Apps, an Angular-powered framework for building powerful responsive web apps and an unofficial fork of [Foundation for Apps by Zurb](https://github.com/zurb/foundation-apps).
+This is Angular Base Apps, an Angular-powered framework for building powerful responsive web apps and an unofficial fork of [Foundation for Apps by Zurb](https://github.com/zurb/foundation-apps).  Angular Base Apps 1.x is a drop-in replacement for Foundation for Apps.  If you wish to try out Angular Base Apps 2.x, check the [installation docs](https://base-apps.github.io/angular-base-apps/#!/installation) for migration steps.
 
 ## Requirements
 
