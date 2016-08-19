@@ -120,13 +120,21 @@ $titlebar-item-classes: (
     &.primary {
       @include title-bar-style($primary-color, isitlight($primary-color));
       a, a:hover { color: isitlight($primary-color); }
-      @if using(iconic) { .iconic { @include color-icon(isitlight($primary-color)); } }
+      @if using(icon) {
+        .iconic, .ionicons, .material-icons {
+          @include color-icon(isitlight($primary-color));
+        }
+      }
       @if using(loader) { .sk-loader { @include color-loaders(isitlight($primary-color)); } }
     }
     &.dark {
       @include title-bar-style($dark-color, #fff);
       a, a:hover { color: #fff; }
-      @if using(iconic) { .iconic { @include color-icon(#fff); } }
+      @if using(icon) {
+        .iconic, .ionicons, .material-icons {
+          @include color-icon(#fff);
+        }
+      }
       @if using(loader) { .sk-loader { @include color-loaders(#fff); } }
     }
   }

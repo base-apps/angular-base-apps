@@ -1,0 +1,70 @@
+$icon-sizes: (
+  tiny: 8px,
+  small: 16px,
+  medium: 32px,
+  large: 64px
+) !default;
+
+// Icon
+$icon-primary-fill: $primary-color !default;
+$icon-primary-stroke: $primary-color !default;
+$icon-accent-fill: $icon-primary-fill !default;
+$icon-accent-stroke: $icon-accent-fill !default;
+///
+
+@include exports(icon) {
+  .iconic, .ionicons, .material-icons {
+    width: 1rem;
+    height: 1rem;
+    vertical-align: middle;
+
+    a > & {
+      @include color-icon($primary-color);
+      margin-top: -2px;
+      margin-right: 0.25rem;
+    }
+
+    * {
+      fill: $icon-primary-fill;
+      stroke: $icon-primary-stroke;
+
+      &.iconic-property-accent {
+        fill: $icon-accent-fill;
+        stroke: $icon-accent-stroke;
+      }
+    }
+  }
+
+  // support old coloring classes
+  @each $color in map-keys($base-apps-colors) {
+    .iconic-color-#{$color}, .iconic.iconic-color-#{$color}, a.iconic-color-#{$color} > .iconic {
+      @include color-icon(map-get($base-apps-colors, $color));
+    }
+  }
+
+  .iconic, .ionicons, .material-icons {
+    @each $color in map-keys($base-apps-colors) {
+      $color-value: map-get($base-apps-colors, $color);
+      &.#{$color} {
+        @include color-icon($color-value);
+      }
+    }
+
+    @each $size in map-keys($icon-sizes) {
+      &.#{$size} {
+        $size-value: map-get($icon-sizes, $size);
+        @include size-icon($size-value, $size-value);
+      }
+    }
+  }
+
+  // override iconic fluid styling if size class provided
+  .iconic.iconic-fluid {
+    @each $size in map-keys($icon-sizes) {
+      &.#{$size} {
+        $size-value: map-get($icon-sizes, $size);
+        @include size-icon($size-value, $size-value);
+      }
+    }
+  }
+}

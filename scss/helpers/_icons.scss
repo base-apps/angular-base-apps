@@ -46,3 +46,11 @@
     }
   }
 }
+
+@mixin size-icon(
+  $width,
+  $height
+) {
+  width: $width !important;
+  height: $height !important;
+}

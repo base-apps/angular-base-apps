@@ -75,8 +75,10 @@ var paths = {
     ],
     docs: [
       'docs/assets/js/vendor/**/*.js',
-      'node_modules/angular-icons/lib/iconic.min.js',
-      'node_modules/angular-icons/iconic.js',
+      'node_modules/angular-icons/dist/lib/iconic.min.js',
+      'node_modules/angular-icons/dist/iconic.js',
+      'node_modules/angular-icons/dist/ionicons.js',
+      'node_modules/angular-icons/dist/material-icons.js',
       'node_modules/angular-dynamic-routing/dynamicRouting.js',
       'node_modules/angular-dynamic-routing/dynamicRouting.animations.js',
       'bower_components/marked/lib/marked.js',
@@ -118,8 +120,14 @@ gulp.task('copy', function() {
   })
     .pipe(gulp.dest('build')));
 
-  merged.add(gulp.src('./node_modules/angular-icons/icons/iconic/**/*')
+  merged.add(gulp.src('./node_modules/angular-icons/dist/icons/iconic/**/*')
     .pipe(gulp.dest('build/assets/img/iconic/')));
+
+  merged.add(gulp.src('./node_modules/angular-icons/dist/icons/ionicons/**/*')
+    .pipe(gulp.dest('build/assets/img/ionicons/')));
+
+  merged.add(gulp.src('./node_modules/angular-icons/dist/icons/material-icons/**/*')
+    .pipe(gulp.dest('build/assets/img/material-icons/')));
 
   return merged;
 });

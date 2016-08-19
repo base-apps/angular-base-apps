@@ -13,6 +13,8 @@
 
     // icons
     'angularIcons.iconic',
+    'angularIcons.ionicons',
+    'angularIcons.materialIcons',
 
     // dynamic routing
     'dynamicRouting',
@@ -22,7 +24,7 @@
     .controller('MotionUIController', MotionUIController)
     .controller('NavController', NavController)
     .controller('AngularModsController', AngularModsController)
-    .controller('IconicController', IconicController)
+    .controller('IconController', IconController)
     .controller('ModalController', ModalController)
     .controller('InstallationController', InstallationController)
     .controller('TabsController', TabsController)
@@ -249,9 +251,9 @@
     };
   }
 
-  IconicController.$inject = ['$scope', '$timeout'];
+  IconController.$inject = ['$scope', '$timeout'];
 
-  function IconicController($scope, $timeout) {
+  function IconController($scope, $timeout) {
     var iconNum = 0,
         icons = [{
           icon: 'account',

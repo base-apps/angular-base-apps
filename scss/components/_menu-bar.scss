@@ -132,8 +132,10 @@ $menubar-icon-spacing: $menubar-item-padding !default;
   }
 
   // Iconic
-  @if using(iconic) {
-    .iconic { @include color-icon($color); }
+  @if using(icon) {
+    .iconic, .ionicons, .material-icons {
+      @include color-icon($color);
+    }
   }
 
   // Loaders
@@ -148,7 +150,7 @@ $menubar-icon-spacing: $menubar-item-padding !default;
 ) {
   > li {
     // Sizing
-    > img, > .iconic, > .sk-loader {
+    > img {
       margin: 0;
 
       @if $menubar-icon-size != false {
@@ -162,30 +164,90 @@ $menubar-icon-spacing: $menubar-item-padding !default;
       }
     }
 
+    @if using(icon) {
+      > .iconic, > .ionicons, > .material-icons {
+        margin: 0;
+
+        @if $menubar-icon-size != false {
+          width: $menubar-icon-size;
+          height: $menubar-icon-size;
+        }
+
+        // Remove any margins from standalone icons
+        &:first-child:last-child {
+          margin: 0;
+        }
+      }
+    }
+
+    @if using(loader) {
+      > .sk-loader {
+        margin: 0;
+
+        @if $menubar-icon-size != false {
+          width: $menubar-icon-size;
+          height: $menubar-icon-size;
+        }
+
+        // Remove any margins from standalone icons
+        &:first-child:last-child {
+          margin: 0;
+        }
+      }
+    }
+
     // Position
     @if $position == left {
       > a {
         flex-flow: row nowrap;
         align-items: center;
-        > img, > .iconic, > .sk-loader { margin: 0 $menubar-icon-spacing 0 0; }
+        > img { margin: 0 $menubar-icon-spacing 0 0; }
+
+        @if using(icon) {
+          > .iconic, > .ionicons, > .material-icons { margin: 0 $menubar-icon-spacing 0 0; }
+        }
+        @if using(loader) {
+          > .sk-loader { margin: 0 $menubar-icon-spacing 0 0; }
+        }
       }
     }
     @if $position == top {
       > a {
         flex-flow: column nowrap;
-        > img, > .iconic, > .sk-loader { margin: 0 0 $menubar-icon-spacing 0; }
+        > img { margin: 0 0 $menubar-icon-spacing 0; }
+
+        @if using(icon) {
+          > .iconic, > .ionicons, > .material-icons { margin: 0 0 $menubar-icon-spacing 0; }
+        }
+        @if using(loader) {
+          > .sk-loader { margin: 0 0 $menubar-icon-spacing 0; }
+        }
       }
     }
     @if $position == right {
       > a {
         flex-flow: row-reverse nowrap;
-        > img, > .iconic, > .sk-loader { margin: 0 0 0 $menubar-icon-spacing; }
+        > img { margin: 0 0 0 $menubar-icon-spacing; }
+
+        @if using(icon) {
+          > .iconic, > .ionicons, > .material-icons { margin: 0 0 0 $menubar-icon-spacing; }
+        }
+        @if using(loader) {
+          > .sk-loader { margin: 0 0 0 $menubar-icon-spacing; }
+        }
       }
     }
     @if $position == bottom {
       > a {
         flex-flow: column-reverse nowrap;
-        > img, > .iconic, > .sk-loader { margin: $menubar-icon-spacing 0 0 0; }
+        > img { margin: $menubar-icon-spacing 0 0 0; }
+
+        @if using(icon) {
+          > .iconic, > .ionicons, > .material-icons { margin: $menubar-icon-spacing 0 0 0; }
+        }
+        @if using(loader) {
+          > .sk-loader { margin: $menubar-icon-spacing 0 0 0; }
+        }
       }
     }
   }

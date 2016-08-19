@@ -58,8 +58,8 @@ $button-tag-selector: false !default;
     @include button-expand;
   }
 
-  @if using(iconic) {
-    .iconic {
+  @if using(icon) {
+    .iconic, .ionics, .material-icons {
       width: 1em;
       height: 1em;
       vertical-align: middle;
@@ -143,17 +143,19 @@ $button-tag-selector: false !default;
     }
   }
 
-  @if using(iconic) {
+  @if using(icon) {
     @if $style == hollow {
-      .iconic {
+      .iconic, .ionicons, .material-icons {
         @include color-icon($background);
       }
-      &:hover .iconic {
-        @include color-icon(scale-color($background, $lightness: 25%));
+      &:hover {
+        .iconic, .ionicons, .material-icons {
+          @include color-icon(scale-color($background, $lightness: 25%));
+        }
       }
     }
     @else {
-      .iconic {
+      .iconic, .ionicons, .material-icons {
         @include color-icon($color);
       }
     }
