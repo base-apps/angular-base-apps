@@ -429,13 +429,13 @@ gulp.task('setversion', function () {
     }));
 });
 
-gulp.task('bump', function () {
+gulp.task('bump', ['build:dist'], function () {
   return gulp.src(['./package.json', './bower.json'])
     .pipe($.bump({type: args.publish || 'patch'}))
     .pipe(gulp.dest('./'));
 });
 
-gulp.task('tagversion', function () {
+gulp.task('tagversion', ['bump'], function () {
   return gulp.src(['./package.json', './bower.json', './dist/**/*'])
     .pipe($.git.add())
     .pipe($.git.commit('publishing ' + args.publish + ' version ' + version))
