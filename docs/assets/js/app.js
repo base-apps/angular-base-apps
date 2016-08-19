@@ -26,7 +26,6 @@
     .controller('AngularModsController', AngularModsController)
     .controller('IconController', IconController)
     .controller('ModalController', ModalController)
-    .controller('InstallationController', InstallationController)
     .controller('TabsController', TabsController)
     .factory('ProgrammaticModal', ProgrammaticModalFactory)
   ;
@@ -401,12 +400,6 @@
     $scope.reset = function() {
       $scope.clicks = 0;
     };
-  }
-
-  InstallationController.$inject = ['$scope'];
-
-  function InstallationController($scope) {
-    $scope.version = "2.0.0";
   }
 
 })();

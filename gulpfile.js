@@ -22,10 +22,11 @@
 
 var gulp        = require('gulp'),
     $           = require('gulp-load-plugins')(),
+    args        = require('yargs').argv,
     rimraf      = require('rimraf'),
     runSequence = require('run-sequence'),
     modRewrite  = require('connect-modrewrite'),
-    routes      = require('./node_modules/angular-front-router'),
+    routes      = require('angular-front-router'),
     merge       = require('merge-stream'),
     octophant   = require('octophant'),
     Server      = require('karma').Server;
@@ -33,6 +34,7 @@ var gulp        = require('gulp'),
 // 2. VARIABLES
 // - - - - - - - - - - - - - - -
 var production = false;
+var version = "";
 
 var paths = {
   html: {
@@ -139,6 +141,8 @@ gulp.task('copy:templates', ['javascript'], function() {
       path: 'build/assets/js/routes.js',
       root: 'docs'
     }))
+    // update CDN links
+    .pipe($.replace(/https:\/\/cdn\.jsdelivr\.net\/angular-base-apps\/0\.0\.0/g, 'https://cdn.jsdelivr.net/angular-base-apps/' + version))
     .pipe(gulp.dest('./build/templates'))
   ;
 });
@@ -163,6 +167,8 @@ gulp.task('copy:partials', ['clean:partials'], function() {
     .pipe(gulp.dest('./build/assets/js')));
 
   merged.add(gulp.src('./docs/partials/**/*.html')
+    // update CDN links
+    .pipe($.replace(/https:\/\/cdn\.jsdelivr\.net\/angular-base-apps\/0\.0\.0/g, 'https://cdn.jsdelivr.net/angular-base-apps/' + version))
     .pipe(gulp.dest('./build/partials/')));
 
   return merged;
@@ -376,7 +382,7 @@ gulp.task('production:enable', function(cb) { production = true; cb(); });
 
 // Build the documentation once
 gulp.task('build', function(cb) {
-  runSequence('clean', ['copy', 'copy:partials', 'css', 'javascript', 'copy:templates'], function() {
+  runSequence('clean', 'setversion', ['copy', 'copy:partials', 'css', 'javascript', 'copy:templates'], function() {
     cb();
   });
 });
@@ -425,37 +431,34 @@ gulp.task('default:dist', ['build:dist', 'server:start:dist'], function() {
   gulp.watch(paths.javascript.base.concat(paths.javascript.docs), ['javascript', 'copy:dist']);
 });
 
-gulp.task('bump:prerelease', function() { return bump('prerelease'); });
-gulp.task('bump:patch', function() { return bump('patch'); });
-gulp.task('bump:minor', function() { return bump('minor'); });
-gulp.task('bump:major', function() { return bump('major'); });
+gulp.task('setversion', function () {
+  return gulp.src('./package.json')
+    .pipe($.if(args.publish, $.bump({type: args.publish})))
+    .pipe($.tap(function(file) {
+      var json = JSON.parse(String(file.contents));
+      version = json.version;
+    }));
+});
 
-gulp.task('publish:prerelease', ['build:dist', 'bump:prerelease'], function() { return publish(); });
-gulp.task('publish:patch', ['build:dist', 'bump:patch'], function() { return publish(); });
-gulp.task('publish:minor', ['build:dist', 'bump:minor'], function() { return publish(); });
-gulp.task('publish:major', ['build:dist', 'bump:major'], function() { return publish(); });
+gulp.task('bump', function () {
+  return gulp.src(['./package.json', './bower.json'])
+    .pipe($.bump({type: args.publish || 'patch'}))
+    .pipe(gulp.dest('./'));
+});
+
+gulp.task('tagversion', function () {
+  return gulp.src(['./package.json', './bower.json', './dist/**/*'])
+    .pipe($.git.add())
+    .pipe($.git.commit('publishing ' + args.publish + ' version ' + version))
+    .pipe($.filter('package.json'))
+    .pipe($.tagVersion());
+});
+
+gulp.task('publish:dist', ['build:dist', 'bump', 'tagversion'], function(cb) {
+  return cb();
+});
 
 gulp.task('publish:ghpages', function() {
   return gulp.src('./dist/docs/**/*')
     .pipe($.ghPages());
 });
-
-function bump(importance) {
-  // get all the files to bump version in
-  return gulp.src(['./package.json', './bower.json'])
-    // bump the version number in those files
-    .pipe($.bump({type: importance}))
-    // save it back to filesystem
-    .pipe(gulp.dest('./'));
-}
-
-function publish() {
-  return gulp.src(['./package.json', './bower.json', './dist/**/*'])
-    // commit the changes
-    .pipe($.git.add())
-    .pipe($.git.commit('bump version'))
-    // read only one file to get the version number
-    .pipe($.filter('package.json'))
-    // **tag it in the repository**
-    .pipe($.tagVersion());
-}
