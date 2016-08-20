@@ -39,7 +39,7 @@ $child-selectors: '> a, > label, > button';
   }
 
   @if using(icon) {
-    .iconic, .ionicons, .material-icons {
+    .iconic, .ionicons, .material-icons, .open-iconic {
       width: 1em;
       height: 1em;
       vertical-align: middle;
@@ -123,7 +123,7 @@ $child-selectors: '> a, > label, > button';
         }
 
         @if using(icon) {
-          .iconic, .ionicons, .material-icons {
+          .iconic, .ionicons, .material-icons, .open-iconic {
             @include color-icon($background);
           }
         }
@@ -138,7 +138,7 @@ $child-selectors: '> a, > label, > button';
         }
 
         @if using(icon) {
-          .iconic, .ionicons, .material-icons {
+          .iconic, .ionicons, .material-icons, .open-iconic {
             @include color-icon(isitlight($background));
           }
         }

@@ -13,7 +13,7 @@ $icon-accent-stroke: $icon-accent-fill !default;
 ///
 
 @include exports(icon) {
-  .iconic, .ionicons, .material-icons {
+  .iconic, .ionicons, .material-icons, .open-iconic {
     width: 1rem;
     height: 1rem;
     vertical-align: middle;
@@ -42,7 +42,7 @@ $icon-accent-stroke: $icon-accent-fill !default;
     }
   }
 
-  .iconic, .ionicons, .material-icons {
+  .iconic, .ionicons, .material-icons, .open-iconic {
     @each $color in map-keys($base-apps-colors) {
       $color-value: map-get($base-apps-colors, $color);
       &.#{$color} {

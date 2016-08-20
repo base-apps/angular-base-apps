@@ -59,7 +59,7 @@ $button-tag-selector: false !default;
   }
 
   @if using(icon) {
-    .iconic, .ionics, .material-icons {
+    .iconic, .ionics, .material-icons, .open-iconic {
       width: 1em;
       height: 1em;
       vertical-align: middle;
@@ -145,17 +145,17 @@ $button-tag-selector: false !default;
 
   @if using(icon) {
     @if $style == hollow {
-      .iconic, .ionicons, .material-icons {
+      .iconic, .ionicons, .material-icons, .open-iconic {
         @include color-icon($background);
       }
       &:hover {
-        .iconic, .ionicons, .material-icons {
+        .iconic, .ionicons, .material-icons, .open-iconic {
           @include color-icon(scale-color($background, $lightness: 25%));
         }
       }
     }
     @else {
-      .iconic, .ionicons, .material-icons {
+      .iconic, .ionicons, .material-icons, .open-iconic {
         @include color-icon($color);
       }
     }

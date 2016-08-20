@@ -133,7 +133,7 @@ $menubar-icon-spacing: $menubar-item-padding !default;
 
   // Iconic
   @if using(icon) {
-    .iconic, .ionicons, .material-icons {
+    .iconic, .ionicons, .material-icons, .open-iconic {
       @include color-icon($color);
     }
   }
@@ -165,7 +165,7 @@ $menubar-icon-spacing: $menubar-item-padding !default;
     }
 
     @if using(icon) {
-      > .iconic, > .ionicons, > .material-icons {
+      > .iconic, > .ionicons, > .material-icons, .open-iconic {
         margin: 0;
 
         @if $menubar-icon-size != false {
@@ -204,7 +204,7 @@ $menubar-icon-spacing: $menubar-item-padding !default;
         > img { margin: 0 $menubar-icon-spacing 0 0; }
 
         @if using(icon) {
-          > .iconic, > .ionicons, > .material-icons { margin: 0 $menubar-icon-spacing 0 0; }
+          > .iconic, > .ionicons, > .material-icons, .open-iconic { margin: 0 $menubar-icon-spacing 0 0; }
         }
         @if using(loader) {
           > .sk-loader { margin: 0 $menubar-icon-spacing 0 0; }
@@ -217,7 +217,7 @@ $menubar-icon-spacing: $menubar-item-padding !default;
         > img { margin: 0 0 $menubar-icon-spacing 0; }
 
         @if using(icon) {
-          > .iconic, > .ionicons, > .material-icons { margin: 0 0 $menubar-icon-spacing 0; }
+          > .iconic, > .ionicons, > .material-icons, .open-iconic { margin: 0 0 $menubar-icon-spacing 0; }
         }
         @if using(loader) {
           > .sk-loader { margin: 0 0 $menubar-icon-spacing 0; }
@@ -230,7 +230,7 @@ $menubar-icon-spacing: $menubar-item-padding !default;
         > img { margin: 0 0 0 $menubar-icon-spacing; }
 
         @if using(icon) {
-          > .iconic, > .ionicons, > .material-icons { margin: 0 0 0 $menubar-icon-spacing; }
+          > .iconic, > .ionicons, > .material-icons, .open-iconic { margin: 0 0 0 $menubar-icon-spacing; }
         }
         @if using(loader) {
           > .sk-loader { margin: 0 0 0 $menubar-icon-spacing; }
@@ -243,7 +243,7 @@ $menubar-icon-spacing: $menubar-item-padding !default;
         > img { margin: $menubar-icon-spacing 0 0 0; }
 
         @if using(icon) {
-          > .iconic, > .ionicons, > .material-icons { margin: $menubar-icon-spacing 0 0 0; }
+          > .iconic, > .ionicons, > .material-icons, .open-iconic { margin: $menubar-icon-spacing 0 0 0; }
         }
         @if using(loader) {
           > .sk-loader { margin: $menubar-icon-spacing 0 0 0; }
