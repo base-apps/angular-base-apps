@@ -29,7 +29,7 @@
   }
 }
 
-h3.subheader {
+:not(.subheader-section) > h3.subheader {
   font-size: 1.25rem;
 }
 
