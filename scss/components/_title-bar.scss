@@ -138,8 +138,8 @@ $titlebar-item-classes: (
       @if using(loader) { .sk-loader { @include color-loaders(#fff); } }
     }
   }
-    .title-bar-bottom {
-      border-bottom: 0;
-      border-top: $titlebar-border;
-    }
+  .title-bar-bottom {
+    border-bottom: 0;
+    border-top: $titlebar-border;
+  }
 }
