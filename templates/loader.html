@@ -45,29 +45,29 @@
 <hr>
 
 <div class="grid-block">
-  <div class="grid-content left">
-    <a href="#" class="large button">
+  <div class="grid-content">
+    <a href="" class="large button icon-right">
       <ba-spin-kit loader="three-bounce" class="small"></ba-spin-kit>
       Search
     </a>
-    <a href="#" class="large alert button">
-      <ba-spin-kit loader="wave" class="small"></ba-spin-kit>
+    <a href="" class="large alert button icon-right">
+      <ba-spin-kit loader="double-bounce" class="small"></ba-spin-kit>
       Delete
     </a>
-    <a href="#" class="large success button">
+    <a href="" class="large success button icon-left">
       <ba-spin-kit loader="pulse" class="small"></ba-spin-kit>
       Save
     </a>
-    <a href="#" class="large warning button">
+    <a href="" class="large warning button icon-left">
       <ba-spin-kit loader="circle" class="small"></ba-spin-kit>
       Add to Cart
     </a>
     <ul class="button-group">
-      <li><a href="#">
+      <li><a href="">
         <ba-spin-kit loader="fading-circle" class="small"></ba-spin-kit>
         Eat
       </a></li>
-      <li class="secondary"><a href="#">
+      <li class="secondary"><a href="" class="icon-right">
         <ba-spin-kit loader="solid-circle" class="small"></ba-spin-kit>
         Sleep
       </a></li>
@@ -79,15 +79,15 @@
 <hr>
 
 <ul class="primary menu-bar icon-top">
-  <li><a href="#">
+  <li><a href="">
     <ba-spin-kit loader="folding-cube" class="small"></ba-spin-kit>
     Eat
   </a></li>
-  <li><a href="#">
+  <li><a href="">
     <ba-spin-kit loader="rotating-plane" class="small"></ba-spin-kit>
     Eat
   </a></li>
-  <li><a href="#">
+  <li><a href="">
     <ba-spin-kit loader="double-bounce" class="small"></ba-spin-kit>
     Eat
   </a></li>
@@ -95,19 +95,19 @@
 
 <div class="dark title-bar">
   <span class="left">
-    <a href="#">
+    <a href="">
       <ba-spin-kit loader="wandering-cubes" class="small"></ba-spin-kit>
       Settings
     </a>
   </span>
   <span class="title center">
-    <a href="#">
+    <a href="">
       <ba-spin-kit loader="chasing-dots" class="small"></ba-spin-kit>
       Profile
     </a>
   </span>
   <span class="right">
-    <a href="#">
+    <a href="">
       <ba-spin-kit loader="folding-cube" class="small"></ba-spin-kit>
       Account
     </a>
@@ -188,7 +188,6 @@ The <code>loader</code> attribute defines which loading symbol to display.  Find
   </div>
 </div>
 
-
 <hr>
 
 <h3>Loading Symbol Sizes</h3>
@@ -211,5 +210,132 @@ The <code>loader</code> attribute defines which loading symbol to display.  Find
       <li><ba-spin-kit loader="cube-grid" class="medium"></ba-spin-kit><span class="icon-label">Medium</span></li>
       <li><ba-spin-kit loader="cube-grid" class="large"></ba-spin-kit><span class="icon-label">Large</span></li>
     </ul>
+  </div>
+</div>
+
+<hr>
+
+<h3>Button Positioning</h3>
+
+<p>The loading symbols inside a <strong>button</strong> or <strong>button-group</strong> can be positioned on the left (default) or right using the <code>icon-left</code> and <code>icon-right</code> classes.</p>
+
+<div class="grid-block">
+  <div class="grid-content small-12 medium-6">
+    <hljs language="html">
+<a href="" class="button icon-left">
+  <ba-spin-kit loader="solid-circle"></ba-spin-kit>
+  Search
+</a>
+<a href="" class="button icon-right">
+  <ba-spin-kit loader="solid-circle"></ba-spin-kit>
+  Search
+</a>
+    </hljs>
+  </div>
+  <div class="grid-content small-12 medium-6">
+    <a href="" class="button icon-left">
+      <ba-spin-kit loader="solid-circle"></ba-spin-kit>
+      Search
+    </a>
+    <a href="" class="button icon-right">
+      <ba-spin-kit loader="solid-circle"></ba-spin-kit>
+      Search
+    </a>
+  </div>
+</div>
+
+<div class="grid-block">
+  <div class="grid-content small-12 medium-6">
+    <hljs language="html">
+<ul class="button-group">
+  <li>
+    <a href="" class="icon-left">
+      <ba-spin-kit loader="solid-circle"></ba-spin-kit>
+      Search
+    </a>
+  </li>
+  <li>
+    <a href="" class="icon-right">
+      <ba-spin-kit loader="solid-circle"></ba-spin-kit>
+      Search
+    </a>
+  </li>
+</ul>
+<ul class="button-group icon-right">
+  <li>
+    <a href="">
+      <ba-spin-kit loader="solid-circle"></ba-spin-kit>
+      Search
+    </a>
+  </li>
+  <li>
+    <a href="">
+      <ba-spin-kit loader="solid-circle"></ba-spin-kit>
+      Search
+    </a>
+  </li>
+</ul>
+    </hljs>
+  </div>
+  <div class="grid-content small-12 medium-6">
+    <ul class="button-group">
+      <li>
+        <a href="" class="icon-left">
+          <ba-spin-kit loader="solid-circle"></ba-spin-kit>
+          Search
+        </a>
+      </li>
+      <li>
+        <a href="" class="icon-right">
+          <ba-spin-kit loader="solid-circle"></ba-spin-kit>
+          Search
+        </a>
+      </li>
+    </ul>
+    <ul class="button-group icon-right">
+      <li>
+        <a href="">
+          <ba-spin-kit loader="solid-circle"></ba-spin-kit>
+          Search
+        </a>
+      </li>
+      <li>
+        <a href="">
+          <ba-spin-kit loader="solid-circle"></ba-spin-kit>
+          Search
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<hr>
+
+<h3>Show/Hide Symbols</h3>
+
+<p>The loading symbols can be dynamically displayed using the <code>ng-show</code> and <code>ng-hide</code> classes.</p>
+
+<div class="grid-block">
+  <div class="grid-content small-12 medium-6">
+    <hljs language="html">
+<a ng-click="showSymbol = !showSymbol" class="button icon-left">
+  <ba-spin-kit ng-show="showSymbol" loader="solid-circle"></ba-spin-kit>
+  Search
+</a>
+<a ng-click="showSymbol = !showSymbol" class="button icon-right">
+  <ba-spin-kit ng-hide="showSymbol" loader="solid-circle"></ba-spin-kit>
+  Search
+</a>
+    </hljs>
+  </div>
+  <div class="grid-content small-12 medium-6">
+    <a ng-click="showSymbol = !showSymbol" class="button icon-left">
+      <ba-spin-kit ng-show="showSymbol" loader="solid-circle"></ba-spin-kit>
+      Search
+    </a>
+    <a ng-click="showSymbol = !showSymbol" class="button icon-right">
+      <ba-spin-kit ng-hide="showSymbol" loader="solid-circle"></ba-spin-kit>
+      Search
+    </a>
   </div>
 </div>
