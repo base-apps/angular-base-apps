@@ -435,7 +435,7 @@ gulp.task('bump', function () {
     .pipe(gulp.dest('./'));
 });
 
-gulp.task('tagversion', ['bump'], function () {
+gulp.task('tagversion', function () {
   return gulp.src(['./package.json', './bower.json', './dist/**/*'])
     .pipe($.git.add())
     .pipe($.git.commit('publishing ' + args.publish + ' version ' + version))
