@@ -37,16 +37,6 @@ $child-selectors: '> a, > label, > button';
       }
     }
   }
-
-  @if using(icon) {
-    .iconic, .ionicons, .material-icons, .open-iconic {
-      width: 1em;
-      height: 1em;
-      vertical-align: middle;
-      margin-right: 0.25em;
-      margin-top: -2px; // The icons are oddly misaligned
-    }
-  }
 }
 
 %button-group-segmented {
@@ -73,6 +63,48 @@ $child-selectors: '> a, > label, > button';
 
   @if $expand {
     @include button-group-expand;
+  }
+}
+@mixin button-group-icons(
+  $position: left
+) {
+  @if $position == left {
+    > img {
+      margin: 0 $button-icon-spacing 0 0;
+      float: left;
+    }
+
+    @if using(icon) {
+      > .iconic, > .ionicons, > .material-icons, .open-iconic {
+        margin: 0 $button-icon-spacing 0 0;
+        float: left;
+      }
+    }
+    @if using(loader) {
+      > .sk-loader {
+        margin: 0 $button-icon-spacing 0 0;
+        float: left;
+      }
+    }
+  }
+  @if $position == right {
+    > img {
+      margin: 0 0 0 $button-icon-spacing;
+      float: right;
+    }
+
+    @if using(icon) {
+      > .iconic, > .ionicons, > .material-icons, .open-iconic {
+         margin: 0 0 0 $button-icon-spacing;
+         float: right;
+       }
+    }
+    @if using(loader) {
+      > .sk-loader {
+        margin: 0 0 0 $button-icon-spacing;
+        float: right;
+      }
+    }
   }
 }
 @mixin button-group-expand($stretch: true) {
@@ -195,6 +227,45 @@ $child-selectors: '> a, > label, > button';
     li.disabled {
       #{$child-selectors} {
         @include button-disabled;
+      }
+    }
+
+    // Icon positioning
+    &, &.icon-left {
+      > li > a {
+        @include button-group-icons(left);
+      }
+    }
+    &, &.icon-right {
+      > li > a {
+        @include button-group-icons(right);
+      }
+    }
+
+    @if using(icon) {
+      > li > a {
+        .iconic, .ionics, .material-icons, .open-iconic {
+          vertical-align: middle;
+          margin-top: -2px; // The icons are oddly misaligned
+
+          @include size-icon(1em, 1em);
+        }
+
+        &.icon-left { @include button-group-icons(left); }
+        &.icon-right  { @include button-group-icons(right); }
+      }
+    }
+
+    @if using(loader) {
+      > li > a {
+        .sk-loader {
+          vertical-align: middle;
+
+          @include size-loaders(1em, 1em);
+        }
+
+        &.icon-left { @include button-group-icons(left); }
+        &.icon-right  { @include button-group-icons(right); }
       }
     }
   }

@@ -16,6 +16,7 @@ $button-sizes: (
 $button-font-size: 0.9rem !default;
 $button-opacity-disabled: 0.5 !default;
 $button-tag-selector: false !default;
+$button-icon-spacing: 0.5em !default;
 ///
 
 %button {
@@ -60,21 +61,65 @@ $button-tag-selector: false !default;
 
   @if using(icon) {
     .iconic, .ionics, .material-icons, .open-iconic {
-      width: 1em;
-      height: 1em;
       vertical-align: middle;
-      margin-right: 0.25em;
       margin-top: -2px; // The icons are oddly misaligned
+
+      @include size-icon(1em, 1em);
     }
   }
 
   @if using(loader) {
     .sk-loader {
       vertical-align: middle;
-      margin-right: 0.25em;
-      margin-top: -2px; // The icons are oddly misaligned
 
       @include size-loaders(1em, 1em);
+    }
+  }
+
+  // Icon positioning
+  &, &.icon-left { @include button-icons(left); }
+  &.icon-right  { @include button-icons(right); }
+}
+
+@mixin button-icons(
+  $position: left
+) {
+  @if $position == left {
+    > img {
+      margin: 0 $button-icon-spacing 0 0;
+      float: left;
+    }
+
+    @if using(icon) {
+      > .iconic, > .ionicons, > .material-icons, .open-iconic {
+        margin: 0 $button-icon-spacing 0 0;
+        float: left;
+      }
+    }
+    @if using(loader) {
+      > .sk-loader {
+        margin: 0 $button-icon-spacing 0 0;
+        float: left;
+      }
+    }
+  }
+  @if $position == right {
+    > img {
+      margin: 0 0 0 $button-icon-spacing;
+      float: right;
+    }
+
+    @if using(icon) {
+      > .iconic, > .ionicons, > .material-icons, .open-iconic {
+         margin: 0 0 0 $button-icon-spacing;
+         float: right;
+       }
+    }
+    @if using(loader) {
+      > .sk-loader {
+        margin: 0 0 0 $button-icon-spacing;
+        float: right;
+      }
     }
   }
 }

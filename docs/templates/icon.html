@@ -40,29 +40,29 @@ controller: IconController
 <hr>
 
 <div class="grid-block">
-  <div class="grid-content left">
-    <a href="#" class="large button">
+  <div class="grid-content">
+    <a href="" class="large button">
       <ba-iconic icon="magnifying-glass" size="small"></ba-iconic>
       Search
     </a>
-    <a href="#" class="large alert button">
+    <a href="" class="large alert button">
       <ba-ionicon icon="ios-close-circle" class="small"></ba-ionicon>
       Delete
     </a>
-    <a href="#" class="large success button">
+    <a href="" class="large success button icon-right">
       <ba-material-icon icon="check-circle" class="small"></ba-material-icon>
       Save
     </a>
     <ul class="button-group">
-      <li><a href="#">
+      <li><a href="">
         <ba-iconic icon="cart" size="small"></ba-iconic>
         Eat
       </a></li>
-      <li class="secondary"><a href="#">
+      <li class="secondary"><a href="" class="icon-right">
         <ba-ionicon icon="ios-power" class="small"></ba-ionicon>
         Sleep
       </a></li>
-      <li class="success"><a href="#">
+      <li class="success"><a href="">
         <ba-material-icon icon="code" class="small"></ba-material-icon>
         Code
       </a></li>
@@ -74,15 +74,15 @@ controller: IconController
 <hr>
 
 <ul class="primary menu-bar icon-top">
-  <li><a href="#">
+  <li><a href="">
     <ba-iconic icon="chevron" size="small"></ba-iconic>
     Eat
   </a></li>
-  <li><a href="#">
+  <li><a href="">
     <ba-ionicon icon="ios-pizza" class="small"></ba-ionicon>
     Eat
   </a></li>
-  <li><a href="#">
+  <li><a href="">
     <ba-material-icon icon="local-dining" class="small"></ba-material-icon>
     Eat
   </a></li>
@@ -90,19 +90,19 @@ controller: IconController
 
 <div class="dark title-bar">
   <span class="left">
-    <a href="#">
+    <a href="">
       <ba-iconic icon="cog" size="small"></ba-iconic>
       Settings
     </a>
   </span>
   <span class="title center">
-    <a href="#">
+    <a href="">
       <ba-ionicon icon="ios-person" class="small"></ba-ionicon>
       Profile
     </a>
   </span>
   <span class="right">
-    <a href="#">
+    <a href="">
       <ba-material-icon icon="cast" class="small"></ba-material-icon>
       Cast
     </a>
@@ -190,6 +190,103 @@ controller: IconController
 </div>
 
 <hr>
+
+<h3>Button Positioning</h3>
+
+<p>The icons inside a <strong>button</strong> or <strong>button-group</strong> can be positioned on the left (default) or right using the <code>icon-left</code> and <code>icon-right</code> classes.</p>
+
+<div class="grid-block">
+  <div class="grid-content small-12 medium-6">
+    <hljs language="html">
+<a href="" class="button icon-left">
+  <ba-iconic icon="magnifying-glass" size="small"></ba-iconic>
+  Search
+</a>
+<a href="" class="button icon-right">
+  <ba-iconic icon="magnifying-glass" size="small"></ba-iconic>
+  Search
+</a>
+    </hljs>
+  </div>
+  <div class="grid-content small-12 medium-6">
+    <a href="" class="button icon-left">
+      <ba-iconic icon="magnifying-glass" size="small"></ba-iconic>
+      Search
+    </a>
+    <a href="" class="button icon-right">
+      <ba-iconic icon="magnifying-glass" size="small"></ba-iconic>
+      Search
+    </a>
+  </div>
+</div>
+
+<div class="grid-block">
+  <div class="grid-content small-12 medium-6">
+    <hljs language="html">
+<ul class="button-group">
+  <li>
+    <a href="" class="icon-left">
+      <ba-iconic icon="magnifying-glass" size="small"></ba-iconic>
+      Search
+    </a>
+  </li>
+  <li>
+    <a href="" class="icon-right">
+      <ba-iconic icon="magnifying-glass" size="small"></ba-iconic>
+      Search
+    </a>
+  </li>
+</ul>
+<ul class="button-group icon-right">
+  <li>
+    <a href="">
+      <ba-iconic icon="magnifying-glass" size="small"></ba-iconic>
+      Search
+    </a>
+  </li>
+  <li>
+    <a href="">
+      <ba-iconic icon="magnifying-glass" size="small"></ba-iconic>
+      Search
+    </a>
+  </li>
+</ul>
+    </hljs>
+  </div>
+  <div class="grid-content small-12 medium-6">
+    <ul class="button-group">
+      <li>
+        <a href="" class="icon-left">
+          <ba-iconic icon="magnifying-glass" size="small"></ba-iconic>
+          Search
+        </a>
+      </li>
+      <li>
+        <a href="" class="icon-right">
+          <ba-iconic icon="magnifying-glass" size="small"></ba-iconic>
+          Search
+        </a>
+      </li>
+    </ul>
+    <ul class="button-group icon-right">
+      <li>
+        <a href="">
+          <ba-iconic icon="magnifying-glass" size="small"></ba-iconic>
+          Search
+        </a>
+      </li>
+      <li>
+        <a href="">
+          <ba-iconic icon="magnifying-glass" size="small"></ba-iconic>
+          Search
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<hr>
+
 <h3>Customize with Sass</h3>
 <p>You can use these Sass variables to customize the icons:</p>
 <hljs include="'partials/scss/icon.html'" language="scss">
