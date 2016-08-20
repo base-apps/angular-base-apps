@@ -1198,7 +1198,7 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
   margin: 0 1rem 1rem 0;
   background: #00558b;
   color: #fff; }
-  .button .iconic, .button .ionics, .button .material-icons {
+  .button .iconic, .button .ionics, .button .material-icons, .button .open-iconic {
     width: 1em;
     height: 1em;
     vertical-align: middle;
@@ -1308,10 +1308,10 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
   .button:hover, .button:focus {
     background: #004876;
     color: #fff; }
-  .button .iconic *, .button .ionicons *, .button .material-icons * {
+  .button .iconic *, .button .ionicons *, .button .material-icons *, .button .open-iconic * {
     fill: #fff;
     stroke: #fff; }
-    .button .iconic *.iconic-property-accent, .button .ionicons *.iconic-property-accent, .button .material-icons *.iconic-property-accent {
+    .button .iconic *.iconic-property-accent, .button .ionicons *.iconic-property-accent, .button .material-icons *.iconic-property-accent, .button .open-iconic *.iconic-property-accent {
       fill: #fff;
       stroke: #fff; }
   .button .sk-loader.sk-rotating-plane {
@@ -1341,7 +1341,7 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
     border-left-color: #fff; }
   .button.tiny {
     font-size: 0.63rem; }
-    .button.tiny .iconic, .button.tiny .ionics, .button.tiny .material-icons {
+    .button.tiny .iconic, .button.tiny .ionics, .button.tiny .material-icons, .button.tiny .open-iconic {
       width: 1em;
       height: 1em;
       vertical-align: middle;
@@ -1429,7 +1429,7 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
           border-width: 0.125em; }
   .button.small {
     font-size: 0.72rem; }
-    .button.small .iconic, .button.small .ionics, .button.small .material-icons {
+    .button.small .iconic, .button.small .ionics, .button.small .material-icons, .button.small .open-iconic {
       width: 1em;
       height: 1em;
       vertical-align: middle;
@@ -1517,7 +1517,7 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
           border-width: 0.125em; }
   .button.large {
     font-size: 1.17rem; }
-    .button.large .iconic, .button.large .ionics, .button.large .material-icons {
+    .button.large .iconic, .button.large .ionics, .button.large .material-icons, .button.large .open-iconic {
       width: 1em;
       height: 1em;
       vertical-align: middle;
@@ -1614,10 +1614,10 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
     .button.secondary:hover, .button.secondary:focus {
       background: #cdcdcd;
       color: #000; }
-    .button.secondary .iconic *, .button.secondary .ionicons *, .button.secondary .material-icons * {
+    .button.secondary .iconic *, .button.secondary .ionicons *, .button.secondary .material-icons *, .button.secondary .open-iconic * {
       fill: #000;
       stroke: #000; }
-      .button.secondary .iconic *.iconic-property-accent, .button.secondary .ionicons *.iconic-property-accent, .button.secondary .material-icons *.iconic-property-accent {
+      .button.secondary .iconic *.iconic-property-accent, .button.secondary .ionicons *.iconic-property-accent, .button.secondary .material-icons *.iconic-property-accent, .button.secondary .open-iconic *.iconic-property-accent {
         fill: #000;
         stroke: #000; }
     .button.secondary .sk-loader.sk-rotating-plane {
@@ -1651,10 +1651,10 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
     .button.success:hover, .button.success:focus {
       background: #39925a;
       color: #fff; }
-    .button.success .iconic *, .button.success .ionicons *, .button.success .material-icons * {
+    .button.success .iconic *, .button.success .ionicons *, .button.success .material-icons *, .button.success .open-iconic * {
       fill: #fff;
       stroke: #fff; }
-      .button.success .iconic *.iconic-property-accent, .button.success .ionicons *.iconic-property-accent, .button.success .material-icons *.iconic-property-accent {
+      .button.success .iconic *.iconic-property-accent, .button.success .ionicons *.iconic-property-accent, .button.success .material-icons *.iconic-property-accent, .button.success .open-iconic *.iconic-property-accent {
         fill: #fff;
         stroke: #fff; }
     .button.success .sk-loader.sk-rotating-plane {
@@ -1688,10 +1688,10 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
     .button.warning:hover, .button.warning:focus {
       background: #dc750f;
       color: #fff; }
-    .button.warning .iconic *, .button.warning .ionicons *, .button.warning .material-icons * {
+    .button.warning .iconic *, .button.warning .ionicons *, .button.warning .material-icons *, .button.warning .open-iconic * {
       fill: #fff;
       stroke: #fff; }
-      .button.warning .iconic *.iconic-property-accent, .button.warning .ionicons *.iconic-property-accent, .button.warning .material-icons *.iconic-property-accent {
+      .button.warning .iconic *.iconic-property-accent, .button.warning .ionicons *.iconic-property-accent, .button.warning .material-icons *.iconic-property-accent, .button.warning .open-iconic *.iconic-property-accent {
         fill: #fff;
         stroke: #fff; }
     .button.warning .sk-loader.sk-rotating-plane {
@@ -1725,10 +1725,10 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
     .button.alert:hover, .button.alert:focus {
       background: #dc2c0f;
       color: #fff; }
-    .button.alert .iconic *, .button.alert .ionicons *, .button.alert .material-icons * {
+    .button.alert .iconic *, .button.alert .ionicons *, .button.alert .material-icons *, .button.alert .open-iconic * {
       fill: #fff;
       stroke: #fff; }
-      .button.alert .iconic *.iconic-property-accent, .button.alert .ionicons *.iconic-property-accent, .button.alert .material-icons *.iconic-property-accent {
+      .button.alert .iconic *.iconic-property-accent, .button.alert .ionicons *.iconic-property-accent, .button.alert .material-icons *.iconic-property-accent, .button.alert .open-iconic *.iconic-property-accent {
         fill: #fff;
         stroke: #fff; }
     .button.alert .sk-loader.sk-rotating-plane {
@@ -1762,10 +1762,10 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
     .button.info:hover, .button.info:focus {
       background: #71bddd;
       color: #000; }
-    .button.info .iconic *, .button.info .ionicons *, .button.info .material-icons * {
+    .button.info .iconic *, .button.info .ionicons *, .button.info .material-icons *, .button.info .open-iconic * {
       fill: #000;
       stroke: #000; }
-      .button.info .iconic *.iconic-property-accent, .button.info .ionicons *.iconic-property-accent, .button.info .material-icons *.iconic-property-accent {
+      .button.info .iconic *.iconic-property-accent, .button.info .ionicons *.iconic-property-accent, .button.info .material-icons *.iconic-property-accent, .button.info .open-iconic *.iconic-property-accent {
         fill: #000;
         stroke: #000; }
     .button.info .sk-loader.sk-rotating-plane {
@@ -1799,10 +1799,10 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
     .button.dark:hover, .button.dark:focus {
       background: #1e1e1e;
       color: #fff; }
-    .button.dark .iconic *, .button.dark .ionicons *, .button.dark .material-icons * {
+    .button.dark .iconic *, .button.dark .ionicons *, .button.dark .material-icons *, .button.dark .open-iconic * {
       fill: #fff;
       stroke: #fff; }
-      .button.dark .iconic *.iconic-property-accent, .button.dark .ionicons *.iconic-property-accent, .button.dark .material-icons *.iconic-property-accent {
+      .button.dark .iconic *.iconic-property-accent, .button.dark .ionicons *.iconic-property-accent, .button.dark .material-icons *.iconic-property-accent, .button.dark .open-iconic *.iconic-property-accent {
         fill: #fff;
         stroke: #fff; }
     .button.dark .sk-loader.sk-rotating-plane {
@@ -1842,16 +1842,16 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
       border-color: #008ee8;
       background: transparent;
       color: #008ee8; }
-    .button.hollow .iconic *, .button.hollow .ionicons *, .button.hollow .material-icons * {
+    .button.hollow .iconic *, .button.hollow .ionicons *, .button.hollow .material-icons *, .button.hollow .open-iconic * {
       fill: #00558b;
       stroke: #00558b; }
-      .button.hollow .iconic *.iconic-property-accent, .button.hollow .ionicons *.iconic-property-accent, .button.hollow .material-icons *.iconic-property-accent {
+      .button.hollow .iconic *.iconic-property-accent, .button.hollow .ionicons *.iconic-property-accent, .button.hollow .material-icons *.iconic-property-accent, .button.hollow .open-iconic *.iconic-property-accent {
         fill: #00558b;
         stroke: #00558b; }
-    .button.hollow:hover .iconic *, .button.hollow:hover .ionicons *, .button.hollow:hover .material-icons * {
+    .button.hollow:hover .iconic *, .button.hollow:hover .ionicons *, .button.hollow:hover .material-icons *, .button.hollow:hover .open-iconic * {
       fill: #008ee8;
       stroke: #008ee8; }
-      .button.hollow:hover .iconic *.iconic-property-accent, .button.hollow:hover .ionicons *.iconic-property-accent, .button.hollow:hover .material-icons *.iconic-property-accent {
+      .button.hollow:hover .iconic *.iconic-property-accent, .button.hollow:hover .ionicons *.iconic-property-accent, .button.hollow:hover .material-icons *.iconic-property-accent, .button.hollow:hover .open-iconic *.iconic-property-accent {
         fill: #008ee8;
         stroke: #008ee8; }
     .button.hollow .sk-loader.sk-rotating-plane {
@@ -1916,16 +1916,16 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
         border-color: whitesmoke;
         background: transparent;
         color: whitesmoke; }
-      .button.hollow.secondary .iconic *, .button.hollow.secondary .ionicons *, .button.hollow.secondary .material-icons * {
+      .button.hollow.secondary .iconic *, .button.hollow.secondary .ionicons *, .button.hollow.secondary .material-icons *, .button.hollow.secondary .open-iconic * {
         fill: #f1f1f1;
         stroke: #f1f1f1; }
-        .button.hollow.secondary .iconic *.iconic-property-accent, .button.hollow.secondary .ionicons *.iconic-property-accent, .button.hollow.secondary .material-icons *.iconic-property-accent {
+        .button.hollow.secondary .iconic *.iconic-property-accent, .button.hollow.secondary .ionicons *.iconic-property-accent, .button.hollow.secondary .material-icons *.iconic-property-accent, .button.hollow.secondary .open-iconic *.iconic-property-accent {
           fill: #f1f1f1;
           stroke: #f1f1f1; }
-      .button.hollow.secondary:hover .iconic *, .button.hollow.secondary:hover .ionicons *, .button.hollow.secondary:hover .material-icons * {
+      .button.hollow.secondary:hover .iconic *, .button.hollow.secondary:hover .ionicons *, .button.hollow.secondary:hover .material-icons *, .button.hollow.secondary:hover .open-iconic * {
         fill: whitesmoke;
         stroke: whitesmoke; }
-        .button.hollow.secondary:hover .iconic *.iconic-property-accent, .button.hollow.secondary:hover .ionicons *.iconic-property-accent, .button.hollow.secondary:hover .material-icons *.iconic-property-accent {
+        .button.hollow.secondary:hover .iconic *.iconic-property-accent, .button.hollow.secondary:hover .ionicons *.iconic-property-accent, .button.hollow.secondary:hover .material-icons *.iconic-property-accent, .button.hollow.secondary:hover .open-iconic *.iconic-property-accent {
           fill: whitesmoke;
           stroke: whitesmoke; }
       .button.hollow.secondary .sk-loader.sk-rotating-plane {
@@ -1990,16 +1990,16 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
         border-color: #6dc68e;
         background: transparent;
         color: #6dc68e; }
-      .button.hollow.success .iconic *, .button.hollow.success .ionicons *, .button.hollow.success .material-icons * {
+      .button.hollow.success .iconic *, .button.hollow.success .ionicons *, .button.hollow.success .material-icons *, .button.hollow.success .open-iconic * {
         fill: #43AC6A;
         stroke: #43AC6A; }
-        .button.hollow.success .iconic *.iconic-property-accent, .button.hollow.success .ionicons *.iconic-property-accent, .button.hollow.success .material-icons *.iconic-property-accent {
+        .button.hollow.success .iconic *.iconic-property-accent, .button.hollow.success .ionicons *.iconic-property-accent, .button.hollow.success .material-icons *.iconic-property-accent, .button.hollow.success .open-iconic *.iconic-property-accent {
           fill: #43AC6A;
           stroke: #43AC6A; }
-      .button.hollow.success:hover .iconic *, .button.hollow.success:hover .ionicons *, .button.hollow.success:hover .material-icons * {
+      .button.hollow.success:hover .iconic *, .button.hollow.success:hover .ionicons *, .button.hollow.success:hover .material-icons *, .button.hollow.success:hover .open-iconic * {
         fill: #6dc68e;
         stroke: #6dc68e; }
-        .button.hollow.success:hover .iconic *.iconic-property-accent, .button.hollow.success:hover .ionicons *.iconic-property-accent, .button.hollow.success:hover .material-icons *.iconic-property-accent {
+        .button.hollow.success:hover .iconic *.iconic-property-accent, .button.hollow.success:hover .ionicons *.iconic-property-accent, .button.hollow.success:hover .material-icons *.iconic-property-accent, .button.hollow.success:hover .open-iconic *.iconic-property-accent {
           fill: #6dc68e;
           stroke: #6dc68e; }
       .button.hollow.success .sk-loader.sk-rotating-plane {
@@ -2064,16 +2064,16 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
         border-color: #f4a75b;
         background: transparent;
         color: #f4a75b; }
-      .button.hollow.warning .iconic *, .button.hollow.warning .ionicons *, .button.hollow.warning .material-icons * {
+      .button.hollow.warning .iconic *, .button.hollow.warning .ionicons *, .button.hollow.warning .material-icons *, .button.hollow.warning .open-iconic * {
         fill: #F08A24;
         stroke: #F08A24; }
-        .button.hollow.warning .iconic *.iconic-property-accent, .button.hollow.warning .ionicons *.iconic-property-accent, .button.hollow.warning .material-icons *.iconic-property-accent {
+        .button.hollow.warning .iconic *.iconic-property-accent, .button.hollow.warning .ionicons *.iconic-property-accent, .button.hollow.warning .material-icons *.iconic-property-accent, .button.hollow.warning .open-iconic *.iconic-property-accent {
           fill: #F08A24;
           stroke: #F08A24; }
-      .button.hollow.warning:hover .iconic *, .button.hollow.warning:hover .ionicons *, .button.hollow.warning:hover .material-icons * {
+      .button.hollow.warning:hover .iconic *, .button.hollow.warning:hover .ionicons *, .button.hollow.warning:hover .material-icons *, .button.hollow.warning:hover .open-iconic * {
         fill: #f4a75b;
         stroke: #f4a75b; }
-        .button.hollow.warning:hover .iconic *.iconic-property-accent, .button.hollow.warning:hover .ionicons *.iconic-property-accent, .button.hollow.warning:hover .material-icons *.iconic-property-accent {
+        .button.hollow.warning:hover .iconic *.iconic-property-accent, .button.hollow.warning:hover .ionicons *.iconic-property-accent, .button.hollow.warning:hover .material-icons *.iconic-property-accent, .button.hollow.warning:hover .open-iconic *.iconic-property-accent {
           fill: #f4a75b;
           stroke: #f4a75b; }
       .button.hollow.warning .sk-loader.sk-rotating-plane {
@@ -2138,16 +2138,16 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
         border-color: #f4715b;
         background: transparent;
         color: #f4715b; }
-      .button.hollow.alert .iconic *, .button.hollow.alert .ionicons *, .button.hollow.alert .material-icons * {
+      .button.hollow.alert .iconic *, .button.hollow.alert .ionicons *, .button.hollow.alert .material-icons *, .button.hollow.alert .open-iconic * {
         fill: #F04124;
         stroke: #F04124; }
-        .button.hollow.alert .iconic *.iconic-property-accent, .button.hollow.alert .ionicons *.iconic-property-accent, .button.hollow.alert .material-icons *.iconic-property-accent {
+        .button.hollow.alert .iconic *.iconic-property-accent, .button.hollow.alert .ionicons *.iconic-property-accent, .button.hollow.alert .material-icons *.iconic-property-accent, .button.hollow.alert .open-iconic *.iconic-property-accent {
           fill: #F04124;
           stroke: #F04124; }
-      .button.hollow.alert:hover .iconic *, .button.hollow.alert:hover .ionicons *, .button.hollow.alert:hover .material-icons * {
+      .button.hollow.alert:hover .iconic *, .button.hollow.alert:hover .ionicons *, .button.hollow.alert:hover .material-icons *, .button.hollow.alert:hover .open-iconic * {
         fill: #f4715b;
         stroke: #f4715b; }
-        .button.hollow.alert:hover .iconic *.iconic-property-accent, .button.hollow.alert:hover .ionicons *.iconic-property-accent, .button.hollow.alert:hover .material-icons *.iconic-property-accent {
+        .button.hollow.alert:hover .iconic *.iconic-property-accent, .button.hollow.alert:hover .ionicons *.iconic-property-accent, .button.hollow.alert:hover .material-icons *.iconic-property-accent, .button.hollow.alert:hover .open-iconic *.iconic-property-accent {
           fill: #f4715b;
           stroke: #f4715b; }
       .button.hollow.alert .sk-loader.sk-rotating-plane {
@@ -2212,16 +2212,16 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
         border-color: #b8deee;
         background: transparent;
         color: #b8deee; }
-      .button.hollow.info .iconic *, .button.hollow.info .ionicons *, .button.hollow.info .material-icons * {
+      .button.hollow.info .iconic *, .button.hollow.info .ionicons *, .button.hollow.info .material-icons *, .button.hollow.info .open-iconic * {
         fill: #A0D3E8;
         stroke: #A0D3E8; }
-        .button.hollow.info .iconic *.iconic-property-accent, .button.hollow.info .ionicons *.iconic-property-accent, .button.hollow.info .material-icons *.iconic-property-accent {
+        .button.hollow.info .iconic *.iconic-property-accent, .button.hollow.info .ionicons *.iconic-property-accent, .button.hollow.info .material-icons *.iconic-property-accent, .button.hollow.info .open-iconic *.iconic-property-accent {
           fill: #A0D3E8;
           stroke: #A0D3E8; }
-      .button.hollow.info:hover .iconic *, .button.hollow.info:hover .ionicons *, .button.hollow.info:hover .material-icons * {
+      .button.hollow.info:hover .iconic *, .button.hollow.info:hover .ionicons *, .button.hollow.info:hover .material-icons *, .button.hollow.info:hover .open-iconic * {
         fill: #b8deee;
         stroke: #b8deee; }
-        .button.hollow.info:hover .iconic *.iconic-property-accent, .button.hollow.info:hover .ionicons *.iconic-property-accent, .button.hollow.info:hover .material-icons *.iconic-property-accent {
+        .button.hollow.info:hover .iconic *.iconic-property-accent, .button.hollow.info:hover .ionicons *.iconic-property-accent, .button.hollow.info:hover .material-icons *.iconic-property-accent, .button.hollow.info:hover .open-iconic *.iconic-property-accent {
           fill: #b8deee;
           stroke: #b8deee; }
       .button.hollow.info .sk-loader.sk-rotating-plane {
@@ -2286,16 +2286,16 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
         border-color: #5a5a5a;
         background: transparent;
         color: #5a5a5a; }
-      .button.hollow.dark .iconic *, .button.hollow.dark .ionicons *, .button.hollow.dark .material-icons * {
+      .button.hollow.dark .iconic *, .button.hollow.dark .ionicons *, .button.hollow.dark .material-icons *, .button.hollow.dark .open-iconic * {
         fill: #232323;
         stroke: #232323; }
-        .button.hollow.dark .iconic *.iconic-property-accent, .button.hollow.dark .ionicons *.iconic-property-accent, .button.hollow.dark .material-icons *.iconic-property-accent {
+        .button.hollow.dark .iconic *.iconic-property-accent, .button.hollow.dark .ionicons *.iconic-property-accent, .button.hollow.dark .material-icons *.iconic-property-accent, .button.hollow.dark .open-iconic *.iconic-property-accent {
           fill: #232323;
           stroke: #232323; }
-      .button.hollow.dark:hover .iconic *, .button.hollow.dark:hover .ionicons *, .button.hollow.dark:hover .material-icons * {
+      .button.hollow.dark:hover .iconic *, .button.hollow.dark:hover .ionicons *, .button.hollow.dark:hover .material-icons *, .button.hollow.dark:hover .open-iconic * {
         fill: #5a5a5a;
         stroke: #5a5a5a; }
-        .button.hollow.dark:hover .iconic *.iconic-property-accent, .button.hollow.dark:hover .ionicons *.iconic-property-accent, .button.hollow.dark:hover .material-icons *.iconic-property-accent {
+        .button.hollow.dark:hover .iconic *.iconic-property-accent, .button.hollow.dark:hover .ionicons *.iconic-property-accent, .button.hollow.dark:hover .material-icons *.iconic-property-accent, .button.hollow.dark:hover .open-iconic *.iconic-property-accent {
           fill: #5a5a5a;
           stroke: #5a5a5a; }
       .button.hollow.dark .sk-loader.sk-rotating-plane {
@@ -2378,7 +2378,7 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
       margin-left: 0; }
     .button-group > li:not(:last-child) > a, .button-group > li:not(:last-child) > label, .button-group > li:not(:last-child) > button {
       border-right: 1px solid #004068; }
-  .button-group .iconic, .button-group .ionicons, .button-group .material-icons {
+  .button-group .iconic, .button-group .ionicons, .button-group .material-icons, .button-group .open-iconic {
     width: 1em;
     height: 1em;
     vertical-align: middle;
@@ -2414,10 +2414,10 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
     .button-group > li > a:hover, .button-group > li > a:focus, .button-group > li > label:hover, .button-group > li > label:focus, .button-group > li > button:hover, .button-group > li > button:focus {
       background: #004876;
       color: #fff; }
-    .button-group > li > a .iconic *, .button-group > li > a .ionicons *, .button-group > li > a .material-icons *, .button-group > li > label .iconic *, .button-group > li > label .ionicons *, .button-group > li > label .material-icons *, .button-group > li > button .iconic *, .button-group > li > button .ionicons *, .button-group > li > button .material-icons * {
+    .button-group > li > a .iconic *, .button-group > li > a .ionicons *, .button-group > li > a .material-icons *, .button-group > li > a .open-iconic *, .button-group > li > label .iconic *, .button-group > li > label .ionicons *, .button-group > li > label .material-icons *, .button-group > li > label .open-iconic *, .button-group > li > button .iconic *, .button-group > li > button .ionicons *, .button-group > li > button .material-icons *, .button-group > li > button .open-iconic * {
       fill: #fff;
       stroke: #fff; }
-      .button-group > li > a .iconic *.iconic-property-accent, .button-group > li > a .ionicons *.iconic-property-accent, .button-group > li > a .material-icons *.iconic-property-accent, .button-group > li > label .iconic *.iconic-property-accent, .button-group > li > label .ionicons *.iconic-property-accent, .button-group > li > label .material-icons *.iconic-property-accent, .button-group > li > button .iconic *.iconic-property-accent, .button-group > li > button .ionicons *.iconic-property-accent, .button-group > li > button .material-icons *.iconic-property-accent {
+      .button-group > li > a .iconic *.iconic-property-accent, .button-group > li > a .ionicons *.iconic-property-accent, .button-group > li > a .material-icons *.iconic-property-accent, .button-group > li > a .open-iconic *.iconic-property-accent, .button-group > li > label .iconic *.iconic-property-accent, .button-group > li > label .ionicons *.iconic-property-accent, .button-group > li > label .material-icons *.iconic-property-accent, .button-group > li > label .open-iconic *.iconic-property-accent, .button-group > li > button .iconic *.iconic-property-accent, .button-group > li > button .ionicons *.iconic-property-accent, .button-group > li > button .material-icons *.iconic-property-accent, .button-group > li > button .open-iconic *.iconic-property-accent {
         fill: #fff;
         stroke: #fff; }
     .button-group > li > a .sk-loader.sk-rotating-plane, .button-group > li > label .sk-loader.sk-rotating-plane, .button-group > li > button .sk-loader.sk-rotating-plane {
@@ -2454,10 +2454,10 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
     .button-group.secondary > li > a:hover, .button-group.secondary > li > a:focus, .button-group.secondary > li > label:hover, .button-group.secondary > li > label:focus, .button-group.secondary > li > button:hover, .button-group.secondary > li > button:focus {
       background: #cdcdcd;
       color: #000; }
-    .button-group.secondary > li > a .iconic *, .button-group.secondary > li > a .ionicons *, .button-group.secondary > li > a .material-icons *, .button-group.secondary > li > label .iconic *, .button-group.secondary > li > label .ionicons *, .button-group.secondary > li > label .material-icons *, .button-group.secondary > li > button .iconic *, .button-group.secondary > li > button .ionicons *, .button-group.secondary > li > button .material-icons * {
+    .button-group.secondary > li > a .iconic *, .button-group.secondary > li > a .ionicons *, .button-group.secondary > li > a .material-icons *, .button-group.secondary > li > a .open-iconic *, .button-group.secondary > li > label .iconic *, .button-group.secondary > li > label .ionicons *, .button-group.secondary > li > label .material-icons *, .button-group.secondary > li > label .open-iconic *, .button-group.secondary > li > button .iconic *, .button-group.secondary > li > button .ionicons *, .button-group.secondary > li > button .material-icons *, .button-group.secondary > li > button .open-iconic * {
       fill: #000;
       stroke: #000; }
-      .button-group.secondary > li > a .iconic *.iconic-property-accent, .button-group.secondary > li > a .ionicons *.iconic-property-accent, .button-group.secondary > li > a .material-icons *.iconic-property-accent, .button-group.secondary > li > label .iconic *.iconic-property-accent, .button-group.secondary > li > label .ionicons *.iconic-property-accent, .button-group.secondary > li > label .material-icons *.iconic-property-accent, .button-group.secondary > li > button .iconic *.iconic-property-accent, .button-group.secondary > li > button .ionicons *.iconic-property-accent, .button-group.secondary > li > button .material-icons *.iconic-property-accent {
+      .button-group.secondary > li > a .iconic *.iconic-property-accent, .button-group.secondary > li > a .ionicons *.iconic-property-accent, .button-group.secondary > li > a .material-icons *.iconic-property-accent, .button-group.secondary > li > a .open-iconic *.iconic-property-accent, .button-group.secondary > li > label .iconic *.iconic-property-accent, .button-group.secondary > li > label .ionicons *.iconic-property-accent, .button-group.secondary > li > label .material-icons *.iconic-property-accent, .button-group.secondary > li > label .open-iconic *.iconic-property-accent, .button-group.secondary > li > button .iconic *.iconic-property-accent, .button-group.secondary > li > button .ionicons *.iconic-property-accent, .button-group.secondary > li > button .material-icons *.iconic-property-accent, .button-group.secondary > li > button .open-iconic *.iconic-property-accent {
         fill: #000;
         stroke: #000; }
     .button-group.secondary > li > a .sk-loader.sk-rotating-plane, .button-group.secondary > li > label .sk-loader.sk-rotating-plane, .button-group.secondary > li > button .sk-loader.sk-rotating-plane {
@@ -2494,10 +2494,10 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
     .button-group.success > li > a:hover, .button-group.success > li > a:focus, .button-group.success > li > label:hover, .button-group.success > li > label:focus, .button-group.success > li > button:hover, .button-group.success > li > button:focus {
       background: #39925a;
       color: #fff; }
-    .button-group.success > li > a .iconic *, .button-group.success > li > a .ionicons *, .button-group.success > li > a .material-icons *, .button-group.success > li > label .iconic *, .button-group.success > li > label .ionicons *, .button-group.success > li > label .material-icons *, .button-group.success > li > button .iconic *, .button-group.success > li > button .ionicons *, .button-group.success > li > button .material-icons * {
+    .button-group.success > li > a .iconic *, .button-group.success > li > a .ionicons *, .button-group.success > li > a .material-icons *, .button-group.success > li > a .open-iconic *, .button-group.success > li > label .iconic *, .button-group.success > li > label .ionicons *, .button-group.success > li > label .material-icons *, .button-group.success > li > label .open-iconic *, .button-group.success > li > button .iconic *, .button-group.success > li > button .ionicons *, .button-group.success > li > button .material-icons *, .button-group.success > li > button .open-iconic * {
       fill: #fff;
       stroke: #fff; }
-      .button-group.success > li > a .iconic *.iconic-property-accent, .button-group.success > li > a .ionicons *.iconic-property-accent, .button-group.success > li > a .material-icons *.iconic-property-accent, .button-group.success > li > label .iconic *.iconic-property-accent, .button-group.success > li > label .ionicons *.iconic-property-accent, .button-group.success > li > label .material-icons *.iconic-property-accent, .button-group.success > li > button .iconic *.iconic-property-accent, .button-group.success > li > button .ionicons *.iconic-property-accent, .button-group.success > li > button .material-icons *.iconic-property-accent {
+      .button-group.success > li > a .iconic *.iconic-property-accent, .button-group.success > li > a .ionicons *.iconic-property-accent, .button-group.success > li > a .material-icons *.iconic-property-accent, .button-group.success > li > a .open-iconic *.iconic-property-accent, .button-group.success > li > label .iconic *.iconic-property-accent, .button-group.success > li > label .ionicons *.iconic-property-accent, .button-group.success > li > label .material-icons *.iconic-property-accent, .button-group.success > li > label .open-iconic *.iconic-property-accent, .button-group.success > li > button .iconic *.iconic-property-accent, .button-group.success > li > button .ionicons *.iconic-property-accent, .button-group.success > li > button .material-icons *.iconic-property-accent, .button-group.success > li > button .open-iconic *.iconic-property-accent {
         fill: #fff;
         stroke: #fff; }
     .button-group.success > li > a .sk-loader.sk-rotating-plane, .button-group.success > li > label .sk-loader.sk-rotating-plane, .button-group.success > li > button .sk-loader.sk-rotating-plane {
@@ -2534,10 +2534,10 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
     .button-group.warning > li > a:hover, .button-group.warning > li > a:focus, .button-group.warning > li > label:hover, .button-group.warning > li > label:focus, .button-group.warning > li > button:hover, .button-group.warning > li > button:focus {
       background: #dc750f;
       color: #fff; }
-    .button-group.warning > li > a .iconic *, .button-group.warning > li > a .ionicons *, .button-group.warning > li > a .material-icons *, .button-group.warning > li > label .iconic *, .button-group.warning > li > label .ionicons *, .button-group.warning > li > label .material-icons *, .button-group.warning > li > button .iconic *, .button-group.warning > li > button .ionicons *, .button-group.warning > li > button .material-icons * {
+    .button-group.warning > li > a .iconic *, .button-group.warning > li > a .ionicons *, .button-group.warning > li > a .material-icons *, .button-group.warning > li > a .open-iconic *, .button-group.warning > li > label .iconic *, .button-group.warning > li > label .ionicons *, .button-group.warning > li > label .material-icons *, .button-group.warning > li > label .open-iconic *, .button-group.warning > li > button .iconic *, .button-group.warning > li > button .ionicons *, .button-group.warning > li > button .material-icons *, .button-group.warning > li > button .open-iconic * {
       fill: #fff;
       stroke: #fff; }
-      .button-group.warning > li > a .iconic *.iconic-property-accent, .button-group.warning > li > a .ionicons *.iconic-property-accent, .button-group.warning > li > a .material-icons *.iconic-property-accent, .button-group.warning > li > label .iconic *.iconic-property-accent, .button-group.warning > li > label .ionicons *.iconic-property-accent, .button-group.warning > li > label .material-icons *.iconic-property-accent, .button-group.warning > li > button .iconic *.iconic-property-accent, .button-group.warning > li > button .ionicons *.iconic-property-accent, .button-group.warning > li > button .material-icons *.iconic-property-accent {
+      .button-group.warning > li > a .iconic *.iconic-property-accent, .button-group.warning > li > a .ionicons *.iconic-property-accent, .button-group.warning > li > a .material-icons *.iconic-property-accent, .button-group.warning > li > a .open-iconic *.iconic-property-accent, .button-group.warning > li > label .iconic *.iconic-property-accent, .button-group.warning > li > label .ionicons *.iconic-property-accent, .button-group.warning > li > label .material-icons *.iconic-property-accent, .button-group.warning > li > label .open-iconic *.iconic-property-accent, .button-group.warning > li > button .iconic *.iconic-property-accent, .button-group.warning > li > button .ionicons *.iconic-property-accent, .button-group.warning > li > button .material-icons *.iconic-property-accent, .button-group.warning > li > button .open-iconic *.iconic-property-accent {
         fill: #fff;
         stroke: #fff; }
     .button-group.warning > li > a .sk-loader.sk-rotating-plane, .button-group.warning > li > label .sk-loader.sk-rotating-plane, .button-group.warning > li > button .sk-loader.sk-rotating-plane {
@@ -2574,10 +2574,10 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
     .button-group.alert > li > a:hover, .button-group.alert > li > a:focus, .button-group.alert > li > label:hover, .button-group.alert > li > label:focus, .button-group.alert > li > button:hover, .button-group.alert > li > button:focus {
       background: #dc2c0f;
       color: #fff; }
-    .button-group.alert > li > a .iconic *, .button-group.alert > li > a .ionicons *, .button-group.alert > li > a .material-icons *, .button-group.alert > li > label .iconic *, .button-group.alert > li > label .ionicons *, .button-group.alert > li > label .material-icons *, .button-group.alert > li > button .iconic *, .button-group.alert > li > button .ionicons *, .button-group.alert > li > button .material-icons * {
+    .button-group.alert > li > a .iconic *, .button-group.alert > li > a .ionicons *, .button-group.alert > li > a .material-icons *, .button-group.alert > li > a .open-iconic *, .button-group.alert > li > label .iconic *, .button-group.alert > li > label .ionicons *, .button-group.alert > li > label .material-icons *, .button-group.alert > li > label .open-iconic *, .button-group.alert > li > button .iconic *, .button-group.alert > li > button .ionicons *, .button-group.alert > li > button .material-icons *, .button-group.alert > li > button .open-iconic * {
       fill: #fff;
       stroke: #fff; }
-      .button-group.alert > li > a .iconic *.iconic-property-accent, .button-group.alert > li > a .ionicons *.iconic-property-accent, .button-group.alert > li > a .material-icons *.iconic-property-accent, .button-group.alert > li > label .iconic *.iconic-property-accent, .button-group.alert > li > label .ionicons *.iconic-property-accent, .button-group.alert > li > label .material-icons *.iconic-property-accent, .button-group.alert > li > button .iconic *.iconic-property-accent, .button-group.alert > li > button .ionicons *.iconic-property-accent, .button-group.alert > li > button .material-icons *.iconic-property-accent {
+      .button-group.alert > li > a .iconic *.iconic-property-accent, .button-group.alert > li > a .ionicons *.iconic-property-accent, .button-group.alert > li > a .material-icons *.iconic-property-accent, .button-group.alert > li > a .open-iconic *.iconic-property-accent, .button-group.alert > li > label .iconic *.iconic-property-accent, .button-group.alert > li > label .ionicons *.iconic-property-accent, .button-group.alert > li > label .material-icons *.iconic-property-accent, .button-group.alert > li > label .open-iconic *.iconic-property-accent, .button-group.alert > li > button .iconic *.iconic-property-accent, .button-group.alert > li > button .ionicons *.iconic-property-accent, .button-group.alert > li > button .material-icons *.iconic-property-accent, .button-group.alert > li > button .open-iconic *.iconic-property-accent {
         fill: #fff;
         stroke: #fff; }
     .button-group.alert > li > a .sk-loader.sk-rotating-plane, .button-group.alert > li > label .sk-loader.sk-rotating-plane, .button-group.alert > li > button .sk-loader.sk-rotating-plane {
@@ -2616,10 +2616,10 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
       color: #000; }
     .button-group > li.secondary > a:hover, .button-group > li.secondary > a:focus, .button-group > li.secondary > label:hover, .button-group > li.secondary > label:focus, .button-group > li.secondary > button:hover, .button-group > li.secondary > button:focus {
       border-color: #b5b5b5; }
-    .button-group > li.secondary > a .iconic *, .button-group > li.secondary > a .ionicons *, .button-group > li.secondary > a .material-icons *, .button-group > li.secondary > label .iconic *, .button-group > li.secondary > label .ionicons *, .button-group > li.secondary > label .material-icons *, .button-group > li.secondary > button .iconic *, .button-group > li.secondary > button .ionicons *, .button-group > li.secondary > button .material-icons * {
+    .button-group > li.secondary > a .iconic *, .button-group > li.secondary > a .ionicons *, .button-group > li.secondary > a .material-icons *, .button-group > li.secondary > a .open-iconic *, .button-group > li.secondary > label .iconic *, .button-group > li.secondary > label .ionicons *, .button-group > li.secondary > label .material-icons *, .button-group > li.secondary > label .open-iconic *, .button-group > li.secondary > button .iconic *, .button-group > li.secondary > button .ionicons *, .button-group > li.secondary > button .material-icons *, .button-group > li.secondary > button .open-iconic * {
       fill: #000;
       stroke: #000; }
-      .button-group > li.secondary > a .iconic *.iconic-property-accent, .button-group > li.secondary > a .ionicons *.iconic-property-accent, .button-group > li.secondary > a .material-icons *.iconic-property-accent, .button-group > li.secondary > label .iconic *.iconic-property-accent, .button-group > li.secondary > label .ionicons *.iconic-property-accent, .button-group > li.secondary > label .material-icons *.iconic-property-accent, .button-group > li.secondary > button .iconic *.iconic-property-accent, .button-group > li.secondary > button .ionicons *.iconic-property-accent, .button-group > li.secondary > button .material-icons *.iconic-property-accent {
+      .button-group > li.secondary > a .iconic *.iconic-property-accent, .button-group > li.secondary > a .ionicons *.iconic-property-accent, .button-group > li.secondary > a .material-icons *.iconic-property-accent, .button-group > li.secondary > a .open-iconic *.iconic-property-accent, .button-group > li.secondary > label .iconic *.iconic-property-accent, .button-group > li.secondary > label .ionicons *.iconic-property-accent, .button-group > li.secondary > label .material-icons *.iconic-property-accent, .button-group > li.secondary > label .open-iconic *.iconic-property-accent, .button-group > li.secondary > button .iconic *.iconic-property-accent, .button-group > li.secondary > button .ionicons *.iconic-property-accent, .button-group > li.secondary > button .material-icons *.iconic-property-accent, .button-group > li.secondary > button .open-iconic *.iconic-property-accent {
         fill: #000;
         stroke: #000; }
     .button-group > li.secondary > a .sk-loader.sk-rotating-plane, .button-group > li.secondary > label .sk-loader.sk-rotating-plane, .button-group > li.secondary > button .sk-loader.sk-rotating-plane {
@@ -2656,10 +2656,10 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
       color: #fff; }
     .button-group > li.success > a:hover, .button-group > li.success > a:focus, .button-group > li.success > label:hover, .button-group > li.success > label:focus, .button-group > li.success > button:hover, .button-group > li.success > button:focus {
       border-color: #328150; }
-    .button-group > li.success > a .iconic *, .button-group > li.success > a .ionicons *, .button-group > li.success > a .material-icons *, .button-group > li.success > label .iconic *, .button-group > li.success > label .ionicons *, .button-group > li.success > label .material-icons *, .button-group > li.success > button .iconic *, .button-group > li.success > button .ionicons *, .button-group > li.success > button .material-icons * {
+    .button-group > li.success > a .iconic *, .button-group > li.success > a .ionicons *, .button-group > li.success > a .material-icons *, .button-group > li.success > a .open-iconic *, .button-group > li.success > label .iconic *, .button-group > li.success > label .ionicons *, .button-group > li.success > label .material-icons *, .button-group > li.success > label .open-iconic *, .button-group > li.success > button .iconic *, .button-group > li.success > button .ionicons *, .button-group > li.success > button .material-icons *, .button-group > li.success > button .open-iconic * {
       fill: #fff;
       stroke: #fff; }
-      .button-group > li.success > a .iconic *.iconic-property-accent, .button-group > li.success > a .ionicons *.iconic-property-accent, .button-group > li.success > a .material-icons *.iconic-property-accent, .button-group > li.success > label .iconic *.iconic-property-accent, .button-group > li.success > label .ionicons *.iconic-property-accent, .button-group > li.success > label .material-icons *.iconic-property-accent, .button-group > li.success > button .iconic *.iconic-property-accent, .button-group > li.success > button .ionicons *.iconic-property-accent, .button-group > li.success > button .material-icons *.iconic-property-accent {
+      .button-group > li.success > a .iconic *.iconic-property-accent, .button-group > li.success > a .ionicons *.iconic-property-accent, .button-group > li.success > a .material-icons *.iconic-property-accent, .button-group > li.success > a .open-iconic *.iconic-property-accent, .button-group > li.success > label .iconic *.iconic-property-accent, .button-group > li.success > label .ionicons *.iconic-property-accent, .button-group > li.success > label .material-icons *.iconic-property-accent, .button-group > li.success > label .open-iconic *.iconic-property-accent, .button-group > li.success > button .iconic *.iconic-property-accent, .button-group > li.success > button .ionicons *.iconic-property-accent, .button-group > li.success > button .material-icons *.iconic-property-accent, .button-group > li.success > button .open-iconic *.iconic-property-accent {
         fill: #fff;
         stroke: #fff; }
     .button-group > li.success > a .sk-loader.sk-rotating-plane, .button-group > li.success > label .sk-loader.sk-rotating-plane, .button-group > li.success > button .sk-loader.sk-rotating-plane {
@@ -2696,10 +2696,10 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
       color: #fff; }
     .button-group > li.warning > a:hover, .button-group > li.warning > a:focus, .button-group > li.warning > label:hover, .button-group > li.warning > label:focus, .button-group > li.warning > button:hover, .button-group > li.warning > button:focus {
       border-color: #c2680d; }
-    .button-group > li.warning > a .iconic *, .button-group > li.warning > a .ionicons *, .button-group > li.warning > a .material-icons *, .button-group > li.warning > label .iconic *, .button-group > li.warning > label .ionicons *, .button-group > li.warning > label .material-icons *, .button-group > li.warning > button .iconic *, .button-group > li.warning > button .ionicons *, .button-group > li.warning > button .material-icons * {
+    .button-group > li.warning > a .iconic *, .button-group > li.warning > a .ionicons *, .button-group > li.warning > a .material-icons *, .button-group > li.warning > a .open-iconic *, .button-group > li.warning > label .iconic *, .button-group > li.warning > label .ionicons *, .button-group > li.warning > label .material-icons *, .button-group > li.warning > label .open-iconic *, .button-group > li.warning > button .iconic *, .button-group > li.warning > button .ionicons *, .button-group > li.warning > button .material-icons *, .button-group > li.warning > button .open-iconic * {
       fill: #fff;
       stroke: #fff; }
-      .button-group > li.warning > a .iconic *.iconic-property-accent, .button-group > li.warning > a .ionicons *.iconic-property-accent, .button-group > li.warning > a .material-icons *.iconic-property-accent, .button-group > li.warning > label .iconic *.iconic-property-accent, .button-group > li.warning > label .ionicons *.iconic-property-accent, .button-group > li.warning > label .material-icons *.iconic-property-accent, .button-group > li.warning > button .iconic *.iconic-property-accent, .button-group > li.warning > button .ionicons *.iconic-property-accent, .button-group > li.warning > button .material-icons *.iconic-property-accent {
+      .button-group > li.warning > a .iconic *.iconic-property-accent, .button-group > li.warning > a .ionicons *.iconic-property-accent, .button-group > li.warning > a .material-icons *.iconic-property-accent, .button-group > li.warning > a .open-iconic *.iconic-property-accent, .button-group > li.warning > label .iconic *.iconic-property-accent, .button-group > li.warning > label .ionicons *.iconic-property-accent, .button-group > li.warning > label .material-icons *.iconic-property-accent, .button-group > li.warning > label .open-iconic *.iconic-property-accent, .button-group > li.warning > button .iconic *.iconic-property-accent, .button-group > li.warning > button .ionicons *.iconic-property-accent, .button-group > li.warning > button .material-icons *.iconic-property-accent, .button-group > li.warning > button .open-iconic *.iconic-property-accent {
         fill: #fff;
         stroke: #fff; }
     .button-group > li.warning > a .sk-loader.sk-rotating-plane, .button-group > li.warning > label .sk-loader.sk-rotating-plane, .button-group > li.warning > button .sk-loader.sk-rotating-plane {
@@ -2736,10 +2736,10 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
       color: #fff; }
     .button-group > li.alert > a:hover, .button-group > li.alert > a:focus, .button-group > li.alert > label:hover, .button-group > li.alert > label:focus, .button-group > li.alert > button:hover, .button-group > li.alert > button:focus {
       border-color: #c2270d; }
-    .button-group > li.alert > a .iconic *, .button-group > li.alert > a .ionicons *, .button-group > li.alert > a .material-icons *, .button-group > li.alert > label .iconic *, .button-group > li.alert > label .ionicons *, .button-group > li.alert > label .material-icons *, .button-group > li.alert > button .iconic *, .button-group > li.alert > button .ionicons *, .button-group > li.alert > button .material-icons * {
+    .button-group > li.alert > a .iconic *, .button-group > li.alert > a .ionicons *, .button-group > li.alert > a .material-icons *, .button-group > li.alert > a .open-iconic *, .button-group > li.alert > label .iconic *, .button-group > li.alert > label .ionicons *, .button-group > li.alert > label .material-icons *, .button-group > li.alert > label .open-iconic *, .button-group > li.alert > button .iconic *, .button-group > li.alert > button .ionicons *, .button-group > li.alert > button .material-icons *, .button-group > li.alert > button .open-iconic * {
       fill: #fff;
       stroke: #fff; }
-      .button-group > li.alert > a .iconic *.iconic-property-accent, .button-group > li.alert > a .ionicons *.iconic-property-accent, .button-group > li.alert > a .material-icons *.iconic-property-accent, .button-group > li.alert > label .iconic *.iconic-property-accent, .button-group > li.alert > label .ionicons *.iconic-property-accent, .button-group > li.alert > label .material-icons *.iconic-property-accent, .button-group > li.alert > button .iconic *.iconic-property-accent, .button-group > li.alert > button .ionicons *.iconic-property-accent, .button-group > li.alert > button .material-icons *.iconic-property-accent {
+      .button-group > li.alert > a .iconic *.iconic-property-accent, .button-group > li.alert > a .ionicons *.iconic-property-accent, .button-group > li.alert > a .material-icons *.iconic-property-accent, .button-group > li.alert > a .open-iconic *.iconic-property-accent, .button-group > li.alert > label .iconic *.iconic-property-accent, .button-group > li.alert > label .ionicons *.iconic-property-accent, .button-group > li.alert > label .material-icons *.iconic-property-accent, .button-group > li.alert > label .open-iconic *.iconic-property-accent, .button-group > li.alert > button .iconic *.iconic-property-accent, .button-group > li.alert > button .ionicons *.iconic-property-accent, .button-group > li.alert > button .material-icons *.iconic-property-accent, .button-group > li.alert > button .open-iconic *.iconic-property-accent {
         fill: #fff;
         stroke: #fff; }
     .button-group > li.alert > a .sk-loader.sk-rotating-plane, .button-group > li.alert > label .sk-loader.sk-rotating-plane, .button-group > li.alert > button .sk-loader.sk-rotating-plane {
@@ -2775,10 +2775,10 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
       .button-group.segmented > li > a:hover, .button-group.segmented > li > label:hover, .button-group.segmented > li > button:hover {
         background: rgba(0, 85, 139, 0.25);
         color: #00558b; }
-      .button-group.segmented > li > a .iconic *, .button-group.segmented > li > a .ionicons *, .button-group.segmented > li > a .material-icons *, .button-group.segmented > li > label .iconic *, .button-group.segmented > li > label .ionicons *, .button-group.segmented > li > label .material-icons *, .button-group.segmented > li > button .iconic *, .button-group.segmented > li > button .ionicons *, .button-group.segmented > li > button .material-icons * {
+      .button-group.segmented > li > a .iconic *, .button-group.segmented > li > a .ionicons *, .button-group.segmented > li > a .material-icons *, .button-group.segmented > li > a .open-iconic *, .button-group.segmented > li > label .iconic *, .button-group.segmented > li > label .ionicons *, .button-group.segmented > li > label .material-icons *, .button-group.segmented > li > label .open-iconic *, .button-group.segmented > li > button .iconic *, .button-group.segmented > li > button .ionicons *, .button-group.segmented > li > button .material-icons *, .button-group.segmented > li > button .open-iconic * {
         fill: #00558b;
         stroke: #00558b; }
-        .button-group.segmented > li > a .iconic *.iconic-property-accent, .button-group.segmented > li > a .ionicons *.iconic-property-accent, .button-group.segmented > li > a .material-icons *.iconic-property-accent, .button-group.segmented > li > label .iconic *.iconic-property-accent, .button-group.segmented > li > label .ionicons *.iconic-property-accent, .button-group.segmented > li > label .material-icons *.iconic-property-accent, .button-group.segmented > li > button .iconic *.iconic-property-accent, .button-group.segmented > li > button .ionicons *.iconic-property-accent, .button-group.segmented > li > button .material-icons *.iconic-property-accent {
+        .button-group.segmented > li > a .iconic *.iconic-property-accent, .button-group.segmented > li > a .ionicons *.iconic-property-accent, .button-group.segmented > li > a .material-icons *.iconic-property-accent, .button-group.segmented > li > a .open-iconic *.iconic-property-accent, .button-group.segmented > li > label .iconic *.iconic-property-accent, .button-group.segmented > li > label .ionicons *.iconic-property-accent, .button-group.segmented > li > label .material-icons *.iconic-property-accent, .button-group.segmented > li > label .open-iconic *.iconic-property-accent, .button-group.segmented > li > button .iconic *.iconic-property-accent, .button-group.segmented > li > button .ionicons *.iconic-property-accent, .button-group.segmented > li > button .material-icons *.iconic-property-accent, .button-group.segmented > li > button .open-iconic *.iconic-property-accent {
           fill: #00558b;
           stroke: #00558b; }
     .button-group.segmented > li.is-active > a, .button-group.segmented > li.is-active > a:hover,
@@ -2786,16 +2786,18 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
     .button-group.segmented > li > input:checked + label:hover {
       background: #00558b;
       color: #fff; }
-    .button-group.segmented > li.is-active > a .iconic *, .button-group.segmented > li.is-active > a .ionicons *, .button-group.segmented > li.is-active > a .material-icons *,
+    .button-group.segmented > li.is-active > a .iconic *, .button-group.segmented > li.is-active > a .ionicons *, .button-group.segmented > li.is-active > a .material-icons *, .button-group.segmented > li.is-active > a .open-iconic *,
     .button-group.segmented > li > input:checked + label .iconic *,
     .button-group.segmented > li > input:checked + label .ionicons *,
-    .button-group.segmented > li > input:checked + label .material-icons * {
+    .button-group.segmented > li > input:checked + label .material-icons *,
+    .button-group.segmented > li > input:checked + label .open-iconic * {
       fill: #fff;
       stroke: #fff; }
-      .button-group.segmented > li.is-active > a .iconic *.iconic-property-accent, .button-group.segmented > li.is-active > a .ionicons *.iconic-property-accent, .button-group.segmented > li.is-active > a .material-icons *.iconic-property-accent,
+      .button-group.segmented > li.is-active > a .iconic *.iconic-property-accent, .button-group.segmented > li.is-active > a .ionicons *.iconic-property-accent, .button-group.segmented > li.is-active > a .material-icons *.iconic-property-accent, .button-group.segmented > li.is-active > a .open-iconic *.iconic-property-accent,
       .button-group.segmented > li > input:checked + label .iconic *.iconic-property-accent,
       .button-group.segmented > li > input:checked + label .ionicons *.iconic-property-accent,
-      .button-group.segmented > li > input:checked + label .material-icons *.iconic-property-accent {
+      .button-group.segmented > li > input:checked + label .material-icons *.iconic-property-accent,
+      .button-group.segmented > li > input:checked + label .open-iconic *.iconic-property-accent {
         fill: #fff;
         stroke: #fff; }
     .button-group.segmented.secondary {
@@ -2806,10 +2808,10 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
         .button-group.segmented.secondary > li > a:hover, .button-group.segmented.secondary > li > label:hover, .button-group.segmented.secondary > li > button:hover {
           background: rgba(241, 241, 241, 0.25);
           color: #f1f1f1; }
-        .button-group.segmented.secondary > li > a .iconic *, .button-group.segmented.secondary > li > a .ionicons *, .button-group.segmented.secondary > li > a .material-icons *, .button-group.segmented.secondary > li > label .iconic *, .button-group.segmented.secondary > li > label .ionicons *, .button-group.segmented.secondary > li > label .material-icons *, .button-group.segmented.secondary > li > button .iconic *, .button-group.segmented.secondary > li > button .ionicons *, .button-group.segmented.secondary > li > button .material-icons * {
+        .button-group.segmented.secondary > li > a .iconic *, .button-group.segmented.secondary > li > a .ionicons *, .button-group.segmented.secondary > li > a .material-icons *, .button-group.segmented.secondary > li > a .open-iconic *, .button-group.segmented.secondary > li > label .iconic *, .button-group.segmented.secondary > li > label .ionicons *, .button-group.segmented.secondary > li > label .material-icons *, .button-group.segmented.secondary > li > label .open-iconic *, .button-group.segmented.secondary > li > button .iconic *, .button-group.segmented.secondary > li > button .ionicons *, .button-group.segmented.secondary > li > button .material-icons *, .button-group.segmented.secondary > li > button .open-iconic * {
           fill: #f1f1f1;
           stroke: #f1f1f1; }
-          .button-group.segmented.secondary > li > a .iconic *.iconic-property-accent, .button-group.segmented.secondary > li > a .ionicons *.iconic-property-accent, .button-group.segmented.secondary > li > a .material-icons *.iconic-property-accent, .button-group.segmented.secondary > li > label .iconic *.iconic-property-accent, .button-group.segmented.secondary > li > label .ionicons *.iconic-property-accent, .button-group.segmented.secondary > li > label .material-icons *.iconic-property-accent, .button-group.segmented.secondary > li > button .iconic *.iconic-property-accent, .button-group.segmented.secondary > li > button .ionicons *.iconic-property-accent, .button-group.segmented.secondary > li > button .material-icons *.iconic-property-accent {
+          .button-group.segmented.secondary > li > a .iconic *.iconic-property-accent, .button-group.segmented.secondary > li > a .ionicons *.iconic-property-accent, .button-group.segmented.secondary > li > a .material-icons *.iconic-property-accent, .button-group.segmented.secondary > li > a .open-iconic *.iconic-property-accent, .button-group.segmented.secondary > li > label .iconic *.iconic-property-accent, .button-group.segmented.secondary > li > label .ionicons *.iconic-property-accent, .button-group.segmented.secondary > li > label .material-icons *.iconic-property-accent, .button-group.segmented.secondary > li > label .open-iconic *.iconic-property-accent, .button-group.segmented.secondary > li > button .iconic *.iconic-property-accent, .button-group.segmented.secondary > li > button .ionicons *.iconic-property-accent, .button-group.segmented.secondary > li > button .material-icons *.iconic-property-accent, .button-group.segmented.secondary > li > button .open-iconic *.iconic-property-accent {
             fill: #f1f1f1;
             stroke: #f1f1f1; }
       .button-group.segmented.secondary > li.is-active > a, .button-group.segmented.secondary > li.is-active > a:hover,
@@ -2817,16 +2819,18 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
       .button-group.segmented.secondary > li > input:checked + label:hover {
         background: #f1f1f1;
         color: #000; }
-      .button-group.segmented.secondary > li.is-active > a .iconic *, .button-group.segmented.secondary > li.is-active > a .ionicons *, .button-group.segmented.secondary > li.is-active > a .material-icons *,
+      .button-group.segmented.secondary > li.is-active > a .iconic *, .button-group.segmented.secondary > li.is-active > a .ionicons *, .button-group.segmented.secondary > li.is-active > a .material-icons *, .button-group.segmented.secondary > li.is-active > a .open-iconic *,
       .button-group.segmented.secondary > li > input:checked + label .iconic *,
       .button-group.segmented.secondary > li > input:checked + label .ionicons *,
-      .button-group.segmented.secondary > li > input:checked + label .material-icons * {
+      .button-group.segmented.secondary > li > input:checked + label .material-icons *,
+      .button-group.segmented.secondary > li > input:checked + label .open-iconic * {
         fill: #000;
         stroke: #000; }
-        .button-group.segmented.secondary > li.is-active > a .iconic *.iconic-property-accent, .button-group.segmented.secondary > li.is-active > a .ionicons *.iconic-property-accent, .button-group.segmented.secondary > li.is-active > a .material-icons *.iconic-property-accent,
+        .button-group.segmented.secondary > li.is-active > a .iconic *.iconic-property-accent, .button-group.segmented.secondary > li.is-active > a .ionicons *.iconic-property-accent, .button-group.segmented.secondary > li.is-active > a .material-icons *.iconic-property-accent, .button-group.segmented.secondary > li.is-active > a .open-iconic *.iconic-property-accent,
         .button-group.segmented.secondary > li > input:checked + label .iconic *.iconic-property-accent,
         .button-group.segmented.secondary > li > input:checked + label .ionicons *.iconic-property-accent,
-        .button-group.segmented.secondary > li > input:checked + label .material-icons *.iconic-property-accent {
+        .button-group.segmented.secondary > li > input:checked + label .material-icons *.iconic-property-accent,
+        .button-group.segmented.secondary > li > input:checked + label .open-iconic *.iconic-property-accent {
           fill: #000;
           stroke: #000; }
     .button-group.segmented.success {
@@ -2837,10 +2841,10 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
         .button-group.segmented.success > li > a:hover, .button-group.segmented.success > li > label:hover, .button-group.segmented.success > li > button:hover {
           background: rgba(67, 172, 106, 0.25);
           color: #43AC6A; }
-        .button-group.segmented.success > li > a .iconic *, .button-group.segmented.success > li > a .ionicons *, .button-group.segmented.success > li > a .material-icons *, .button-group.segmented.success > li > label .iconic *, .button-group.segmented.success > li > label .ionicons *, .button-group.segmented.success > li > label .material-icons *, .button-group.segmented.success > li > button .iconic *, .button-group.segmented.success > li > button .ionicons *, .button-group.segmented.success > li > button .material-icons * {
+        .button-group.segmented.success > li > a .iconic *, .button-group.segmented.success > li > a .ionicons *, .button-group.segmented.success > li > a .material-icons *, .button-group.segmented.success > li > a .open-iconic *, .button-group.segmented.success > li > label .iconic *, .button-group.segmented.success > li > label .ionicons *, .button-group.segmented.success > li > label .material-icons *, .button-group.segmented.success > li > label .open-iconic *, .button-group.segmented.success > li > button .iconic *, .button-group.segmented.success > li > button .ionicons *, .button-group.segmented.success > li > button .material-icons *, .button-group.segmented.success > li > button .open-iconic * {
           fill: #43AC6A;
           stroke: #43AC6A; }
-          .button-group.segmented.success > li > a .iconic *.iconic-property-accent, .button-group.segmented.success > li > a .ionicons *.iconic-property-accent, .button-group.segmented.success > li > a .material-icons *.iconic-property-accent, .button-group.segmented.success > li > label .iconic *.iconic-property-accent, .button-group.segmented.success > li > label .ionicons *.iconic-property-accent, .button-group.segmented.success > li > label .material-icons *.iconic-property-accent, .button-group.segmented.success > li > button .iconic *.iconic-property-accent, .button-group.segmented.success > li > button .ionicons *.iconic-property-accent, .button-group.segmented.success > li > button .material-icons *.iconic-property-accent {
+          .button-group.segmented.success > li > a .iconic *.iconic-property-accent, .button-group.segmented.success > li > a .ionicons *.iconic-property-accent, .button-group.segmented.success > li > a .material-icons *.iconic-property-accent, .button-group.segmented.success > li > a .open-iconic *.iconic-property-accent, .button-group.segmented.success > li > label .iconic *.iconic-property-accent, .button-group.segmented.success > li > label .ionicons *.iconic-property-accent, .button-group.segmented.success > li > label .material-icons *.iconic-property-accent, .button-group.segmented.success > li > label .open-iconic *.iconic-property-accent, .button-group.segmented.success > li > button .iconic *.iconic-property-accent, .button-group.segmented.success > li > button .ionicons *.iconic-property-accent, .button-group.segmented.success > li > button .material-icons *.iconic-property-accent, .button-group.segmented.success > li > button .open-iconic *.iconic-property-accent {
             fill: #43AC6A;
             stroke: #43AC6A; }
       .button-group.segmented.success > li.is-active > a, .button-group.segmented.success > li.is-active > a:hover,
@@ -2848,16 +2852,18 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
       .button-group.segmented.success > li > input:checked + label:hover {
         background: #43AC6A;
         color: #fff; }
-      .button-group.segmented.success > li.is-active > a .iconic *, .button-group.segmented.success > li.is-active > a .ionicons *, .button-group.segmented.success > li.is-active > a .material-icons *,
+      .button-group.segmented.success > li.is-active > a .iconic *, .button-group.segmented.success > li.is-active > a .ionicons *, .button-group.segmented.success > li.is-active > a .material-icons *, .button-group.segmented.success > li.is-active > a .open-iconic *,
       .button-group.segmented.success > li > input:checked + label .iconic *,
       .button-group.segmented.success > li > input:checked + label .ionicons *,
-      .button-group.segmented.success > li > input:checked + label .material-icons * {
+      .button-group.segmented.success > li > input:checked + label .material-icons *,
+      .button-group.segmented.success > li > input:checked + label .open-iconic * {
         fill: #fff;
         stroke: #fff; }
-        .button-group.segmented.success > li.is-active > a .iconic *.iconic-property-accent, .button-group.segmented.success > li.is-active > a .ionicons *.iconic-property-accent, .button-group.segmented.success > li.is-active > a .material-icons *.iconic-property-accent,
+        .button-group.segmented.success > li.is-active > a .iconic *.iconic-property-accent, .button-group.segmented.success > li.is-active > a .ionicons *.iconic-property-accent, .button-group.segmented.success > li.is-active > a .material-icons *.iconic-property-accent, .button-group.segmented.success > li.is-active > a .open-iconic *.iconic-property-accent,
         .button-group.segmented.success > li > input:checked + label .iconic *.iconic-property-accent,
         .button-group.segmented.success > li > input:checked + label .ionicons *.iconic-property-accent,
-        .button-group.segmented.success > li > input:checked + label .material-icons *.iconic-property-accent {
+        .button-group.segmented.success > li > input:checked + label .material-icons *.iconic-property-accent,
+        .button-group.segmented.success > li > input:checked + label .open-iconic *.iconic-property-accent {
           fill: #fff;
           stroke: #fff; }
     .button-group.segmented.warning {
@@ -2868,10 +2874,10 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
         .button-group.segmented.warning > li > a:hover, .button-group.segmented.warning > li > label:hover, .button-group.segmented.warning > li > button:hover {
           background: rgba(240, 138, 36, 0.25);
           color: #F08A24; }
-        .button-group.segmented.warning > li > a .iconic *, .button-group.segmented.warning > li > a .ionicons *, .button-group.segmented.warning > li > a .material-icons *, .button-group.segmented.warning > li > label .iconic *, .button-group.segmented.warning > li > label .ionicons *, .button-group.segmented.warning > li > label .material-icons *, .button-group.segmented.warning > li > button .iconic *, .button-group.segmented.warning > li > button .ionicons *, .button-group.segmented.warning > li > button .material-icons * {
+        .button-group.segmented.warning > li > a .iconic *, .button-group.segmented.warning > li > a .ionicons *, .button-group.segmented.warning > li > a .material-icons *, .button-group.segmented.warning > li > a .open-iconic *, .button-group.segmented.warning > li > label .iconic *, .button-group.segmented.warning > li > label .ionicons *, .button-group.segmented.warning > li > label .material-icons *, .button-group.segmented.warning > li > label .open-iconic *, .button-group.segmented.warning > li > button .iconic *, .button-group.segmented.warning > li > button .ionicons *, .button-group.segmented.warning > li > button .material-icons *, .button-group.segmented.warning > li > button .open-iconic * {
           fill: #F08A24;
           stroke: #F08A24; }
-          .button-group.segmented.warning > li > a .iconic *.iconic-property-accent, .button-group.segmented.warning > li > a .ionicons *.iconic-property-accent, .button-group.segmented.warning > li > a .material-icons *.iconic-property-accent, .button-group.segmented.warning > li > label .iconic *.iconic-property-accent, .button-group.segmented.warning > li > label .ionicons *.iconic-property-accent, .button-group.segmented.warning > li > label .material-icons *.iconic-property-accent, .button-group.segmented.warning > li > button .iconic *.iconic-property-accent, .button-group.segmented.warning > li > button .ionicons *.iconic-property-accent, .button-group.segmented.warning > li > button .material-icons *.iconic-property-accent {
+          .button-group.segmented.warning > li > a .iconic *.iconic-property-accent, .button-group.segmented.warning > li > a .ionicons *.iconic-property-accent, .button-group.segmented.warning > li > a .material-icons *.iconic-property-accent, .button-group.segmented.warning > li > a .open-iconic *.iconic-property-accent, .button-group.segmented.warning > li > label .iconic *.iconic-property-accent, .button-group.segmented.warning > li > label .ionicons *.iconic-property-accent, .button-group.segmented.warning > li > label .material-icons *.iconic-property-accent, .button-group.segmented.warning > li > label .open-iconic *.iconic-property-accent, .button-group.segmented.warning > li > button .iconic *.iconic-property-accent, .button-group.segmented.warning > li > button .ionicons *.iconic-property-accent, .button-group.segmented.warning > li > button .material-icons *.iconic-property-accent, .button-group.segmented.warning > li > button .open-iconic *.iconic-property-accent {
             fill: #F08A24;
             stroke: #F08A24; }
       .button-group.segmented.warning > li.is-active > a, .button-group.segmented.warning > li.is-active > a:hover,
@@ -2879,16 +2885,18 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
       .button-group.segmented.warning > li > input:checked + label:hover {
         background: #F08A24;
         color: #fff; }
-      .button-group.segmented.warning > li.is-active > a .iconic *, .button-group.segmented.warning > li.is-active > a .ionicons *, .button-group.segmented.warning > li.is-active > a .material-icons *,
+      .button-group.segmented.warning > li.is-active > a .iconic *, .button-group.segmented.warning > li.is-active > a .ionicons *, .button-group.segmented.warning > li.is-active > a .material-icons *, .button-group.segmented.warning > li.is-active > a .open-iconic *,
       .button-group.segmented.warning > li > input:checked + label .iconic *,
       .button-group.segmented.warning > li > input:checked + label .ionicons *,
-      .button-group.segmented.warning > li > input:checked + label .material-icons * {
+      .button-group.segmented.warning > li > input:checked + label .material-icons *,
+      .button-group.segmented.warning > li > input:checked + label .open-iconic * {
         fill: #fff;
         stroke: #fff; }
-        .button-group.segmented.warning > li.is-active > a .iconic *.iconic-property-accent, .button-group.segmented.warning > li.is-active > a .ionicons *.iconic-property-accent, .button-group.segmented.warning > li.is-active > a .material-icons *.iconic-property-accent,
+        .button-group.segmented.warning > li.is-active > a .iconic *.iconic-property-accent, .button-group.segmented.warning > li.is-active > a .ionicons *.iconic-property-accent, .button-group.segmented.warning > li.is-active > a .material-icons *.iconic-property-accent, .button-group.segmented.warning > li.is-active > a .open-iconic *.iconic-property-accent,
         .button-group.segmented.warning > li > input:checked + label .iconic *.iconic-property-accent,
         .button-group.segmented.warning > li > input:checked + label .ionicons *.iconic-property-accent,
-        .button-group.segmented.warning > li > input:checked + label .material-icons *.iconic-property-accent {
+        .button-group.segmented.warning > li > input:checked + label .material-icons *.iconic-property-accent,
+        .button-group.segmented.warning > li > input:checked + label .open-iconic *.iconic-property-accent {
           fill: #fff;
           stroke: #fff; }
     .button-group.segmented.alert {
@@ -2899,10 +2907,10 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
         .button-group.segmented.alert > li > a:hover, .button-group.segmented.alert > li > label:hover, .button-group.segmented.alert > li > button:hover {
           background: rgba(240, 65, 36, 0.25);
           color: #F04124; }
-        .button-group.segmented.alert > li > a .iconic *, .button-group.segmented.alert > li > a .ionicons *, .button-group.segmented.alert > li > a .material-icons *, .button-group.segmented.alert > li > label .iconic *, .button-group.segmented.alert > li > label .ionicons *, .button-group.segmented.alert > li > label .material-icons *, .button-group.segmented.alert > li > button .iconic *, .button-group.segmented.alert > li > button .ionicons *, .button-group.segmented.alert > li > button .material-icons * {
+        .button-group.segmented.alert > li > a .iconic *, .button-group.segmented.alert > li > a .ionicons *, .button-group.segmented.alert > li > a .material-icons *, .button-group.segmented.alert > li > a .open-iconic *, .button-group.segmented.alert > li > label .iconic *, .button-group.segmented.alert > li > label .ionicons *, .button-group.segmented.alert > li > label .material-icons *, .button-group.segmented.alert > li > label .open-iconic *, .button-group.segmented.alert > li > button .iconic *, .button-group.segmented.alert > li > button .ionicons *, .button-group.segmented.alert > li > button .material-icons *, .button-group.segmented.alert > li > button .open-iconic * {
           fill: #F04124;
           stroke: #F04124; }
-          .button-group.segmented.alert > li > a .iconic *.iconic-property-accent, .button-group.segmented.alert > li > a .ionicons *.iconic-property-accent, .button-group.segmented.alert > li > a .material-icons *.iconic-property-accent, .button-group.segmented.alert > li > label .iconic *.iconic-property-accent, .button-group.segmented.alert > li > label .ionicons *.iconic-property-accent, .button-group.segmented.alert > li > label .material-icons *.iconic-property-accent, .button-group.segmented.alert > li > button .iconic *.iconic-property-accent, .button-group.segmented.alert > li > button .ionicons *.iconic-property-accent, .button-group.segmented.alert > li > button .material-icons *.iconic-property-accent {
+          .button-group.segmented.alert > li > a .iconic *.iconic-property-accent, .button-group.segmented.alert > li > a .ionicons *.iconic-property-accent, .button-group.segmented.alert > li > a .material-icons *.iconic-property-accent, .button-group.segmented.alert > li > a .open-iconic *.iconic-property-accent, .button-group.segmented.alert > li > label .iconic *.iconic-property-accent, .button-group.segmented.alert > li > label .ionicons *.iconic-property-accent, .button-group.segmented.alert > li > label .material-icons *.iconic-property-accent, .button-group.segmented.alert > li > label .open-iconic *.iconic-property-accent, .button-group.segmented.alert > li > button .iconic *.iconic-property-accent, .button-group.segmented.alert > li > button .ionicons *.iconic-property-accent, .button-group.segmented.alert > li > button .material-icons *.iconic-property-accent, .button-group.segmented.alert > li > button .open-iconic *.iconic-property-accent {
             fill: #F04124;
             stroke: #F04124; }
       .button-group.segmented.alert > li.is-active > a, .button-group.segmented.alert > li.is-active > a:hover,
@@ -2910,16 +2918,18 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
       .button-group.segmented.alert > li > input:checked + label:hover {
         background: #F04124;
         color: #fff; }
-      .button-group.segmented.alert > li.is-active > a .iconic *, .button-group.segmented.alert > li.is-active > a .ionicons *, .button-group.segmented.alert > li.is-active > a .material-icons *,
+      .button-group.segmented.alert > li.is-active > a .iconic *, .button-group.segmented.alert > li.is-active > a .ionicons *, .button-group.segmented.alert > li.is-active > a .material-icons *, .button-group.segmented.alert > li.is-active > a .open-iconic *,
       .button-group.segmented.alert > li > input:checked + label .iconic *,
       .button-group.segmented.alert > li > input:checked + label .ionicons *,
-      .button-group.segmented.alert > li > input:checked + label .material-icons * {
+      .button-group.segmented.alert > li > input:checked + label .material-icons *,
+      .button-group.segmented.alert > li > input:checked + label .open-iconic * {
         fill: #fff;
         stroke: #fff; }
-        .button-group.segmented.alert > li.is-active > a .iconic *.iconic-property-accent, .button-group.segmented.alert > li.is-active > a .ionicons *.iconic-property-accent, .button-group.segmented.alert > li.is-active > a .material-icons *.iconic-property-accent,
+        .button-group.segmented.alert > li.is-active > a .iconic *.iconic-property-accent, .button-group.segmented.alert > li.is-active > a .ionicons *.iconic-property-accent, .button-group.segmented.alert > li.is-active > a .material-icons *.iconic-property-accent, .button-group.segmented.alert > li.is-active > a .open-iconic *.iconic-property-accent,
         .button-group.segmented.alert > li > input:checked + label .iconic *.iconic-property-accent,
         .button-group.segmented.alert > li > input:checked + label .ionicons *.iconic-property-accent,
-        .button-group.segmented.alert > li > input:checked + label .material-icons *.iconic-property-accent {
+        .button-group.segmented.alert > li > input:checked + label .material-icons *.iconic-property-accent,
+        .button-group.segmented.alert > li > input:checked + label .open-iconic *.iconic-property-accent {
           fill: #fff;
           stroke: #fff; }
   .button-group.tiny {
@@ -6369,10 +6379,10 @@ meter {
     border-bottom: 1px solid #ccc; }
     .title-bar.primary a, .title-bar.primary a:hover {
       color: #fff; }
-    .title-bar.primary .iconic *, .title-bar.primary .ionicons *, .title-bar.primary .material-icons * {
+    .title-bar.primary .iconic *, .title-bar.primary .ionicons *, .title-bar.primary .material-icons *, .title-bar.primary .open-iconic * {
       fill: #fff;
       stroke: #fff; }
-      .title-bar.primary .iconic *.iconic-property-accent, .title-bar.primary .ionicons *.iconic-property-accent, .title-bar.primary .material-icons *.iconic-property-accent {
+      .title-bar.primary .iconic *.iconic-property-accent, .title-bar.primary .ionicons *.iconic-property-accent, .title-bar.primary .material-icons *.iconic-property-accent, .title-bar.primary .open-iconic *.iconic-property-accent {
         fill: #fff;
         stroke: #fff; }
     .title-bar.primary .sk-loader.sk-rotating-plane {
@@ -6407,10 +6417,10 @@ meter {
     border-bottom: 1px solid #ccc; }
     .title-bar.dark a, .title-bar.dark a:hover {
       color: #fff; }
-    .title-bar.dark .iconic *, .title-bar.dark .ionicons *, .title-bar.dark .material-icons * {
+    .title-bar.dark .iconic *, .title-bar.dark .ionicons *, .title-bar.dark .material-icons *, .title-bar.dark .open-iconic * {
       fill: #fff;
       stroke: #fff; }
-      .title-bar.dark .iconic *.iconic-property-accent, .title-bar.dark .ionicons *.iconic-property-accent, .title-bar.dark .material-icons *.iconic-property-accent {
+      .title-bar.dark .iconic *.iconic-property-accent, .title-bar.dark .ionicons *.iconic-property-accent, .title-bar.dark .material-icons *.iconic-property-accent, .title-bar.dark .open-iconic *.iconic-property-accent {
         fill: #fff;
         stroke: #fff; }
     .title-bar.dark .sk-loader.sk-rotating-plane {
@@ -6443,23 +6453,23 @@ meter {
   border-bottom: 0;
   border-top: 1px solid #ccc; }
 
-.iconic, .ionicons, .material-icons {
+.iconic, .ionicons, .material-icons, .open-iconic {
   width: 1rem;
   height: 1rem;
   vertical-align: middle; }
-  a > .iconic, a > .ionicons, a > .material-icons {
+  a > .iconic, a > .ionicons, a > .material-icons, a > .open-iconic {
     margin-top: -2px;
     margin-right: 0.25rem; }
-    a > .iconic *, a > .ionicons *, a > .material-icons * {
+    a > .iconic *, a > .ionicons *, a > .material-icons *, a > .open-iconic * {
       fill: #00558b;
       stroke: #00558b; }
-      a > .iconic *.iconic-property-accent, a > .ionicons *.iconic-property-accent, a > .material-icons *.iconic-property-accent {
+      a > .iconic *.iconic-property-accent, a > .ionicons *.iconic-property-accent, a > .material-icons *.iconic-property-accent, a > .open-iconic *.iconic-property-accent {
         fill: #00558b;
         stroke: #00558b; }
-  .iconic *, .ionicons *, .material-icons * {
+  .iconic *, .ionicons *, .material-icons *, .open-iconic * {
     fill: #00558b;
     stroke: #00558b; }
-    .iconic *.iconic-property-accent, .ionicons *.iconic-property-accent, .material-icons *.iconic-property-accent {
+    .iconic *.iconic-property-accent, .ionicons *.iconic-property-accent, .material-icons *.iconic-property-accent, .open-iconic *.iconic-property-accent {
       fill: #00558b;
       stroke: #00558b; }
 
@@ -6512,68 +6522,68 @@ meter {
     fill: #A0D3E8;
     stroke: #A0D3E8; }
 
-.iconic.primary *, .ionicons.primary *, .material-icons.primary * {
+.iconic.primary *, .ionicons.primary *, .material-icons.primary *, .open-iconic.primary * {
   fill: #00558b;
   stroke: #00558b; }
-  .iconic.primary *.iconic-property-accent, .ionicons.primary *.iconic-property-accent, .material-icons.primary *.iconic-property-accent {
+  .iconic.primary *.iconic-property-accent, .ionicons.primary *.iconic-property-accent, .material-icons.primary *.iconic-property-accent, .open-iconic.primary *.iconic-property-accent {
     fill: #00558b;
     stroke: #00558b; }
 
-.iconic.secondary *, .ionicons.secondary *, .material-icons.secondary * {
+.iconic.secondary *, .ionicons.secondary *, .material-icons.secondary *, .open-iconic.secondary * {
   fill: #f1f1f1;
   stroke: #f1f1f1; }
-  .iconic.secondary *.iconic-property-accent, .ionicons.secondary *.iconic-property-accent, .material-icons.secondary *.iconic-property-accent {
+  .iconic.secondary *.iconic-property-accent, .ionicons.secondary *.iconic-property-accent, .material-icons.secondary *.iconic-property-accent, .open-iconic.secondary *.iconic-property-accent {
     fill: #f1f1f1;
     stroke: #f1f1f1; }
 
-.iconic.success *, .ionicons.success *, .material-icons.success * {
+.iconic.success *, .ionicons.success *, .material-icons.success *, .open-iconic.success * {
   fill: #43AC6A;
   stroke: #43AC6A; }
-  .iconic.success *.iconic-property-accent, .ionicons.success *.iconic-property-accent, .material-icons.success *.iconic-property-accent {
+  .iconic.success *.iconic-property-accent, .ionicons.success *.iconic-property-accent, .material-icons.success *.iconic-property-accent, .open-iconic.success *.iconic-property-accent {
     fill: #43AC6A;
     stroke: #43AC6A; }
 
-.iconic.warning *, .ionicons.warning *, .material-icons.warning * {
+.iconic.warning *, .ionicons.warning *, .material-icons.warning *, .open-iconic.warning * {
   fill: #F08A24;
   stroke: #F08A24; }
-  .iconic.warning *.iconic-property-accent, .ionicons.warning *.iconic-property-accent, .material-icons.warning *.iconic-property-accent {
+  .iconic.warning *.iconic-property-accent, .ionicons.warning *.iconic-property-accent, .material-icons.warning *.iconic-property-accent, .open-iconic.warning *.iconic-property-accent {
     fill: #F08A24;
     stroke: #F08A24; }
 
-.iconic.alert *, .ionicons.alert *, .material-icons.alert * {
+.iconic.alert *, .ionicons.alert *, .material-icons.alert *, .open-iconic.alert * {
   fill: #F04124;
   stroke: #F04124; }
-  .iconic.alert *.iconic-property-accent, .ionicons.alert *.iconic-property-accent, .material-icons.alert *.iconic-property-accent {
+  .iconic.alert *.iconic-property-accent, .ionicons.alert *.iconic-property-accent, .material-icons.alert *.iconic-property-accent, .open-iconic.alert *.iconic-property-accent {
     fill: #F04124;
     stroke: #F04124; }
 
-.iconic.dark *, .ionicons.dark *, .material-icons.dark * {
+.iconic.dark *, .ionicons.dark *, .material-icons.dark *, .open-iconic.dark * {
   fill: #232323;
   stroke: #232323; }
-  .iconic.dark *.iconic-property-accent, .ionicons.dark *.iconic-property-accent, .material-icons.dark *.iconic-property-accent {
+  .iconic.dark *.iconic-property-accent, .ionicons.dark *.iconic-property-accent, .material-icons.dark *.iconic-property-accent, .open-iconic.dark *.iconic-property-accent {
     fill: #232323;
     stroke: #232323; }
 
-.iconic.info *, .ionicons.info *, .material-icons.info * {
+.iconic.info *, .ionicons.info *, .material-icons.info *, .open-iconic.info * {
   fill: #A0D3E8;
   stroke: #A0D3E8; }
-  .iconic.info *.iconic-property-accent, .ionicons.info *.iconic-property-accent, .material-icons.info *.iconic-property-accent {
+  .iconic.info *.iconic-property-accent, .ionicons.info *.iconic-property-accent, .material-icons.info *.iconic-property-accent, .open-iconic.info *.iconic-property-accent {
     fill: #A0D3E8;
     stroke: #A0D3E8; }
 
-.iconic.tiny, .ionicons.tiny, .material-icons.tiny {
+.iconic.tiny, .ionicons.tiny, .material-icons.tiny, .open-iconic.tiny {
   width: 8px !important;
   height: 8px !important; }
 
-.iconic.small, .ionicons.small, .material-icons.small {
+.iconic.small, .ionicons.small, .material-icons.small, .open-iconic.small {
   width: 16px !important;
   height: 16px !important; }
 
-.iconic.medium, .ionicons.medium, .material-icons.medium {
+.iconic.medium, .ionicons.medium, .material-icons.medium, .open-iconic.medium {
   width: 32px !important;
   height: 32px !important; }
 
-.iconic.large, .ionicons.large, .material-icons.large {
+.iconic.large, .ionicons.large, .material-icons.large, .open-iconic.large {
   width: 64px !important;
   height: 64px !important; }
 
@@ -7788,10 +7798,10 @@ meter {
   .menu-bar .is-active > a {
     background: #ededed;
     color: #000; }
-  .menu-bar .iconic *, .menu-bar .ionicons *, .menu-bar .material-icons * {
+  .menu-bar .iconic *, .menu-bar .ionicons *, .menu-bar .material-icons *, .menu-bar .open-iconic * {
     fill: #000;
     stroke: #000; }
-    .menu-bar .iconic *.iconic-property-accent, .menu-bar .ionicons *.iconic-property-accent, .menu-bar .material-icons *.iconic-property-accent {
+    .menu-bar .iconic *.iconic-property-accent, .menu-bar .ionicons *.iconic-property-accent, .menu-bar .material-icons *.iconic-property-accent, .menu-bar .open-iconic *.iconic-property-accent {
       fill: #000;
       stroke: #000; }
   .menu-bar .sk-loader.sk-rotating-plane {
@@ -8111,11 +8121,11 @@ meter {
     height: 25px; }
     .menu-bar > li > img:first-child:last-child, .menu-bar.icon-top > li > img:first-child:last-child {
       margin: 0; }
-  .menu-bar > li > .iconic, .menu-bar > li > .ionicons, .menu-bar > li > .material-icons, .menu-bar.icon-top > li > .iconic, .menu-bar.icon-top > li > .ionicons, .menu-bar.icon-top > li > .material-icons {
+  .menu-bar > li > .iconic, .menu-bar > li > .ionicons, .menu-bar > li > .material-icons, .menu-bar > li .open-iconic, .menu-bar.icon-top > li > .iconic, .menu-bar.icon-top > li > .ionicons, .menu-bar.icon-top > li > .material-icons, .menu-bar.icon-top > li .open-iconic {
     margin: 0;
     width: 25px;
     height: 25px; }
-    .menu-bar > li > .iconic:first-child:last-child, .menu-bar > li > .ionicons:first-child:last-child, .menu-bar > li > .material-icons:first-child:last-child, .menu-bar.icon-top > li > .iconic:first-child:last-child, .menu-bar.icon-top > li > .ionicons:first-child:last-child, .menu-bar.icon-top > li > .material-icons:first-child:last-child {
+    .menu-bar > li > .iconic:first-child:last-child, .menu-bar > li > .ionicons:first-child:last-child, .menu-bar > li > .material-icons:first-child:last-child, .menu-bar > li .open-iconic:first-child:last-child, .menu-bar.icon-top > li > .iconic:first-child:last-child, .menu-bar.icon-top > li > .ionicons:first-child:last-child, .menu-bar.icon-top > li > .material-icons:first-child:last-child, .menu-bar.icon-top > li .open-iconic:first-child:last-child {
       margin: 0; }
   .menu-bar > li > .sk-loader, .menu-bar.icon-top > li > .sk-loader {
     margin: 0;
@@ -8129,7 +8139,7 @@ meter {
             flex-flow: column nowrap; }
     .menu-bar > li > a > img, .menu-bar.icon-top > li > a > img {
       margin: 0 0 1rem 0; }
-    .menu-bar > li > a > .iconic, .menu-bar > li > a > .ionicons, .menu-bar > li > a > .material-icons, .menu-bar.icon-top > li > a > .iconic, .menu-bar.icon-top > li > a > .ionicons, .menu-bar.icon-top > li > a > .material-icons {
+    .menu-bar > li > a > .iconic, .menu-bar > li > a > .ionicons, .menu-bar > li > a > .material-icons, .menu-bar > li > a .open-iconic, .menu-bar.icon-top > li > a > .iconic, .menu-bar.icon-top > li > a > .ionicons, .menu-bar.icon-top > li > a > .material-icons, .menu-bar.icon-top > li > a .open-iconic {
       margin: 0 0 1rem 0; }
     .menu-bar > li > a > .sk-loader, .menu-bar.icon-top > li > a > .sk-loader {
       margin: 0 0 1rem 0; }
@@ -8139,11 +8149,11 @@ meter {
     height: 25px; }
     .menu-bar.icon-right > li > img:first-child:last-child {
       margin: 0; }
-  .menu-bar.icon-right > li > .iconic, .menu-bar.icon-right > li > .ionicons, .menu-bar.icon-right > li > .material-icons {
+  .menu-bar.icon-right > li > .iconic, .menu-bar.icon-right > li > .ionicons, .menu-bar.icon-right > li > .material-icons, .menu-bar.icon-right > li .open-iconic {
     margin: 0;
     width: 25px;
     height: 25px; }
-    .menu-bar.icon-right > li > .iconic:first-child:last-child, .menu-bar.icon-right > li > .ionicons:first-child:last-child, .menu-bar.icon-right > li > .material-icons:first-child:last-child {
+    .menu-bar.icon-right > li > .iconic:first-child:last-child, .menu-bar.icon-right > li > .ionicons:first-child:last-child, .menu-bar.icon-right > li > .material-icons:first-child:last-child, .menu-bar.icon-right > li .open-iconic:first-child:last-child {
       margin: 0; }
   .menu-bar.icon-right > li > .sk-loader {
     margin: 0;
@@ -8157,7 +8167,7 @@ meter {
             flex-flow: row-reverse nowrap; }
     .menu-bar.icon-right > li > a > img {
       margin: 0 0 0 1rem; }
-    .menu-bar.icon-right > li > a > .iconic, .menu-bar.icon-right > li > a > .ionicons, .menu-bar.icon-right > li > a > .material-icons {
+    .menu-bar.icon-right > li > a > .iconic, .menu-bar.icon-right > li > a > .ionicons, .menu-bar.icon-right > li > a > .material-icons, .menu-bar.icon-right > li > a .open-iconic {
       margin: 0 0 0 1rem; }
     .menu-bar.icon-right > li > a > .sk-loader {
       margin: 0 0 0 1rem; }
@@ -8167,11 +8177,11 @@ meter {
     height: 25px; }
     .menu-bar.icon-bottom > li > img:first-child:last-child {
       margin: 0; }
-  .menu-bar.icon-bottom > li > .iconic, .menu-bar.icon-bottom > li > .ionicons, .menu-bar.icon-bottom > li > .material-icons {
+  .menu-bar.icon-bottom > li > .iconic, .menu-bar.icon-bottom > li > .ionicons, .menu-bar.icon-bottom > li > .material-icons, .menu-bar.icon-bottom > li .open-iconic {
     margin: 0;
     width: 25px;
     height: 25px; }
-    .menu-bar.icon-bottom > li > .iconic:first-child:last-child, .menu-bar.icon-bottom > li > .ionicons:first-child:last-child, .menu-bar.icon-bottom > li > .material-icons:first-child:last-child {
+    .menu-bar.icon-bottom > li > .iconic:first-child:last-child, .menu-bar.icon-bottom > li > .ionicons:first-child:last-child, .menu-bar.icon-bottom > li > .material-icons:first-child:last-child, .menu-bar.icon-bottom > li .open-iconic:first-child:last-child {
       margin: 0; }
   .menu-bar.icon-bottom > li > .sk-loader {
     margin: 0;
@@ -8185,7 +8195,7 @@ meter {
             flex-flow: column-reverse nowrap; }
     .menu-bar.icon-bottom > li > a > img {
       margin: 1rem 0 0 0; }
-    .menu-bar.icon-bottom > li > a > .iconic, .menu-bar.icon-bottom > li > a > .ionicons, .menu-bar.icon-bottom > li > a > .material-icons {
+    .menu-bar.icon-bottom > li > a > .iconic, .menu-bar.icon-bottom > li > a > .ionicons, .menu-bar.icon-bottom > li > a > .material-icons, .menu-bar.icon-bottom > li > a .open-iconic {
       margin: 1rem 0 0 0; }
     .menu-bar.icon-bottom > li > a > .sk-loader {
       margin: 1rem 0 0 0; }
@@ -8195,11 +8205,11 @@ meter {
     height: 25px; }
     .menu-bar.icon-left > li > img:first-child:last-child {
       margin: 0; }
-  .menu-bar.icon-left > li > .iconic, .menu-bar.icon-left > li > .ionicons, .menu-bar.icon-left > li > .material-icons {
+  .menu-bar.icon-left > li > .iconic, .menu-bar.icon-left > li > .ionicons, .menu-bar.icon-left > li > .material-icons, .menu-bar.icon-left > li .open-iconic {
     margin: 0;
     width: 25px;
     height: 25px; }
-    .menu-bar.icon-left > li > .iconic:first-child:last-child, .menu-bar.icon-left > li > .ionicons:first-child:last-child, .menu-bar.icon-left > li > .material-icons:first-child:last-child {
+    .menu-bar.icon-left > li > .iconic:first-child:last-child, .menu-bar.icon-left > li > .ionicons:first-child:last-child, .menu-bar.icon-left > li > .material-icons:first-child:last-child, .menu-bar.icon-left > li .open-iconic:first-child:last-child {
       margin: 0; }
   .menu-bar.icon-left > li > .sk-loader {
     margin: 0;
@@ -8217,7 +8227,7 @@ meter {
             align-items: center; }
     .menu-bar.icon-left > li > a > img {
       margin: 0 1rem 0 0; }
-    .menu-bar.icon-left > li > a > .iconic, .menu-bar.icon-left > li > a > .ionicons, .menu-bar.icon-left > li > a > .material-icons {
+    .menu-bar.icon-left > li > a > .iconic, .menu-bar.icon-left > li > a > .ionicons, .menu-bar.icon-left > li > a > .material-icons, .menu-bar.icon-left > li > a .open-iconic {
       margin: 0 1rem 0 0; }
     .menu-bar.icon-left > li > a > .sk-loader {
       margin: 0 1rem 0 0; }
@@ -8227,11 +8237,11 @@ meter {
     height: 25px; }
     .menu-bar.small-icon-top > li > img:first-child:last-child {
       margin: 0; }
-  .menu-bar.small-icon-top > li > .iconic, .menu-bar.small-icon-top > li > .ionicons, .menu-bar.small-icon-top > li > .material-icons {
+  .menu-bar.small-icon-top > li > .iconic, .menu-bar.small-icon-top > li > .ionicons, .menu-bar.small-icon-top > li > .material-icons, .menu-bar.small-icon-top > li .open-iconic {
     margin: 0;
     width: 25px;
     height: 25px; }
-    .menu-bar.small-icon-top > li > .iconic:first-child:last-child, .menu-bar.small-icon-top > li > .ionicons:first-child:last-child, .menu-bar.small-icon-top > li > .material-icons:first-child:last-child {
+    .menu-bar.small-icon-top > li > .iconic:first-child:last-child, .menu-bar.small-icon-top > li > .ionicons:first-child:last-child, .menu-bar.small-icon-top > li > .material-icons:first-child:last-child, .menu-bar.small-icon-top > li .open-iconic:first-child:last-child {
       margin: 0; }
   .menu-bar.small-icon-top > li > .sk-loader {
     margin: 0;
@@ -8245,7 +8255,7 @@ meter {
             flex-flow: column nowrap; }
     .menu-bar.small-icon-top > li > a > img {
       margin: 0 0 1rem 0; }
-    .menu-bar.small-icon-top > li > a > .iconic, .menu-bar.small-icon-top > li > a > .ionicons, .menu-bar.small-icon-top > li > a > .material-icons {
+    .menu-bar.small-icon-top > li > a > .iconic, .menu-bar.small-icon-top > li > a > .ionicons, .menu-bar.small-icon-top > li > a > .material-icons, .menu-bar.small-icon-top > li > a .open-iconic {
       margin: 0 0 1rem 0; }
     .menu-bar.small-icon-top > li > a > .sk-loader {
       margin: 0 0 1rem 0; }
@@ -8255,11 +8265,11 @@ meter {
     height: 25px; }
     .menu-bar.small-icon-right > li > img:first-child:last-child {
       margin: 0; }
-  .menu-bar.small-icon-right > li > .iconic, .menu-bar.small-icon-right > li > .ionicons, .menu-bar.small-icon-right > li > .material-icons {
+  .menu-bar.small-icon-right > li > .iconic, .menu-bar.small-icon-right > li > .ionicons, .menu-bar.small-icon-right > li > .material-icons, .menu-bar.small-icon-right > li .open-iconic {
     margin: 0;
     width: 25px;
     height: 25px; }
-    .menu-bar.small-icon-right > li > .iconic:first-child:last-child, .menu-bar.small-icon-right > li > .ionicons:first-child:last-child, .menu-bar.small-icon-right > li > .material-icons:first-child:last-child {
+    .menu-bar.small-icon-right > li > .iconic:first-child:last-child, .menu-bar.small-icon-right > li > .ionicons:first-child:last-child, .menu-bar.small-icon-right > li > .material-icons:first-child:last-child, .menu-bar.small-icon-right > li .open-iconic:first-child:last-child {
       margin: 0; }
   .menu-bar.small-icon-right > li > .sk-loader {
     margin: 0;
@@ -8273,7 +8283,7 @@ meter {
             flex-flow: row-reverse nowrap; }
     .menu-bar.small-icon-right > li > a > img {
       margin: 0 0 0 1rem; }
-    .menu-bar.small-icon-right > li > a > .iconic, .menu-bar.small-icon-right > li > a > .ionicons, .menu-bar.small-icon-right > li > a > .material-icons {
+    .menu-bar.small-icon-right > li > a > .iconic, .menu-bar.small-icon-right > li > a > .ionicons, .menu-bar.small-icon-right > li > a > .material-icons, .menu-bar.small-icon-right > li > a .open-iconic {
       margin: 0 0 0 1rem; }
     .menu-bar.small-icon-right > li > a > .sk-loader {
       margin: 0 0 0 1rem; }
@@ -8283,11 +8293,11 @@ meter {
     height: 25px; }
     .menu-bar.small-icon-bottom > li > img:first-child:last-child {
       margin: 0; }
-  .menu-bar.small-icon-bottom > li > .iconic, .menu-bar.small-icon-bottom > li > .ionicons, .menu-bar.small-icon-bottom > li > .material-icons {
+  .menu-bar.small-icon-bottom > li > .iconic, .menu-bar.small-icon-bottom > li > .ionicons, .menu-bar.small-icon-bottom > li > .material-icons, .menu-bar.small-icon-bottom > li .open-iconic {
     margin: 0;
     width: 25px;
     height: 25px; }
-    .menu-bar.small-icon-bottom > li > .iconic:first-child:last-child, .menu-bar.small-icon-bottom > li > .ionicons:first-child:last-child, .menu-bar.small-icon-bottom > li > .material-icons:first-child:last-child {
+    .menu-bar.small-icon-bottom > li > .iconic:first-child:last-child, .menu-bar.small-icon-bottom > li > .ionicons:first-child:last-child, .menu-bar.small-icon-bottom > li > .material-icons:first-child:last-child, .menu-bar.small-icon-bottom > li .open-iconic:first-child:last-child {
       margin: 0; }
   .menu-bar.small-icon-bottom > li > .sk-loader {
     margin: 0;
@@ -8301,7 +8311,7 @@ meter {
             flex-flow: column-reverse nowrap; }
     .menu-bar.small-icon-bottom > li > a > img {
       margin: 1rem 0 0 0; }
-    .menu-bar.small-icon-bottom > li > a > .iconic, .menu-bar.small-icon-bottom > li > a > .ionicons, .menu-bar.small-icon-bottom > li > a > .material-icons {
+    .menu-bar.small-icon-bottom > li > a > .iconic, .menu-bar.small-icon-bottom > li > a > .ionicons, .menu-bar.small-icon-bottom > li > a > .material-icons, .menu-bar.small-icon-bottom > li > a .open-iconic {
       margin: 1rem 0 0 0; }
     .menu-bar.small-icon-bottom > li > a > .sk-loader {
       margin: 1rem 0 0 0; }
@@ -8311,11 +8321,11 @@ meter {
     height: 25px; }
     .menu-bar.small-icon-left > li > img:first-child:last-child {
       margin: 0; }
-  .menu-bar.small-icon-left > li > .iconic, .menu-bar.small-icon-left > li > .ionicons, .menu-bar.small-icon-left > li > .material-icons {
+  .menu-bar.small-icon-left > li > .iconic, .menu-bar.small-icon-left > li > .ionicons, .menu-bar.small-icon-left > li > .material-icons, .menu-bar.small-icon-left > li .open-iconic {
     margin: 0;
     width: 25px;
     height: 25px; }
-    .menu-bar.small-icon-left > li > .iconic:first-child:last-child, .menu-bar.small-icon-left > li > .ionicons:first-child:last-child, .menu-bar.small-icon-left > li > .material-icons:first-child:last-child {
+    .menu-bar.small-icon-left > li > .iconic:first-child:last-child, .menu-bar.small-icon-left > li > .ionicons:first-child:last-child, .menu-bar.small-icon-left > li > .material-icons:first-child:last-child, .menu-bar.small-icon-left > li .open-iconic:first-child:last-child {
       margin: 0; }
   .menu-bar.small-icon-left > li > .sk-loader {
     margin: 0;
@@ -8333,7 +8343,7 @@ meter {
             align-items: center; }
     .menu-bar.small-icon-left > li > a > img {
       margin: 0 1rem 0 0; }
-    .menu-bar.small-icon-left > li > a > .iconic, .menu-bar.small-icon-left > li > a > .ionicons, .menu-bar.small-icon-left > li > a > .material-icons {
+    .menu-bar.small-icon-left > li > a > .iconic, .menu-bar.small-icon-left > li > a > .ionicons, .menu-bar.small-icon-left > li > a > .material-icons, .menu-bar.small-icon-left > li > a .open-iconic {
       margin: 0 1rem 0 0; }
     .menu-bar.small-icon-left > li > a > .sk-loader {
       margin: 0 1rem 0 0; }
@@ -8344,11 +8354,11 @@ meter {
       height: 25px; }
       .menu-bar.medium-icon-top > li > img:first-child:last-child {
         margin: 0; }
-    .menu-bar.medium-icon-top > li > .iconic, .menu-bar.medium-icon-top > li > .ionicons, .menu-bar.medium-icon-top > li > .material-icons {
+    .menu-bar.medium-icon-top > li > .iconic, .menu-bar.medium-icon-top > li > .ionicons, .menu-bar.medium-icon-top > li > .material-icons, .menu-bar.medium-icon-top > li .open-iconic {
       margin: 0;
       width: 25px;
       height: 25px; }
-      .menu-bar.medium-icon-top > li > .iconic:first-child:last-child, .menu-bar.medium-icon-top > li > .ionicons:first-child:last-child, .menu-bar.medium-icon-top > li > .material-icons:first-child:last-child {
+      .menu-bar.medium-icon-top > li > .iconic:first-child:last-child, .menu-bar.medium-icon-top > li > .ionicons:first-child:last-child, .menu-bar.medium-icon-top > li > .material-icons:first-child:last-child, .menu-bar.medium-icon-top > li .open-iconic:first-child:last-child {
         margin: 0; }
     .menu-bar.medium-icon-top > li > .sk-loader {
       margin: 0;
@@ -8362,7 +8372,7 @@ meter {
               flex-flow: column nowrap; }
       .menu-bar.medium-icon-top > li > a > img {
         margin: 0 0 1rem 0; }
-      .menu-bar.medium-icon-top > li > a > .iconic, .menu-bar.medium-icon-top > li > a > .ionicons, .menu-bar.medium-icon-top > li > a > .material-icons {
+      .menu-bar.medium-icon-top > li > a > .iconic, .menu-bar.medium-icon-top > li > a > .ionicons, .menu-bar.medium-icon-top > li > a > .material-icons, .menu-bar.medium-icon-top > li > a .open-iconic {
         margin: 0 0 1rem 0; }
       .menu-bar.medium-icon-top > li > a > .sk-loader {
         margin: 0 0 1rem 0; } }
@@ -8373,11 +8383,11 @@ meter {
       height: 25px; }
       .menu-bar.medium-icon-right > li > img:first-child:last-child {
         margin: 0; }
-    .menu-bar.medium-icon-right > li > .iconic, .menu-bar.medium-icon-right > li > .ionicons, .menu-bar.medium-icon-right > li > .material-icons {
+    .menu-bar.medium-icon-right > li > .iconic, .menu-bar.medium-icon-right > li > .ionicons, .menu-bar.medium-icon-right > li > .material-icons, .menu-bar.medium-icon-right > li .open-iconic {
       margin: 0;
       width: 25px;
       height: 25px; }
-      .menu-bar.medium-icon-right > li > .iconic:first-child:last-child, .menu-bar.medium-icon-right > li > .ionicons:first-child:last-child, .menu-bar.medium-icon-right > li > .material-icons:first-child:last-child {
+      .menu-bar.medium-icon-right > li > .iconic:first-child:last-child, .menu-bar.medium-icon-right > li > .ionicons:first-child:last-child, .menu-bar.medium-icon-right > li > .material-icons:first-child:last-child, .menu-bar.medium-icon-right > li .open-iconic:first-child:last-child {
         margin: 0; }
     .menu-bar.medium-icon-right > li > .sk-loader {
       margin: 0;
@@ -8391,7 +8401,7 @@ meter {
               flex-flow: row-reverse nowrap; }
       .menu-bar.medium-icon-right > li > a > img {
         margin: 0 0 0 1rem; }
-      .menu-bar.medium-icon-right > li > a > .iconic, .menu-bar.medium-icon-right > li > a > .ionicons, .menu-bar.medium-icon-right > li > a > .material-icons {
+      .menu-bar.medium-icon-right > li > a > .iconic, .menu-bar.medium-icon-right > li > a > .ionicons, .menu-bar.medium-icon-right > li > a > .material-icons, .menu-bar.medium-icon-right > li > a .open-iconic {
         margin: 0 0 0 1rem; }
       .menu-bar.medium-icon-right > li > a > .sk-loader {
         margin: 0 0 0 1rem; } }
@@ -8402,11 +8412,11 @@ meter {
       height: 25px; }
       .menu-bar.medium-icon-bottom > li > img:first-child:last-child {
         margin: 0; }
-    .menu-bar.medium-icon-bottom > li > .iconic, .menu-bar.medium-icon-bottom > li > .ionicons, .menu-bar.medium-icon-bottom > li > .material-icons {
+    .menu-bar.medium-icon-bottom > li > .iconic, .menu-bar.medium-icon-bottom > li > .ionicons, .menu-bar.medium-icon-bottom > li > .material-icons, .menu-bar.medium-icon-bottom > li .open-iconic {
       margin: 0;
       width: 25px;
       height: 25px; }
-      .menu-bar.medium-icon-bottom > li > .iconic:first-child:last-child, .menu-bar.medium-icon-bottom > li > .ionicons:first-child:last-child, .menu-bar.medium-icon-bottom > li > .material-icons:first-child:last-child {
+      .menu-bar.medium-icon-bottom > li > .iconic:first-child:last-child, .menu-bar.medium-icon-bottom > li > .ionicons:first-child:last-child, .menu-bar.medium-icon-bottom > li > .material-icons:first-child:last-child, .menu-bar.medium-icon-bottom > li .open-iconic:first-child:last-child {
         margin: 0; }
     .menu-bar.medium-icon-bottom > li > .sk-loader {
       margin: 0;
@@ -8420,7 +8430,7 @@ meter {
               flex-flow: column-reverse nowrap; }
       .menu-bar.medium-icon-bottom > li > a > img {
         margin: 1rem 0 0 0; }
-      .menu-bar.medium-icon-bottom > li > a > .iconic, .menu-bar.medium-icon-bottom > li > a > .ionicons, .menu-bar.medium-icon-bottom > li > a > .material-icons {
+      .menu-bar.medium-icon-bottom > li > a > .iconic, .menu-bar.medium-icon-bottom > li > a > .ionicons, .menu-bar.medium-icon-bottom > li > a > .material-icons, .menu-bar.medium-icon-bottom > li > a .open-iconic {
         margin: 1rem 0 0 0; }
       .menu-bar.medium-icon-bottom > li > a > .sk-loader {
         margin: 1rem 0 0 0; } }
@@ -8431,11 +8441,11 @@ meter {
       height: 25px; }
       .menu-bar.medium-icon-left > li > img:first-child:last-child {
         margin: 0; }
-    .menu-bar.medium-icon-left > li > .iconic, .menu-bar.medium-icon-left > li > .ionicons, .menu-bar.medium-icon-left > li > .material-icons {
+    .menu-bar.medium-icon-left > li > .iconic, .menu-bar.medium-icon-left > li > .ionicons, .menu-bar.medium-icon-left > li > .material-icons, .menu-bar.medium-icon-left > li .open-iconic {
       margin: 0;
       width: 25px;
       height: 25px; }
-      .menu-bar.medium-icon-left > li > .iconic:first-child:last-child, .menu-bar.medium-icon-left > li > .ionicons:first-child:last-child, .menu-bar.medium-icon-left > li > .material-icons:first-child:last-child {
+      .menu-bar.medium-icon-left > li > .iconic:first-child:last-child, .menu-bar.medium-icon-left > li > .ionicons:first-child:last-child, .menu-bar.medium-icon-left > li > .material-icons:first-child:last-child, .menu-bar.medium-icon-left > li .open-iconic:first-child:last-child {
         margin: 0; }
     .menu-bar.medium-icon-left > li > .sk-loader {
       margin: 0;
@@ -8453,7 +8463,7 @@ meter {
               align-items: center; }
       .menu-bar.medium-icon-left > li > a > img {
         margin: 0 1rem 0 0; }
-      .menu-bar.medium-icon-left > li > a > .iconic, .menu-bar.medium-icon-left > li > a > .ionicons, .menu-bar.medium-icon-left > li > a > .material-icons {
+      .menu-bar.medium-icon-left > li > a > .iconic, .menu-bar.medium-icon-left > li > a > .ionicons, .menu-bar.medium-icon-left > li > a > .material-icons, .menu-bar.medium-icon-left > li > a .open-iconic {
         margin: 0 1rem 0 0; }
       .menu-bar.medium-icon-left > li > a > .sk-loader {
         margin: 0 1rem 0 0; } }
@@ -8464,11 +8474,11 @@ meter {
       height: 25px; }
       .menu-bar.large-icon-top > li > img:first-child:last-child {
         margin: 0; }
-    .menu-bar.large-icon-top > li > .iconic, .menu-bar.large-icon-top > li > .ionicons, .menu-bar.large-icon-top > li > .material-icons {
+    .menu-bar.large-icon-top > li > .iconic, .menu-bar.large-icon-top > li > .ionicons, .menu-bar.large-icon-top > li > .material-icons, .menu-bar.large-icon-top > li .open-iconic {
       margin: 0;
       width: 25px;
       height: 25px; }
-      .menu-bar.large-icon-top > li > .iconic:first-child:last-child, .menu-bar.large-icon-top > li > .ionicons:first-child:last-child, .menu-bar.large-icon-top > li > .material-icons:first-child:last-child {
+      .menu-bar.large-icon-top > li > .iconic:first-child:last-child, .menu-bar.large-icon-top > li > .ionicons:first-child:last-child, .menu-bar.large-icon-top > li > .material-icons:first-child:last-child, .menu-bar.large-icon-top > li .open-iconic:first-child:last-child {
         margin: 0; }
     .menu-bar.large-icon-top > li > .sk-loader {
       margin: 0;
@@ -8482,7 +8492,7 @@ meter {
               flex-flow: column nowrap; }
       .menu-bar.large-icon-top > li > a > img {
         margin: 0 0 1rem 0; }
-      .menu-bar.large-icon-top > li > a > .iconic, .menu-bar.large-icon-top > li > a > .ionicons, .menu-bar.large-icon-top > li > a > .material-icons {
+      .menu-bar.large-icon-top > li > a > .iconic, .menu-bar.large-icon-top > li > a > .ionicons, .menu-bar.large-icon-top > li > a > .material-icons, .menu-bar.large-icon-top > li > a .open-iconic {
         margin: 0 0 1rem 0; }
       .menu-bar.large-icon-top > li > a > .sk-loader {
         margin: 0 0 1rem 0; } }
@@ -8493,11 +8503,11 @@ meter {
       height: 25px; }
       .menu-bar.large-icon-right > li > img:first-child:last-child {
         margin: 0; }
-    .menu-bar.large-icon-right > li > .iconic, .menu-bar.large-icon-right > li > .ionicons, .menu-bar.large-icon-right > li > .material-icons {
+    .menu-bar.large-icon-right > li > .iconic, .menu-bar.large-icon-right > li > .ionicons, .menu-bar.large-icon-right > li > .material-icons, .menu-bar.large-icon-right > li .open-iconic {
       margin: 0;
       width: 25px;
       height: 25px; }
-      .menu-bar.large-icon-right > li > .iconic:first-child:last-child, .menu-bar.large-icon-right > li > .ionicons:first-child:last-child, .menu-bar.large-icon-right > li > .material-icons:first-child:last-child {
+      .menu-bar.large-icon-right > li > .iconic:first-child:last-child, .menu-bar.large-icon-right > li > .ionicons:first-child:last-child, .menu-bar.large-icon-right > li > .material-icons:first-child:last-child, .menu-bar.large-icon-right > li .open-iconic:first-child:last-child {
         margin: 0; }
     .menu-bar.large-icon-right > li > .sk-loader {
       margin: 0;
@@ -8511,7 +8521,7 @@ meter {
               flex-flow: row-reverse nowrap; }
       .menu-bar.large-icon-right > li > a > img {
         margin: 0 0 0 1rem; }
-      .menu-bar.large-icon-right > li > a > .iconic, .menu-bar.large-icon-right > li > a > .ionicons, .menu-bar.large-icon-right > li > a > .material-icons {
+      .menu-bar.large-icon-right > li > a > .iconic, .menu-bar.large-icon-right > li > a > .ionicons, .menu-bar.large-icon-right > li > a > .material-icons, .menu-bar.large-icon-right > li > a .open-iconic {
         margin: 0 0 0 1rem; }
       .menu-bar.large-icon-right > li > a > .sk-loader {
         margin: 0 0 0 1rem; } }
@@ -8522,11 +8532,11 @@ meter {
       height: 25px; }
       .menu-bar.large-icon-bottom > li > img:first-child:last-child {
         margin: 0; }
-    .menu-bar.large-icon-bottom > li > .iconic, .menu-bar.large-icon-bottom > li > .ionicons, .menu-bar.large-icon-bottom > li > .material-icons {
+    .menu-bar.large-icon-bottom > li > .iconic, .menu-bar.large-icon-bottom > li > .ionicons, .menu-bar.large-icon-bottom > li > .material-icons, .menu-bar.large-icon-bottom > li .open-iconic {
       margin: 0;
       width: 25px;
       height: 25px; }
-      .menu-bar.large-icon-bottom > li > .iconic:first-child:last-child, .menu-bar.large-icon-bottom > li > .ionicons:first-child:last-child, .menu-bar.large-icon-bottom > li > .material-icons:first-child:last-child {
+      .menu-bar.large-icon-bottom > li > .iconic:first-child:last-child, .menu-bar.large-icon-bottom > li > .ionicons:first-child:last-child, .menu-bar.large-icon-bottom > li > .material-icons:first-child:last-child, .menu-bar.large-icon-bottom > li .open-iconic:first-child:last-child {
         margin: 0; }
     .menu-bar.large-icon-bottom > li > .sk-loader {
       margin: 0;
@@ -8540,7 +8550,7 @@ meter {
               flex-flow: column-reverse nowrap; }
       .menu-bar.large-icon-bottom > li > a > img {
         margin: 1rem 0 0 0; }
-      .menu-bar.large-icon-bottom > li > a > .iconic, .menu-bar.large-icon-bottom > li > a > .ionicons, .menu-bar.large-icon-bottom > li > a > .material-icons {
+      .menu-bar.large-icon-bottom > li > a > .iconic, .menu-bar.large-icon-bottom > li > a > .ionicons, .menu-bar.large-icon-bottom > li > a > .material-icons, .menu-bar.large-icon-bottom > li > a .open-iconic {
         margin: 1rem 0 0 0; }
       .menu-bar.large-icon-bottom > li > a > .sk-loader {
         margin: 1rem 0 0 0; } }
@@ -8551,11 +8561,11 @@ meter {
       height: 25px; }
       .menu-bar.large-icon-left > li > img:first-child:last-child {
         margin: 0; }
-    .menu-bar.large-icon-left > li > .iconic, .menu-bar.large-icon-left > li > .ionicons, .menu-bar.large-icon-left > li > .material-icons {
+    .menu-bar.large-icon-left > li > .iconic, .menu-bar.large-icon-left > li > .ionicons, .menu-bar.large-icon-left > li > .material-icons, .menu-bar.large-icon-left > li .open-iconic {
       margin: 0;
       width: 25px;
       height: 25px; }
-      .menu-bar.large-icon-left > li > .iconic:first-child:last-child, .menu-bar.large-icon-left > li > .ionicons:first-child:last-child, .menu-bar.large-icon-left > li > .material-icons:first-child:last-child {
+      .menu-bar.large-icon-left > li > .iconic:first-child:last-child, .menu-bar.large-icon-left > li > .ionicons:first-child:last-child, .menu-bar.large-icon-left > li > .material-icons:first-child:last-child, .menu-bar.large-icon-left > li .open-iconic:first-child:last-child {
         margin: 0; }
     .menu-bar.large-icon-left > li > .sk-loader {
       margin: 0;
@@ -8573,7 +8583,7 @@ meter {
               align-items: center; }
       .menu-bar.large-icon-left > li > a > img {
         margin: 0 1rem 0 0; }
-      .menu-bar.large-icon-left > li > a > .iconic, .menu-bar.large-icon-left > li > a > .ionicons, .menu-bar.large-icon-left > li > a > .material-icons {
+      .menu-bar.large-icon-left > li > a > .iconic, .menu-bar.large-icon-left > li > a > .ionicons, .menu-bar.large-icon-left > li > a > .material-icons, .menu-bar.large-icon-left > li > a .open-iconic {
         margin: 0 1rem 0 0; }
       .menu-bar.large-icon-left > li > a > .sk-loader {
         margin: 0 1rem 0 0; } }
@@ -8625,10 +8635,10 @@ meter {
     .menu-bar.primary .is-active > a {
       background: #0065a5;
       color: #fff; }
-    .menu-bar.primary .iconic *, .menu-bar.primary .ionicons *, .menu-bar.primary .material-icons * {
+    .menu-bar.primary .iconic *, .menu-bar.primary .ionicons *, .menu-bar.primary .material-icons *, .menu-bar.primary .open-iconic * {
       fill: #fff;
       stroke: #fff; }
-      .menu-bar.primary .iconic *.iconic-property-accent, .menu-bar.primary .ionicons *.iconic-property-accent, .menu-bar.primary .material-icons *.iconic-property-accent {
+      .menu-bar.primary .iconic *.iconic-property-accent, .menu-bar.primary .ionicons *.iconic-property-accent, .menu-bar.primary .material-icons *.iconic-property-accent, .menu-bar.primary .open-iconic *.iconic-property-accent {
         fill: #fff;
         stroke: #fff; }
     .menu-bar.primary .sk-loader.sk-rotating-plane {
@@ -8666,10 +8676,10 @@ meter {
     .menu-bar.dark .is-active > a {
       background: #323232;
       color: #fff; }
-    .menu-bar.dark .iconic *, .menu-bar.dark .ionicons *, .menu-bar.dark .material-icons * {
+    .menu-bar.dark .iconic *, .menu-bar.dark .ionicons *, .menu-bar.dark .material-icons *, .menu-bar.dark .open-iconic * {
       fill: #fff;
       stroke: #fff; }
-      .menu-bar.dark .iconic *.iconic-property-accent, .menu-bar.dark .ionicons *.iconic-property-accent, .menu-bar.dark .material-icons *.iconic-property-accent {
+      .menu-bar.dark .iconic *.iconic-property-accent, .menu-bar.dark .ionicons *.iconic-property-accent, .menu-bar.dark .material-icons *.iconic-property-accent, .menu-bar.dark .open-iconic *.iconic-property-accent {
         fill: #fff;
         stroke: #fff; }
     .menu-bar.dark .sk-loader.sk-rotating-plane {
@@ -8753,10 +8763,10 @@ meter {
       .menu-group.primary .menu-bar .is-active > a {
         background: #0065a5;
         color: #fff; }
-      .menu-group.primary .menu-bar .iconic *, .menu-group.primary .menu-bar .ionicons *, .menu-group.primary .menu-bar .material-icons * {
+      .menu-group.primary .menu-bar .iconic *, .menu-group.primary .menu-bar .ionicons *, .menu-group.primary .menu-bar .material-icons *, .menu-group.primary .menu-bar .open-iconic * {
         fill: #fff;
         stroke: #fff; }
-        .menu-group.primary .menu-bar .iconic *.iconic-property-accent, .menu-group.primary .menu-bar .ionicons *.iconic-property-accent, .menu-group.primary .menu-bar .material-icons *.iconic-property-accent {
+        .menu-group.primary .menu-bar .iconic *.iconic-property-accent, .menu-group.primary .menu-bar .ionicons *.iconic-property-accent, .menu-group.primary .menu-bar .material-icons *.iconic-property-accent, .menu-group.primary .menu-bar .open-iconic *.iconic-property-accent {
           fill: #fff;
           stroke: #fff; }
       .menu-group.primary .menu-bar .sk-loader.sk-rotating-plane {
@@ -8796,10 +8806,10 @@ meter {
       .menu-group.dark .menu-bar .is-active > a {
         background: #323232;
         color: #fff; }
-      .menu-group.dark .menu-bar .iconic *, .menu-group.dark .menu-bar .ionicons *, .menu-group.dark .menu-bar .material-icons * {
+      .menu-group.dark .menu-bar .iconic *, .menu-group.dark .menu-bar .ionicons *, .menu-group.dark .menu-bar .material-icons *, .menu-group.dark .menu-bar .open-iconic * {
         fill: #fff;
         stroke: #fff; }
-        .menu-group.dark .menu-bar .iconic *.iconic-property-accent, .menu-group.dark .menu-bar .ionicons *.iconic-property-accent, .menu-group.dark .menu-bar .material-icons *.iconic-property-accent {
+        .menu-group.dark .menu-bar .iconic *.iconic-property-accent, .menu-group.dark .menu-bar .ionicons *.iconic-property-accent, .menu-group.dark .menu-bar .material-icons *.iconic-property-accent, .menu-group.dark .menu-bar .open-iconic *.iconic-property-accent {
           fill: #fff;
           stroke: #fff; }
       .menu-group.dark .menu-bar .sk-loader.sk-rotating-plane {
