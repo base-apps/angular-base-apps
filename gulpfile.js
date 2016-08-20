@@ -118,20 +118,22 @@ gulp.task('copy', function() {
   return gulp.src(paths.html.base, {
       base: './docs/'
     })
-    // update CDN links
-    .pipe($.replace(/https:\/\/cdn\.jsdelivr\.net\/angular-base-apps\/0\.0\.0/g, 'https://cdn.jsdelivr.net/angular-base-apps/' + version))
-    .pipe(gulp.dest('build'));
+    .pipe(gulp.dest('build'))
+    .pipe($.filter("**/*.html"))
+    // update version throughout framework
+    .pipe($.replace(/<version>/g, version))
+    .pipe(gulp.dest('build'))
 });
 
 // Copy page templates and generate routes
 gulp.task('copy:templates', ['javascript'], function() {
   return gulp.src(paths.html.templates)
+    // update version throughout framework
+    .pipe($.replace(/<version>/g, version))
     .pipe(routes({
       path: 'build/assets/js/routes.js',
       root: 'docs'
     }))
-    // update CDN links
-    .pipe($.replace(/https:\/\/cdn\.jsdelivr\.net\/angular-base-apps\/0\.0\.0/g, 'https://cdn.jsdelivr.net/angular-base-apps/' + version))
     .pipe(gulp.dest('./build/templates'))
   ;
 });
@@ -156,8 +158,8 @@ gulp.task('copy:partials', ['clean:partials'], function() {
     .pipe(gulp.dest('./build/assets/js')));
 
   merged.add(gulp.src('./docs/partials/**/*.html')
-    // update CDN links
-    .pipe($.replace(/https:\/\/cdn\.jsdelivr\.net\/angular-base-apps\/0\.0\.0/g, 'https://cdn.jsdelivr.net/angular-base-apps/' + version))
+    // update version throughout framework
+    .pipe($.replace(/<version>/g, version))
     .pipe(gulp.dest('./build/partials/')));
 
   return merged;
