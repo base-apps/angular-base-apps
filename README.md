@@ -4,7 +4,7 @@ An open source, community-driven fork of [Foundation for Apps by Zurb](https://g
 
 [![Build Status](https://travis-ci.org/base-apps/angular-base-apps.svg)](https://travis-ci.org/base-apps/angular-base-apps)
 
-This is Angular Base Apps, an Angular-powered framework for building powerful responsive web apps and an unofficial fork of [Foundation for Apps by Zurb](https://github.com/zurb/foundation-apps).  Angular Base Apps 1.x is a drop-in replacement for Foundation for Apps.  If you wish to try out Angular Base Apps 2.x, check the [installation docs](https://base-apps.github.io/angular-base-apps/#!/installation) for migration steps.
+This is Angular Base Apps, an Angular-powered framework for building powerful responsive web apps and an unofficial fork of [Foundation for Apps by Zurb](https://github.com/zurb/foundation-apps).
 
 ## Requirements
 
@@ -17,7 +17,11 @@ You'll need the following software installed to get started.
 
 ## Get Started
 
-The Sass and JavaScript components are available on Bower and npm.
+Stuck with Foundation for Apps?  Try out [Angular Base Apps 1.2.6](https://github.com/base-apps/angular-base-apps/releases/tag/v1.2.6) as a drop-in replacement!
+
+Want to try out Angular Base Apps 2.0? Check the [installation docs](https://base-apps.github.io/angular-base-apps/#!/installation) for migration steps.
+
+Starting fresh?  Install the Sass and JavaScript components via bower or npm.
 ```
 bower install angular-base-apps --save
 npm install angular-base-apps --save
@@ -26,6 +30,16 @@ npm install angular-base-apps --save
 ## Documentation
 
 Documentation for the latest release is available at https://base-apps.github.io/angular-base-apps
+
+Documentation is distributed with each release of Angular Base Apps.  To view documentation for a previous release, first download the source code for that version from the [list of available releases](https://github.com/base-apps/angular-base-apps/releases).  The docs cannot be viewed using `file://` so you'll need to view them through a local web server.  For example you can use [http-server](https://www.npmjs.com/package/http-server) to view the docs like so:
+
+```
+cd dist/docs
+http-server
+```
+
+The docs will be available at `http://localhost:8080`
+
 
 ## Building this Repo
 
