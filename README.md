@@ -31,10 +31,12 @@ npm install angular-base-apps --save
 
 Documentation for the latest release is available at https://base-apps.github.io/angular-base-apps
 
-Documentation is distributed with each release of Angular Base Apps.  To view documentation for a previous release, first download the source code for that version from the [list of available releases](https://github.com/base-apps/angular-base-apps/releases).  The docs cannot be viewed using `file://` so you'll need to view them through a local web server.  For example you can use [http-server](https://www.npmjs.com/package/http-server) to view the docs like so:
-
+Documentation is distributed with each release of Angular Base Apps.  The docs cannot be viewed using `file://` so you'll need to view them through a local web server such as [http-server](https://www.npmjs.com/package/http-server).  To view documentation for a previous release (e.g. 1.2.6), follow these steps:
 ```
-cd <angular-base-apps>/dist/docs
+git clone https://github.com/base-apps/angular-base-apps.git
+cd angular-base-apps
+git checkout tags/v1.2.6
+cd dist/docs
 http-server
 ```
 
