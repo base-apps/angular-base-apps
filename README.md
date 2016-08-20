@@ -34,7 +34,7 @@ Documentation for the latest release is available at https://base-apps.github.io
 Documentation is distributed with each release of Angular Base Apps.  To view documentation for a previous release, first download the source code for that version from the [list of available releases](https://github.com/base-apps/angular-base-apps/releases).  The docs cannot be viewed using `file://` so you'll need to view them through a local web server.  For example you can use [http-server](https://www.npmjs.com/package/http-server) to view the docs like so:
 
 ```
-cd dist/docs
+cd <angular-base-apps>/dist/docs
 http-server
 ```
 
