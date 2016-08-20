@@ -11,39 +11,39 @@
     <script src="assets/js/app.js"></script>
     <script src="assets/js/templates.js"></script>
   </head>
-  <body zf-esc-close zf-close-all>
+  <body ba-esc-close ba-close-all>
 
     <!-- Right Off Canvas -->
-    <zf-offcanvas id="example-canvas-top" position="top">
+    <ba-offcanvas id="example-canvas-top" position="top">
       <div class="grid-content">
-        <a href="#" zf-close class="close-button">&times;</a>
+        <a href="#" ba-close class="close-button">&times;</a>
         <h3>This is a top off-canvas menu.</h3>
       </div>
-    </zf-offcanvas>
+    </ba-offcanvas>
 
     <!-- Bottom Off Canvas -->
-    <zf-offcanvas id="example-canvas-right" position="right">
+    <ba-offcanvas id="example-canvas-right" position="right">
       <div class="grid-content">
-        <a href="#" zf-close class="close-button">&times;</a>
+        <a href="#" ba-close class="close-button">&times;</a>
         <h3>This is a right off-canvas menu.</h3>
       </div>
-    </zf-offcanvas>
+    </ba-offcanvas>
 
     <!-- Left Off Canvas -->
-    <zf-offcanvas id="example-canvas-bottom" position="bottom">
+    <ba-offcanvas id="example-canvas-bottom" position="bottom">
       <div class="grid-content">
-        <a href="#" zf-close class="close-button">&times;</a>
+        <a href="#" ba-close class="close-button">&times;</a>
         <h3>This is a bottom off-canvas menu.</h3>
       </div>
-    </zf-offcanvas>
+    </ba-offcanvas>
 
     <!-- Top Off Canvas -->
-    <zf-offcanvas id="example-canvas-left" position="left" class="detached">
+    <ba-offcanvas id="example-canvas-left" position="left" class="detached">
       <div class="grid-content">
-        <a href="#" zf-close class="close-button">&times;</a>
+        <a href="#" ba-close class="close-button">&times;</a>
         <h3>This is a left off-canvas menu.</h3>
       </div>
-    </zf-offcanvas>
+    </ba-offcanvas>
 
     <!-- App frame -->
     <div class="vertical grid-frame">
@@ -57,7 +57,7 @@
       <div class="grid-block" ng-controller="NavController">
 
         <!-- Sidebar nav -->
-        <div zf-panel id="sidebar" class="docs-sidebar">
+        <div ba-panel id="sidebar" class="docs-sidebar">
           <!-- Search bar -->
           <div class="grid-content shrink docs-search">
             <autocomplete data="routing" on-select="selectRoute" attr-placeholder="Search docs: e.g. forms" ng-model="typedText" />
@@ -76,7 +76,7 @@
         <!-- Main content -->
         <div class="docs-main" ng-show="$state.current.name.length">
           <div class="grid-container">
-            <a class="small secondary expand button hide-for-medium" zf-toggle="sidebar">Show Components</a>
+            <a class="small secondary expand button hide-for-medium" ba-toggle="sidebar">Show Components</a>
             <div ng-class="['ui-animation']" ui-view autoscroll></div>
           </div>
         </div>

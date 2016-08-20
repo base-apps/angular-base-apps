@@ -1,32 +1,173 @@
 
 <h2>Changelog</h2>
-<h3 class="subheader">Foundation is open source and it can move fast. You can stay up to date with each new version here.</h3>
+<h3 class="subheader">Angular Base Apps is open source and it can move fast. You can stay up to date with each new version here.</h3>
 
 <hr>
 
 <h3>How to update</h3>
 
-<p>If you're updating a project built with our template stack, the CLI will help you update:</p>
+<p>You can update to the latest version of Angular Base Apps by running the update command for bower or npm.</p>
 
 <hljs language="bash">
-foundation-apps update
+bower update angular-base-apps
+npm update angular-base-apps
 </hljs>
 
-<p>It's also possible to update by hand. Open the <code>bower.json</code> and change your <code>foundation-apps</code> dependency to the version you want:</p>
+<p>If you don't want the latest, you can open <code>bower.json</code> or <code>package.json</code> and change your <code>angular-base-apps</code> dependency to the version you want:</p>
 
 <hljs language="json">
 {
   "dependencies": {
-    "foundation-apps": "1.0.3"
+    "angular-base-apps": "1.2.6"
   }
 }
 </hljs>
 
-<p>Save the file and then update with Bower:</p>
+<p>Save the file and then update with bower or npm.</p>
 
-<hljs language="bash">
-bower update
-</hljs>
+<hr>
+<!-- TEMPLATE FOR CHANGELOG ENTRIES
+<h3>Version x.x.x</h3>
+
+<h4>General</h4>
+
+<ul>
+<li></li>
+</ul>
+
+<h4>Features</h4>
+
+<ul>
+<li></li>
+</ul>
+
+<h4>Bug Fixes</h4>
+
+<ul>
+<li></li>
+</ul>
+
+<hr>
+-->
+<h3>Version 2.0.0</h3>
+
+<h4>General</h4>
+
+<ul>
+<li>First release to be completely separated from ZURB and Foundation for Apps!</li>
+<li>Check the <a ui-sref="installation">installation docs</a> for migration steps</li>
+</ul>
+
+<h4>Features</h4>
+
+<ul>
+<li><a href="https://github.com/base-apps/angular-base-apps/issues/16">#16</a>: Added <code>destroy-on-close</code> property to modals</li>
+<li><a href="https://github.com/base-apps/angular-base-apps/issues/31">#31</a>: Removed word <strong>foundation</strong> from codebase</li>
+<li><a href="https://github.com/base-apps/angular-base-apps/issues/38">#38</a>: Add customizable loading symbols from <a href="http://tobiasahlin.com/spinkit/">SpinKit</a></li>
+<li><a href="https://github.com/base-apps/angular-base-apps/issues/37">#37</a>: Moved custom Iconic icons to <a href="https://github.com/base-apps/angular-icons">angular-icons</a></li>
+<li><a href="https://github.com/base-apps/angular-base-apps/issues/42">#42</a>: Refactored dynamic routing code into <a href="https://github.com/base-apps/angular-dynamic-routing">angular-dynamic-routing</a> and <a href="https://github.com/base-apps/angular-front-router">angular-front-router</a></li>
+</ul>
+
+<hr>
+
+<h3>Version 1.2.6</h3>
+
+<h4>General</h4>
+
+<ul>
+<li>Provide alternatives to <code>window.confirm</code> and <code>window.prompt</code></li>
+<li>Check the <a ui-sref="modal">modal docs</a> for how to use the new features</li>
+</ul>
+
+<h4>Features</h4>
+
+<ul>
+<li><a href="https://github.com/base-apps/angular-base-apps/issues/39">#39</a>: Adds a <code>ConfirmModal</code> to replace window.confirm</li>
+<li><a href="https://github.com/base-apps/angular-base-apps/issues/40">#40</a>: Adds a <code>PromptModal</code> to replace window.confirm</li>
+</ul>
+
+<hr>
+
+<h3>Version 1.2.5</h3>
+
+<h4>General</h4>
+
+<p>This release is geared towards improving the accordion component functionality.  Check the <a ui-sref="accordion">accordion docs</a> for more info.</p>
+
+<ul>
+<li>Fix <code>collapsible</code> to work as intended</li>
+<li>Use accordion <code>id</code> when publishing/subscribing to enable externally controlling the accordions</li>
+<li>Improved docs for accordions</li>
+</ul>
+
+<hr>
+
+<h3>Version 1.2.4</h3>
+
+<h4>General</h4>
+
+<p>This release is geared towards improving the tab component functionality.  Check the <a ui-sref="tabs">tab docs</a> for more info.</p>
+
+<ul>
+<li>Add <code>auto-open</code> and <code>collapsible</code> attributes</li>
+<li>Use tab <code>id</code> when publishing/subscribing to enable externally controlling the tabs</li>
+<li>Improved docs for tabs</li>
+</ul>
+
+<hr>
+
+<h3>Version 1.2.3</h3>
+
+<h4>Bug Fixes</h4>
+
+<ul>
+<li><a href="https://github.com/base-apps/angular-base-apps/pull/21">#21</a>: allow links inside modals to be clickable</li>
+</ul>
+
+<hr>
+
+<h3>Version 1.2.2</h3>
+
+<h4>General</h4>
+
+<p>Merge pending PRs from Foundation for Apps.  The following PRs were merged:</p>
+
+<ul>
+<li><a href="https://github.com/zurb/foundation-apps/pull/826">#826</a>: Initializing state definitions with empty resolve object</li>
+<li><a href="https://github.com/zurb/foundation-apps/pull/825">#825</a>: Fixed a bug during fast navigation</li>
+<li><a href="https://github.com/zurb/foundation-apps/pull/824">#824</a>: Properly destroy popup tether component</li>
+<li><a href="https://github.com/zurb/foundation-apps/pull/820">#820</a>: Fix panel animations</li>
+<li><a href="https://github.com/zurb/foundation-apps/pull/816">#816</a>: Bold font weight should be determined from settings</li>
+<li><a href="https://github.com/zurb/foundation-apps/pull/815">#815</a>: Remove fixed 1rem spacings on grid CSS</li>
+<li><a href="https://github.com/zurb/foundation-apps/pull/807">#807</a>: adding <code>.gutter</code> class to grid blocks</li>
+<li><a href="https://github.com/zurb/foundation-apps/pull/806">#806</a>: update handling of resize message</li>
+<li><a href="https://github.com/zurb/foundation-apps/pull/802">#802</a>: fix hollow button size to match non-hollow button size</li>
+<li><a href="https://github.com/zurb/foundation-apps/pull/801">#801</a>: Apply disabled state with :disabled</li>
+<li><a href="https://github.com/zurb/foundation-apps/pull/785">#785</a>: Fix stagger durations</li>
+<li><a href="https://github.com/zurb/foundation-apps/pull/768">#768</a>: Applied fix for depciation warning</li>
+<li><a href="https://github.com/zurb/foundation-apps/pull/760">#760</a>: fix clearing of media query cache</li>
+<li><a href="https://github.com/zurb/foundation-apps/pull/743">#743</a>: Allow panel with block transform to animate</li>
+<li><a href="https://github.com/zurb/foundation-apps/pull/741">#741</a>: standardize active state tracking across components</li>
+<li><a href="https://github.com/zurb/foundation-apps/pull/736">#736</a>: <code>zf-close-all</code> and <code>zf-ignore-all-close</code> fixes</li>
+<li><a href="https://github.com/zurb/foundation-apps/pull/717">#717</a>: Fix ModalFactory overlayClose=false option</li>
+</ul>
+
+<hr>
+
+<h3>Version 1.2.1</h3>
+
+<h4>General</h4>
+
+<ul>
+<li>First release as Angular Base Apps.  Release geared towards rebranding and decoupling from ZURB.</li>
+<li>Prepares users for version 2 by introducing <code>base</code> modules and files.</li>
+</ul>
+
+<h4>Features</h4>
+
+<ul>
+<li>#3: Adds <code>base.*</code> modules to mirror <code>foundation.*</code> modules.  Adds <code>base-apps</code> js and css files to mirror <code>foundation</code> files.</li>
+</ul>
 
 <hr>
 
@@ -80,14 +221,14 @@ bower update
 </ul>
 
 <hljs language="html">
-<div zf-if="medium"></div>
+<div ba-if="medium"></div>
 
-<div zf-if="not large"></div>
+<div ba-if="not large"></div>
 </hljs>
 
 <ul>
 <li><strong>Animation methods with promises.</strong> <code>FoundationApi.animateAndAdvise</code> allows you to animate an element and get a promise back, which resolves when the animation finishes.</li>
-<li><strong>Click outside of things to close them!</strong> Panels and off-canvas menus can be configured to be closed when they're clicked/tapped outside of. To enable it, add the directive <code>zf-close-all</code> to the <code>&lt;body&gt;</code> element. #430</li>
+<li><strong>Click outside of things to close them!</strong> Panels and off-canvas menus can be configured to be closed when they're clicked/tapped outside of. To enable it, add the directive <code>ba-close-all</code> to the <code>&lt;body&gt;</code> element. #430</li>
 <li>Front Router now outputs an entire Angular module instead of a global variable, to avoid polluting the global namespace.</li>
 <li>Added the method <code>.isActive</code> to <code>ModalFactory</code>, which tells you if a modal is open. #580</li>
 </ul>
@@ -157,7 +298,7 @@ bower update
 <li><strong>If you have an existing project, you don't need to change anything to upgrade to v1.1.</strong></li>
 </ul>
 
-<h4>New Features</h4>
+<h4>Features</h4>
 
 <ul>
 <li><strong>Improved view animation!</strong> In and out animations on views will now play simultaneously. Thanks to @AntJanus, @stryju, and @jeanieshark for all their hard work in solving this difficult problem!</li>
@@ -180,7 +321,7 @@ $stateProvider
 <ul>
 <li>#461: Added a <code>$background-hover</code> parameter to the <code>button-style()</code> mixin. You can pass in a color, or the <code>auto</code> keyword to automatically set a color based on the <code>$background</code> parameter.</li>
 <li>#462: Added styles for disabled form elements. They're automatically applied to any <code>&lt;input&gt;</code> element with the <code>disabled</code> or <code>readonly</code> attributes, or a <code>&lt;fieldset&gt;</code> with <code>disabled</code>. The styles can also be added manually by adding the <code>.disabled</code> class.</li>
-<li>#475: The path the <code>zf-iconic</code> directive uses to search for icon files can now be changed width the <code>IconicProvider</code> provider. Use <code>IconicProvider.setAssetPath(path)</code> to set the path. Thanks to @gjungb for implementing this!</li>
+<li>#475: The path the <code>ba-iconic</code> directive uses to search for icon files can now be changed width the <code>IconicProvider</code> provider. Use <code>IconicProvider.setAssetPath(path)</code> to set the path. Thanks to @gjungb for implementing this!</li>
 <li>#495: The front matter routing plugin now supports ui-router's abstract states. Just add <code>abstract: true</code> to a view template to make it go.</li>
 <li>Added support for ngAnimate's "show" and "hide" events. This means you can now use Motion UI classes with <code>ng-show</code> and <code>ng-hide</code>.</li>
 <li>Added a <code>.noscroll</code> class for grid blocks and content blocks. I bet you can guess what it does!</li>
@@ -202,7 +343,7 @@ $stateProvider
 <li>#511: Panels that have converted into a block won't play their in/out animations if triggered by an open or close event.</li>
 <li>#530: Visibility classes will not conflict with Angular's <code>.ng-hide</code> class.</li>
 <li>The <code>&lt;button&gt;</code> tag is no longer styled as a <code>.button</code> element by default.</li>
-<li>Any element with <code>zf-open</code>, <code>zf-close</code>, or <code>zf-toggle</code> applied gets the <code>cursor: pointer</code> property.</li>
+<li>Any element with <code>ba-open</code>, <code>ba-close</code>, or <code>ba-toggle</code> applied gets the <code>cursor: pointer</code> property.</li>
 <li>Removed the dropdown arrow that Internet Explorer 10+ adds to <code>&lt;select&gt;</code> elements.</li>
 <li>Prevented ghosting issues in WebKit with views that are mid-transition, by adding <code>-webkit-transform-style: preserve3d</code>.</li>
 <li>Fixed landscape/portrait visibility classes not hiding properly.</li>
@@ -246,7 +387,7 @@ $stateProvider
 
 <p>The Gulpfile used in the <a href="https://github.com/zurb/foundation-apps-template">template stack</a> now uses the <code>gulp-load-plugins</code> library to streamline use of plugins. <strong>If you have an existing project, you don't need to change anything to upgrade.</strong></p>
 
-<h4>New Features</h4>
+<h4>Features</h4>
 
 <ul>
 <li><strong>Stacking notifications.</strong> (#388) Dynamically-called notifications will now stack when you call more than one.</li>
@@ -277,7 +418,7 @@ $stateProvider
 <p><strong>JavaScript:</strong></p>
 
 <ul>
-<li>#363: Fixed <code>zf-close</code> not working when placed outside of a component.</li>
+<li>#363: Fixed <code>ba-close</code> not working when placed outside of a component.</li>
 <li>#420: Fixed panel/block animations triggering even though the element is in block mode.</li>
 <li>#427: Fixed the <code>pin-at</code> directive not passing its value to Tether.</li>
 <li>#448: Fixed invalid <code>$scope.params</code> property on the DefaultController controller.</li>
@@ -329,11 +470,11 @@ $stateProvider
 <ul>
 <li><strong>Touch support!</strong> We added the <a href="http://ryanmullins.github.io/angular-hammer/">Hammer.js Angular library</a> to our codebase, which allows you to trigger functions with touch gestures, using directives like <code>hm-swipeup</code> and <code>hm-pinchin</code>.
 <ul>
-<li>We added one custom directive, <code>zf-touch-close</code>, which allows you to trigger the <code>close</code> event on an element by swiping. We'll add more features in future versions.</li>
+<li>We added one custom directive, <code>ba-touch-close</code>, which allows you to trigger the <code>close</code> event on an element by swiping. We'll add more features in future versions.</li>
 </ul></li>
 <li>#301: Menu bars can now switch between the expanded and condensed styles at different screen sizes, using these classes: <code>condense</code>, <code>medium-condense</code>, <code>large-condense</code>, <code>medium-expand</code>, <code>large-expand</code>.</li>
 <li>#335: Menu bars can now be wrapped in a <code>menu-bar-group</code> container, which allows two menu bars to sit on the same row, aligned to the left and the right. Learn more <a href="http://foundation.zurb.com/apps/docs/#!/menu-bar">here</a>.</li>
-<li>#342: The <code>src</code> attribute of an Iconic icon can now be dynamically inserted. Instead of <code>data-src</code>, define the icon's source with the <code>dyn-src</code> attribute on a <code>zf-iconic</code> element.</li>
+<li>#342: The <code>src</code> attribute of an Iconic icon can now be dynamically inserted. Instead of <code>data-src</code>, define the icon's source with the <code>dyn-src</code> attribute on a <code>ba-iconic</code> element.</li>
 </ul>
 
 
@@ -364,7 +505,7 @@ $stateProvider
 <h4>JavaScript</h4>
 
 <ul>
-  <li>Added the `zf-hard-toggle` directive, to force other open components to close when the targeted component opens.</li>
+  <li>Added the `ba-hard-toggle` directive, to force other open components to close when the targeted component opens.</li>
   <li>Integrated the FastClick library.</li>
   <li>#199: Modals can be configured to not close when clicked outside of.</li>
   <li>#258: Accordions can be set to allow every item to be closed at once with `collapsible="true"`.</li>

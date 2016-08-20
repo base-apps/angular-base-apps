@@ -5,24 +5,24 @@
 <hr>
 
 <div class="text-center">
-  <a class="button" href="#" zf-open="basicModal">Open modal</a>
+  <a class="button" href="#" ba-open="basicModal">Open modal</a>
 </div>
 
 <hr>
 
 <h3>Basic HTML</h3>
-<p>Modals are made with the custom <code>zf-modal</code> tag. To create a trigger to open the modal, add the attribute <code>zf-open="id"</code> to an element, where <code>id</code> is the ID of the modal.</p>
-<p>Add the attribute <code>zf-close</code> to an element inside the modal to create a close button. We also have a handy close button element you can use—just add the class <code>close-button</code> to an element.</p>
+<p>Modals are made with the custom <code>ba-modal</code> tag. To create a trigger to open the modal, add the attribute <code>ba-open="id"</code> to an element, where <code>id</code> is the ID of the modal.</p>
+<p>Add the attribute <code>ba-close</code> to an element inside the modal to create a close button. We also have a handy close button element you can use—just add the class <code>close-button</code> to an element.</p>
 
 <div class="text-center">
-  <a class="button" zf-open="basicModal">Open modal</a>
+  <a class="button" ba-open="basicModal">Open modal</a>
 </div>
 
 <hljs language="html">
-<a zf-open="basicModal" class="button">Open modal</a>
+<a ba-open="basicModal" class="button">Open modal</a>
 
-<div zf-modal id="basicModal">
-  <a zf-close class="close-button">&times;</a>
+<div ba-modal id="basicModal">
+  <a ba-close class="close-button">&times;</a>
   <h3>Back in my days...</h3>
   <p>There were 3 Star Wars movies and Disney only made cartoons.</p>
 </div>
@@ -31,28 +31,28 @@
 <hr>
 
 <h3>Using the Grid</h3>
-<p>You can embed a grid inside of a modal, complete with scrolling panels, fixed areas, and responsive adjustments. Start by nesting a grid block directly inside the modal container, and go from there. Note that you also need to add a <code>collapse</code> class to the <code>zf-modal</code> element if you want the grid elements to be flush with the edge of the modal.</p>
+<p>You can embed a grid inside of a modal, complete with scrolling panels, fixed areas, and responsive adjustments. Start by nesting a grid block directly inside the modal container, and go from there. Note that you also need to add a <code>collapse</code> class to the <code>ba-modal</code> element if you want the grid elements to be flush with the edge of the modal.</p>
 
 <div class="text-center">
-  <a class="button" href="#" zf-open="advancedModal">Open modal</a>
+  <a class="button" href="#" ba-open="advancedModal">Open modal</a>
 </div>
 
 <hljs language="html">
-<a class="button" href="#" zf-open="advancedModal">Open modal</a>
+<a class="button" href="#" ba-open="advancedModal">Open modal</a>
 
-<div zf-modal id="advancedModal" class="collapse">
+<div ba-modal id="advancedModal" class="collapse">
   <div class="grid-block vertical">
     <div class="primary title-bar">
       <div class="center title">Title Bar</div>
-      <span zf-close class="left"><a>Close</a></span>
-      <span zf-close class="right"><a>Done</a></span>
+      <span ba-close class="left"><a>Close</a></span>
+      <span ba-close class="right"><a>Done</a></span>
     </div>
     <div class="grid-content padding" style="padding-top: 1rem;">
      <p>
       <img src="assets/img/mountain.jpg">
       </p>
-     <a zf-close class="button">OK</a>
-     <a zf-close class="button">Cancel</a>
+     <a ba-close class="button">OK</a>
+     <a ba-close class="button">Cancel</a>
     </div>
   </div>
 </div>
@@ -77,14 +77,14 @@
 <p>Modals can have unique in and out animations, using our motion classes. Refer to the <a ui-sref="motion">Motion UI</a> documentation for a full list of animations.</p>
 
 <div class="text-center">
-  <a zf-open="animatedModal" class="button">Fancy-esque Modal</a>
+  <a ba-open="animatedModal" class="button">Fancy-esque Modal</a>
 </div>
 
 <hljs language="html">
-<a zf-open="animatedModal" class="button">Fancy-esque Modal</a>
+<a ba-open="animatedModal" class="button">Fancy-esque Modal</a>
 
-<div zf-modal id="animatedModal" animation-in="slideInUp" animation-out="hingeOutFromMiddleY">
-  <a zf-close class="close-button">&times;</a>
+<div ba-modal id="animatedModal" animation-in="slideInUp" animation-out="hingeOutFromMiddleY">
+  <a ba-close class="close-button">&times;</a>
   <p><em>Slide to the left</em></p>
   <p class="text-right"><em>Slide to the right</em></p>
   <p class="text-center"><em>Hinge from the center</em></p>
@@ -95,19 +95,39 @@
 
 <h3>Dialog-style Modals</h3>
 
-<p>On small screens, the modal becomes full-width and full-height, to make scrolling its contents easier. This behavior can be disabled by adding the class <code>dialog</code> to a <code>zf-modal</code> element.</p>
+<p>On small screens, the modal becomes full-width and full-height, to make scrolling its contents easier. This behavior can be disabled by adding the class <code>dialog</code> to a <code>ba-modal</code> element.</p>
 
 <div class="text-center">
-  <a zf-open="dialogModal" class="button">Itty-Bitty Modal</a>
+  <a ba-open="dialogModal" class="button">Itty-Bitty Modal</a>
 </div>
 
 <hljs language="html">
-<a zf-open="dialogModal" class="button">Itty-Bitty Modal</a>
+<a ba-open="dialogModal" class="button">Itty-Bitty Modal</a>
 
-<div zf-modal id="dialogModal" overlay="false" overlay-close="false" class="tiny dialog">
+<div ba-modal id="dialogModal" overlay="false" overlay-close="false" class="tiny dialog">
   <h4>Yo, do you <em>really</em> want to do this?</h4>
-  <a zf-close class="alert button">Yeah</a>
-  <a zf-close class="secondary button">Nah</a>
+  <a ba-close class="alert button">Yeah</a>
+  <a ba-close class="secondary button">Nah</a>
+</div>
+</hljs>
+
+<hr>
+
+<h3>One-time Modals</h3>
+
+<p>A modal can be configured to only display once and never again using the <code>destroy-on-close</code> attribute.  The modal will be completely removed from the DOM once closed.</p>
+
+<div class="text-center">
+  <a class="button" ba-open="autoDestroyModal">Auto Destroy Modal</a>
+</div>
+
+<hljs language="html">
+<a ba-open="autoDestroyModal" class="button">Auto Destroy Modal</a>
+
+<div ba-modal id="autoDestroyModal" destroy-on-close="true">
+  <a ba-close class="close-button">&times;</a>
+  <h3>One Hit Wonder</h3>
+  <p>Close me and you'll never see me again!</p>
 </div>
 </hljs>
 
@@ -130,6 +150,8 @@ var modal = new ModalFactory({
   'overlay': true,
   // Set if the modal can be closed by clicking on the overlay
   'overlayClose': false,
+  // Set if the modal should be destroyed once closed
+  'destroyOnClose': false,
   // Define a template to use for the modal
   'templateUrl': 'partials/examples-dynamic-modal.html',
   // Allows you to pass in properties to the scope of the modal
@@ -318,12 +340,12 @@ $scope.showPrompt2 = function() {
 
 <h3>Styling the Modal</h3>
 
-<p>Any CSS classes on a <code>zf-modal</code> element will be applied to the modal overlay, <em>not</em> the modal itself. This allows you to style both elements with one class.</p>
+<p>Any CSS classes on a <code>ba-modal</code> element will be applied to the modal overlay, <em>not</em> the modal itself. This allows you to style both elements with one class.</p>
 
 <div class="grid-block">
   <div class="small-12 medium-6 grid-content">
 <hljs language="html">
-<div zf-modal class="killer-modal">
+<div ba-modal class="killer-modal">
   <!-- ... -->
 </div>
 </hljs>
