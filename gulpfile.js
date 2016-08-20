@@ -422,14 +422,14 @@ gulp.task('default:dist', ['build:dist', 'server:start:dist'], function() {
 
 gulp.task('setversion', function () {
   return gulp.src('./package.json')
-    .pipe($.if(args.publish, $.bump({type: args.publish})))
+    .pipe($.if(!!args.publish, $.bump({type: args.publish})))
     .pipe($.tap(function(file) {
       var json = JSON.parse(String(file.contents));
       version = json.version;
     }));
 });
 
-gulp.task('bump', ['build:dist'], function () {
+gulp.task('bump', function () {
   return gulp.src(['./package.json', './bower.json'])
     .pipe($.bump({type: args.publish || 'patch'}))
     .pipe(gulp.dest('./'));
@@ -443,8 +443,8 @@ gulp.task('tagversion', ['bump'], function () {
     .pipe($.tagVersion());
 });
 
-gulp.task('publish:dist', ['build:dist', 'bump', 'tagversion'], function(cb) {
-  return cb();
+gulp.task('publish:dist', ['build:dist'], function(cb) {
+  return runSequence('bump', 'tagversion', cb);
 });
 
 gulp.task('publish:ghpages', function() {
