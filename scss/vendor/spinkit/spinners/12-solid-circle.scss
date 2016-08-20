@@ -26,7 +26,11 @@ $spinkit-solid-circle-css-export: true !default;
   .sk-child {
     width: $width;
     height: $height;
-    border-width: $width/8;
+		@if unit($width) == "em" {
+			border-width: max($width/8, 0.2em);
+		} @else {
+			border-width: max($width/8, 2px);
+		}
   }
 }
 
