@@ -1199,15 +1199,12 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
   background: #00558b;
   color: #fff; }
   .button .iconic, .button .ionics, .button .material-icons, .button .open-iconic {
-    width: 1em;
-    height: 1em;
     vertical-align: middle;
-    margin-right: 0.25em;
-    margin-top: -2px; }
+    margin-top: -2px;
+    width: 1em !important;
+    height: 1em !important; }
   .button .sk-loader {
-    vertical-align: middle;
-    margin-right: 0.25em;
-    margin-top: -2px; }
+    vertical-align: middle; }
     .button .sk-loader.sk-rotating-plane {
       width: 1em;
       height: 1em; }
@@ -1304,7 +1301,25 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
       .button .sk-loader.sk-solid-circle .sk-child {
         width: 1em;
         height: 1em;
-        border-width: 0.125em; }
+        border-width: 0.2em; }
+  .button > img, .button.icon-left > img {
+    margin: 0 0.5em 0 0;
+    float: left; }
+  .button > .iconic, .button > .ionicons, .button > .material-icons, .button .open-iconic, .button.icon-left > .iconic, .button.icon-left > .ionicons, .button.icon-left > .material-icons, .button.icon-left .open-iconic {
+    margin: 0 0.5em 0 0;
+    float: left; }
+  .button > .sk-loader, .button.icon-left > .sk-loader {
+    margin: 0 0.5em 0 0;
+    float: left; }
+  .button.icon-right > img {
+    margin: 0 0 0 0.5em;
+    float: right; }
+  .button.icon-right > .iconic, .button.icon-right > .ionicons, .button.icon-right > .material-icons, .button.icon-right .open-iconic {
+    margin: 0 0 0 0.5em;
+    float: right; }
+  .button.icon-right > .sk-loader {
+    margin: 0 0 0 0.5em;
+    float: right; }
   .button:hover, .button:focus {
     background: #004876;
     color: #fff; }
@@ -1342,15 +1357,12 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
   .button.tiny {
     font-size: 0.63rem; }
     .button.tiny .iconic, .button.tiny .ionics, .button.tiny .material-icons, .button.tiny .open-iconic {
-      width: 1em;
-      height: 1em;
       vertical-align: middle;
-      margin-right: 0.25em;
-      margin-top: -2px; }
+      margin-top: -2px;
+      width: 1em !important;
+      height: 1em !important; }
     .button.tiny .sk-loader {
-      vertical-align: middle;
-      margin-right: 0.25em;
-      margin-top: -2px; }
+      vertical-align: middle; }
       .button.tiny .sk-loader.sk-rotating-plane {
         width: 1em;
         height: 1em; }
@@ -1426,19 +1438,34 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
         .button.tiny .sk-loader.sk-solid-circle .sk-child {
           width: 1em;
           height: 1em;
-          border-width: 0.125em; }
+          border-width: 0.2em; }
+    .button.tiny > img, .button.tiny.icon-left > img {
+      margin: 0 0.5em 0 0;
+      float: left; }
+    .button.tiny > .iconic, .button.tiny > .ionicons, .button.tiny > .material-icons, .button.tiny .open-iconic, .button.tiny.icon-left > .iconic, .button.tiny.icon-left > .ionicons, .button.tiny.icon-left > .material-icons, .button.tiny.icon-left .open-iconic {
+      margin: 0 0.5em 0 0;
+      float: left; }
+    .button.tiny > .sk-loader, .button.tiny.icon-left > .sk-loader {
+      margin: 0 0.5em 0 0;
+      float: left; }
+    .button.tiny.icon-right > img {
+      margin: 0 0 0 0.5em;
+      float: right; }
+    .button.tiny.icon-right > .iconic, .button.tiny.icon-right > .ionicons, .button.tiny.icon-right > .material-icons, .button.tiny.icon-right .open-iconic {
+      margin: 0 0 0 0.5em;
+      float: right; }
+    .button.tiny.icon-right > .sk-loader {
+      margin: 0 0 0 0.5em;
+      float: right; }
   .button.small {
     font-size: 0.72rem; }
     .button.small .iconic, .button.small .ionics, .button.small .material-icons, .button.small .open-iconic {
-      width: 1em;
-      height: 1em;
       vertical-align: middle;
-      margin-right: 0.25em;
-      margin-top: -2px; }
+      margin-top: -2px;
+      width: 1em !important;
+      height: 1em !important; }
     .button.small .sk-loader {
-      vertical-align: middle;
-      margin-right: 0.25em;
-      margin-top: -2px; }
+      vertical-align: middle; }
       .button.small .sk-loader.sk-rotating-plane {
         width: 1em;
         height: 1em; }
@@ -1514,19 +1541,34 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
         .button.small .sk-loader.sk-solid-circle .sk-child {
           width: 1em;
           height: 1em;
-          border-width: 0.125em; }
+          border-width: 0.2em; }
+    .button.small > img, .button.small.icon-left > img {
+      margin: 0 0.5em 0 0;
+      float: left; }
+    .button.small > .iconic, .button.small > .ionicons, .button.small > .material-icons, .button.small .open-iconic, .button.small.icon-left > .iconic, .button.small.icon-left > .ionicons, .button.small.icon-left > .material-icons, .button.small.icon-left .open-iconic {
+      margin: 0 0.5em 0 0;
+      float: left; }
+    .button.small > .sk-loader, .button.small.icon-left > .sk-loader {
+      margin: 0 0.5em 0 0;
+      float: left; }
+    .button.small.icon-right > img {
+      margin: 0 0 0 0.5em;
+      float: right; }
+    .button.small.icon-right > .iconic, .button.small.icon-right > .ionicons, .button.small.icon-right > .material-icons, .button.small.icon-right .open-iconic {
+      margin: 0 0 0 0.5em;
+      float: right; }
+    .button.small.icon-right > .sk-loader {
+      margin: 0 0 0 0.5em;
+      float: right; }
   .button.large {
     font-size: 1.17rem; }
     .button.large .iconic, .button.large .ionics, .button.large .material-icons, .button.large .open-iconic {
-      width: 1em;
-      height: 1em;
       vertical-align: middle;
-      margin-right: 0.25em;
-      margin-top: -2px; }
+      margin-top: -2px;
+      width: 1em !important;
+      height: 1em !important; }
     .button.large .sk-loader {
-      vertical-align: middle;
-      margin-right: 0.25em;
-      margin-top: -2px; }
+      vertical-align: middle; }
       .button.large .sk-loader.sk-rotating-plane {
         width: 1em;
         height: 1em; }
@@ -1602,7 +1644,25 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
         .button.large .sk-loader.sk-solid-circle .sk-child {
           width: 1em;
           height: 1em;
-          border-width: 0.125em; }
+          border-width: 0.2em; }
+    .button.large > img, .button.large.icon-left > img {
+      margin: 0 0.5em 0 0;
+      float: left; }
+    .button.large > .iconic, .button.large > .ionicons, .button.large > .material-icons, .button.large .open-iconic, .button.large.icon-left > .iconic, .button.large.icon-left > .ionicons, .button.large.icon-left > .material-icons, .button.large.icon-left .open-iconic {
+      margin: 0 0.5em 0 0;
+      float: left; }
+    .button.large > .sk-loader, .button.large.icon-left > .sk-loader {
+      margin: 0 0.5em 0 0;
+      float: left; }
+    .button.large.icon-right > img {
+      margin: 0 0 0 0.5em;
+      float: right; }
+    .button.large.icon-right > .iconic, .button.large.icon-right > .ionicons, .button.large.icon-right > .material-icons, .button.large.icon-right .open-iconic {
+      margin: 0 0 0 0.5em;
+      float: right; }
+    .button.large.icon-right > .sk-loader {
+      margin: 0 0 0 0.5em;
+      float: right; }
   .button.expand {
     display: block;
     width: 100%;
@@ -2378,12 +2438,6 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
       margin-left: 0; }
     .button-group > li:not(:last-child) > a, .button-group > li:not(:last-child) > label, .button-group > li:not(:last-child) > button {
       border-right: 1px solid #004068; }
-  .button-group .iconic, .button-group .ionicons, .button-group .material-icons, .button-group .open-iconic {
-    width: 1em;
-    height: 1em;
-    vertical-align: middle;
-    margin-right: 0.25em;
-    margin-top: -2px; }
 
 .button-group.segmented, .button-group.segmented.secondary, .button-group.segmented.success, .button-group.segmented.warning, .button-group.segmented.alert {
   border: 1px solid #00558b;
@@ -2957,6 +3011,143 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
     opacity: 0.5;
     cursor: default;
     pointer-events: none; }
+  .button-group > li > a > img, .button-group.icon-left > li > a > img {
+    margin: 0 0.5em 0 0;
+    float: left; }
+  .button-group > li > a > .iconic, .button-group > li > a > .ionicons, .button-group > li > a > .material-icons, .button-group > li > a .open-iconic, .button-group.icon-left > li > a > .iconic, .button-group.icon-left > li > a > .ionicons, .button-group.icon-left > li > a > .material-icons, .button-group.icon-left > li > a .open-iconic {
+    margin: 0 0.5em 0 0;
+    float: left; }
+  .button-group > li > a > .sk-loader, .button-group.icon-left > li > a > .sk-loader {
+    margin: 0 0.5em 0 0;
+    float: left; }
+  .button-group > li > a > img, .button-group.icon-right > li > a > img {
+    margin: 0 0 0 0.5em;
+    float: right; }
+  .button-group > li > a > .iconic, .button-group > li > a > .ionicons, .button-group > li > a > .material-icons, .button-group > li > a .open-iconic, .button-group.icon-right > li > a > .iconic, .button-group.icon-right > li > a > .ionicons, .button-group.icon-right > li > a > .material-icons, .button-group.icon-right > li > a .open-iconic {
+    margin: 0 0 0 0.5em;
+    float: right; }
+  .button-group > li > a > .sk-loader, .button-group.icon-right > li > a > .sk-loader {
+    margin: 0 0 0 0.5em;
+    float: right; }
+  .button-group > li > a .iconic, .button-group > li > a .ionics, .button-group > li > a .material-icons, .button-group > li > a .open-iconic {
+    vertical-align: middle;
+    margin-top: -2px;
+    width: 1em !important;
+    height: 1em !important; }
+  .button-group > li > a.icon-left > img {
+    margin: 0 0.5em 0 0;
+    float: left; }
+  .button-group > li > a.icon-left > .iconic, .button-group > li > a.icon-left > .ionicons, .button-group > li > a.icon-left > .material-icons, .button-group > li > a.icon-left .open-iconic {
+    margin: 0 0.5em 0 0;
+    float: left; }
+  .button-group > li > a.icon-left > .sk-loader {
+    margin: 0 0.5em 0 0;
+    float: left; }
+  .button-group > li > a.icon-right > img {
+    margin: 0 0 0 0.5em;
+    float: right; }
+  .button-group > li > a.icon-right > .iconic, .button-group > li > a.icon-right > .ionicons, .button-group > li > a.icon-right > .material-icons, .button-group > li > a.icon-right .open-iconic {
+    margin: 0 0 0 0.5em;
+    float: right; }
+  .button-group > li > a.icon-right > .sk-loader {
+    margin: 0 0 0 0.5em;
+    float: right; }
+  .button-group > li > a .sk-loader {
+    vertical-align: middle; }
+    .button-group > li > a .sk-loader.sk-rotating-plane {
+      width: 1em;
+      height: 1em; }
+    .button-group > li > a .sk-loader.sk-double-bounce {
+      width: 1em;
+      height: 1em; }
+    .button-group > li > a .sk-loader.sk-wave {
+      width: 2em;
+      height: 1em;
+      font-size: 0.4em; }
+      .button-group > li > a .sk-loader.sk-wave .sk-rect {
+        width: 0.24em; }
+    .button-group > li > a .sk-loader.sk-wandering-cubes {
+      width: 1em;
+      height: 1em; }
+      .button-group > li > a .sk-loader.sk-wandering-cubes .sk-cube {
+        width: 0.25em;
+        height: 0.25em; }
+
+@keyframes sk-wanderingCube-1em-1em {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg); }
+  25% {
+    -webkit-transform: translateX(0.75em) rotate(-90deg) scale(0.5);
+            transform: translateX(0.75em) rotate(-90deg) scale(0.5); }
+  50% {
+    /* Hack to make FF rotate in the right direction */
+    -webkit-transform: translateX(0.75em) translateY(0.75em) rotate(-179deg);
+            transform: translateX(0.75em) translateY(0.75em) rotate(-179deg); }
+  50.1% {
+    -webkit-transform: translateX(0.75em) translateY(0.75em) rotate(-180deg);
+            transform: translateX(0.75em) translateY(0.75em) rotate(-180deg); }
+  75% {
+    -webkit-transform: translateX(0) translateY(0.75em) rotate(-270deg) scale(0.5);
+            transform: translateX(0) translateY(0.75em) rotate(-270deg) scale(0.5); }
+  100% {
+    -webkit-transform: rotate(-360deg);
+            transform: rotate(-360deg); } }
+      .button-group > li > a .sk-loader.sk-wandering-cubes .sk-cube {
+        -webkit-animation: sk-wanderingCube-1em-1em 1.8s ease-in-out -1.8s infinite both;
+                animation: sk-wanderingCube-1em-1em 1.8s ease-in-out -1.8s infinite both; }
+        .button-group > li > a .sk-loader.sk-wandering-cubes .sk-cube:nth-child(2) {
+          -webkit-animation-delay: -0.9s;
+                  animation-delay: -0.9s; }
+    .button-group > li > a .sk-loader.sk-pulse {
+      width: 1em;
+      height: 1em; }
+    .button-group > li > a .sk-loader.sk-chasing-dots {
+      width: 1em;
+      height: 1em; }
+    .button-group > li > a .sk-loader.sk-three-bounce {
+      width: 2em;
+      height: auto; }
+      .button-group > li > a .sk-loader.sk-three-bounce .sk-child {
+        width: 0.5em;
+        height: 0.5em; }
+    .button-group > li > a .sk-loader.sk-circle {
+      width: 1em;
+      height: 1em; }
+    .button-group > li > a .sk-loader.sk-cube-grid {
+      width: 1em;
+      height: 1em; }
+    .button-group > li > a .sk-loader.sk-fading-circle {
+      width: 1em;
+      height: 1em; }
+    .button-group > li > a .sk-loader.sk-folding-cube {
+      width: 1em;
+      height: 1em; }
+    .button-group > li > a .sk-loader.sk-solid-circle {
+      width: 1em;
+      height: 1em; }
+      .button-group > li > a .sk-loader.sk-solid-circle .sk-child {
+        width: 1em;
+        height: 1em;
+        border-width: 0.2em; }
+  .button-group > li > a.icon-left > img {
+    margin: 0 0.5em 0 0;
+    float: left; }
+  .button-group > li > a.icon-left > .iconic, .button-group > li > a.icon-left > .ionicons, .button-group > li > a.icon-left > .material-icons, .button-group > li > a.icon-left .open-iconic {
+    margin: 0 0.5em 0 0;
+    float: left; }
+  .button-group > li > a.icon-left > .sk-loader {
+    margin: 0 0.5em 0 0;
+    float: left; }
+  .button-group > li > a.icon-right > img {
+    margin: 0 0 0 0.5em;
+    float: right; }
+  .button-group > li > a.icon-right > .iconic, .button-group > li > a.icon-right > .ionicons, .button-group > li > a.icon-right > .material-icons, .button-group > li > a.icon-right .open-iconic {
+    margin: 0 0 0 0.5em;
+    float: right; }
+  .button-group > li > a.icon-right > .sk-loader {
+    margin: 0 0 0 0.5em;
+    float: right; }
 
 /*
   Cards
@@ -7441,7 +7632,7 @@ meter {
     .sk-loader.tiny.sk-solid-circle .sk-child {
       width: 8px;
       height: 8px;
-      border-width: 1px; }
+      border-width: 2px; }
   .sk-loader.small.sk-rotating-plane {
     width: 16px;
     height: 16px; }

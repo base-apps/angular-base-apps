@@ -1,32 +1,168 @@
 
 <h2>Changelog</h2>
-<h3 class="subheader">Foundation is open source and it can move fast. You can stay up to date with each new version here.</h3>
+<h3 class="subheader">Angular Base Apps is open source and it can move fast. You can stay up to date with each new version here.</h3>
 
 <hr>
 
 <h3>How to update</h3>
 
-<p>If you're updating a project built with our template stack, the CLI will help you update:</p>
+<p>You can update to the latest version of Angular Base Apps by running the update command for bower or npm.</p>
 
 <hljs language="bash">
-foundation-apps update
+bower update angular-base-apps
+npm update angular-base-apps
 </hljs>
 
-<p>It's also possible to update by hand. Open the <code>bower.json</code> and change your <code>foundation-apps</code> dependency to the version you want:</p>
+<p>If you don't want the latest, you can open <code>bower.json</code> or <code>package.json</code> and change your <code>angular-base-apps</code> dependency to the version you want:</p>
 
 <hljs language="json">
 {
   "dependencies": {
-    "foundation-apps": "1.0.3"
+    "angular-base-apps": "1.2.6"
   }
 }
 </hljs>
 
-<p>Save the file and then update with Bower:</p>
+<p>Save the file and then update with bower or npm.</p>
 
-<hljs language="bash">
-bower update
-</hljs>
+<hr>
+<!-- TEMPLATE FOR CHANGELOG ENTRIES
+<h3>Version x.x.x</h3>
+
+<h4>General</h4>
+
+<ul>
+<li></li>
+</ul>
+
+<h4>Features</h4>
+
+<ul>
+<li></li>
+</ul>
+
+<h4>Bug Fixes</h4>
+
+<ul>
+<li></li>
+</ul>
+
+<hr>
+-->
+<h3>Version 2.0.0</h3>
+
+<h4>General</h4>
+
+<p>First release to be completely separated from ZURB and Foundation for Apps!  Check the <a ui-sref="installation">installation docs</a> for migration steps.</p>
+
+<h4>Features</h4>
+
+<ul>
+<li><a href="https://github.com/base-apps/angular-base-apps/issues/16">#16</a>: Added <code>destroy-on-close</code> property to modals</li>
+<li><a href="https://github.com/base-apps/angular-base-apps/issues/31">#31</a>: Removed word <strong>foundation</strong> from codebase</li>
+<li><a href="https://github.com/base-apps/angular-base-apps/issues/38">#38</a>: Add customizable loading symbols from <a href="http://tobiasahlin.com/spinkit/">SpinKit</a></li>
+<li><a href="https://github.com/base-apps/angular-base-apps/issues/37">#37</a>: Moved custom Iconic icons to <a href="https://github.com/base-apps/angular-icons">angular-icons</a></li>
+<li><a href="https://github.com/base-apps/angular-base-apps/issues/42">#42</a>: Refactored dynamic routing code into <a href="https://github.com/base-apps/angular-dynamic-routing">angular-dynamic-routing</a> and <a href="https://github.com/base-apps/angular-front-router">angular-front-router</a></li>
+<li><a href="https://github.com/base-apps/angular-base-apps/issues/59">#59</a>: Add <code>icon-left</code> and <code>icon-right</code> classes to position icons and loaders inside of buttons and button-groups</li>
+</ul>
+
+<hr>
+
+<h3>Version 1.2.6</h3>
+
+<h4>General</h4>
+
+<p>Provides alternatives to <code>window.confirm</code> and <code>window.prompt</code>.  Check the <a ui-sref="modal">modal docs</a> for how to use the new features.</p>
+
+<h4>Features</h4>
+
+<ul>
+<li><a href="https://github.com/base-apps/angular-base-apps/issues/39">#39</a>: Adds a <code>ConfirmModal</code> to replace window.confirm</li>
+<li><a href="https://github.com/base-apps/angular-base-apps/issues/40">#40</a>: Adds a <code>PromptModal</code> to replace window.prompt</li>
+</ul>
+
+<hr>
+
+<h3>Version 1.2.5</h3>
+
+<h4>General</h4>
+
+<p>This release is geared towards improving the accordion component functionality.  Check the <a ui-sref="accordion">accordion docs</a> for more info.</p>
+
+<ul>
+<li>Fix <code>collapsible</code> to work as intended</li>
+<li>Use accordion <code>id</code> when publishing/subscribing to enable externally controlling the accordions</li>
+<li>Improved docs for accordions</li>
+</ul>
+
+<hr>
+
+<h3>Version 1.2.4</h3>
+
+<h4>General</h4>
+
+<p>This release is geared towards improving the tab component functionality.  Check the <a ui-sref="tabs">tab docs</a> for more info.</p>
+
+<ul>
+<li>Add <code>auto-open</code> and <code>collapsible</code> attributes</li>
+<li>Use tab <code>id</code> when publishing/subscribing to enable externally controlling the tabs</li>
+<li>Improved docs for tabs</li>
+</ul>
+
+<hr>
+
+<h3>Version 1.2.3</h3>
+
+<h4>Bug Fixes</h4>
+
+<ul>
+<li><a href="https://github.com/base-apps/angular-base-apps/pull/21">#21</a>: allow links inside modals to be clickable</li>
+</ul>
+
+<hr>
+
+<h3>Version 1.2.2</h3>
+
+<h4>General</h4>
+
+<p>Merge pending PRs from Foundation for Apps.  The following PRs were merged:</p>
+
+<ul>
+<li><a href="https://github.com/zurb/foundation-apps/pull/826">#826</a>: Initializing state definitions with empty resolve object</li>
+<li><a href="https://github.com/zurb/foundation-apps/pull/825">#825</a>: Fixed a bug during fast navigation</li>
+<li><a href="https://github.com/zurb/foundation-apps/pull/824">#824</a>: Properly destroy popup tether component</li>
+<li><a href="https://github.com/zurb/foundation-apps/pull/820">#820</a>: Fix panel animations</li>
+<li><a href="https://github.com/zurb/foundation-apps/pull/816">#816</a>: Bold font weight should be determined from settings</li>
+<li><a href="https://github.com/zurb/foundation-apps/pull/815">#815</a>: Remove fixed 1rem spacings on grid CSS</li>
+<li><a href="https://github.com/zurb/foundation-apps/pull/807">#807</a>: adding <code>.gutter</code> class to grid blocks</li>
+<li><a href="https://github.com/zurb/foundation-apps/pull/806">#806</a>: update handling of resize message</li>
+<li><a href="https://github.com/zurb/foundation-apps/pull/802">#802</a>: fix hollow button size to match non-hollow button size</li>
+<li><a href="https://github.com/zurb/foundation-apps/pull/801">#801</a>: Apply disabled state with :disabled</li>
+<li><a href="https://github.com/zurb/foundation-apps/pull/785">#785</a>: Fix stagger durations</li>
+<li><a href="https://github.com/zurb/foundation-apps/pull/768">#768</a>: Applied fix for depciation warning</li>
+<li><a href="https://github.com/zurb/foundation-apps/pull/760">#760</a>: fix clearing of media query cache</li>
+<li><a href="https://github.com/zurb/foundation-apps/pull/743">#743</a>: Allow panel with block transform to animate</li>
+<li><a href="https://github.com/zurb/foundation-apps/pull/741">#741</a>: standardize active state tracking across components</li>
+<li><a href="https://github.com/zurb/foundation-apps/pull/736">#736</a>: <code>zf-close-all</code> and <code>zf-ignore-all-close</code> fixes</li>
+<li><a href="https://github.com/zurb/foundation-apps/pull/717">#717</a>: Fix ModalFactory overlayClose=false option</li>
+</ul>
+
+<hr>
+
+<h3>Version 1.2.1</h3>
+
+<h4>General</h4>
+
+<ul>
+<li>First release as Angular Base Apps.  Release geared towards rebranding and decoupling from ZURB.</li>
+<li>Prepares users for version 2 by introducing <code>base</code> modules and files.</li>
+</ul>
+
+<h4>Features</h4>
+
+<ul>
+<li>#3: Adds <code>base.*</code> modules to mirror <code>foundation.*</code> modules.  Adds <code>base-apps</code> js and css files to mirror <code>foundation</code> files.</li>
+</ul>
 
 <hr>
 
@@ -157,7 +293,7 @@ bower update
 <li><strong>If you have an existing project, you don't need to change anything to upgrade to v1.1.</strong></li>
 </ul>
 
-<h4>New Features</h4>
+<h4>Features</h4>
 
 <ul>
 <li><strong>Improved view animation!</strong> In and out animations on views will now play simultaneously. Thanks to @AntJanus, @stryju, and @jeanieshark for all their hard work in solving this difficult problem!</li>
@@ -246,7 +382,7 @@ $stateProvider
 
 <p>The Gulpfile used in the <a href="https://github.com/zurb/foundation-apps-template">template stack</a> now uses the <code>gulp-load-plugins</code> library to streamline use of plugins. <strong>If you have an existing project, you don't need to change anything to upgrade.</strong></p>
 
-<h4>New Features</h4>
+<h4>Features</h4>
 
 <ul>
 <li><strong>Stacking notifications.</strong> (#388) Dynamically-called notifications will now stack when you call more than one.</li>
