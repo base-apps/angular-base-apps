@@ -7,18 +7,26 @@
   lists
 */
 
-/// @BaseApps.settings
-// Card
-$card-background: #fff !default;
-$card-color: isitlight($card-background) !default;
-$card-border: 1px solid smartscale($card-background, 7%) !default;
-$card-radius: $global-radius !default;
-$card-shadow: 0 1px 2px rgba(#000, 0.2) !default;
-$card-padding: $global-padding !default;
-$card-margin: 0.5rem !default;
+////
+/// @group card
+////
 
+/// @type Color
+$card-background: #fff !default;
+/// @type Color
+$card-color: isitlight($card-background) !default;
+/// @type Color
+$card-border: 1px solid smartscale($card-background, 7%) !default;
+/// @type Number
+$card-radius: $global-radius !default;
+/// @type Color
+$card-shadow: 0 1px 2px rgba(#000, 0.2) !default;
+/// @type Number
+$card-padding: $global-padding !default;
+/// @type Number
+$card-margin: 0.5rem !default;
+/// @type Color
 $card-divider-background: smartscale($card-background, 7%) !default;
-///
 
 @mixin card-container(
   $background: $card-background,

@@ -1,18 +1,29 @@
 /*
   Label
 */
+////
+/// @group label
+////
 
-/// @BaseApps.settings
 // Label
+/// @type Number
 $label-fontsize: 0.8rem !default;
+/// @type Number | List
 $label-padding: ($global-padding / 3) ($global-padding / 2) !default;
+/// @type Number
 $label-radius: 0 !default;
+/// @type Color
 $label-background: $primary-color !default;
+/// @type Color
 $label-color: isitlight($primary-color) !default;
 
+/// @type Number
 $badge-fontsize: 0.8em !default;
+/// @type Number
 $badge-diameter: 1.5rem !default;
+/// @type Color
 $badge-background: $primary-color !default;
+/// @type Color
 $badge-color: #fff !default;
 ///
 

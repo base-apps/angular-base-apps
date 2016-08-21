@@ -4,18 +4,28 @@
 
   A generic container that stays fixed to the left, top, right, or bottom of the screen, and is summoned when needed. When an off-canvas panel is open, the app frame shifts over to reveal the menu.
 */
+////
+/// @group off-canvas
+////
 
-/// @BaseApps.settings
 // Off-canvas
+/// @type Number
 $offcanvas-size-horizontal: 250px !default;
+/// @type Number
 $offcanvas-size-vertical: 250px !default;
 
+/// @type Color
 $offcanvas-background: #fff !default;
+/// @type Color
 $offcanvas-color: isitlight($offcanvas-background) !default;
+/// @type Number
 $offcanvas-padding: 0 !default;
+/// @type Color
 $offcanvas-shadow: 3px 0 10px rgba(black, 0.25) !default;
+/// @type Number
 $offcanvas-animation-speed: 0.25s !default;
 
+/// @type String
 $offcanvas-frame-selector: '.grid-frame' !default;
 ///
 

@@ -1,9 +1,14 @@
-/// @BaseApps.settings
+////
+/// @group button-group
+////
+
 // Button Group
+/// @type Color
 $btngroup-background: $primary-color !default;
+/// @type Color
 $btngroup-color: #fff !default;
+/// @type Number
 $btngroup-radius: $button-radius !default;
-///
 
 $child-selectors: '> a, > label, > button';
 

@@ -181,7 +181,7 @@ gulp.task('css', ['sass'], function() {
 });
 
 // Compile stylesheets
-gulp.task('sass', function() {
+gulp.task('sass', ['sass:settings'], function() {
   var merged = merge();
 
   // base package
@@ -215,7 +215,7 @@ gulp.task('sass', function() {
 });
 
 // Generate Sass settings file
-gulp.task('sass:settings', function() {
+gulp.task('sass:settings', function(cb) {
   octophant([
     'scss/_includes.scss',
     'scss/_global.scss',
@@ -226,9 +226,25 @@ gulp.task('sass:settings', function() {
     'scss/components/*.scss'
   ], {
     title: 'Angular Base Apps Settings'.toUpperCase(),
+    output: './scss/_settings.scss',
     partialsPath: 'docs/partials/scss',
-    settingsPath: 'scss'
-  });
+    settingsPath: 'scss',
+    groups: {
+      'global': 'Global Styles',
+      'includes': 'CSS Exports'
+    },
+    sort: [
+      'includes',
+      'global',
+      'breakpoints',
+      'typography',
+      'grid',
+      'button'
+    ],
+    imports: [
+      "helpers/functions"
+    ]
+  }, cb);
 });
 
 // 6. JAVASCRIPT

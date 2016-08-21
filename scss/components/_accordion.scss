@@ -5,17 +5,27 @@
   The trusy accordion allows you to create a series of vertical tabs.
 */
 
-/// @BaseApps.settings
-// Accordion
-$accordion-border: 1px solid $gray-dark !default;
+////
+/// @group accordion
+////
 
+// Accordion
+/// @type Color
+$accordion-border: 1px solid $gray-dark !default;
+/// @type Color
 $accordion-title-background: $gray-light !default;
+/// @type Color
 $accordion-title-background-hover: smartscale($accordion-title-background, 5%) !default;
+/// @type Color
 $accordion-title-background-active: smartscale($accordion-title-background, 3%) !default;
+/// @type Color
 $accordion-title-color: isitlight($accordion-title-background) !default;
+/// @type Color
 $accordion-title-color-active: isitlight($accordion-title-background) !default;
 
+/// @type Number
 $accordion-title-padding: $global-padding !default;
+/// @type Number
 $accordion-content-padding: $global-padding !default;
 ///
 

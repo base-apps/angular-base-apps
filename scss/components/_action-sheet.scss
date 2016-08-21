@@ -5,21 +5,36 @@
   A dropdown menu that sticks to the bottom of the screen on small devices, and becomes a dropdown menu on larger devices.
 */
 
-/// @BaseApps.settings
+////
+/// @group action-sheet
+////
+
 // Action Sheet
+/// @type Color
 $actionsheet-background: white !default;
+/// @type Color
 $actionsheet-border-color: #ccc !default;
+/// @type Keyword
 $actionsheet-animate: transform opacity !default;
+/// @type Number
 $actionsheet-animation-speed: 0.25s !default;
+/// @type Number
 $actionsheet-width: 300px !default;
+/// @type Number
 $actionsheet-radius: 4px !default;
+/// @type Number | Color | List
 $actionsheet-shadow: 0 -3px 10px rgba(black, 0.25) !default;
+/// @type Number
 $actionsheet-padding: $global-padding !default;
+/// @type Number
 $actionsheet-tail-size: 10px !default;
 
+/// @type Color
 $actionsheet-popup-shadow: 0 0 10px rgba(black, 0.25) !default;
 
+/// @type Color
 $actionsheet-link-color: #000 !default;
+/// @type Color
 $actionsheet-link-background-hover: smartscale($actionsheet-background) !default;
 ///
 

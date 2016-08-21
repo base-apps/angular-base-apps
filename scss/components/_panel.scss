@@ -10,18 +10,21 @@
    - Define max width or height
    - Transform into grid block depending on screen size
 */
+////
+/// @group panel
+////
 
-/// @BaseApps.settings
 // Panel
+/// @type Number
 $panel-size-horizontal: 300px !default;
+/// @type Number
 $panel-size-vertical: 300px !default;
+/// @type Number
 $panel-padding: 0 !default;
-
+/// @type Color
 $panel-background: #fff !default;
+/// @type Color
 $panel-shadow: 3px 0 10px rgba(black, 0.25) !default;
-
-// DEPRECATED: these variables will be removed in a future version.
-$panel-animation-speed: 0.25s !default;
 ///
 
 %panel-base {

@@ -1,21 +1,36 @@
-/// @BaseApps.settings
+////
+/// @group button
+////
+
 // Button
+/// @type Number | List
 $button-padding: 0.85em 1em !default;
+/// @type Number | List
 $button-margin: 0 $global-padding $global-padding 0 !default;
+/// @type Keyword
 $button-style: solid !default;
+/// @type Color
 $button-background: $primary-color !default;
+/// @type Color
 $button-background-hover: scale-color($button-background, $lightness: -15%) !default;
+/// @type Color
 $button-color: auto !default;
+/// @type Number
 $button-radius: 0 !default;
+/// @type Map
 $button-sizes: (
   tiny: 0.7,
   small: 0.8,
   medium: 1,
   large: 1.3,
 ) !default;
+/// @type Number
 $button-font-size: 0.9rem !default;
+/// @type Number
 $button-opacity-disabled: 0.5 !default;
+/// @type Boolean
 $button-tag-selector: false !default;
+/// @type Number
 $button-icon-spacing: 0.5em !default;
 ///
 

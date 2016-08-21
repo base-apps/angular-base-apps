@@ -9,15 +9,24 @@
    - Left
    - Right
 */
+////
+/// @group title-bar
+////
 
-/// @BaseApps.settings
 // Title Bar
+/// @type Number
 $titlebar-center-width: 50% !default;
+/// @type Number
 $titlebar-side-width: (100% - $titlebar-center-width) / 2 !default;
+/// @type Color
 $titlebar-background: #eee !default;
+/// @type Color
 $titlebar-color: #000 !default;
+/// @type Color
 $titlebar-border: 1px solid #ccc !default;
+/// @type Number
 $titlebar-padding: $global-padding !default;
+/// @type map-keys
 $titlebar-item-classes: (
   center: 'center',
   left: 'left',

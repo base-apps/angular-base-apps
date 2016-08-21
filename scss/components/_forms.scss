@@ -12,58 +12,97 @@
    - Range slider
    - Progress bars and meters
 */
+////
+/// @group forms
+////
 
-/// @BaseApps.settings
 // Forms
 // Basic form variables
+/// @type Number
 $form-fontsize: 1rem !default;
+/// @type Number
 $form-padding: 0.5rem !default;
 
 // Text fields
+/// @type Color
 $input-color: #000 !default;
+/// @type Color
 $input-color-hover: $input-color !default;
+/// @type Color
 $input-color-focus: $input-color !default;
+/// @type Color
 $input-background: #fff !default;
+/// @type Color
 $input-background-hover: $input-background !default;
+/// @type Color
 $input-background-focus: $input-background !default;
+/// @type Color
 $input-background-disabled: smartscale($input-background) !default;
+/// @type Color
 $input-border: 1px solid #ccc !default;
+/// @type Color
 $input-border-hover: 1px solid #bbb !default;
+/// @type Color
 $input-border-focus: 1px solid #999 !default;
+/// @type Keyword
 $input-cursor-disabled: not-allowed !default;
 
 // Select menus
+/// @type Color
 $select-color: #000 !default;
+/// @type Color
 $select-background: #fafafa !default;
+/// @type Color
 $select-background-hover: smartscale($select-background, 4%) !default;
+/// @type Boolean
 $select-arrow: true !default;
+/// @type Color
 $select-arrow-color: $select-color !default;
 
 // Labels
+/// @type Number
 $form-label-fontsize: 0.9rem !default;
+/// @type Number
 $form-label-margin: 0.5rem !default;
+/// @type Color
 $form-label-color: #333 !default;
 
 // Inline labels
+/// @type Color
 $inlinelabel-color: #333 !default;
+/// @type Color
 $inlinelabel-background: #eee !default;
+/// @type Number
 $inlinelabel-border: $input-border !default;
 
 // Range slider
+/// @type Color
 $slider-background: #ddd !default;
+/// @type Number
 $slider-height: 1rem !default;
+/// @type Number
 $slider-radius: 0px !default;
+/// @type Number
 $slider-thumb-height: 1.5rem !default;
+/// @type Color
 $slider-thumb-color: $primary-color !default;
+/// @type Number
 $slider-thumb-radius: 0px !default;
 
 // Progress and meter
+/// @type Number
 $meter-height: 1.5rem !default;
+/// @type Color
 $meter-background: #ccc !default;
+/// @type Color
 $meter-fill: $primary-color !default;
+/// @type Color
 $meter-fill-high: $success-color !default;
+/// @type Color
 $meter-fill-medium: #e7cf00 !default;
+/// @type Color
 $meter-fill-low: $alert-color !default;
+/// @type Number
 $meter-radius: 0 !default;
 ///
 

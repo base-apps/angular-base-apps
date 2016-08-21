@@ -13,25 +13,42 @@
    - Checkbox/radio inputs
 */
 
-/// @BaseApps.settings
+////
+/// @group block-list
+////
+
 // Block List
+/// @type Color
 $blocklist-background: #fff !default;
+/// @type Boolean
 $blocklist-fullbleed: true !default;
+/// @type Number
 $blocklist-fontsize: 1rem !default;
 
+/// @type Number | List
 $blocklist-item-padding: 0.8rem 1rem !default;
+/// @type Color
 $blocklist-item-color: isitlight($blocklist-background, #000, #fff) !default;
+/// @type Color
 $blocklist-item-background-hover: smartscale($blocklist-background, 4.5%) !default;
+/// @type Color
 $blocklist-item-color-disabled: #999 !default;
+/// @type Color
 $blocklist-item-border: 1px solid smartscale($blocklist-background, 18.5%) !default;
 
+/// @type Color
 $blocklist-item-label-color: scale-color($blocklist-item-color, $lightness: 60%) !default;
+/// @type Number
 $blocklist-item-icon-size: 0.8 !default;
 
+/// @type Number
 $blocklist-header-fontsize: 0.8em !default;
+/// @type Color
 $blocklist-header-color: smartscale($blocklist-item-color, 40%) !default;
+/// @type Boolean
 $blocklist-header-uppercase: true;
 
+/// @type Boolean
 $blocklist-check-icons: true !default;
 ///
 

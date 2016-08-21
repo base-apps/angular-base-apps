@@ -10,19 +10,31 @@
    - Items with icons above, below, or to the left or right
    - Text labels for vertical menus and badges for horizontal menus
 */
+////
+/// @group menu-bar
+////
 
-/// @BaseApps.settings
 // Menu Bar
+/// @type Number
 $menubar-fontsize: 1rem !default;
+/// @type Color
 $menubar-background: #fff !default;
+/// @type Color
 $menubar-background-hover: smartscale($menubar-background, 7%) !default;
+/// @type Color
 $menubar-background-active: $menubar-background-hover;
+/// @type Color
 $menubar-color: isitlight($menubar-background) !default;
+/// @type Color
 $menubar-color-hover: $menubar-color !default;
+/// @type Color
 $menubar-color-active: $menubar-color-hover;
 
+/// @type Number
 $menubar-item-padding: $global-padding !default;
+/// @type Number
 $menubar-icon-size: 25px !default;
+/// @type Number
 $menubar-icon-spacing: $menubar-item-padding !default;
 ///
 

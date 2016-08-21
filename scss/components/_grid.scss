@@ -15,13 +15,20 @@
    - Source ordering
    - Offsets
 */
+////
+/// @group grid
+////
 
-/// @BaseApps.settings
 // Grid
+/// @type Number
 $container-width: rem-calc(900) !default;
+/// @type Number
 $block-padding: $global-padding !default;
+/// @type Number
 $block-spacing: $global-spacing !default;
+/// @type Number
 $total-columns: 12 !default;
+/// @type Number
 $block-grid-max-size: 6 !default;
 ///
 

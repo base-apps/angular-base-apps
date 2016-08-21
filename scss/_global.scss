@@ -9,9 +9,12 @@
    -
 */
 
-/// @BaseApps.settings
-// Global Styles
+////
+/// @group global
+////
+
 // This sets 1rem to be 16px
+/// @type Number
 $rem-base: 16px;
 
 // The default font-size is set to 100% of the browser style sheet (usually 16px)
@@ -20,44 +23,69 @@ $rem-base: 16px;
 // Since the typical default browser font-size is 16px, that makes the calculation for grid size.
 // If you want your base font-size to be different and not have it affect the grid breakpoints,
 // set $rem-base to $base-font-size and make sure $base-font-size is a px value.
+/// @type Number
 $base-font-size: 100% !default;
 
 // $base-line-height is 24px while $base-font-size is 16px
+/// @type Number
 $base-line-height: 1.5 !default;
 
 // Text selector helpers
+/// @type String
 $headers: "h1,h2,h3,h4,h5,h6";
 
 // We use these to define default font weights
+/// @type Keyword | Number
 $font-weight-normal: normal !default;
+/// @type Keyword | Number
 $font-weight-bold: bold !default;
 
 // We use these to control various global styles
+/// @type Color
 $body-background: #fff !default;
+/// @type Color
 $body-font-color: #222 !default;
+/// @type String | List
 $body-font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif !default;
+/// @type Number
 $body-font-weight: $font-weight-normal !default;
+/// @type Keyword | Number
 $body-font-style: normal !default;
+/// @type Boolean
 $body-antialiased: true;
 
 // Application Colors
+/// @type Color
 $primary-color: #00558b !default;
+/// @type Color
 $secondary-color: #f1f1f1 !default;
+/// @type Color
 $alert-color: #F04124 !default;
+/// @type Color
 $info-color: #A0D3E8 !default;
+/// @type Color
 $success-color: #43AC6A !default;
+/// @type Color
 $warning-color: #F08A24 !default;
+/// @type Color
 $dark-color: #232323 !default;
+/// @type Color
 $gray: #dfdfdf !default;
+/// @type Color
 $gray-dark: darken($gray, 8) !default;
+/// @type Color
 $gray-light: lighten($gray, 8) !default;
 
 // We use these to make sure border radius matches unless we want it different.
+/// @type Number
 $global-radius: 4px !default;
+/// @type Number
 $global-rounded: 1000px !default;
 
 // We use this for default spacing
+/// @type Number
 $global-padding: 1rem !default;
+/// @type Number
 $global-spacing: rem-calc(15) !default;
 ///
 

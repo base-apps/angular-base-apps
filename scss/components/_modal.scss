@@ -6,14 +6,22 @@
 
   Note that the modal overlay is hardcoded into the CSS, because whether or not you build your modal semantically, the overlay is always required and will always look the same.
 */
+////
+/// @group modal
+////
 
-/// @BaseApps.settings
 // Modal
+/// @type Color
 $modal-background: #fff !default;
+/// @type Number
 $modal-border: 0 !default;
+/// @type Number
 $modal-radius: 0px !default;
+/// @type Number
 $modal-shadow: none !default;
+/// @type Number
 $modal-zindex: 1000 !default;
+/// @type Map
 $modal-sizes: (
   tiny: 300px,
   small: 500px,
@@ -21,7 +29,9 @@ $modal-sizes: (
   large: 800px,
 ) !default;
 
+/// @type String
 $modal-overlay-class: 'modal-overlay' !default;
+/// @type Color
 $modal-overlay-background: rgba(#333, 0.7) !default;
 ///
 

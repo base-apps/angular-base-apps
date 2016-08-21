@@ -1,16 +1,22 @@
+////
+/// @group icon
+////
+
+/// @type Color
+$icon-primary-fill: $primary-color !default;
+/// @type Color
+$icon-primary-stroke: $primary-color !default;
+/// @type Color
+$icon-accent-fill: $icon-primary-fill !default;
+/// @type Color
+$icon-accent-stroke: $icon-accent-fill !default;
+/// @type Map
 $icon-sizes: (
   tiny: 8px,
   small: 16px,
   medium: 32px,
   large: 64px
 ) !default;
-
-// Icon
-$icon-primary-fill: $primary-color !default;
-$icon-primary-stroke: $primary-color !default;
-$icon-accent-fill: $icon-primary-fill !default;
-$icon-accent-stroke: $icon-accent-fill !default;
-///
 
 @include exports(icon) {
   .iconic, .ionicons, .material-icons, .open-iconic {

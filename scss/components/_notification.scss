@@ -6,20 +6,32 @@
 
   Optionally, the notifications directive can also tap into the browser's native notification support, if it exists.
 */
+////
+/// @group notification
+////
 
-/// @BaseApps.settings
 // Notification
+/// @type Keyword | List
 $notification-default-position: right top !default;
+/// @type Number
 $notification-width: rem-calc(400) !default;
+/// @type Number
 $notification-offset: $global-padding !default;
 
+/// @type Color
 $notification-background: $primary-color !default;
+/// @type Color
 $notification-color: white !default;
+/// @type Number
 $notification-padding: $global-padding !default;
+/// @type Number
 $notification-radius: 4px !default;
 
+/// @type Number
 $notification-icon-size: 60px !default;
+/// @type Number
 $notification-icon-margin: $global-padding !default;
+/// @type Keyword
 $notification-icon-align: top !default;
 
 ///

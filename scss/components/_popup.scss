@@ -4,13 +4,20 @@
 
   A floating container that can anchor to any other on-screen element, and contain any content, including grid blocks or panels.
 */
+////
+/// @group popup
+////
 
-/// @BaseApps.settings
 // Popup
+/// @type Number
 $popup-width: rem-calc(300) !default;
+/// @type Color
 $popup-background: #fff !default;
+/// @type Number
 $popup-border: 0 !default;
+/// @type Number
 $popup-radius: 0 !default;
+/// @type Color
 $popup-shadow: 0 0 10px rgba(#000, 0.25) !default;
 ///
 

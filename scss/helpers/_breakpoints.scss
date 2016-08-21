@@ -9,12 +9,16 @@
 // Create new named breakpoints using the $breakpoints map. Change which named breakpoints get their own classes by modifying the $breakpoint-classes map.
 // NOTE: If you change the $breakpoints map, know that all values must be ordered by width, smallest width first. So 0 is always your first value.
 
+////
+/// @group breakpoints
+////
+
 // 1. Variables
 // - - - - - - - - - - - - - - -
 
-/// @BaseApps.settings
 // Breakpoints
 // These are our named breakpoints. You can use them in our breakpoint function like this: @include breakpoint(medium) { // Medium and larger styles }
+/// @type Map
 $breakpoints: (
   small: rem-calc(0),
   medium: rem-calc(640),
@@ -24,8 +28,8 @@ $breakpoints: (
 ) !default;
 
 // All of the names in this list will be output as classes in your CSS, like small-12, medium-6, and so on.
+/// @type List
 $breakpoint-classes: (small medium large) !default;
-///
 
 // 2. Mixins
 // - - - - - - - - - - - - - - -

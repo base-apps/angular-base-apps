@@ -2,18 +2,28 @@
   SWITCH
   ------
 */
+////
+/// @group switch
+////
 
-/// @BaseApps.settings
 // Switch
+/// @type Number
 $switch-width: rem-calc(50) !default;
+/// @type Number
 $switch-height: rem-calc(32) !default;
+/// @type Color
 $switch-background: #ccc !default;
+/// @type Color
 $switch-background-active: $primary-color !default;
+/// @type Number
 $switch-border: 0 !default;
+/// @type Number
 $switch-radius: 9999px !default;
+/// @type Number
 $switch-animation-speed: 0.15s !default;
-
+/// @type Color
 $switch-paddle-color: white !default;
+/// @type Number
 $switch-paddle-offset: 4px !default;
 ///
 
