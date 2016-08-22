@@ -10,6 +10,8 @@
 $label-fontsize: 0.8rem !default;
 /// @type Number | List
 $label-padding: ($global-padding / 3) ($global-padding / 2) !default;
+/// @type Number | List
+$label-margin: 0 0 ($global-spacing / 2) !default;
 /// @type Number
 $label-radius: 0 !default;
 /// @type Color
@@ -17,6 +19,8 @@ $label-background: $primary-color !default;
 /// @type Color
 $label-color: isitlight($primary-color) !default;
 
+/// @type Number | List
+$badge-margin: 0 0 ($global-spacing / 2) !default;
 /// @type Number
 $badge-fontsize: 0.8em !default;
 /// @type Number
@@ -36,10 +40,12 @@ $badge-color: #fff !default;
 
 @mixin label-layout(
   $fontsize: $label-fontsize,
-  $padding: $label-padding
+  $padding: $label-padding,
+  $margin: $label-margin
 ) {
   font-size: $fontsize;
   padding: $padding;
+  margin: $margin;
 }
 
 @mixin label-style(
@@ -63,10 +69,11 @@ $badge-color: #fff !default;
   $color: $label-color,
   $radius: $label-radius,
   $fontsize: $label-fontsize,
-  $padding: $label-padding
+  $padding: $label-padding,
+  $margin: $label-margin
 ) {
   @extend %label;
-  @include label-layout($fontsize, $padding);
+  @include label-layout($fontsize, $padding, $margin);
   @include label-style($background, $color, $radius);
 }
 
@@ -96,11 +103,13 @@ $badge-color: #fff !default;
 
 @mixin badge-layout(
   $fontsize: $badge-fontsize,
-  $diameter: $badge-diameter
+  $diameter: $badge-diameter,
+  $margin: $badge-margin
 ) {
   font-size: $fontsize;
   width: $diameter;
   height: $diameter;
+  margin: $margin;
 }
 
 @mixin badge-style(
@@ -121,10 +130,11 @@ $badge-color: #fff !default;
   $background: $badge-background,
   $color: $badge-color,
   $diameter: $badge-diameter,
-  $fontsize: $badge-fontsize
+  $fontsize: $badge-fontsize,
+  $margin: $badge-margin
 ) {
   @extend %badge;
-  @include badge-layout($fontsize, $diameter);
+  @include badge-layout($fontsize, $diameter, $margin);
   @include badge-style($background, $color);
 }
 
