@@ -1,3 +1,116 @@
+# Version 2.0.0 (prelease)
+
+### General
+
+First release to be completely separated from ZURB and Foundation for Apps!  Check the [migration docs](https://base-apps.github.io/angular-base-apps/v1.2.7-6/#!/migration) for complete info on how to update to this release.
+
+### Features
+
+- <a href="https://github.com/base-apps/angular-base-apps/issues/16">#16</a>: Added <code>destroy-on-close</code> property to modals
+- <a href="https://github.com/base-apps/angular-base-apps/issues/31">#31</a>: Removed word <strong>foundation</strong> from codebase
+- <a href="https://github.com/base-apps/angular-base-apps/issues/38">#38</a>: Add customizable loading symbols from <a href="http://tobiasahlin.com/spinkit/">SpinKit</a>
+- <a href="https://github.com/base-apps/angular-base-apps/issues/37">#37</a>: Moved custom Iconic icons to <a href="https://github.com/base-apps/angular-icons">angular-icons</a>
+- <a href="https://github.com/base-apps/angular-base-apps/issues/42">#42</a>: Refactored dynamic routing code into <a href="https://github.com/base-apps/angular-dynamic-routing">angular-dynamic-routing</a> and <a href="https://github.com/base-apps/angular-front-router">angular-front-router</a>
+- <a href="https://github.com/base-apps/angular-base-apps/issues/59">#59</a>: Add `icon-left` and `icon-right` classes to position icons and loaders inside of buttons and button-groups</li>
+- <a href="https://github.com/base-apps/angular-base-apps/issues/62">#62</a>: Add vertical spacing for labels and badges
+
+### Docs
+
+https://base-apps.github.io/angular-base-apps/v1.2.7-6
+
+# Version 1.2.6
+
+### General
+
+- Provides alternatives to `window.confirm` and `window.prompt`.  Check the <a href="https://base-apps.github.io/angular-base-apps/v1.2.6/!#/modal">modal docs</a> for how to use the new modals.
+- This marks the final release for the drop-in replacement support of Foundation for Apps.  Check the <a href="https://base-apps.github.io/angular-base-apps/latest/!#/migration">migration docs</a> for complete info on how to update to this release.
+
+### Features
+
+- <a href="https://github.com/base-apps/angular-base-apps/issues/39">#39</a>: Adds a <code>ConfirmModal</code> to replace window.confirm
+- <a href="https://github.com/base-apps/angular-base-apps/issues/40">#40</a>: Adds a <code>PromptModal</code> to replace window.prompt
+
+### Docs
+
+<a href="https://base-apps.github.io/angular-base-apps/v1.2.6">https://base-apps.github.io/angular-base-apps/v1.2.6</a>
+
+# Version 1.2.5
+
+### General
+
+This release is geared towards improving the accordion component functionality.  Check the <a href="https://base-apps.github.io/angular-base-apps/v1.2.5/!#/accordion">accordion docs</a> for more info.
+
+- Fix <code>collapsible</code> to work as intended
+- Use accordion <code>id</code> when publishing/subscribing to enable externally controlling the accordions
+- Improved docs for accordions
+
+### Docs
+
+<a href="https://base-apps.github.io/angular-base-apps/v1.2.5">https://base-apps.github.io/angular-base-apps/v1.2.5</a>
+
+# Version 1.2.4
+
+### General
+
+This release is geared towards improving the tab component functionality.  Check the <a href="https://base-apps.github.io/angular-base-apps/v1.2.4/!#/tabs">tab docs</a> for more info.
+
+- Add <code>auto-open</code> and <code>collapsible</code> attributes
+- Use tab <code>id</code> when publishing/subscribing to enable externally controlling the tabs
+- Improved docs for tabs
+
+### Docs
+
+<a href="https://base-apps.github.io/angular-base-apps/v1.2.4">https://base-apps.github.io/angular-base-apps/v1.2.4</a>
+
+# Version 1.2.3
+
+### Bug Fixes
+
+- <a href="https://github.com/base-apps/angular-base-apps/pull/21">#21</a>: allow links inside modals to be clickable
+
+### Docs
+
+<a href="https://base-apps.github.io/angular-base-apps/v1.2.3">https://base-apps.github.io/angular-base-apps/v1.2.3</a>
+
+# Version 1.2.2
+
+### General
+
+Merge pending PRs from Foundation for Apps.  The following PRs were merged:
+
+- <a href="https://github.com/zurb/foundation-apps/pull/826">#826</a>: Initializing state definitions with empty resolve object
+- <a href="https://github.com/zurb/foundation-apps/pull/825">#825</a>: Fixed a bug during fast navigation
+- <a href="https://github.com/zurb/foundation-apps/pull/824">#824</a>: Properly destroy popup tether component
+- <a href="https://github.com/zurb/foundation-apps/pull/820">#820</a>: Fix panel animations
+- <a href="https://github.com/zurb/foundation-apps/pull/816">#816</a>: Bold font weight should be determined from settings
+- <a href="https://github.com/zurb/foundation-apps/pull/815">#815</a>: Remove fixed 1rem spacings on grid CSS
+- <a href="https://github.com/zurb/foundation-apps/pull/807">#807</a>: adding `.gutter` class to grid blocks
+- <a href="https://github.com/zurb/foundation-apps/pull/806">#806</a>: update handling of resize message
+- <a href="https://github.com/zurb/foundation-apps/pull/802">#802</a>: fix hollow button size to match non-hollow button size
+- <a href="https://github.com/zurb/foundation-apps/pull/801">#801</a>: Apply disabled state with :disabled
+- <a href="https://github.com/zurb/foundation-apps/pull/785">#785</a>: Fix stagger durations
+- <a href="https://github.com/zurb/foundation-apps/pull/768">#768</a>: Applied fix for depciation warning
+- <a href="https://github.com/zurb/foundation-apps/pull/760">#760</a>: fix clearing of media query cache
+- <a href="https://github.com/zurb/foundation-apps/pull/743">#743</a>: Allow panel with block transform to animate
+- <a href="https://github.com/zurb/foundation-apps/pull/741">#741</a>: standardize active state tracking across components
+- <a href="https://github.com/zurb/foundation-apps/pull/736">#736</a>: `zf-close-all` and `zf-ignore-all-close` fixes
+- <a href="https://github.com/zurb/foundation-apps/pull/717">#717</a>: Fix ModalFactory overlayClose=false option
+
+### Docs
+
+https://base-apps.github.io/angular-base-apps/v1.2.2
+
+# Version 1.2.1
+
+### General
+
+- First release as Angular Base Apps.  Release geared towards rebranding and decoupling from ZURB.
+- Prepares users for version 2 by introducing <code>base</code> modules and files.
+
+### Features
+
+- #3: Adds <code>base.*</code> modules to mirror <code>foundation.*</code> modules.  Adds <code>base-apps</code> js and css files to mirror <code>foundation</code> files.
+
 # Version 1.2 – Eiger
 
 ### What's in Store?
