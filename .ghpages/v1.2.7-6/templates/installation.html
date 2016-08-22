@@ -1,0 +1,134 @@
+
+<h2>Installation</h2>
+
+<h3 class="subheader">Ready to make sweet web apps? Install our Sass and JavaScript components with ease.</h3>
+
+<hr>
+
+<section>
+  <h3>Install</h3>
+
+  <p>Angular Base Apps can be installed through Bower or npm.</p>
+
+<hljs language="bash">
+bower install angular-base-apps --save
+npm install angular-base-apps --save
+</hljs>
+
+  <p>The package includes these folders:</p>
+
+  <ul class="folder-list">
+    <li><strong>bin:</strong> the dynamic routing plugin for Gulp and ui-router.</li>
+    <li><strong>dist:</strong> compiled CSS and JavaScript files, in minified and unminified flavors.</li>
+    <li><strong>js:</strong> the Angular components, and a few external libraries.</li>
+    <li><strong>scss:</strong> the Sass files for each component.</li>
+  </ul>
+</section>
+
+<hr>
+
+<section>
+  <h3>Migration from 1.x to 2.x</h3>
+
+  <p>Angular Base Apps 2.0 marks the first version of the framework to be completely separated from ZURB's Foundation for Apps.  Follow the steps below to migrate to 2.x.</p>
+
+  <h4>Rename Directive Prefix</h4>
+
+  <p>The prefix <code>zf</code> used in all angular directives has been renamed to <code>ba</code>.  Luckily <strong>zf</strong> is such a unique string that a simple search and replace can be used to make this migration easier.</p>
+
+  <h4>Rename Angular Modules</h4>
+
+  <p>The following angular modules have been renamed:</p>
+
+  <ul>
+    <li>foundation &rarr; base</li>
+    <li>foundation.accordion &rarr; base.accordion</li>
+    <li>foundation.actionsheet &rarr; base.actionsheet</li>
+    <li>foundation.common &rarr; base.common</li>
+    <li>foundation.core &rarr; base.core</li>
+    <li>foundation.iconic &rarr; base.iconic</li>
+    <li>foundation.interchange &rarr; base.interchange</li>
+    <li>foundation.mediaquery &rarr; base.mediaquery</li>
+    <li>foundation.modal &rarr; base.modal</li>
+    <li>foundation.notification &rarr; base.notification</li>
+    <li>foundation.offcanvas &rarr; base.offcanvas</li>
+    <li>foundation.panel &rarr; base.panel</li>
+    <li>foundation.popup &rarr; base.popup</li>
+    <li>foundation.tabs &rarr; base.tabs</li>
+  </ul>
+
+  <h4>Rename Angular Services</h4>
+
+  <p>The following angular services have been renamed:</p>
+
+  <ul>
+    <li>FoundationActionSheet &rarr; BaseAppsActionSheet</li>
+    <li>FoundationAdapter &rarr; BaseAppsAdapter</li>
+    <li>FoundationAnimation &rarr; BaseAppsAnimation</li>
+    <li>FoundationApi &rarr; BaseAppsApi</li>
+    <li>FoundationModal &rarr; BaseAppsModal</li>
+    <li>FoundationMQ &rarr; BaseAppsMediaQuery</li>
+    <li>FoundationMQInit &rarr; BaseAppsMediaQueryInit</li>
+    <li>FoundationNotification &rarr; BaseAppsNotification</li>
+    <li>FoundationOffcanvas &rarr; BaseAppsOffcanvas</li>
+    <li>FoundationPanel &rarr; BaseAppsPanel</li>
+    <li>FoundationPopup &rarr; BaseAppsPopup</li>
+    <li>FoundationTabs &rarr; BaseAppsTabs</li>
+  </ul>
+
+  <h4>Rename SCSS Variables</h4>
+
+  <p>The following SCSS variables have been renamed:</p>
+
+  <ul>
+    <li>$foundation-colors &rarr; $base-apps-colors</li>
+    <li>$iconic-primary-fill &rarr; $icon-primary-fill</li>
+    <li>$iconic-primary-stroke &rarr; $icon-primary-stroke</li>
+    <li>$iconic-accent-fill &rarr; $icon-accent-fill</li>
+    <li>$iconic-accent-stroke &rarr; $icon-accent-stroke</li>
+  </ul>
+
+  <h4>Install angular-icons (optional)</h4>
+
+  <p>If your application makes use of icons, you'll need to install <a href="https://github.com/base-apps/angular-icons">angular-icons</a>.</p>
+
+  <h4>Install angular-front-router (optional)</h4>
+
+  <p>If your application makes use of front matter to define states, you'll need to install <a href="https://github.com/base-apps/angular-front-router">angular-front-router</a>.</p>
+
+  <h4>Install angular-dynamic-routing (optional)</h4>
+
+  <p>If your application makes use of front matter to define states, you'll need to install <a href="https://github.com/base-apps/angular-dynamic-routing">angular-dynamic-routing</a>.</p>
+
+  <p>Once installed, you'll need to rename the following angular modules:</p>
+
+  <ul>
+    <li>foundation.dynamicRouting &rarr; dynamicRouting</li>
+    <li>foundation.dynamicRouting.animations &rarr; dynamicRouting.animations</li>
+    <li>base.dynamicRouting &rarr; dynamicRouting</li>
+    <li>base.dynamicRouting.animations &rarr; dynamicRouting.animations</li>
+  </ul>
+</section>
+
+<hr>
+
+<section>
+  <h3>CDN</h3>
+
+  <p>The folks at <a href="http://www.jsdelivr.com/">jsDeliver</a> are hosting the Angular Base Apps CSS and JavaScript on their CDN. Just add the files as <code>&lt;link&gt;</code> or <code>&lt;script&gt;</code> tags in the <code>&lt;head&gt;</code> of your HTML file.</p>
+
+<hljs language="html">
+<!-- CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/angular-base-apps/1.2.7-6/base-apps.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/angular-base-apps/1.2.7-6/base-apps.min.css">
+
+<!-- JavaScript -->
+<script src="https://cdn.jsdelivr.net/angular-base-apps/1.2.7-6/base-apps.js"></script>
+<script src="https://cdn.jsdelivr.net/angular-base-apps/1.2.7-6/base-apps.min.js"></script>
+
+<!-- JavaScript templates -->
+<script src="https://cdn.jsdelivr.net/angular-base-apps/1.2.7-6/base-apps-templates.js"></script>
+<script src="https://cdn.jsdelivr.net/angular-base-apps/1.2.7-6/base-apps-templates.min.js"></script>
+</hljs>
+
+</section>
