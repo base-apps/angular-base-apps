@@ -29,6 +29,7 @@ var gulp        = require('gulp'),
     routes      = require('angular-front-router'),
     merge       = require('merge-stream'),
     octophant   = require('octophant'),
+    ghpages     = require('gh-pages'),
     Server      = require('karma').Server;
 
 // 2. VARIABLES
@@ -108,6 +109,11 @@ gulp.task('clean:partials', function(cb) {
 // Clean the dist directory
 gulp.task('clean:dist', function(cb) {
   rimraf('./dist', cb);
+});
+
+// Clean the .ghpages directory
+gulp.task('clean:ghpages', function(cb) {
+  rimraf('./.ghpages', cb);
 });
 
 // 4. COPYING FILES
@@ -465,7 +471,21 @@ gulp.task('publish:dist', ['build:dist'], function(cb) {
   return runSequence('bump', 'tagversion', cb);
 });
 
-gulp.task('publish:ghpages', function() {
-  return gulp.src('./dist/docs/**/*')
-    .pipe($.ghPages());
+gulp.task('publish:ghpages', ['publish:ghpages:deploy'], function(cb) {
+  cb();
+});
+
+gulp.task('publish:ghpages:prep', ['setversion', 'clean:ghpages'], function(cb) {
+  return gulp.src([
+      'dist/docs/**/*'
+    ])
+    .pipe(gulp.dest('.ghpages/v' + version))
+    .pipe(gulp.dest('.ghpages/latest'));
+});
+
+gulp.task('publish:ghpages:deploy', ['publish:ghpages:prep'], function(cb) {
+  ghpages.publish(__dirname + '/.ghpages', {
+    src: '**/*',
+    add: true
+  }, cb);
 });
