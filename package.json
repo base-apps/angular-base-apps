@@ -6,11 +6,11 @@
   "scripts": {
     "test": "gulp test",
     "start": "gulp",
-    "publish-prerelease": "gulp publish:dist --publish prerelease && git push --follow-tags && npm publish",
-    "publish-patch": "gulp publish:dist --publish patch && git push --follow-tags && gulp publish:ghpages && npm publish",
-    "publish-minor": "gulp publish:dist --publish minor && git push --follow-tags && gulp publish:ghpages && npm publish",
-    "publish-major": "gulp publish:dist --publish major && git push --follow-tags && gulp publish:ghpages && npm publish",
-    "publish-docs": "gulp build:dist && gulp publish:ghpages"
+    "publish-prerelease": "gulp publish:dist --publish prerelease && git push --follow-tags && gulp publish:ghpages:release && npm publish",
+    "publish-patch": "gulp publish:dist --publish patch && git push --follow-tags && gulp publish:ghpages:release && npm publish",
+    "publish-minor": "gulp publish:dist --publish minor && git push --follow-tags && gulp publish:ghpages:release && npm publish",
+    "publish-major": "gulp publish:dist --publish major && git push --follow-tags && gulp publish:ghpages:release && npm publish",
+    "publish-docs": "gulp build:dist && gulp publish:ghpages:latest"
   },
   "repository": {
     "type": "git",
