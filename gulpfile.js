@@ -36,6 +36,7 @@ var gulp        = require('gulp'),
 // - - - - - - - - - - - - - - -
 var production = false;
 var version = "";
+var publishLatestDocs = true;
 
 var paths = {
   html: {
@@ -471,19 +472,31 @@ gulp.task('publish:dist', ['build:dist'], function(cb) {
   return runSequence('bump', 'tagversion', cb);
 });
 
-gulp.task('publish:ghpages', ['publish:ghpages:deploy'], function(cb) {
-  cb();
+gulp.task('publish:ghpages:latest', function(cb) {
+  publishLatestDocs = true;
+  return runSequence('publish:ghpages:prep', 'publish:ghpages:deploy', cb);
+});
+
+gulp.task('publish:ghpages:release', function(cb) {
+  publishLatestDocs = false;
+  return runSequence('publish:ghpages:prep', 'publish:ghpages:deploy', cb);
 });
 
 gulp.task('publish:ghpages:prep', ['setversion', 'clean:ghpages'], function(cb) {
-  return gulp.src([
-      'dist/docs/**/*'
-    ])
-    .pipe(gulp.dest('.ghpages/v' + version))
-    .pipe(gulp.dest('.ghpages/latest'));
+  if (publishLatestDocs) {
+    return gulp.src([
+        'dist/docs/**/*'
+      ])
+      .pipe(gulp.dest('.ghpages/latest'));
+  } else {
+    return gulp.src([
+        'dist/docs/**/*'
+      ])
+      .pipe(gulp.dest('.ghpages/v' + version));
+  }
 });
 
-gulp.task('publish:ghpages:deploy', ['publish:ghpages:prep'], function(cb) {
+gulp.task('publish:ghpages:deploy', function(cb) {
   ghpages.publish(__dirname + '/.ghpages', {
     src: '**/*',
     add: true
