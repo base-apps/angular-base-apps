@@ -6,7 +6,7 @@
 
 <h3>How to update</h3>
 
-<p>You can update to the latest version of Angular Base Apps by running the update command for bower or npm.</p>
+<p>If you're not already running Angular Base Apps, check the <a ui-sref="migration">migration docs</a> to update.  You can update to the latest version of Angular Base Apps by running the update command for bower or npm.</p>
 
 <hljs language="bash">
 bower update angular-base-apps
@@ -49,11 +49,11 @@ npm update angular-base-apps
 
 <hr>
 -->
-<h3>Version 2.0.0</h3>
+<h3>Version 2.0.0 (prelease)</h3>
 
 <h4>General</h4>
 
-<p>First release to be completely separated from ZURB and Foundation for Apps!  Check the <a ui-sref="installation">installation docs</a> for migration steps.</p>
+<p>First release to be completely separated from ZURB and Foundation for Apps!  Check the <a ui-sref="migration">migration docs</a> for complete info on how to update to this release.</p>
 
 <h4>Features</h4>
 
@@ -66,13 +66,38 @@ npm update angular-base-apps
 <li><a href="https://github.com/base-apps/angular-base-apps/issues/59">#59</a>: Add <code>icon-left</code> and <code>icon-right</code> classes to position icons and loaders inside of buttons and button-groups</li>
 </ul>
 
+<h4>Bug Fixes</h4>
+
+<ul>
+<li><a href="https://github.com/base-apps/angular-base-apps/issues/62">#62</a>: Add vertical spacing for labels and badges</li>
+</ul>
+
+<h4>Sass Variable Changes</h4>
+
+<p>These Sass variables changed. If you're upgrading an existing project, you'll need to update your <code>_settings.scss</code> file manually.</p>
+
+<ul>
+
+<li><strong>Added:</strong> <code>$label-margin: 0 0 ($global-spacing / 2);</code></li>
+<li><strong>Added:</strong> <code>$badge-margin: 0 0 ($global-spacing / 2);</code></li>
+<li><strong>Added:</strong> <code>$icon-sizes: ( tiny: 8px, small: 16px, medium: 32px, large: 64px);</code></li>
+<li><strong>Added:</strong> <code>$loader-sizes: ( tiny: 8px, small: 16px, medium: 32px, large: 64px);</code></li>
+</ul>
+
+<h4>Docs</h4>
+
+<a href="https://base-apps.github.io/angular-base-apps/v1.2.7-6">https://base-apps.github.io/angular-base-apps/latest</a>
+
 <hr>
 
 <h3>Version 1.2.6</h3>
 
 <h4>General</h4>
 
-<p>Provides alternatives to <code>window.confirm</code> and <code>window.prompt</code>.  Check the <a ui-sref="modal">modal docs</a> for how to use the new features.</p>
+<ul>
+  <li>Provides alternatives to <code>window.confirm</code> and <code>window.prompt</code>.  Check the <a href="https://base-apps.github.io/angular-base-apps/v1.2.6/!#/modal">modal docs</a> for how to use the new modals.</li>
+  <li>This marks the final release for the drop-in replacement support of Foundation for Apps.  Check the <a href="https://base-apps.github.io/angular-base-apps/latest/!#/migration">migration docs</a> for complete info on how to update to this release.</li>
+</ul>
 
 <h4>Features</h4>
 
@@ -81,13 +106,17 @@ npm update angular-base-apps
 <li><a href="https://github.com/base-apps/angular-base-apps/issues/40">#40</a>: Adds a <code>PromptModal</code> to replace window.prompt</li>
 </ul>
 
+<h4>Docs</h4>
+
+<a href="https://base-apps.github.io/angular-base-apps/v1.2.6">https://base-apps.github.io/angular-base-apps/v1.2.6</a>
+
 <hr>
 
 <h3>Version 1.2.5</h3>
 
 <h4>General</h4>
 
-<p>This release is geared towards improving the accordion component functionality.  Check the <a ui-sref="accordion">accordion docs</a> for more info.</p>
+<p>This release is geared towards improving the accordion component functionality.  Check the <a href="https://base-apps.github.io/angular-base-apps/v1.2.5/!#/accordion">accordion docs</a> for more info.</p>
 
 <ul>
 <li>Fix <code>collapsible</code> to work as intended</li>
@@ -95,19 +124,27 @@ npm update angular-base-apps
 <li>Improved docs for accordions</li>
 </ul>
 
+<h4>Docs</h4>
+
+<a href="https://base-apps.github.io/angular-base-apps/v1.2.5">https://base-apps.github.io/angular-base-apps/v1.2.5</a>
+
 <hr>
 
 <h3>Version 1.2.4</h3>
 
 <h4>General</h4>
 
-<p>This release is geared towards improving the tab component functionality.  Check the <a ui-sref="tabs">tab docs</a> for more info.</p>
+<p>This release is geared towards improving the tab component functionality.  Check the <a href="https://base-apps.github.io/angular-base-apps/v1.2.4/!#/tabs">tab docs</a> for more info.</p>
 
 <ul>
 <li>Add <code>auto-open</code> and <code>collapsible</code> attributes</li>
 <li>Use tab <code>id</code> when publishing/subscribing to enable externally controlling the tabs</li>
 <li>Improved docs for tabs</li>
 </ul>
+
+<h4>Docs</h4>
+
+<a href="https://base-apps.github.io/angular-base-apps/v1.2.4">https://base-apps.github.io/angular-base-apps/v1.2.4</a>
 
 <hr>
 
@@ -118,6 +155,10 @@ npm update angular-base-apps
 <ul>
 <li><a href="https://github.com/base-apps/angular-base-apps/pull/21">#21</a>: allow links inside modals to be clickable</li>
 </ul>
+
+<h4>Docs</h4>
+
+<a href="https://base-apps.github.io/angular-base-apps/v1.2.3">https://base-apps.github.io/angular-base-apps/v1.2.3</a>
 
 <hr>
 
@@ -146,6 +187,10 @@ npm update angular-base-apps
 <li><a href="https://github.com/zurb/foundation-apps/pull/736">#736</a>: <code>zf-close-all</code> and <code>zf-ignore-all-close</code> fixes</li>
 <li><a href="https://github.com/zurb/foundation-apps/pull/717">#717</a>: Fix ModalFactory overlayClose=false option</li>
 </ul>
+
+<h4>Docs</h4>
+
+<a href="https://base-apps.github.io/angular-base-apps/v1.2.2">https://base-apps.github.io/angular-base-apps/v1.2.2</a>
 
 <hr>
 
