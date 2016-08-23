@@ -11,7 +11,7 @@ $label-fontsize: 0.8rem !default;
 /// @type Number | List
 $label-padding: ($global-padding / 3) ($global-padding / 2) !default;
 /// @type Number | List
-$label-margin: 0 0 ($global-spacing / 2) !default;
+$label-margin: 0 0 ($global-spacing / 2) 0 !default;
 /// @type Number
 $label-radius: 0 !default;
 /// @type Color
@@ -20,7 +20,7 @@ $label-background: $primary-color !default;
 $label-color: isitlight($primary-color) !default;
 
 /// @type Number | List
-$badge-margin: 0 0 ($global-spacing / 2) !default;
+$badge-margin: 0 0 ($global-spacing / 2) 0 !default;
 /// @type Number
 $badge-fontsize: 0.8em !default;
 /// @type Number
