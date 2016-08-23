@@ -1,9 +1,9 @@
 bower_components/*
-node_modules
-js
-.ghpages
-.publish
+node_modules/*
+js/*
+.ghpages/*
+.publish/*
+build/*
+dist/*
+scss/*
 npm-debug.log
-build
-dist
-scss
