@@ -80,15 +80,19 @@ $child-selectors: '> a, > label, > button';
     }
 
     @if using(icon) {
-      > .iconic, > .ionicons, > .material-icons, .open-iconic {
-        margin: 0 $button-icon-spacing 0 0;
-        float: left;
+      @each $iconclass in $icon-classes {
+        > .#{$iconclass} {
+          margin: 0 $button-icon-spacing 0 0;
+          float: left;
+        }
       }
     }
     @if using(loader) {
-      > .sk-loader {
-        margin: 0 $button-icon-spacing 0 0;
-        float: left;
+      @each $loaderclass in $loader-classes {
+        > .#{$loaderclass} {
+          margin: 0 $button-icon-spacing 0 0;
+          float: left;
+        }
       }
     }
   }
@@ -99,15 +103,19 @@ $child-selectors: '> a, > label, > button';
     }
 
     @if using(icon) {
-      > .iconic, > .ionicons, > .material-icons, .open-iconic {
-         margin: 0 0 0 $button-icon-spacing;
-         float: right;
-       }
+      @each $iconclass in $icon-classes {
+        > .#{$iconclass} {
+           margin: 0 0 0 $button-icon-spacing;
+           float: right;
+        }
+      }
     }
     @if using(loader) {
-      > .sk-loader {
-        margin: 0 0 0 $button-icon-spacing;
-        float: right;
+      @each $loaderclass in $loader-classes {
+        > .#{$loaderclass} {
+          margin: 0 0 0 $button-icon-spacing;
+          float: right;
+        }
       }
     }
   }
@@ -160,8 +168,17 @@ $child-selectors: '> a, > label, > button';
         }
 
         @if using(icon) {
-          .iconic, .ionicons, .material-icons, .open-iconic {
-            @include color-icon($background);
+          @each $iconclass in $icon-classes {
+            .#{$iconclass} {
+              @include color-icon($background);
+            }
+          }
+        }
+        @if using(loader) {
+          @each $loaderclass in $loader-classes {
+            .#{$loaderclass} {
+              @include color-loaders($background);
+            }
           }
         }
       }
@@ -175,8 +192,17 @@ $child-selectors: '> a, > label, > button';
         }
 
         @if using(icon) {
-          .iconic, .ionicons, .material-icons, .open-iconic {
-            @include color-icon(isitlight($background));
+          @each $iconclass in $icon-classes {
+            .#{$iconclass} {
+              @include color-icon(isitlight($background));
+            }
+          }
+        }
+        @if using(loader) {
+          @each $loaderclass in $loader-classes {
+            .#{$loaderclass} {
+              @include color-loaders(isitlight($background));
+            }
           }
         }
       }
@@ -249,11 +275,15 @@ $child-selectors: '> a, > label, > button';
 
     @if using(icon) {
       > li > a {
-        .iconic, .ionics, .material-icons, .open-iconic {
-          vertical-align: middle;
-          margin-top: -2px; // The icons are oddly misaligned
+        @if using(icon) {
+          @each $iconclass in $icon-classes {
+            .#{$iconclass} {
+              vertical-align: middle;
+              margin-top: -2px; // The icons are oddly misaligned
 
-          @include size-icon(1em, 1em);
+              @include size-icon(1em, 1em);
+            }
+          }
         }
 
         &.icon-left { @include button-group-icons(left); }
@@ -263,10 +293,14 @@ $child-selectors: '> a, > label, > button';
 
     @if using(loader) {
       > li > a {
-        .sk-loader {
-          vertical-align: middle;
+        @if using(loader) {
+          @each $loaderclass in $loader-classes {
+            .#{$loaderclass} {
+              vertical-align: middle;
 
-          @include size-loaders(1em, 1em);
+              @include size-loaders(1em, 1em);
+            }
+          }
         }
 
         &.icon-left { @include button-group-icons(left); }

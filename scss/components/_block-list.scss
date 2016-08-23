@@ -224,6 +224,21 @@ $blocklist-check-icons: true !default;
   }
 }
 
+@mixin block-list-icons-style(
+  $top: 0,
+  $left: 0,
+  $width: $blocklist-item-icon-size,
+  $height: $blocklist-item-icon-size
+) {
+  position: absolute;
+  top: $top;
+  left: $left;
+  width: $width;
+  height: $height;
+  border-radius: 8px;
+  pointer-events: none;
+}
+
 /*
   Adds icon styles. Call this mixin on a block list container.
 
@@ -247,14 +262,22 @@ $blocklist-check-icons: true !default;
     > a, > span, > label {
       padding-left: (get-side($blocklist-item-padding, left) * 2) + $blocklist-item-icon-size;
     }
-    img, .iconic {
-      position: absolute;
-      top: $icon-offset;
-      left: $icon-offset;
-      width: $icon-height;
-      height: $icon-height;
-      border-radius: 8px;
-      pointer-events: none;
+    img {
+      @include block-list-icons-style($icon-offset, $icon-offset, $icon-height, $icon-height);
+    }
+    @if using(icon) {
+      @each $iconclass in $icon-classes {
+        .#{$iconclass} {
+          @include block-list-icons-style($icon-offset, $icon-offset, $icon-height, $icon-height);
+        }
+      }
+    }
+    @if using(loader) {
+      @each $loaderclass in $loader-classes {
+        .#{$loaderclass} {
+          @include block-list-icons-style($icon-offset, $icon-offset, $icon-height, $icon-height);
+        }
+      }
     }
   }
 }
