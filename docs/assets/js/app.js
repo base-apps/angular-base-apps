@@ -215,19 +215,17 @@
     };
   }
 
-  NavController.$inject = ['$scope', '$state'];
+  NavController.$inject = ['$scope', '$state', '$window'];
 
-  function NavController($scope, $state) {
+  function NavController($scope, $state, $window) {
     $scope.current = $state.current.name;
-
-    var routes = angular.copy(foundationRoutes);
 
     //setup autocomplete
     $scope.routing = [];
     $scope.typedText = '';
 
-    if(foundationRoutes) {
-      angular.forEach(routes, function(r) {
+    if($window.BaseAppsRoutes) {
+      angular.forEach(angular.copy($window.BaseAppsRoutes), function(r) {
         var title = r.title || r.name.replace('.', ' '); //use title if possible
         $scope.routing.push(title);
       });
