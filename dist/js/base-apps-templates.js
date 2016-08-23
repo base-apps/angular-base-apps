@@ -17,7 +17,7 @@ angular.module('base').run(['$templateCache', function($templateCache) {
 angular.module('base').run(['$templateCache', function($templateCache) {
   $templateCache.put('components/actionsheet/actionsheet-button.html',
     '<div>\n' +
-    '  <a href="#"\n' +
+    '  <a href=""\n' +
     '    class="button"\n' +
     '    ng-if="title.length > 0">{{ title }}</a>\n' +
     '  <div ng-transclude></div>\n' +
@@ -240,7 +240,7 @@ angular.module('base').run(['$templateCache', function($templateCache) {
 angular.module('base').run(['$templateCache', function($templateCache) {
   $templateCache.put('components/notification/notification-static.html',
     '<div ba-swipe-close="swipe" class="static-notification {{ color }} {{ position }}">\n' +
-    '  <a href="#"\n' +
+    '  <a href=""\n' +
     '    class="close-button"\n' +
     '    ng-click="hide(); $event.preventDefault(); $event.stopPropagation()">&times;</a>\n' +
     '  <div class="notification-icon" ng-if="image">\n' +
@@ -257,7 +257,7 @@ angular.module('base').run(['$templateCache', function($templateCache) {
 angular.module('base').run(['$templateCache', function($templateCache) {
   $templateCache.put('components/notification/notification.html',
     '<div ba-swipe-close="swipe" class="notification {{ color }}">\n' +
-    '  <a href="#"\n' +
+    '  <a href=""\n' +
     '    class="close-button"\n' +
     '    ng-click="hide(); $event.preventDefault(); $event.stopPropagation()">&times;</a>\n' +
     '  <div class="notification-icon" ng-if="image">\n' +
