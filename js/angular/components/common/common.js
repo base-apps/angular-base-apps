@@ -44,7 +44,11 @@
       }
       element.on('click', function(e) {
         BaseAppsApi.publish(targetId, 'close');
-        e.preventDefault();
+
+        if (!e.target.href) {
+          // prevent default if target doesn't have href attribute
+          e.preventDefault();
+        }
       });
     }
   }
@@ -62,7 +66,11 @@
     function link(scope, element, attrs) {
       element.on('click', function(e) {
         BaseAppsApi.publish(attrs.baOpen, 'open');
-        e.preventDefault();
+
+        if (!e.target.href) {
+          // prevent default if target doesn't have href attribute
+          e.preventDefault();
+        }
       });
     }
   }
@@ -80,7 +88,11 @@
     function link(scope, element, attrs) {
       element.on('click', function(e) {
         BaseAppsApi.publish(attrs.baToggle, 'toggle');
-        e.preventDefault();
+
+        if (!e.target.href) {
+          // prevent default if target doesn't have href attribute
+          e.preventDefault();
+        }
       });
     }
   }
@@ -165,7 +177,11 @@
       element.on('click', function(e) {
         BaseAppsApi.closeActiveElements({exclude: attrs.baHardToggle});
         BaseAppsApi.publish(attrs.baHardToggle, 'toggle');
-        e.preventDefault();
+
+        if (!e.target.href) {
+          // prevent default if target doesn't have href attribute
+          e.preventDefault();
+        }
       });
     }
   }
