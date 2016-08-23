@@ -1,15 +1,15 @@
 {
   "name": "angular-base-apps",
-  "version": "1.2.7-7",
+  "version": "1.2.7-8",
   "license": "MIT",
   "description": "A responsive, Angular-powered framework for web apps",
   "scripts": {
     "test": "gulp test",
     "start": "gulp",
-    "publish-prerelease": "gulp publish:dist --publish prerelease && git push --follow-tags && gulp publish:ghpages:release && npm publish",
-    "publish-patch": "gulp publish:dist --publish patch && git push --follow-tags && gulp publish:ghpages:release && npm publish",
-    "publish-minor": "gulp publish:dist --publish minor && git push --follow-tags && gulp publish:ghpages:release && npm publish",
-    "publish-major": "gulp publish:dist --publish major && git push --follow-tags && gulp publish:ghpages:release && npm publish",
+    "publish-prerelease": "gulp publish:dist --publish prerelease && git push --follow-tags && npm publish && gulp publish:ghpages:release && gulp publish:ghpages:latest",
+    "publish-patch": "gulp publish:dist --publish patch && git push --follow-tags && npm publish && gulp publish:ghpages:release && gulp publish:ghpages:latest",
+    "publish-minor": "gulp publish:dist --publish minor && git push --follow-tags && npm publish && gulp publish:ghpages:release && gulp publish:ghpages:latest",
+    "publish-major": "gulp publish:dist --publish major && git push --follow-tags && npm publish && gulp publish:ghpages:release && gulp publish:ghpages:latest",
     "publish-docs": "gulp build:dist && gulp publish:ghpages:latest"
   },
   "repository": {
