@@ -2,7 +2,7 @@
 
 ### General
 
-First release to be completely separated from ZURB and Foundation for Apps!  Check the [migration docs](https://base-apps.github.io/angular-base-apps/v1.2.7-6/#!/migration) for complete info on how to update to this release.
+First release to be completely separated from ZURB and Foundation for Apps!  Check the [migration docs](https://base-apps.github.io/angular-base-apps/latest/#!/migration) for complete info on how to update to this release.
 
 ### Features
 
@@ -11,12 +11,16 @@ First release to be completely separated from ZURB and Foundation for Apps!  Che
 - <a href="https://github.com/base-apps/angular-base-apps/issues/38">#38</a>: Add customizable loading symbols from <a href="http://tobiasahlin.com/spinkit/">SpinKit</a>
 - <a href="https://github.com/base-apps/angular-base-apps/issues/37">#37</a>: Moved custom Iconic icons to <a href="https://github.com/base-apps/angular-icons">angular-icons</a>
 - <a href="https://github.com/base-apps/angular-base-apps/issues/42">#42</a>: Refactored dynamic routing code into <a href="https://github.com/base-apps/angular-dynamic-routing">angular-dynamic-routing</a> and <a href="https://github.com/base-apps/base-apps-router">base-apps-router</a>
-- <a href="https://github.com/base-apps/angular-base-apps/issues/59">#59</a>: Add `icon-left` and `icon-right` classes to position icons and loaders inside of buttons and button-groups</li>
+- <a href="https://github.com/base-apps/angular-base-apps/issues/59">#59</a>: Add `icon-left` and `icon-right` classes to position icons and loaders inside of buttons and button-groups
+- <a href="https://github.com/base-apps/angular-base-apps/issues/62">#62</a>: Add vertical spacing for labels and badges
+
+### Bug Fixes
+- <a href="https://github.com/base-apps/angular-base-apps/issues/22">#22</a>: Links inside `ba-close`, `ba-open`, `ba-toggle`, and `ba-hard-toggle` aren't working
 - <a href="https://github.com/base-apps/angular-base-apps/issues/62">#62</a>: Add vertical spacing for labels and badges
 
 ### Docs
 
-https://base-apps.github.io/angular-base-apps/v1.2.7-6
+https://base-apps.github.io/angular-base-apps/latest
 
 # Version 1.2.6
 
