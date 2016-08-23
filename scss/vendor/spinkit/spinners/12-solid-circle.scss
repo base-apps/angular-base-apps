@@ -28,6 +28,8 @@ $spinkit-solid-circle-css-export: true !default;
     height: $height;
 		@if unit($width) == "em" {
 			border-width: max($width/8, 0.2em);
+		} @elseif unit($width) == "rem" {
+			border-width: max($width/8, 0.2rem);
 		} @else {
 			border-width: max($width/8, 2px);
 		}

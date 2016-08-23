@@ -145,14 +145,20 @@ $menubar-icon-spacing: $menubar-item-padding !default;
 
   // Iconic
   @if using(icon) {
-    .iconic, .ionicons, .material-icons, .open-iconic {
-      @include color-icon($color);
+    @each $iconclass in $icon-classes {
+      .#{$iconclass} {
+        @include color-icon($color);
+      }
     }
   }
 
   // Loaders
   @if using(loader) {
-    .sk-loader { @include color-loaders($color); }
+    @each $loaderclass in $loader-classes {
+      .#{$loaderclass} {
+        @include color-loaders($color);
+      }
+    }
   }
 }
 
@@ -177,33 +183,37 @@ $menubar-icon-spacing: $menubar-item-padding !default;
     }
 
     @if using(icon) {
-      > .iconic, > .ionicons, > .material-icons, .open-iconic {
-        margin: 0;
-
-        @if $menubar-icon-size != false {
-          width: $menubar-icon-size;
-          height: $menubar-icon-size;
-        }
-
-        // Remove any margins from standalone icons
-        &:first-child:last-child {
+      @each $iconclass in $icon-classes {
+        > .#{$iconclass} {
           margin: 0;
+
+          @if $menubar-icon-size != false {
+            width: $menubar-icon-size;
+            height: $menubar-icon-size;
+          }
+
+          // Remove any margins from standalone icons
+          &:first-child:last-child {
+            margin: 0;
+          }
         }
       }
     }
 
     @if using(loader) {
-      > .sk-loader {
-        margin: 0;
-
-        @if $menubar-icon-size != false {
-          width: $menubar-icon-size;
-          height: $menubar-icon-size;
-        }
-
-        // Remove any margins from standalone icons
-        &:first-child:last-child {
+      @each $loaderclass in $loader-classes {
+        > .#{$loaderclass} {
           margin: 0;
+
+          @if $menubar-icon-size != false {
+            width: $menubar-icon-size;
+            height: $menubar-icon-size;
+          }
+
+          // Remove any margins from standalone icons
+          &:first-child:last-child {
+            margin: 0;
+          }
         }
       }
     }
@@ -216,10 +226,18 @@ $menubar-icon-spacing: $menubar-item-padding !default;
         > img { margin: 0 $menubar-icon-spacing 0 0; }
 
         @if using(icon) {
-          > .iconic, > .ionicons, > .material-icons, .open-iconic { margin: 0 $menubar-icon-spacing 0 0; }
+          @each $iconclass in $icon-classes {
+            > .#{$iconclass} {
+              margin: 0 $menubar-icon-spacing 0 0;
+            }
+          }
         }
         @if using(loader) {
-          > .sk-loader { margin: 0 $menubar-icon-spacing 0 0; }
+          @each $loaderclass in $loader-classes {
+            > .#{$loaderclass} {
+              margin: 0 $menubar-icon-spacing 0 0;
+            }
+          }
         }
       }
     }
@@ -229,10 +247,18 @@ $menubar-icon-spacing: $menubar-item-padding !default;
         > img { margin: 0 0 $menubar-icon-spacing 0; }
 
         @if using(icon) {
-          > .iconic, > .ionicons, > .material-icons, .open-iconic { margin: 0 0 $menubar-icon-spacing 0; }
+          @each $iconclass in $icon-classes {
+            > .#{$iconclass} {
+              margin: 0 0 $menubar-icon-spacing 0;
+            }
+          }
         }
         @if using(loader) {
-          > .sk-loader { margin: 0 0 $menubar-icon-spacing 0; }
+          @each $loaderclass in $loader-classes {
+            > .#{$loaderclass} {
+              margin: 0 0 $menubar-icon-spacing 0;
+            }
+          }
         }
       }
     }
@@ -242,10 +268,18 @@ $menubar-icon-spacing: $menubar-item-padding !default;
         > img { margin: 0 0 0 $menubar-icon-spacing; }
 
         @if using(icon) {
-          > .iconic, > .ionicons, > .material-icons, .open-iconic { margin: 0 0 0 $menubar-icon-spacing; }
+          @each $iconclass in $icon-classes {
+            > .#{$iconclass} {
+              margin: 0 0 0 $menubar-icon-spacing;
+            }
+          }
         }
         @if using(loader) {
-          > .sk-loader { margin: 0 0 0 $menubar-icon-spacing; }
+          @each $loaderclass in $loader-classes {
+            > .#{$loaderclass} {
+              margin: 0 0 0 $menubar-icon-spacing;
+            }
+          }
         }
       }
     }
@@ -255,10 +289,18 @@ $menubar-icon-spacing: $menubar-item-padding !default;
         > img { margin: $menubar-icon-spacing 0 0 0; }
 
         @if using(icon) {
-          > .iconic, > .ionicons, > .material-icons, .open-iconic { margin: $menubar-icon-spacing 0 0 0; }
+          @each $iconclass in $icon-classes {
+            > .#{$iconclass} {
+              margin: $menubar-icon-spacing 0 0 0;
+            }
+          }
         }
         @if using(loader) {
-          > .sk-loader { margin: $menubar-icon-spacing 0 0 0; }
+          @each $loaderclass in $loader-classes {
+            > .#{$loaderclass} {
+              margin: $menubar-icon-spacing 0 0 0;
+            }
+          }
         }
       }
     }

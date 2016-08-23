@@ -87,6 +87,12 @@ $global-rounded: 1000px !default;
 $global-padding: 1rem !default;
 /// @type Number
 $global-spacing: rem-calc(15) !default;
+
+// Custom classes for icons and loaders
+/// @type List
+$icon-classes: ('iconic', 'ionicons', 'material-icons', 'open-iconic') !default;
+/// @type List
+$loader-classes: ('sk-loader') !default;
 ///
 
 // For internal use: a color map

@@ -21,26 +21,30 @@
       stroke: $fill;
     }
 
-    &.iconic-property-accent {
-      // Use the fill color if no accent is provided
-      @if hasvalue($fillAccent) {
-        fill: $fillAccent;
-      }
-      @else {
-        fill: $fill;
-      }
-
-      // Use the normal stroke color if no accent is provided
-      @if hasvalue($strokeAccent) {
-        stroke: $strokeAccent;
-      }
-      @else {
-        // ...or use the fill if no normal stroke is provided
-        @if hasvalue($stroke) {
-          stroke: $stroke;
+    // only add .iconic-property-accent styling if
+    // parent selector contains .iconic class
+    @if (str-index(to-string(nth(&, 1)), quote('.iconic'))) {
+      &.iconic-property-accent {
+        // Use the fill color if no accent is provided
+        @if hasvalue($fillAccent) {
+          fill: $fillAccent;
         }
         @else {
-          stroke: $fill;
+          fill: $fill;
+        }
+
+        // Use the normal stroke color if no accent is provided
+        @if hasvalue($strokeAccent) {
+          stroke: $strokeAccent;
+        }
+        @else {
+          // ...or use the fill if no normal stroke is provided
+          @if hasvalue($stroke) {
+            stroke: $stroke;
+          }
+          @else {
+            stroke: $fill;
+          }
         }
       }
     }

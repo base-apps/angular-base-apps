@@ -12,31 +12,39 @@ $icon-accent-fill: $icon-primary-fill !default;
 $icon-accent-stroke: $icon-accent-fill !default;
 /// @type Map
 $icon-sizes: (
-  tiny: 8px,
-  small: 16px,
-  medium: 32px,
-  large: 64px
+  tiny: 0.5,
+  small: 1,
+  medium: 2,
+  large: 4
 ) !default;
+/// @type Number
+$icon-default-size: 1rem !default;
 
 @include exports(icon) {
-  .iconic, .ionicons, .material-icons, .open-iconic {
-    width: 1rem;
-    height: 1rem;
-    vertical-align: middle;
+  @each $iconclass in $icon-classes {
+    .#{$iconclass} {
+      width: $icon-default-size;
+      height: $icon-default-size;
+      vertical-align: middle;
 
-    a > & {
-      @include color-icon($primary-color);
-      margin-top: -2px;
-      margin-right: 0.25rem;
-    }
+      a > & {
+        @include color-icon($primary-color);
+        margin-top: -2px;
+        margin-right: 0.25rem;
+      }
+      
+      @each $color in map-keys($base-apps-colors) {
+        $color-value: map-get($base-apps-colors, $color);
+        &.#{$color} {
+          @include color-icon($color-value);
+        }
+      }
 
-    * {
-      fill: $icon-primary-fill;
-      stroke: $icon-primary-stroke;
-
-      &.iconic-property-accent {
-        fill: $icon-accent-fill;
-        stroke: $icon-accent-stroke;
+      @each $size in map-keys($icon-sizes) {
+        &.#{$size} {
+          $size-value: $icon-default-size * map-get($icon-sizes, $size);
+          @include size-icon($size-value, $size-value);
+        }
       }
     }
   }
@@ -48,27 +56,11 @@ $icon-sizes: (
     }
   }
 
-  .iconic, .ionicons, .material-icons, .open-iconic {
-    @each $color in map-keys($base-apps-colors) {
-      $color-value: map-get($base-apps-colors, $color);
-      &.#{$color} {
-        @include color-icon($color-value);
-      }
-    }
-
-    @each $size in map-keys($icon-sizes) {
-      &.#{$size} {
-        $size-value: map-get($icon-sizes, $size);
-        @include size-icon($size-value, $size-value);
-      }
-    }
-  }
-
   // override iconic fluid styling if size class provided
   .iconic.iconic-fluid {
     @each $size in map-keys($icon-sizes) {
       &.#{$size} {
-        $size-value: map-get($icon-sizes, $size);
+        $size-value: $icon-default-size * map-get($icon-sizes, $size);
         @include size-icon($size-value, $size-value);
       }
     }

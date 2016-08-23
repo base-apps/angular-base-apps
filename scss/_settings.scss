@@ -94,6 +94,8 @@ $global-radius: 4px;
 $global-rounded: 1000px;
 $global-padding: 1rem;
 $global-spacing: rem-calc(15);
+$icon-classes: ('iconic', 'ionicons', 'material-icons', 'open-iconic');
+$loader-classes: ('sk-loader');
 
 // 3. Breakpoints
 // --------------
@@ -335,20 +337,23 @@ $icon-primary-stroke: $primary-color;
 $icon-accent-fill: $icon-primary-fill;
 $icon-accent-stroke: $icon-accent-fill;
 $icon-sizes: (
-  tiny: 8px,
-  small: 16px,
-  medium: 32px,
-  large: 64px
+  tiny: 0.5,
+  small: 1,
+  medium: 2,
+  large: 4
 );
+$icon-default-size: 1rem;
 
 // 15. Label
 // ---------
 
 $label-fontsize: 0.8rem;
 $label-padding: ($global-padding / 3) ($global-padding / 2);
+$label-margin: 0 0 ($global-spacing / 2);
 $label-radius: 0;
 $label-background: $primary-color;
 $label-color: isitlight($primary-color);
+$badge-margin: 0 0 ($global-spacing / 2);
 $badge-fontsize: 0.8em;
 $badge-diameter: 1.5rem;
 $badge-background: $primary-color;
@@ -358,11 +363,12 @@ $badge-color: #fff;
 // ----------
 
 $loader-sizes: (
-  tiny: 8px,
-  small: 16px,
-  medium: 32px,
-  large: 64px
+  tiny: 0.5,
+  small: 1,
+  medium: 2,
+  large: 4
 );
+$loader-default-size: 1rem;
 
 // 17. Menu Bar
 // ------------
