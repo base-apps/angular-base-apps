@@ -26,13 +26,14 @@ $icon-default-size: 1rem !default;
       width: $icon-default-size;
       height: $icon-default-size;
       vertical-align: middle;
+      @include color-icon($primary-color);
 
       a > & {
         @include color-icon($primary-color);
         margin-top: -2px;
         margin-right: 0.25rem;
       }
-      
+
       @each $color in map-keys($base-apps-colors) {
         $color-value: map-get($base-apps-colors, $color);
         &.#{$color} {
