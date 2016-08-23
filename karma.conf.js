@@ -28,9 +28,9 @@ module.exports = function(config){
     ],
 
     plugins : [
-            'karma-jasmine',
-            'karma-phantomjs-launcher',
-            ],
+      'karma-jasmine',
+      'karma-phantomjs-launcher',
+    ],
 
   });
 };
