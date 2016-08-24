@@ -21,6 +21,7 @@
 // - - - - - - - - - - - - - - -
 
 var gulp        = require('gulp'),
+    concat      = require('gulp-concat'),
     $           = require('gulp-load-plugins')(),
     args        = require('yargs').argv,
     rimraf      = require('rimraf'),
@@ -363,11 +364,21 @@ gulp.task('test:motion', ['server:start', 'test:motion:compile'], function() {
 gulp.task('copy:dist', function() {
   var merged = merge();
 
-  // copy javascript
+  // copy and merge javascript files
   merged.add(gulp.src([
-      "./build/assets/js/base-apps*.js"
+      "./build/assets/js/base-apps.js",
+      "./build/assets/js/base-apps-templates.js"
     ])
+    .pipe(concat('base-app.js'))
     .pipe(gulp.dest('./dist/js')));
+
+  merged.add(gulp.src([
+    "./build/assets/js/base-apps.min.js",
+    "./build/assets/js/base-apps-templates.min.js"
+  ])
+    .pipe(concat('base-app.min.js'))
+    .pipe(gulp.dest('./dist/js')));
+
 
   // copy css
   merged.add(gulp.src([
