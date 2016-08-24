@@ -18,7 +18,7 @@ You'll need the following software installed to get started.
 
 ## Get Started
 
-Stuck with Foundation for Apps?  Try out [Angular Base Apps 1.2.6](https://base-apps.github.io/angular-base-apps/v1.2.6/#!/installation) as a drop-in replacement!
+Stuck with Foundation for Apps?  Try out [Angular Base Apps 1.2.6](https://base-apps.github.io/angular-base-apps/latest/#!/migration) as a drop-in replacement!
 
 Want to try out Angular Base Apps 2.0? Check the [migration docs](https://base-apps.github.io/angular-base-apps/latest/#!/migration) for complete info.
 
