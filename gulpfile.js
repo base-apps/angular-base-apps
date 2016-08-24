@@ -102,6 +102,11 @@ gulp.task('clean', function(cb) {
   rimraf('./build', cb);
 });
 
+// Clean routes file
+gulp.task('clean:routes', function(cb) {
+  rimraf('./build/assets/js/routes.js', cb);
+});
+
 // Clean the partials directory
 gulp.task('clean:partials', function(cb) {
   rimraf('./build/partials', cb);
@@ -133,7 +138,7 @@ gulp.task('copy', function() {
 });
 
 // Copy page templates and generate routes
-gulp.task('copy:templates', ['javascript'], function() {
+gulp.task('copy:templates', ['javascript', 'clean:routes'], function() {
   return gulp.src(paths.html.templates)
     // update version throughout framework
     .pipe($.replace(/<version>/g, version))
