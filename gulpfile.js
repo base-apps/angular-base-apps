@@ -369,14 +369,14 @@ gulp.task('copy:dist', function() {
       "./build/assets/js/base-apps.js",
       "./build/assets/js/base-apps-templates.js"
     ])
-    .pipe(concat('base-app.js'))
+    .pipe(concat('base-apps.js'))
     .pipe(gulp.dest('./dist/js')));
 
   merged.add(gulp.src([
     "./build/assets/js/base-apps.min.js",
     "./build/assets/js/base-apps-templates.min.js"
   ])
-    .pipe(concat('base-app.min.js'))
+    .pipe(concat('base-apps.min.js'))
     .pipe(gulp.dest('./dist/js')));
 
 
