@@ -364,7 +364,7 @@ gulp.task('copy:dist', function() {
   var merged = merge();
 
   // copy and merge javascript files
-  [".js" , ".min.js"].forEach(suffix => {
+  [".js" , ".min.js"].forEach(function(suffix) {
     merged.add(gulp.src([
         "./build/assets/js/base-apps" + suffix,
         "./build/assets/js/base-apps-templates" + suffix
