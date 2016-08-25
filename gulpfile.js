@@ -364,20 +364,14 @@ gulp.task('copy:dist', function() {
   var merged = merge();
 
   // copy and merge javascript files
-  merged.add(gulp.src([
-      "./build/assets/js/base-apps.js",
-      "./build/assets/js/base-apps-templates.js"
-    ])
-    .pipe($.concat('base-apps.js'))
-    .pipe(gulp.dest('./dist/js')));
-
-  merged.add(gulp.src([
-    "./build/assets/js/base-apps.min.js",
-    "./build/assets/js/base-apps-templates.min.js"
-  ])
-    .pipe($.concat('base-apps.min.js'))
-    .pipe(gulp.dest('./dist/js')));
-
+  [".js" , ".min.js"].forEach(suffix => {
+    merged.add(gulp.src([
+        "./build/assets/js/base-apps" + suffix,
+        "./build/assets/js/base-apps-templates" + suffix
+      ])
+      .pipe($.concat('base-apps' + suffix))
+      .pipe(gulp.dest('./dist/js')));
+  });
 
   // copy css
   merged.add(gulp.src([
