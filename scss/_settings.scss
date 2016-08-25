@@ -349,11 +349,11 @@ $icon-default-size: 1rem;
 
 $label-fontsize: 0.8rem;
 $label-padding: ($global-padding / 3) ($global-padding / 2);
-$label-margin: 0 0 ($global-spacing / 2);
+$label-margin: 0 0 ($global-spacing / 2) 0;
 $label-radius: 0;
 $label-background: $primary-color;
 $label-color: isitlight($primary-color);
-$badge-margin: 0 0 ($global-spacing / 2);
+$badge-margin: 0 0 ($global-spacing / 2) 0;
 $badge-fontsize: 0.8em;
 $badge-diameter: 1.5rem;
 $badge-background: $primary-color;
