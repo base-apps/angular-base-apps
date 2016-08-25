@@ -218,6 +218,8 @@
   NavController.$inject = ['$scope', '$state', '$window'];
 
   function NavController($scope, $state, $window) {
+    var routes = angular.copy($window.BaseAppsRoutes);
+    
     $scope.current = $state.current.name;
 
     //setup autocomplete
@@ -225,7 +227,7 @@
     $scope.typedText = '';
 
     if($window.BaseAppsRoutes) {
-      angular.forEach(angular.copy($window.BaseAppsRoutes), function(r) {
+      angular.forEach(routes, function(r) {
         var title = r.title || r.name.replace('.', ' '); //use title if possible
         $scope.routing.push(title);
       });
