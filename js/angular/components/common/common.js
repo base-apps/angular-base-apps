@@ -226,9 +226,9 @@
             }
           }
 
-          // if one or more elements were closed,
+          // if one or more elements were closed and the target is not an href,
           // prevent the default action
-          if (closedElements > 0) {
+          if (closedElements > 0 && !tar.href) {
             e.preventDefault();
           }
         }
