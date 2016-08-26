@@ -14,21 +14,22 @@
 //   9. Block List
 //  10. Button Group
 //  11. Card
-//  12. Extras
-//  13. Forms
-//  14. Icon
-//  15. Label
-//  16. Loader
-//  17. Menu Bar
-//  18. Modal
-//  19. Motion
-//  20. Notification
-//  21. Off Canvas
-//  22. Panel
-//  23. Popup
-//  24. Switch
-//  25. Tabs
-//  26. Title Bar
+//  12. Compatibility
+//  13. Extras
+//  14. Forms
+//  15. Icon
+//  16. Label
+//  17. Loader
+//  18. Menu Bar
+//  19. Modal
+//  20. Motion
+//  21. Notification
+//  22. Off Canvas
+//  23. Panel
+//  24. Popup
+//  25. Switch
+//  26. Tabs
+//  27. Title Bar
 
 @import 'helpers/functions';
 
@@ -42,6 +43,7 @@ $include-css: (
   button: true,
   button-group: true,
   card: true,
+  compatibility: true,
   coloring: true,
   extras: true,
   forms: true,
@@ -277,7 +279,17 @@ $card-padding: $global-padding;
 $card-margin: 0.5rem;
 $card-divider-background: smartscale($card-background, 7%);
 
-// 12. Extras
+// 12. Compatibility
+// -----------------
+
+$nosupport-overlay: #000000;
+$nosupport-background: $alert-color;
+$nosupport-color: isitlight($nosupport-background);
+$nosupport-top: 15%;
+$nosupport-width: 50%;
+$nosupport-font: Arial, Helvetica, sans-serif !important;
+
+// 13. Extras
 // ----------
 
 $closebutton-position: (top right);
@@ -288,7 +300,7 @@ $closebutton-color-hover: #333;
 $thumbnail-padding: 0.5rem;
 $thumbnail-shadow: 0 3px 15px rgba(black, 0.25);
 
-// 13. Forms
+// 14. Forms
 // ---------
 
 $form-fontsize: 1rem;
@@ -329,7 +341,7 @@ $meter-fill-medium: #e7cf00;
 $meter-fill-low: $alert-color;
 $meter-radius: 0;
 
-// 14. Icon
+// 15. Icon
 // --------
 
 $icon-primary-fill: $primary-color;
@@ -344,7 +356,7 @@ $icon-sizes: (
 );
 $icon-default-size: 1rem;
 
-// 15. Label
+// 16. Label
 // ---------
 
 $label-fontsize: 0.8rem;
@@ -359,7 +371,7 @@ $badge-diameter: 1.5rem;
 $badge-background: $primary-color;
 $badge-color: #fff;
 
-// 16. Loader
+// 17. Loader
 // ----------
 
 $loader-sizes: (
@@ -370,7 +382,7 @@ $loader-sizes: (
 );
 $loader-default-size: 1rem;
 
-// 17. Menu Bar
+// 18. Menu Bar
 // ------------
 
 $menubar-fontsize: 1rem;
@@ -384,7 +396,7 @@ $menubar-item-padding: $global-padding;
 $menubar-icon-size: 25px;
 $menubar-icon-spacing: $menubar-item-padding;
 
-// 18. Modal
+// 19. Modal
 // ---------
 
 $modal-background: #fff;
@@ -401,7 +413,7 @@ $modal-sizes: (
 $modal-overlay-class: 'modal-overlay';
 $modal-overlay-background: rgba(#333, 0.7);
 
-// 19. Motion
+// 20. Motion
 // ----------
 
 $motion-class: (
@@ -449,7 +461,7 @@ $motion-delay-default: 0;
 $motion-delay-short: 300ms;
 $motion-delay-long: 700ms;
 
-// 20. Notification
+// 21. Notification
 // ----------------
 
 $notification-default-position: right top;
@@ -463,7 +475,7 @@ $notification-icon-size: 60px;
 $notification-icon-margin: $global-padding;
 $notification-icon-align: top;
 
-// 21. Off Canvas
+// 22. Off Canvas
 // --------------
 
 $offcanvas-size-horizontal: 250px;
@@ -475,7 +487,7 @@ $offcanvas-shadow: 3px 0 10px rgba(black, 0.25);
 $offcanvas-animation-speed: 0.25s;
 $offcanvas-frame-selector: '.grid-frame';
 
-// 22. Panel
+// 23. Panel
 // ---------
 
 $panel-size-horizontal: 300px;
@@ -484,7 +496,7 @@ $panel-padding: 0;
 $panel-background: #fff;
 $panel-shadow: 3px 0 10px rgba(black, 0.25);
 
-// 23. Popup
+// 24. Popup
 // ---------
 
 $popup-width: rem-calc(300);
@@ -493,7 +505,7 @@ $popup-border: 0;
 $popup-radius: 0;
 $popup-shadow: 0 0 10px rgba(#000, 0.25);
 
-// 24. Switch
+// 25. Switch
 // ----------
 
 $switch-width: rem-calc(50);
@@ -506,7 +518,7 @@ $switch-animation-speed: 0.15s;
 $switch-paddle-color: white;
 $switch-paddle-offset: 4px;
 
-// 25. Tabs
+// 26. Tabs
 // --------
 
 $tabstrip-background: transparent;
@@ -518,7 +530,7 @@ $tab-title-color-active: $tab-title-color;
 $tab-title-padding: $global-padding;
 $tab-content-padding: $global-padding;
 
-// 26. Title Bar
+// 27. Title Bar
 // -------------
 
 $titlebar-center-width: 50%;
