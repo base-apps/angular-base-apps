@@ -1097,6 +1097,7 @@
     .directive('baSwipeClose', baSwipeClose)
     .directive('baHardToggle', baHardToggle)
     .directive('baCloseAll', baCloseAll)
+    .directive('baNoSupport', baNoSupport)
   ;
 
   baClose.$inject = ['BaseAppsApi'];
@@ -1314,9 +1315,9 @@
             }
           }
 
-          // if one or more elements were closed,
+          // if one or more elements were closed and the target is not an href,
           // prevent the default action
-          if (closedElements > 0) {
+          if (closedElements > 0 && !tar.href) {
             e.preventDefault();
           }
         }
@@ -1333,6 +1334,23 @@
         }
       }
       return false;
+    }
+  }
+
+  baNoSupport.$inject = ['$window'];
+
+  function baNoSupport($window) {
+    var directive = {
+      restrict: 'A',
+      link: link
+    };
+
+    return directive;
+
+    function link(scope, element, attrs) {
+      if (!$window.Modernizr || $window.Modernizr.flexbox) {
+        element.remove();
+      }
     }
   }
 })();
