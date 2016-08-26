@@ -62,7 +62,7 @@ The documentation can be viewed at the same URL as above.
 * `docs`: The Angular Base Apps documentation.
 * `scss`: The Sass components.
 * `js`: The Angular modules and directives, and other external libraries.
-* `dist`: Compiled CSS and JavaScript files, in minified and unmified flavors.
+* `dist`: Compiled CSS and JavaScript files, in minified and unminified flavors.
 * `tests`: Unit tests for the Angular modules.
 
 ## Versioning
