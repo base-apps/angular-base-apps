@@ -9,6 +9,7 @@
     .directive('baSwipeClose', baSwipeClose)
     .directive('baHardToggle', baHardToggle)
     .directive('baCloseAll', baCloseAll)
+    .directive('baNoSupport', baNoSupport)
   ;
 
   baClose.$inject = ['BaseAppsApi'];
@@ -245,6 +246,23 @@
         }
       }
       return false;
+    }
+  }
+
+  baNoSupport.$inject = ['$window'];
+
+  function baNoSupport($window) {
+    var directive = {
+      restrict: 'A',
+      link: link
+    };
+
+    return directive;
+
+    function link(scope, element, attrs) {
+      if (!$window.Modernizr || $window.Modernizr.flexbox) {
+        element.remove();
+      }
     }
   }
 })();

@@ -1,0 +1,58 @@
+////
+/// @group compatibility
+////
+
+/// @type Color
+$nosupport-overlay: #000000 !default;
+
+/// @type Color
+$nosupport-background: $alert-color !default;
+
+/// @type Color
+$nosupport-color: isitlight($nosupport-background) !default;
+
+/// @type Number
+$nosupport-top: 15% !default;
+
+/// @type Number
+$nosupport-width: 50% !default;
+
+/// @type List
+$nosupport-font: Arial, Helvetica, sans-serif !important !default;
+
+@include exports(compatibility) {
+  div[ba-no-support] {
+  	position: absolute;
+  	top: 0;
+  	left: 0;
+  	height: 100%;
+  	width: 100%;
+  	z-index: 10000;
+  	background: $nosupport-overlay; /* fallback */
+  	background: rgba($nosupport-overlay, 0.75);
+
+  	div {
+      background: $nosupport-background;
+      color: $nosupport-color;
+      width: $nosupport-width;
+      top: $nosupport-top;
+      padding: 1%;
+      position: absolute;
+      left: 50%;
+      margin: 0 0 0 (-$nosupport-width/2); /* add negative left margin for half the width to center the div */
+      cursor: default;
+      z-index: 10001;
+      border-radius: 4px;
+      box-shadow: 0 0 5px rgba($nosupport-overlay, 0.9);
+
+  		a {
+  			color: $nosupport-color;
+  			font-weight: bold;
+  		}
+
+  		p, a {
+  			font-family: $nosupport-font;
+  		}
+  	}
+  }
+}
