@@ -22,11 +22,7 @@ Stuck with Foundation for Apps?  Try out [Angular Base Apps 1.2.6](https://base-
 
 Want to try out Angular Base Apps 2.0? Check the [migration docs](https://base-apps.github.io/angular-base-apps/latest/#!/migration) for complete info.
 
-Starting fresh?  Install the Sass and JavaScript components via bower or npm.
-```
-bower install angular-base-apps --save
-npm install angular-base-apps --save
-```
+Starting fresh?  Check the [installation docs](http://base-apps.github.io/angular-base-apps/latest/#!/installation) to get started.
 
 ## Documentation
 
