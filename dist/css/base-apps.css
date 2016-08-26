@@ -7850,7 +7850,7 @@ meter {
 .label {
   font-size: 0.8rem;
   padding: 0.33333rem 0.5rem;
-  margin: 0 0 0.46875rem;
+  margin: 0 0 0.46875rem 0;
   background: #00558b;
   border-radius: 0;
   color: #fff; }
@@ -7905,7 +7905,7 @@ meter {
   font-size: 0.8em;
   width: 1.5rem;
   height: 1.5rem;
-  margin: 0 0 0.46875rem;
+  margin: 0 0 0.46875rem 0;
   background: #00558b;
   color: #fff; }
   .badge.secondary {

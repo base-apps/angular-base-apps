@@ -1,3 +1,4 @@
+
 <h2>Migration</h2>
 
 <h3 class="subheader">Easily convert your Foundation for Apps projects to use Angular Base Apps.</h3>
@@ -21,10 +22,16 @@
 <script src="https://cdn.jsdelivr.net/angular-base-apps/1.2.6/base-apps.js"></script>
 <script src="https://cdn.jsdelivr.net/angular-base-apps/1.2.6/base-apps.min.js"></script>
 
-<!-- JavaScript templates -->
+<!-- JavaScript templates (see NOTE below) -->
 <script src="https://cdn.jsdelivr.net/angular-base-apps/1.2.6/base-apps-templates.js"></script>
 <script src="https://cdn.jsdelivr.net/angular-base-apps/1.2.6/base-apps-templates.min.js"></script>
+<script src="https://cdn.jsdelivr.net/angular-base-apps/1.2.6/foundation-apps-templates.js"></script>
+<script src="https://cdn.jsdelivr.net/angular-base-apps/1.2.6/foundation-apps-templates.min.js"></script>
 </hljs>
+
+  <p><strong>NOTE:</strong> In version 1.2.1, a new set of <code>base</code> modules were introduced to replace the <code>foundation</code> modules.  If you're using
+  these new <code>base</code> modules, you'll need to reference <code>base-apps-templates.js</code> to have the templates configured for the <code>base</code> module.
+  If you're still using the <code>foundation</code> modules, you'll need to use <code>foundation-apps-templates.js</code>.</p>
 
 </section>
 
@@ -34,6 +41,13 @@
   <h3>Migration from 1.x to 2.x</h3>
 
   <p>Whether migrating from Foundation for Apps 1.x or Angular Base Apps 1.x, you can use the following steps to migrate to Angular Base Apps 2.x.</p>
+
+  <h4>Removed Files</h4>
+
+  <p>
+    <code>foundation-apps-templates.js</code> and <code>base-apps-templates.js</code> are no longer part of the distribution and should be removed as dependencies.
+    Templates are shipped with <code>base-apps.js</code> by default.
+  </p>
 
   <h4>Rename Directive Prefix</h4>
 
