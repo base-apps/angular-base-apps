@@ -3,8 +3,7 @@
   "version": "2.0.0",
   "main": [
     "scss/base.scss",
-    "dist/js/base-apps.js",
-    "dist/js/base-apps-templates.js"
+    "dist/js/base-apps.js"
   ],
   "dependencies": {
     "viewport-units-buggyfill": "~0.4.1",
