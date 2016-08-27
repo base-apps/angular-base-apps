@@ -6,10 +6,10 @@
   "scripts": {
     "test": "gulp test",
     "start": "gulp",
-    "publish-prerelease": "gulp publish:dist --publish prerelease && nmp run publish-finalize",
-    "publish-patch": "gulp publish:dist --publish patch && nmp run publish-finalize",
-    "publish-minor": "gulp publish:dist --publish minor && nmp run publish-finalize",
-    "publish-major": "gulp publish:dist --publish major && nmp run publish-finalize",
+    "publish-prerelease": "gulp publish:dist --publish prerelease && npm run publish-finalize",
+    "publish-patch": "gulp publish:dist --publish patch && npm run publish-finalize",
+    "publish-minor": "gulp publish:dist --publish minor && npm run publish-finalize",
+    "publish-major": "gulp publish:dist --publish major && npm run publish-finalize",
     "publish-docs": "gulp build:dist && gulp publish:ghpages:latest",
     "publish-finalize": "git push --follow-tags && npm publish && gulp publish:ghpages:release && gulp publish:ghpages:latest"
   },
