@@ -20,9 +20,11 @@ You'll need the following software installed to get started.
 
 Stuck with Foundation for Apps?  Try out [Angular Base Apps 1.2.6](https://base-apps.github.io/angular-base-apps/latest/#!/migration) as a drop-in replacement!
 
-Want to try out Angular Base Apps 2.0? Check the [migration docs](https://base-apps.github.io/angular-base-apps/latest/#!/migration) for complete info.
-
 Starting fresh?  Check the [installation docs](http://base-apps.github.io/angular-base-apps/latest/#!/installation) to get started.
+
+## Templates
+
+We've compiled a list of project templates for Angular Base Apps which can be found [here](http://base-apps.github.io/angular-base-apps/latest/#!/templates).  If you have a template you would like added to the list let us know!
 
 ## Documentation
 
