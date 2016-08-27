@@ -1,0 +1,18 @@
+<div class="grid-block vertical">
+  <div class="grid-container">
+    <h2>Welcome to Angular Base Apps with Firebase!</h2>
+    <p class="lead">This is version <strong>2.0</strong>!</p>
+    <ba-iconic icon="thumb" class="primary medium"></ba-iconic>
+    <ba-open-iconic icon="thumb-up" class="primary medium"></ba-open-iconic>
+    <ba-ionicon icon="ios-thumbs-up" class="primary medium"></ba-ionicon>
+    <ba-material-icon icon="thumb-up" class="primary medium"></ba-material-icon>
+    <h3>Leave a Message!</h3>
+    <strong ng-show="loaded && messages.length === 0">no messages yet</strong>
+    <textarea ng-show="loaded" ng-model="newmessage"></textarea>
+    <a ng-show="loaded" class="button" ng-click="submit()">Save</a>
+  </div>
+  <div class="grid-container">
+    <ba-spin-kit ng-if="!loaded" loader="wave" class="primary large"></ba-spin-kit>
+    <p ng-repeat="message in messages">{{ message.$value }}</p>
+  </div>
+</div>
