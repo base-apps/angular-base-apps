@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en" ng-app="application">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title ng-bind="$state.current.data.vars.title"></title>
+    <link rel="shortcut icon" href="assets/img/favicon.ico">
+    <link href="assets/css/app.css" rel="stylesheet" type="text/css">
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css" rel="stylesheet">
+    <script src="assets/js/routes.js"></script>
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/templates.js"></script>
+  </head>
+  <body ba-esc-close ba-close-all>
+    <!-- No Support Detection -->
+    <div ba-no-support>
+      <div>
+        <p>
+          We're sorry, your browser does not support all required functionality needed to run our app.
+          Please switch to a different device or browser and try again.
+          You can update your browser <a href="http://www.browsehappy.com">here</a>.
+        </p>
+        <p>
+          If you're using Internet Explorer, try turning off Compatibility View if it's enabled.
+        </p>
+      </div>
+    </div>
+
+    <!-- Right Off Canvas -->
+    <ba-offcanvas id="example-canvas-top" position="top">
+      <div class="grid-content">
+        <a href="" ba-close class="close-button">&times;</a>
+        <h3>This is a top off-canvas menu.</h3>
+      </div>
+    </ba-offcanvas>
+
+    <!-- Bottom Off Canvas -->
+    <ba-offcanvas id="example-canvas-right" position="right">
+      <div class="grid-content">
+        <a href="" ba-close class="close-button">&times;</a>
+        <h3>This is a right off-canvas menu.</h3>
+      </div>
+    </ba-offcanvas>
+
+    <!-- Left Off Canvas -->
+    <ba-offcanvas id="example-canvas-bottom" position="bottom">
+      <div class="grid-content">
+        <a href="" ba-close class="close-button">&times;</a>
+        <h3>This is a bottom off-canvas menu.</h3>
+      </div>
+    </ba-offcanvas>
+
+    <!-- Top Off Canvas -->
+    <ba-offcanvas id="example-canvas-left" position="left" class="detached">
+      <div class="grid-content">
+        <a href="" ba-close class="close-button">&times;</a>
+        <h3>This is a left off-canvas menu.</h3>
+      </div>
+    </ba-offcanvas>
+
+    <!-- App frame -->
+    <div class="vertical grid-frame">
+
+      <!-- Title bar -->
+      <div id="header" class="shrink collapse grid-content">
+        <div ng-include="'partials/global-nav.html'"></div>
+      </div>
+      <!-- /Title bar -->
+
+      <div class="grid-block" ng-controller="NavController">
+
+        <!-- Sidebar nav -->
+        <div ba-panel id="sidebar" class="docs-sidebar">
+          <!-- Search bar -->
+          <div class="grid-content shrink docs-search">
+            <autocomplete data="routing" on-select="selectRoute" attr-placeholder="Search docs: e.g. forms" ng-model="typedText" />
+          </div>
+          <!-- /Search bar -->
+          <!-- Page list -->
+          <div class="grid-content collapse">
+            <div ng-include="'partials/component-list.html'"></div>
+          </div>
+          <!-- /Page list -->
+        </div>
+        <!-- /Sidebar nav -->
+
+        <div ng-include="'partials/examples-panel.html'"></div>
+
+        <!-- Main content -->
+        <div class="docs-main" ng-show="$state.current.name.length">
+          <div class="grid-container">
+            <a class="small secondary expand button hide-for-medium" ba-toggle="sidebar">Show Components</a>
+            <div ng-class="['ui-animation']" ui-view autoscroll></div>
+          </div>
+        </div>
+        <!-- /Main content -->
+
+      </div>
+
+    </div>
+    <!-- /App frame -->
+
+    <div ng-include="'partials/examples-modal.html'" style="z-index: 10000"></div>
+
+  </body>
+</html>
