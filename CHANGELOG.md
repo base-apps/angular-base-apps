@@ -1,4 +1,13 @@
-# Version 2.0.0 (prelease)
+# Version 2.0.1
+
+### Bug Fixes
+- <a href="https://github.com/base-apps/angular-base-apps/issues/71">#71</a>: Update `npm` dependencies to match `bower` dependencies
+
+### Docs
+
+https://base-apps.github.io/angular-base-apps/v2.0.1
+
+# Version 2.0.0
 
 ### General
 
@@ -21,7 +30,7 @@ First release to be completely separated from ZURB and Foundation for Apps!  Che
 
 ### Docs
 
-https://base-apps.github.io/angular-base-apps/latest
+https://base-apps.github.io/angular-base-apps/v2.0.0
 
 # Version 1.2.6
 
