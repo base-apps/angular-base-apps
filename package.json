@@ -1,6 +1,6 @@
 {
   "name": "angular-base-apps",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "license": "MIT",
   "description": "A responsive, Angular-powered framework for web apps",
   "scripts": {
