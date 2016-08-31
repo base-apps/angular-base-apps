@@ -1,1 +1,17 @@
---- name: home url: / controller: HomeController as home ---<div class=grid-container><h2>Welcome to Angular Base Apps with Firebase!</h2><p class=lead>This is version <strong>2.0</strong>!</p><ba-open-iconic icon=thumb-up class="primary medium"></ba-open-iconic><ba-ionicon icon=ios-thumbs-up class="primary medium"></ba-ionicon><ba-material-icon icon=thumb-up class="primary medium"></ba-material-icon><h3>Leave a Message!</h3><ba-spin-kit ng-if=!home.messages.$resolved loader=wave class="primary large"></ba-spin-kit><div ng-if=home.messages.$resolved><strong ng-show="home.messages.length === 0">no messages yet</strong><textarea ng-model=newmessage></textarea><a class=button ng-click=home.submitMessage(newmessage)>Save</a></div><div class="slideInLeft stagger" ng-repeat="message in home.messages"><p>{{ message.$value }}</div></div>
+<div class="grid-container">
+  <h2>Welcome to Angular Base Apps with Firebase!</h2>
+  <p class="lead">This is version <strong>2.0</strong>!</p>
+  <ba-open-iconic icon="thumb-up" class="primary medium"></ba-open-iconic>
+  <ba-ionicon icon="ios-thumbs-up" class="primary medium"></ba-ionicon>
+  <ba-material-icon icon="thumb-up" class="primary medium"></ba-material-icon>
+  <h3>Leave a Message!</h3>
+  <ba-spin-kit ng-if="!home.messages.$resolved" loader="wave" class="primary large"></ba-spin-kit>
+  <div ng-if="home.messages.$resolved">
+    <strong ng-show="home.messages.length === 0">no messages yet</strong>
+    <textarea ng-model="newmessage"></textarea>
+    <a class="button" ng-click="home.submitMessage(newmessage)">Save</a>
+  </div>
+  <div class="slideInLeft stagger" ng-repeat="message in home.messages">
+    <p>{{ message.$value }}</p>
+  </div>
+</div>
