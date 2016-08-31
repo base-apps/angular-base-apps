@@ -1,3 +1,12 @@
+# Version 2.0.2
+
+### Bug Fixes
+- <a href="https://github.com/base-apps/angular-base-apps/issues/74">#74</a>: Support `import` for ES6 templates
+
+### Docs
+
+https://base-apps.github.io/angular-base-apps/v2.0.2
+
 # Version 2.0.1
 
 ### Bug Fixes
