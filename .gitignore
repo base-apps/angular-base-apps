@@ -7,3 +7,5 @@ build/*
 dist/*
 scss/*
 npm-debug.log
+
+.DS_Store
