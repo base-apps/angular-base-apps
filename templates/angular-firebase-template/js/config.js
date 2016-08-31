@@ -1,2 +1,0 @@
-
-/*# sourceMappingURL=config.js.map*/
