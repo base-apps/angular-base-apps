@@ -1,0 +1,191 @@
+
+<h2>Accordion</h2>
+<h3 class="subheader">The trusty accordion allows you to create a series of vertical tabs containing various content.</h3>
+
+<hr />
+
+<ba-accordion>
+  <ba-accordion-item
+    title="Input your title here">
+    Content goes here
+  </ba-accordion-item>
+    <ba-accordion-item
+    title="Input your title here">
+    Content goes here
+  </ba-accordion-item>
+    <ba-accordion-item
+    title="Input your title here">
+    Content goes here
+  </ba-accordion-item>
+</ba-accordion>
+
+<hr />
+
+<h3>Basic HTML</h3>
+<p>You can create an accordion with this basic directive</p>
+<div class="grid-block">
+  <div class="small-12 medium-6 grid-content">
+<hljs language="html">
+  <ba-accordion>
+    <ba-accordion-item
+      title="Input your title here">
+      Content goes here
+    </ba-accordion-item>
+      <ba-accordion-item
+      title="Input your title here">
+      Content goes here
+    </ba-accordion-item>
+      <ba-accordion-item
+      title="Input your title here">
+      Content goes here
+    </ba-accordion-item>
+  </ba-accordion>
+</hljs>
+  </div>
+  <div class="small-12 medium-6 grid-content">
+    <ba-accordion>
+		  <ba-accordion-item
+		    title="Input your title here">
+		    Content goes here
+		  </ba-accordion-item>
+		    <ba-accordion-item
+		    title="Input your title here">
+		    Content goes here
+		  </ba-accordion-item>
+		    <ba-accordion-item
+		    title="Input your title here">
+		    Content goes here
+		  </ba-accordion-item>
+		</ba-accordion>
+  </div>
+</div>
+
+<hr>
+
+<h3>Advanced HTML</h3>
+<p>You can create advanced versions of an accordion with these additional directive options</p>
+<div class="grid-block">
+  <div class="small-12 medium-6 grid-content">
+<hljs language="html">
+<ba-accordion auto-open="false" collapsible="true" multi-open="true">
+  <ba-accordion-item
+    title="Auto Open">
+    Auto open opens the first tab on render.
+  </ba-accordion-item>
+    <ba-accordion-item
+    title="Collapsible">
+    Collapsible allows toggable tabs. Click on a tab to open or close it.
+  </ba-accordion-item>
+    <ba-accordion-item
+    title="Multi Open">
+    Multi open allows for multiple tabs to be open at once.
+  </ba-accordion-item>
+</ba-accordion>
+</hljs>
+  </div>
+  <div class="small-12 medium-6 grid-content">
+    <ba-accordion auto-open="false" collapsible="true" multi-open="true">
+      <ba-accordion-item
+        title="Auto Open">
+        Auto open opens the first tab on render. Defaults to "true"
+      </ba-accordion-item>
+        <ba-accordion-item
+        title="Collapsible">
+        Collapsible allows toggable tabs. Click on a tab to open or close it. Defaults to "false"
+      </ba-accordion-item>
+        <ba-accordion-item
+        title="Multi Open">
+        Multi open allows for multiple tabs to be open at once. Defaults to "false". When true, it forces collapsible to be "true" as well. It cannot be overriden.
+      </ba-accordion-item>
+    </ba-accordion>
+  </div>
+</div>
+
+<ul>
+  <li><code>auto-open</code>: By default, the first accordion will auto open in the container.  Set the <strong>auto-open</strong> attribute to <strong>false</strong> to change this functionality.</li>
+  <li><code>collapsible</code>: By default, one accordion must be open at all times.  Set the <strong>collapsible</strong> attribute to <strong>true</strong> to change this functionality.  This will enable toggling the accordions.</li>
+  <li><code>multi-open</code>: By default, only one accordion can be expanded at a time.  Set the <strong>multi-open</strong> attribute to <strong>true</strong> to change this functionality.  Setting this functionality implies <strong>collapsible</strong> is set to <strong>true</strong>.</li>
+</ul>
+
+<hr />
+
+<h3>External Triggers</h3>
+
+<p>The accordions can be opened and closed outside the accordion component using the <code>ba-open</code>, <code>ba-close</code>, and <code>ba-toggle</code> directives.</p>
+
+<div class="grid-block align-center">
+  <div class="small-12 grid-content">
+
+<hljs language="html">
+<a class="button" ba-open="trigger-accordion-1">Open 1</a>
+<a class="button" ba-close="trigger-accordion-2">Close 2</a>
+<a class="button" ba-toggle="trigger-accordion-3">Toggle 3</a>
+<ba-accordion auto-open="false" collapsible="true" multi-open="true">
+  <ba-accordion-item id="trigger-accordion-1" title="Auto Open">
+    Auto open opens the first tab on render.
+  </ba-accordion-item>
+  <ba-accordion-item id="trigger-accordion-2" title="Collapsible">
+    Collapsible allows toggable tabs. Click on a tab to open or close it.
+  </ba-accordion-item>
+  <ba-accordion-item id="trigger-accordion-3" title="Multi Open">
+    Multi open allows for multiple tabs to be open at once.
+  </ba-accordion-item>
+</ba-accordion>
+</hljs>
+  </div>
+
+  <div class="small-12 grid-content">
+    <a class="button" ba-open="trigger-accordion-1">Open 1</a>
+    <a class="button" ba-close="trigger-accordion-2">Close 2</a>
+    <a class="button" ba-toggle="trigger-accordion-3">Toggle 3</a>
+    <ba-accordion auto-open="false" collapsible="true" multi-open="true">
+      <ba-accordion-item id="trigger-accordion-1" title="Auto Open">
+        Auto open opens the first tab on render.
+      </ba-accordion-item>
+      <ba-accordion-item id="trigger-accordion-2" title="Collapsible">
+        Collapsible allows toggable tabs. Click on a tab to open or close it.
+      </ba-accordion-item>
+      <ba-accordion-item id="trigger-accordion-3" title="Multi Open">
+        Multi open allows for multiple tabs to be open at once.
+      </ba-accordion-item>
+    </ba-accordion>
+	</div>
+</div>
+
+<hr>
+
+<h3>Accessing Parent Data</h3>
+
+<p>The accordion directive uses an isolated scope, meaning data from the parent scope cannot be accessed directly.  In order to access properties on the parent scope, one must use  <code>$parent</code>.  Refer to the <a ui-sref="tabs">tabs documentation</a> for a complete example of how to use <code>$parent</code>.</p>
+
+<hr>
+
+<h3>Sass Mixins</h3>
+
+<p>Use our mixins to write a custom accordion. There are only mixins for the two components of accordion items: the title and the content.</p>
+
+<hljs language="scss">
+.custom-accordion-title {
+  @include accordion-title(
+    $background: #fff, // Default background
+    $background-hover: #fff, // Background on hover
+    $background-active: #fff, // Background when active
+    $color: #000, // Default color
+    $color-active: #000, // Color when active
+    $padding: 1rem
+  );
+}
+
+.custom-accordion-content {
+  @include accordion-content(
+    $padding: 1rem
+  );
+}
+</hljs>
+
+<hr>
+
+<h3>Sass Variables</h3>
+<p>You can customize the accordion with these variables in <code>_settings.scss</code></p>
+<hljs include="'partials/scss/accordion.html'" language="scss">
+</hljs>
