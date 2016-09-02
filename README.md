@@ -24,7 +24,7 @@ Starting fresh?  Check the [installation docs](http://base-apps.github.io/angula
 
 ## Templates
 
-We've compiled a list of [project templates for Angular Base Apps](http://base-apps.github.io/angular-base-apps/latest/#!/templates) to help get you started quickly.  If you have a template you would like added to the list let us know!
+We've compiled a list of [project templates](http://base-apps.github.io/angular-base-apps/latest/#!/templates) for Angular Base Apps to help get you started quickly.  If you have a template you would like added to the list let us know!
 
 ## Documentation
 
