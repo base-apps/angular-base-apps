@@ -201,6 +201,7 @@
         'overlayClose',
         'destroyOnClose',
         'ignoreAllClose',
+        'advise',
         'class'
       ];
 
@@ -325,6 +326,9 @@
                 break;
               case 'ignoreAllClose':
                 element.attr('ba-ignore-all-close', 'ba-ignore-all-close');
+                break;
+              case 'advise':
+                element.attr('ba-advise', 'ba-advise');
                 break;
               case 'class':
                 if (angular.isString(config[prop])) {
