@@ -1,6 +1,6 @@
 {
   "name": "angular-base-apps",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "main": [
     "scss/base.scss",
     "dist/js/base-apps.js"
