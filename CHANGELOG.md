@@ -1,3 +1,12 @@
+# Version 2.0.3
+
+### Bug Fixes
+- <a href="https://github.com/base-apps/angular-base-apps/issues/72">#72</a>: Fix links used inside `ba-close`, `ba-open`, `ba-toggle`, and `ba-hard-toggle`
+
+### Docs
+
+https://base-apps.github.io/angular-base-apps/v2.0.3
+
 # Version 2.0.2
 
 ### Bug Fixes
