@@ -1,3 +1,12 @@
+# Version 2.0.4
+
+### Bug Fixes
+- <a href="https://github.com/base-apps/angular-base-apps/issues/80">#80</a>: Enable adding `ba-advise` support to modals created with `ModalFactory`
+
+### Docs
+
+https://base-apps.github.io/angular-base-apps/v2.0.4
+
 # Version 2.0.3
 
 ### Bug Fixes
