@@ -1,0 +1,109 @@
+
+<h2>Compatibility</h2>
+<h3 class="subheader">Angular Base Apps is designed for and tested on numerous browsers and devices. It's built on some of the latest web technologies. Here's the rundown on what type of compatibility to expect.
+</h3>
+
+<hr>
+
+<table class="comparison-table">
+  <thead>
+    <tr>
+      <td>Browser/OS</td>
+      <td class="marker">Compatibility</td>
+    </tr>
+  </thead>
+  <tr>
+    <td>Chrome</td>
+    <td class="marker yes">&check;</td>
+  </tr>
+  <tr>
+    <td>Firefox</td>
+    <td class="marker yes">&check;</td>
+  </tr>
+  <tr>
+    <td>Safari</td>
+    <td class="marker yes">&check;</td>
+  </tr>
+  <tr>
+    <td>Opera 25+ (not Mini)</td>
+    <td class="marker yes">&check;</td>
+  </tr>
+  <tr>
+    <td>IE10&ndash;11</td>
+    <td class="marker yes">&check;</td>
+  </tr>
+  <tr>
+    <td>IE6&ndash;9</td>
+    <td class="marker no">&times;</td>
+  </tr>
+  <tr>
+    <td>iOS 7&ndash;8 (iPhone)</td>
+    <td class="marker yes">&check;</td>
+  </tr>
+  <tr>
+    <td>iOS 7&ndash;8 (iPad)</td>
+    <td class="marker yes">&check;</td>
+  </tr>
+  <tr>
+    <td>Android 4.2+ (Tablet &amp; Phone)</td>
+    <td class="marker yes">&check;</td>
+  </tr>
+  <tr>
+    <td>Android 2 (Tablet &amp; Phone)</td>
+    <td class="marker no">&times;</td>
+  </tr>
+  <tr>
+    <td>Windows Phone 8+</td>
+    <td class="marker yes">&check;</td>
+  </tr>
+  <tr>
+    <td>Surface Tablet</td>
+    <td class="marker yes">&check;</td>
+  </tr>
+</table>
+<br>
+<br>
+
+<p>By and large, browser support for Angular Base Apps comes down to support for <a href="http://caniuse.com/#feat=flexbox">Flexbox</a>.</p>
+
+<hr>
+
+<h3>No Support Detection</h3>
+
+<p>By using the <code>ba-no-support</code> attribute, you can easily display an overlay message to your users if they are using an unsupported browser.  Place the following markup at the top of the HTML body:</p>
+
+<hljs language="html">
+<div ba-no-support>
+  <div>
+    <!-- your code here -->
+  </div>
+</div>
+</hljs>
+
+<p>For example, this app uses the following markup:</p>
+
+<hljs language="html">
+<div ba-no-support>
+  <div>
+    <p>
+      We're sorry, your browser does not support all required functionality
+      needed to run our app. Please switch to a different device or browser
+      and try again. You can update your browser
+      <a href="http://www.browsehappy.com">here</a>.
+    </p>
+    <p>
+      If you're using Internet Explorer, try turning off Compatibility View
+      if it's enabled.
+    </p>
+  </div>
+</div>
+</hljs>
+
+<p>In order to use this feature, you must include <a href="https://modernizr.com">Modernizr</a> in your app with flexbox detection enabled. If you don't yet have Modernizr, you can download a minified build which only includes flexbox detection: <a href="https://modernizr.com/download?flexbox">https://modernizr.com/download?flexbox</a>.</p>
+
+<hr>
+
+<h3>Sass Variables</h3>
+<p>You can customize the no support overlay message and with these variables:</p>
+<hljs include="'partials/scss/compatibility.html'" language="scss">
+</hljs>
