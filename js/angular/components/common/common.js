@@ -29,7 +29,7 @@
       } else {
         var parentElement= false;
         var tempElement = element.parent();
-        //find parent modal
+        // find parent component
         while(parentElement === false) {
           if(tempElement[0].nodeName == 'BODY') {
             parentElement = '';
@@ -46,8 +46,8 @@
       element.on('click', function(e) {
         BaseAppsApi.publish(targetId, 'close');
 
-        if (!e.target.href) {
-          // prevent default if target doesn't have href attribute
+        if (!_hasParentHref(e.target, targetId)) {
+          // prevent default if target not inside link
           e.preventDefault();
         }
       });
@@ -68,8 +68,8 @@
       element.on('click', function(e) {
         BaseAppsApi.publish(attrs.baOpen, 'open');
 
-        if (!e.target.href) {
-          // prevent default if target doesn't have href attribute
+        if (!_hasParentHref(e.target, attrs.baOpen)) {
+          // prevent default if target not inside link
           e.preventDefault();
         }
       });
@@ -90,8 +90,8 @@
       element.on('click', function(e) {
         BaseAppsApi.publish(attrs.baToggle, 'toggle');
 
-        if (!e.target.href) {
-          // prevent default if target doesn't have href attribute
+        if (!_hasParentHref(e.target, attrs.baToggle)) {
+          // prevent default if target not inside link
           e.preventDefault();
         }
       });
@@ -179,8 +179,8 @@
         BaseAppsApi.closeActiveElements({exclude: attrs.baHardToggle});
         BaseAppsApi.publish(attrs.baHardToggle, 'toggle');
 
-        if (!e.target.href) {
-          // prevent default if target doesn't have href attribute
+        if (!_hasParentHref(e.target, attrs.baToggle)) {
+          // prevent default if target not inside link
           e.preventDefault();
         }
       });
@@ -264,5 +264,19 @@
         element.remove();
       }
     }
+  }
+
+  function _hasParentHref(target, rootId) {
+    var parentElement = target, hasHref = false;
+
+    while (parentElement && parentElement.id != rootId) {
+      if (parentElement.href) {
+        hasHref = true;
+        break;
+      }
+      parentElement = parentElement.parentNode;
+    }
+
+    return hasHref;
   }
 })();
