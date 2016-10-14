@@ -1,3 +1,13 @@
+# Version 2.0.5
+
+### Bug Fixes
+- <a href="https://github.com/base-apps/angular-base-apps/issues/83">#83</a>: Fix `*-grid-block` transformations
+- <a href="https://github.com/base-apps/angular-base-apps/issues/84">#84</a>: Move `angular-ui-router` to devDependencies
+
+### Docs
+
+https://base-apps.github.io/angular-base-apps/v2.0.5
+
 # Version 2.0.4
 
 ### Bug Fixes
