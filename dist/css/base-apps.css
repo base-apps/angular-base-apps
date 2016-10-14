@@ -5860,10 +5860,21 @@ meter {
     right: auto;
     bottom: auto;
     left: auto; }
-  .small-grid-block.panel:not(.is-active) {
-    display: none; }
-    .small-grid-block.panel:not(.is-active).ng-enter.ng-enter-active, .small-grid-block.panel:not(.is-active).ng-leave.ng-leave-active {
-      position: absolute; }
+  .small-grid-block.panel:not(.is-active).ng-enter.ng-enter-active, .small-grid-block.panel:not(.is-active).ng-leave.ng-leave-active {
+    position: absolute; }
+  .small-grid-block.panel:not(.is-active):not(.ng-enter):not(.ng-enter-active):not(.ng-leave):not(.ng-leave-active) {
+    -webkit-transform: none;
+            transform: none;
+    position: relative;
+    width: auto;
+    height: auto;
+    z-index: auto;
+    box-shadow: none;
+    background: transparent;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    left: auto; }
 
 .small-grid-content {
   display: block;
@@ -5948,10 +5959,21 @@ meter {
       right: auto;
       bottom: auto;
       left: auto; }
-    .medium-grid-block.panel:not(.is-active) {
-      display: none; }
-      .medium-grid-block.panel:not(.is-active).ng-enter.ng-enter-active, .medium-grid-block.panel:not(.is-active).ng-leave.ng-leave-active {
-        position: absolute; } }
+    .medium-grid-block.panel:not(.is-active).ng-enter.ng-enter-active, .medium-grid-block.panel:not(.is-active).ng-leave.ng-leave-active {
+      position: absolute; }
+    .medium-grid-block.panel:not(.is-active):not(.ng-enter):not(.ng-enter-active):not(.ng-leave):not(.ng-leave-active) {
+      -webkit-transform: none;
+              transform: none;
+      position: relative;
+      width: auto;
+      height: auto;
+      z-index: auto;
+      box-shadow: none;
+      background: transparent;
+      top: auto;
+      right: auto;
+      bottom: auto;
+      left: auto; } }
 
 @media only screen and (min-width: 40em) {
   .medium-grid-content {
@@ -6037,10 +6059,21 @@ meter {
       right: auto;
       bottom: auto;
       left: auto; }
-    .large-grid-block.panel:not(.is-active) {
-      display: none; }
-      .large-grid-block.panel:not(.is-active).ng-enter.ng-enter-active, .large-grid-block.panel:not(.is-active).ng-leave.ng-leave-active {
-        position: absolute; } }
+    .large-grid-block.panel:not(.is-active).ng-enter.ng-enter-active, .large-grid-block.panel:not(.is-active).ng-leave.ng-leave-active {
+      position: absolute; }
+    .large-grid-block.panel:not(.is-active):not(.ng-enter):not(.ng-enter-active):not(.ng-leave):not(.ng-leave-active) {
+      -webkit-transform: none;
+              transform: none;
+      position: relative;
+      width: auto;
+      height: auto;
+      z-index: auto;
+      box-shadow: none;
+      background: transparent;
+      top: auto;
+      right: auto;
+      bottom: auto;
+      left: auto; } }
 
 @media only screen and (min-width: 75em) {
   .large-grid-content {
