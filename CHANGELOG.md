@@ -1,3 +1,12 @@
+# Version 2.0.6
+
+### Bug Fixes
+- <a href="https://github.com/base-apps/angular-base-apps/issues/84">#84</a>: Remove `angular-ui-router` from index.js
+
+### Docs
+
+https://base-apps.github.io/angular-base-apps/v2.0.6
+
 # Version 2.0.5
 
 ### Bug Fixes
