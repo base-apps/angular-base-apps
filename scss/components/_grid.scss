@@ -446,10 +446,11 @@ $block-grid-max-size: 6 !default;
             }
           }
           &:not(.is-active) {
-            display: none;
-
             @include grid-panel-animating(true) {
               position: absolute;
+            }
+            @include grid-panel-animating(false) {
+              @include grid-panel-reset;
             }
           }
         }
