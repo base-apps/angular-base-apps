@@ -201,9 +201,21 @@
       element.on('click', function(e) {
         var tar = e.target, avoid, activeElements, closedElements, i;
 
-        // check if clicked target is designated to open/close another component
+        // check if clicked target or any of its ancestors is designated to open/close
+        // another component
         avoid = ['ba-toggle', 'ba-hard-toggle', 'ba-open', 'ba-close'].filter(function(e){
-          return e in tar.attributes;
+          var parentElement = tar, hasAttr = false;
+
+          while (parentElement && typeof(parentElement.getAttribute) === 'function') {
+            var attrVal = parentElement.getAttribute(e);
+            if (typeof(attrVal) !== 'undefined' && attrVal !== null) {
+              hasAttr = true;
+              break;
+            }
+            parentElement = parentElement.parentNode;
+          }
+
+          return hasAttr;
         });
         if(avoid.length > 0) {
           // do nothing
