@@ -203,7 +203,7 @@
 
         // check if clicked target is designated to open/close another component
         avoid = ['ba-toggle', 'ba-hard-toggle', 'ba-open', 'ba-close'].filter(function(e){
-          return e in tar.attributes;
+          return tar.closest('*[' + e + ']') !== null;
         });
         if(avoid.length > 0) {
           // do nothing
