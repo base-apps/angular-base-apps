@@ -1,6 +1,6 @@
 # Angular Base Apps
 
-An open source, community-driven fork of [Foundation for Apps by Zurb](https://github.com/zurb/foundation-apps). Read about the [why](https://github.com/zurb/foundation-apps/issues/812) behind this fork.
+An open source, community-driven fork of [Foundation for Apps by Zurb](https://github.com/zurb/foundation-apps) which has been [deprecated](https://github.com/zurb/foundation-apps#deprecation-notice).
 
 [![Build Status](https://travis-ci.org/base-apps/angular-base-apps.svg)](https://travis-ci.org/base-apps/angular-base-apps)
 [![GitHub version](https://badge.fury.io/gh/base-apps%2Fangular-base-apps.svg)](https://badge.fury.io/gh/base-apps%2Fangular-base-apps)
