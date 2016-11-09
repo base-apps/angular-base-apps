@@ -36,9 +36,9 @@
     }
   }
 
-  modalDirective.$inject = ['BaseAppsApi'];
+  modalDirective.$inject = ['$timeout', 'BaseAppsApi'];
 
-  function modalDirective(BaseAppsApi) {
+  function modalDirective($timeout, BaseAppsApi) {
 
     var directive = {
       restrict: 'EA',
