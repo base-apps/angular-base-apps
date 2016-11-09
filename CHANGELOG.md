@@ -1,3 +1,12 @@
+# Version 2.0.7
+
+### Bug Fixes
+- Add missing dependency injection to `ba-modal` directive
+
+### Docs
+
+https://base-apps.github.io/angular-base-apps/v2.0.7
+
 # Version 2.0.6
 
 ### Bug Fixes
