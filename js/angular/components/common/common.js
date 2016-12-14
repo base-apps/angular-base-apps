@@ -129,32 +129,39 @@
 
     function link($scope, element, attrs) {
       var swipeDirection;
-      var hammerElem;
-      if (typeof(Hammer)!=='undefined') {
-        hammerElem = new Hammer(element[0]);
-        // set the options for swipe (to make them a bit more forgiving in detection)
-        hammerElem.get('swipe').set({
-          direction: Hammer.DIRECTION_ALL,
-          threshold: 5, // this is how far the swipe has to travel
-          velocity: 0.5 // and this is how fast the swipe must travel
-        });
-      }
+      var hammerElem, hammerDirection;
+
       // detect what direction the directive is pointing
       switch (attrs.baSwipeClose) {
         case 'right':
           swipeDirection = 'swiperight';
+          hammerDirection = Hammer.DIRECTION_RIGHT;
           break;
         case 'left':
           swipeDirection = 'swipeleft';
+          hammerDirection = Hammer.DIRECTION_LEFT;
           break;
         case 'up':
           swipeDirection = 'swipeup';
+          hammerDirection = Hammer.DIRECTION_UP;
           break;
         case 'down':
           swipeDirection = 'swipedown';
+          hammerDirection = Hammer.DIRECTION_DOWN;
           break;
         default:
           swipeDirection = 'swipe';
+          hammerDirection = Hammer.DIRECTION_ALL;
+      }
+
+      if (typeof(Hammer)!=='undefined') {
+        hammerElem = new Hammer(element[0]);
+        // set the options for swipe (to make them a bit more forgiving in detection)
+        hammerElem.get('swipe').set({
+          direction: hammerDirection,
+          threshold: 5, // this is how far the swipe has to travel
+          velocity: 0.5 // and this is how fast the swipe must travel
+        });
       }
       if(typeof(hammerElem) !== 'undefined'){
         hammerElem.on(swipeDirection, function() {
