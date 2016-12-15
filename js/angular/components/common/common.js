@@ -162,8 +162,6 @@
           threshold: 5, // this is how far the swipe has to travel
           velocity: 0.5 // and this is how fast the swipe must travel
         });
-      }
-      if(typeof(hammerElem) !== 'undefined'){
         hammerElem.on(swipeDirection, function() {
           BaseAppsApi.publish(attrs.id, 'close');
         });
