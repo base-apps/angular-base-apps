@@ -1,3 +1,13 @@
+# Version 2.0.8
+
+### Bug Fixes
+- <a href="https://github.com/base-apps/angular-base-apps/issues/89">#89</a>: Fix default notification positioning
+- <a href="https://github.com/base-apps/angular-base-apps/issues/87">#87</a>: `ba-swipe-close` breaks touch scrolling
+
+### Docs
+
+https://base-apps.github.io/angular-base-apps/v2.0.8
+
 # Version 2.0.7
 
 ### Bug Fixes
