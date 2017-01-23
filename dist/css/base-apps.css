@@ -10783,6 +10783,16 @@ meter {
   position: fixed !important; }
   .static-notification, .static-notification h1, .static-notification h2, .static-notification h3, .static-notification h4, .static-notification h5, .static-notification h6 {
     color: white; }
+  .static-notification.default-position {
+    width: 25rem;
+    right: 1rem;
+    top: 1rem; }
+    @media only screen and (min-width: 0em) and (max-width: 39.9375rem) {
+      .static-notification.default-position {
+        width: auto;
+        left: 1rem;
+        right: 1rem;
+        margin-left: 0; } }
   .static-notification.top-right {
     width: 25rem;
     right: 1rem;
@@ -10883,6 +10893,16 @@ meter {
       left: 1rem;
       right: 1rem;
       margin-left: 0; } }
+  .notification-container.default-position {
+    width: 25rem;
+    right: 1rem;
+    top: 1rem; }
+    @media only screen and (min-width: 0em) and (max-width: 39.9375rem) {
+      .notification-container.default-position {
+        width: auto;
+        left: 1rem;
+        right: 1rem;
+        margin-left: 0; } }
   .notification-container.top-right {
     width: 25rem;
     right: 1rem;
