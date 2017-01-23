@@ -86,7 +86,7 @@
     return directive;
 
     function link(scope, element, attrs, controller) {
-      scope.position = scope.position ? scope.position.split(' ').join('-') : 'top-right';
+      scope.position = scope.position ? scope.position.split(' ').join('-') : 'default-position';
 
       scope.$on("$destroy", function() {
         BaseAppsApi.unsubscribe(attrs.id);
@@ -242,7 +242,7 @@
       }
 
       function postLink(scope, element, attrs, controller) {
-        scope.position = attrs.position ? attrs.position.split(' ').join('-') : 'top-right';
+        scope.position = attrs.position ? attrs.position.split(' ').join('-') : 'default-position';
 
         var animationIn = attrs.animationIn || 'fadeIn';
         var animationOut = attrs.animationOut || 'fadeOut';

@@ -183,13 +183,14 @@ $notification-icon-align: top !default;
 
     position: fixed !important;
 
-    &.top-right     { @include notification-layout(right, top); }
-    &.top-left      { @include notification-layout(left, top); }
-    &.top-middle    { @include notification-layout(middle, top); }
+    &.default-position  { @include notification-layout(); }
+    &.top-right         { @include notification-layout(right, top); }
+    &.top-left          { @include notification-layout(left, top); }
+    &.top-middle        { @include notification-layout(middle, top); }
 
-    &.bottom-right  { @include notification-layout(right, bottom); }
-    &.bottom-left   { @include notification-layout(left, bottom); }
-    &.bottom-middle { @include notification-layout(middle, bottom); }
+    &.bottom-right      { @include notification-layout(right, bottom); }
+    &.bottom-left       { @include notification-layout(left, bottom); }
+    &.bottom-middle     { @include notification-layout(middle, bottom); }
 
     &.success   { @include notification-style($success-color) }
     &.warning   { @include notification-style($warning-color) }
@@ -200,13 +201,14 @@ $notification-icon-align: top !default;
   .notification-container {
     @include notification-container;
 
-    &.top-right     { @include notification-layout(right, top); }
-    &.top-left      { @include notification-layout(left, top); }
-    &.top-middle    { @include notification-layout(middle, top); }
+    &.default-position  { @include notification-layout(); }
+    &.top-right         { @include notification-layout(right, top); }
+    &.top-left          { @include notification-layout(left, top); }
+    &.top-middle        { @include notification-layout(middle, top); }
 
-    &.bottom-right  { @include notification-layout(right, bottom); }
-    &.bottom-left   { @include notification-layout(left, bottom); }
-    &.bottom-middle { @include notification-layout(middle, bottom); }
+    &.bottom-right      { @include notification-layout(right, bottom); }
+    &.bottom-left       { @include notification-layout(left, bottom); }
+    &.bottom-middle     { @include notification-layout(middle, bottom); }
   }
 
   .notification-icon {
