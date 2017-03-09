@@ -1,3 +1,12 @@
+# Version 2.0.9
+
+### Bug Fixes
+- Fix <a href="https://github.com/base-apps/angular-base-apps/pull/88#issuecomment-279258688">build issue</a>
+
+### Docs
+
+https://base-apps.github.io/angular-base-apps/v2.0.9
+
 # Version 2.0.8
 
 ### Bug Fixes
