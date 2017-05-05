@@ -33,8 +33,8 @@
     "viewport-units-buggyfill": "~0.4.1",
     "tether": "~0.6.5",
     "fastclick": "~1.0.6",
-    "angular": "1.3.x - 1.5.x",
-    "angular-animate": "1.3.x - 1.5.x",
+    "angular": "1.3.x - 1.6.x",
+    "angular-animate": "1.3.x - 1.6.x",
     "hammerjs": "~2.0.4"
   },
   "devDependencies": {
