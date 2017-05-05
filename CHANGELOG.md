@@ -1,3 +1,12 @@
+# Version 2.0.10
+
+### General
+- Add support for angular 1.6.x
+
+### Docs
+
+https://base-apps.github.io/angular-base-apps/v2.0.10
+
 # Version 2.0.9
 
 ### Bug Fixes
