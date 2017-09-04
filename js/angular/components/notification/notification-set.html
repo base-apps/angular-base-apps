@@ -4,6 +4,8 @@
     image="notification.image"
     notif-id = "notification.id"
     color="notification.color"
-    autoclose="notification.autoclose"
-    >{{ notification.content }}</ba-notification>
+    autoclose="notification.autoclose">
+    <div ng-if="!notification.html">{{ notification.content }}</div>
+    <div ng-if="notification.html" ng-bind-html="notification.html"></div>
+  </ba-notification>
 </div>

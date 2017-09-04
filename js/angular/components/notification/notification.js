@@ -314,14 +314,15 @@
     }
   }
 
-  baNotify.$inject = ['BaseAppsApi'];
+  baNotify.$inject = ['BaseAppsApi', '$sce'];
 
-  function baNotify(BaseAppsApi) {
+  function baNotify(BaseAppsApi, $sce) {
     var directive = {
       restrict: 'A',
       scope: {
         title: '@?',
         content: '@?',
+        html: '@?',
         color: '@?',
         image: '@?',
         autoclose: '@?'
@@ -336,6 +337,7 @@
         BaseAppsApi.publish(attrs.baNotify, {
           title: scope.title,
           content: scope.content,
+          html: $sce.trustAsHtml(scope.html),
           color: scope.color,
           image: scope.image,
           autoclose: scope.autoclose
