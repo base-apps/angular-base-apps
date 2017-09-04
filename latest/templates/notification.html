@@ -2,7 +2,7 @@
 <h2>Notification</h2>
 <h3 class="subheader">An alert that pins to the corner of the screen when triggered by JavaScript.</h3>
 
-<p>A custom action can be assigned to a notification as well. By default, all notifications can be swiped to close them. You can also set an `autoclose` attribute equal to a number (measured in milliseconds) to have the notification disappear after the specified amount of time. Please note that due to dynamic DOM insertion and animations, we recommend an autoclose value of at least 1000ms.</p>
+<p>A custom action can be assigned to a notification as well. By default, all notifications can be swiped to close them. You can also set an <code>autoclose</code> attribute equal to a number (measured in milliseconds) to have the notification disappear after the specified amount of time. Please note that due to dynamic DOM insertion and animations, we recommend an autoclose value of at least 1000ms.</p>
 
 <div class="grid-block">
   <div class="small-12 grid-content">
@@ -15,7 +15,7 @@
   	<a class="button" href="" ba-open="static-example">Static Notification</a>
     <ba-notification-set position="bottom-left" id="test-docs-notifications"></ba-notification-set>
     <ba-notification-static id="static-example" title="My static notification" image="http://www.clipartbest.com/cliparts/acq/X8R/acqX8RdcM.jpeg" position="top left">
-  	  This notification is static, it works similarly to a programmatic with some subtle differences. I'll stay here until you close me!
+  	  <p>This notification is static, it works similarly to a programmatic with some subtle differences. I'll stay here until you close me!</p>
   	</ba-notification-static>
   </div>
 </div>
@@ -35,14 +35,15 @@
 <a class="button" href="" ba-open="my-notify">Static Notification</a>
 <!-- notification content -->
 <ba-notification-static id="my-notify" title="My static notification" image="http://placehold.it/40x40">
-	  <p>This notification is static, it works similarly to a programmatic with some subtle differences.</p>
-	</ba-notification-static>
+  <p>This notification is static, it works similarly to a programmatic with some subtle differences.</p>
+</ba-notification-static>
 </hljs>
   </div>
   <div class="small-12 medium-6 grid-content">
 		<a class="button" href="" ba-open="my-notify">Static Notification</a>
-		<ba-notification-static id="my-notify" title="My static notification" image="http://placehold.it/40x40" content="This notification is static, it works similarly to a programmatic with some subtle differences.">
-	</ba-notification-static>
+		<ba-notification-static id="my-notify" title="My static notification" image="http://placehold.it/40x40">
+      <p>This notification is static, it works similarly to a programmatic with some subtle differences.</p>
+		</ba-notification-static>
   </div>
 </div>
 
@@ -52,16 +53,16 @@
 <p>You can create a Dynamic Notification with this basic HTML:</p>
 <div class="grid-block">
   <div class="small-12 medium-6 grid-content">
-    <hljs language="html">
-    <!-- notification trigger -->
-    <a class="button" href=""
-    	title="My notification"
-    	content="Notification example"
-    	color="success"
-      autoclose="3000"
-    	ba-notify="main-notifications">Dynamic Notification</a>
-    <ba-notification-set id="main-notifications" position="top-left"></ba-notification-set>
-    </hljs>
+<hljs language="html">
+<!-- notification trigger -->
+<a class="button" href=""
+	title="My notification"
+	content="Notification example"
+	color="success"
+  autoclose="3000"
+	ba-notify="main-notifications">Dynamic Notification</a>
+<ba-notification-set id="main-notifications" position="top-left"></ba-notification-set>
+</hljs>
   </div>
   <div class="small-12 medium-6 grid-content">
     <a class="button" href=""
@@ -95,6 +96,72 @@ BaseAppsApi.publish('main-notifications', { title: 'Test', content: 'Test2' });
 	<li>position</li>
 	<li>color</li>
 </ul>
+
+<hr>
+
+<h3>HTML Content</h3>
+
+<p>Notifications support using HTML inside the title and content.  Both static and dynamic notifications allow passing HTML via the <code>title</code> attribute, however, they differ in how they allow passing HTML content.</p>
+
+<h4>Static Notifications</h4>
+<p>Static notifications use <code>ng-transclude</code> to inject the content.  Therefore you can simply pass the HTML as the body of the notification.</p>
+
+<div class="grid-block">
+  <div class="small-12 grid-content">
+<hljs language="html">
+<!-- notification trigger -->
+<a class="button" href="" ba-open="static-example-2">Static Notification</a>
+<!-- notification content -->
+<ba-notification-static id="static-example-2" title="My <b>static</b> notification <i>example</i>" image="http://placehold.it/40x40">
+  This notification is static:
+  <ul>
+    <li>it works similarly to a <b>programmatic</b> notification</li>
+    <li>it has some <i>subtle differences</i></li>
+  </ul>
+</ba-notification-static>
+</hljs>
+  </div>
+  <div class="small-12 grid-content">
+		<a class="button" href="" ba-open="static-example-2">View Notification</a>
+		<ba-notification-static
+      id="static-example-2"
+      title="My <b>notification</b> <i>example</i>"
+      image="http://placehold.it/40x40">
+      This notification is static:
+      <ul>
+        <li>it works similarly to a <b>programmatic</b> notification</li>
+        <li>it has some <i>subtle differences</i></li>
+      </ul>
+	  </ba-notification-static>
+  </div>
+</div>
+
+<h4>Dynamic Notifications</h4>
+<p>Basic dynamic notifications use the <code>content</code> attribute to allow passing plain-text content.  If you wish to pass HTML, you must use the <code>html</code> attribute.</p>
+
+<div class="grid-block">
+  <div class="small-12 grid-content">
+<hljs language="html">
+<!-- notification trigger -->
+<a class="button" href=""
+	title="My <b>dynamic</b> notification <i>example</i>"
+  html="Here is a <b>list</b> in my notification: <ul><li>item 1</li><li>item 2</li></ul>"
+	color="success"
+  autoclose="5000"
+	ba-notify="dynamic-example-2">View Notification</a>
+<ba-notification-set id="dynamic-example-2" position="top-left"></ba-notification-set>
+</hljs>
+  </div>
+  <div class="small-12 grid-content">
+    <a class="button" href=""
+		title="My <b>dynamic</b> notification <i>example</i>"
+		html="Here is a <b>list</b> in my notification: <ul><li>item 1</li><li>item 2</li></ul>"
+		color="success"
+    autoclose="5000"
+		ba-notify="dynamic-example-2">View Notification</a>
+    <ba-notification-set id="dynamic-example-2" position="top-left"></ba-notification-set>
+  </div>
+</div>
 
 <hr>
 
