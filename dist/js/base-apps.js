@@ -2451,14 +2451,15 @@
     }
   }
 
-  baNotify.$inject = ['BaseAppsApi'];
+  baNotify.$inject = ['BaseAppsApi', '$sce'];
 
-  function baNotify(BaseAppsApi) {
+  function baNotify(BaseAppsApi, $sce) {
     var directive = {
       restrict: 'A',
       scope: {
         title: '@?',
         content: '@?',
+        html: '@?',
         color: '@?',
         image: '@?',
         autoclose: '@?'
@@ -2473,6 +2474,7 @@
         BaseAppsApi.publish(attrs.baNotify, {
           title: scope.title,
           content: scope.content,
+          html: $sce.trustAsHtml(scope.html),
           color: scope.color,
           image: scope.image,
           autoclose: scope.autoclose
@@ -3666,9 +3668,12 @@ angular.module('base').run(['$templateCache', function($templateCache) {
     '    image="notification.image"\n' +
     '    notif-id = "notification.id"\n' +
     '    color="notification.color"\n' +
-    '    autoclose="notification.autoclose"\n' +
-    '    >{{ notification.content }}</ba-notification>\n' +
-    '</div>');
+    '    autoclose="notification.autoclose">\n' +
+    '    <div ng-if="!notification.html">{{ notification.content }}</div>\n' +
+    '    <div ng-if="notification.html" ng-bind-html="notification.html"></div>\n' +
+    '  </ba-notification>\n' +
+    '</div>\n' +
+    '');
 }]);
 
 angular.module('base').run(['$templateCache', function($templateCache) {
@@ -3682,7 +3687,7 @@ angular.module('base').run(['$templateCache', function($templateCache) {
     '  </div>\n' +
     '  <div class="notification-content">\n' +
     '    <h1 ng-bind-html="trustedTitle"></h1>\n' +
-    '    <p ng-transclude></p>\n' +
+    '    <div ng-transclude></div>\n' +
     '  </div>\n' +
     '</div>\n' +
     '');
@@ -3699,7 +3704,7 @@ angular.module('base').run(['$templateCache', function($templateCache) {
     '  </div>\n' +
     '  <div class="notification-content">\n' +
     '    <h1 ng-bind-html="trustedTitle"></h1>\n' +
-    '    <p ng-transclude></p>\n' +
+    '    <div ng-transclude></div>\n' +
     '  </div>\n' +
     '</div>\n' +
     '');
