@@ -1,0 +1,403 @@
+
+<h2>Modal</h2>
+<h3 class="subheader">Modal dialogs, or pop-up windows, are handy for prototyping and production. It focuses the user on the modal content. You can add images, links, and even a grid inside.</h3>
+
+<hr>
+
+<div class="text-center">
+  <a class="button" href="" ba-open="basicModal">Open modal</a>
+</div>
+
+<hr>
+
+<h3>Basic HTML</h3>
+<p>Modals are made with the custom <code>ba-modal</code> tag. To create a trigger to open the modal, add the attribute <code>ba-open="id"</code> to an element, where <code>id</code> is the ID of the modal.</p>
+<p>Add the attribute <code>ba-close</code> to an element inside the modal to create a close button. We also have a handy close button element you can use—just add the class <code>close-button</code> to an element.</p>
+
+<div class="text-center">
+  <a class="button" ba-open="basicModal">Open modal</a>
+</div>
+
+<hljs language="html">
+<a ba-open="basicModal" class="button">Open modal</a>
+
+<div ba-modal id="basicModal">
+  <a ba-close class="close-button">&times;</a>
+  <h3>Back in my days...</h3>
+  <p>There were 3 Star Wars movies and Disney only made cartoons.</p>
+</div>
+</hljs>
+
+<hr>
+
+<h3>Using the Grid</h3>
+<p>You can embed a grid inside of a modal, complete with scrolling panels, fixed areas, and responsive adjustments. Start by nesting a grid block directly inside the modal container, and go from there. Note that you also need to add a <code>collapse</code> class to the <code>ba-modal</code> element if you want the grid elements to be flush with the edge of the modal.</p>
+
+<div class="text-center">
+  <a class="button" href="" ba-open="advancedModal">Open modal</a>
+</div>
+
+<hljs language="html">
+<a class="button" href="" ba-open="advancedModal">Open modal</a>
+
+<div ba-modal id="advancedModal" class="collapse">
+  <div class="grid-block vertical">
+    <div class="primary title-bar">
+      <div class="center title">Title Bar</div>
+      <span ba-close class="left"><a>Close</a></span>
+      <span ba-close class="right"><a>Done</a></span>
+    </div>
+    <div class="grid-content padding" style="padding-top: 1rem;">
+     <p>
+      <img src="assets/img/mountain.jpg">
+      </p>
+     <a ba-close class="button">OK</a>
+     <a ba-close class="button">Cancel</a>
+    </div>
+  </div>
+</div>
+</hljs>
+
+<hr>
+
+<h3>Sizing Classes</h3>
+<p>You can add the classes <code>tiny</code>, <code>small</code>, or <code>large</code> to change the maximum width of the modal. The widths of each size are:</p>
+<ul>
+  <li><strong>Tiny:</strong> 300px</li>
+  <li><strong>Small:</strong> 500px</li>
+  <li><strong>Default:</strong> 600px</li>
+  <li><strong>Large</strong> 800px</li>
+</ul>
+<p>You can change the names and widths of the sizing classes by modifying the <code>$modal-sizes</code> Sass variable in your settings file.</p>
+
+<hr>
+
+<h3>Adding Animation</h3>
+
+<p>Modals can have unique in and out animations, using our motion classes. Refer to the <a ui-sref="motion">Motion UI</a> documentation for a full list of animations.</p>
+
+<div class="text-center">
+  <a ba-open="animatedModal" class="button">Fancy-esque Modal</a>
+</div>
+
+<hljs language="html">
+<a ba-open="animatedModal" class="button">Fancy-esque Modal</a>
+
+<div ba-modal id="animatedModal" animation-in="slideInUp" animation-out="hingeOutFromMiddleY">
+  <a ba-close class="close-button">&times;</a>
+  <p><em>Slide to the left</em></p>
+  <p class="text-right"><em>Slide to the right</em></p>
+  <p class="text-center"><em>Hinge from the center</em></p>
+</div>
+</hljs>
+
+<hr>
+
+<h3>Dialog-style Modals</h3>
+
+<p>On small screens, the modal becomes full-width and full-height, to make scrolling its contents easier. This behavior can be disabled by adding the class <code>dialog</code> to a <code>ba-modal</code> element.</p>
+
+<div class="text-center">
+  <a ba-open="dialogModal" class="button">Itty-Bitty Modal</a>
+</div>
+
+<hljs language="html">
+<a ba-open="dialogModal" class="button">Itty-Bitty Modal</a>
+
+<div ba-modal id="dialogModal" overlay="false" overlay-close="false" class="tiny dialog">
+  <h4>Yo, do you <em>really</em> want to do this?</h4>
+  <a ba-close class="alert button">Yeah</a>
+  <a ba-close class="secondary button">Nah</a>
+</div>
+</hljs>
+
+<hr>
+
+<h3>One-time Modals</h3>
+
+<p>A modal can be configured to only display once and never again using the <code>destroy-on-close</code> attribute.  The modal will be completely removed from the DOM once closed.</p>
+
+<div class="text-center">
+  <a class="button" ba-open="autoDestroyModal">Auto Destroy Modal</a>
+</div>
+
+<hljs language="html">
+<a ba-open="autoDestroyModal" class="button">Auto Destroy Modal</a>
+
+<div ba-modal id="autoDestroyModal" destroy-on-close="true">
+  <a ba-close class="close-button">&times;</a>
+  <h3>One Hit Wonder</h3>
+  <p>Close me and you'll never see me again!</p>
+</div>
+</hljs>
+
+<hr>
+
+<h3>Programmatic Modals</h3>
+
+<p>Modals can be created on the fly using the <code>ModalFactory</code>. Clicking the button will execute the code shown below.</p>
+
+<div class="text-center">
+  <a class="button" ng-click="createModal()">Open modal</a>
+</div>
+
+<hljs language="javascript">
+var modal = new ModalFactory({
+  // Add CSS classes to the modal
+  // Can be a single string or an array of classes
+  'class': 'tiny dialog',
+  // Set if the modal has a background overlay
+  'overlay': true,
+  // Set if the modal can be closed by clicking on the overlay
+  'overlayClose': false,
+  // Set if the modal should be destroyed once closed
+  'destroyOnClose': false,
+  // Set if the modal should have the 'ba-ignore-all-close' attribute
+  // (presence of key in configuration object will enable adding attribute)
+  'ignoreAllClose': '',
+  // Set if the modal should have the 'ba-advise' attribute
+  // (presence of key in configuration object will enable adding attribute)
+  'advise': '',
+  // Define a template to use for the modal
+  'templateUrl': 'partials/examples-dynamic-modal.html',
+  // Allows you to pass in properties to the scope of the modal
+  'contentScope': {
+    'close': function() {
+      modal.deactivate();
+      $timeout(function() {
+        modal.destroy();
+      }, 1000);
+    }
+  }
+});
+modal.activate();
+</hljs>
+
+<hr>
+
+<h3>Angular-ize Your Modals</h3>
+
+<p>As your application grows, you may find it necessary to create the same modal across multiple parts of your app.  By using an angular factory, you can consolidate your modal logic into one location and re-use it throughout your app.  The key is to create a factory which inherits from <code>ModalFactory</code>.  The code below shows how to create a factory for the programmatic modal example above:</p>
+
+<div class="text-center">
+  <a class="button" ng-click="createAngularModal()">Open modal</a>
+</div>
+
+<hljs language="javascript">
+angular.module('...').factory('ProgrammaticModal', function($timeout, ModalFactory) {
+  var ProgrammaticModal = function() {
+    var modal = this;
+
+    ModalFactory.call(this, {
+      'class': 'tiny dialog',
+      'overlay': true,
+      'overlayClose': false,
+      'templateUrl': 'partials/examples-dynamic-modal2.html',
+      'contentScope': {
+        'close': function() {
+          modal.deactivate();
+          $timeout(function() {
+            modal.destroy();
+          }, 1000);
+        }
+      }
+    });
+  };
+
+  ProgrammaticModal.prototype = Object.create(ModalFactory.prototype);
+
+  return ProgrammaticModal;
+});
+
+angular.module('...').controller('...', function(ProgrammaticModal) {
+  var modal = new ProgrammaticModal();
+  modal.activate();
+});
+</hljs>
+
+<hr>
+
+<h3>Confirm and Prompt Modals</h3>
+
+<p>Two core functions for the web are <code>Window.confirm()</code> and <code>Window.prompt()</code>.  These functions display a modal to get an acknowledgment or input from the user.  Unfortuneately the styling of these modals is browser dependent, so the look and feel won't match your app across all devices.  These functions are also synchronous, which doesn't work well in an asynchronous angular world.</p>
+
+<p>We've taken care of these issues by creating a <code>ConfirmModal</code> and <code>PromptModal</code>.  These modals provide an asynchronous user interaction and are created using the <code>ModalFactory</code>.  The modals will auto-open once created and auto-close once one of the buttons are clicked.  Examples below show how to use these modals:</p>
+
+<div class="grid-block">
+  <div class="grid-content small-12 medium-6">
+    <div class="grid-block">
+      <div class="grid-content text-center">
+        <h4>Enter Clicks</h4>
+        <h6>{{ enterClicks }}</h6>
+      </div>
+      <div class="grid-content text-center">
+        <h4>Cancel Clicks</h4>
+        <h6>{{ cancelClicks }}</h6>
+      </div>
+    </div>
+    <div class="grid-content text-center">
+      <a class="button" ng-click="showConfirm()">Show Confirm</a>
+    </div>
+    <div class="grid-content">
+<hljs language="javascript">
+$scope.enterClicks = 0;
+$scope.cancelClicks = 0;
+$scope.showConfirm = function() {
+  new ConfirmModal({
+    title: "Confirm",
+    content: "Are you sure?",
+    enterCallback: function() {
+      $scope.enterClicks++;
+    },
+    cancelCallback: function() {
+      $scope.cancelClicks++;
+    }
+  });
+};
+</hljs>
+    </div>
+  </div>
+  <div class="grid-content small-12 medium-6">
+    <div class="grid-block">
+      <div class="grid-content text-center">
+        <h4>Your Name</h4>
+        <h6>{{ name }}</h6>
+      </div>
+      <div class="grid-content text-center">
+        <h4>Your Age</h4>
+        <h6>{{ age }}</h6>
+      </div>
+    </div>
+    <div class="grid-content text-center">
+      <a class="button" ng-click="showPrompt1()">Prompt Name</a>
+      <a class="button" ng-click="showPrompt2()">Prompt Age</a>
+    </div>
+    <div class="grid-content">
+<hljs language="javascript">
+$scope.name = "n/a";
+$scope.age = 0;
+$scope.showPrompt1 = function() {
+  new PromptModal({
+    title: "Enter your name",
+    requireInput: true,
+    enterCallback: function(value) {
+      $scope.name = value;
+    }
+  });
+};
+$scope.showPrompt2 = function() {
+  new PromptModal({
+    content: "What is your age?",
+    inputType: "number",
+    enterText: "Okay",
+    cancelText: "How dare you!",
+    enterFirst: false,
+    enterCallback: function(value) {
+      $scope.age = value || 0;
+    }
+  });
+};
+</hljs>
+    </div>
+  </div>
+</div>
+
+<p>The <code>ConfirmModal</code> accepts the following configuration object:</p>
+
+<hljs language="javascript">
+{
+  title: "", // displays content only if not provided
+  content: "", // displays title only if not provided
+  enterText: "Enter", // text for enter button
+  cancelText: "Cancel", // text for cancel button
+  enterFirst: true, // whether enter button should come before cancel button
+  enterCallback: function() {}, // callback when enter button clicked
+  cancelCallback: function() {} // callback when cancel button clicked
+}
+</hljs>
+
+<p>The <code>PromptModal</code> accepts the same configuration object as above, with the following overrides:</p>
+
+<hljs language="javascript">
+{
+  inputType: "text", // type for input
+  enterCallback: function(value) {}, // value of input sent as argument to callback
+  requireInput: false // whether value must be entered before enter callback triggered
+}
+</hljs>
+
+<p>The confirm and prompt modals use the <code>confirm-modal</code> and <code>prompt-modal</code> classes, respectively.  The classes are passed as part of the <strong>class</strong> configuration for the <strong>ModalFactory</strong>.  This means the classes are applied to the same element as the <code>modal-overlay</code> class.  The two buttons can be styled using the <code>enter-button</code> and <code>cancel-button</code> classes.  For example, the following SCSS is used to style the cancel button in the modals above:</p>
+
+<hljs language="scss">
+.confirm-modal, .prompt-modal {
+  .cancel-button {
+    @include button-style($alert-color, auto);
+  }
+}
+</hljs>
+
+<hr>
+
+<h3>Changing the Overlay</h3>
+
+<p>You can override the styling of the default modal overlay by styling <code>.modal-overlay</code> in your Sass. The class name of the modal overlay can be changed by changing the <code>$modal-overlay-class</code> variable in your Sass settings file.</p>
+
+<hr>
+
+<h3>Styling the Modal</h3>
+
+<p>Any CSS classes on a <code>ba-modal</code> element will be applied to the modal overlay, <em>not</em> the modal itself. This allows you to style both elements with one class.</p>
+
+<div class="grid-block">
+  <div class="small-12 medium-6 grid-content">
+<hljs language="html">
+<div ba-modal class="killer-modal">
+  <!-- ... -->
+</div>
+</hljs>
+  </div>
+  <div class="small-12 medium-6 grid-content">
+<hljs language="scss">
+// This is the modal overlay
+.killer-modal {
+  // This is the modal itself
+  .modal {
+
+  }
+}
+</hljs>
+  </div>
+</div>
+
+<hr>
+
+<h3>Sass Mixins</h3>
+
+<p>Write a modal with a custom class using our Sass mixins. Note that the class for the modal overlay can't be changed.</p>
+
+<hljs language="scss">
+.custom-modal {
+  // Extend the base modal class to get core structural styles
+  @extend %modal;
+
+  // Use the layout mixin to define the modal's width
+  @include modal-layout(
+    $width: 300px // Can be an absolute value or percentage
+  );
+
+  // Use the style mixin to define the modal's visual style
+  @include modal-style(
+    $border: 1px solid black,
+    $radius: 10px, // Border radius
+    $shadow: 0 4px 10px #000 // Box shadow
+  );
+}
+</hljs>
+
+<hr>
+
+<h3>Sass Variables</h3>
+<p>You can customize with the Sass variables in the <code>_settings.scss</code> file:</p>
+
+<hljs include="'partials/scss/modal.html'" language="scss">
+</hljs>
