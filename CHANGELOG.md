@@ -1,3 +1,12 @@
+# Version 2.0.11
+
+### Bug Fixes
+- <a href="https://github.com/base-apps/angular-base-apps/issues/95">#95</a>: Allow using HTML as notification content
+
+### Docs
+
+https://base-apps.github.io/angular-base-apps/v2.0.11
+
 # Version 2.0.10
 
 ### General
