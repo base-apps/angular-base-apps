@@ -3596,15 +3596,6 @@ angular.module('base').run(['$templateCache', function($templateCache) {
 }]);
 
 angular.module('base').run(['$templateCache', function($templateCache) {
-  $templateCache.put('components/loader/spinkit-wandering-cubes.html',
-    '<div class="sk-loader sk-wandering-cubes">\n' +
-    '  <div class="sk-cube"></div>\n' +
-    '  <div class="sk-cube"></div>\n' +
-    '</div>\n' +
-    '');
-}]);
-
-angular.module('base').run(['$templateCache', function($templateCache) {
   $templateCache.put('components/loader/spinkit-wave.html',
     '<div class="sk-loader sk-wave">\n' +
     '  <div class="sk-rect sk-rect1"></div>\n' +

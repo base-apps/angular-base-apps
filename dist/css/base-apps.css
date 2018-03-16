@@ -437,15 +437,6 @@ meta.base-apps-mq {
 /*
  *  Usage:
  *
-      <div class="sk-wandering-cubes">
-        <div class="sk-cube"></div>
-        <div class="sk-cube"></div>
-      </div>
- *
- */
-/*
- *  Usage:
- *
       <div class="sk-spinner sk-spinner-pulse"></div>
  *
  */
@@ -1259,7 +1250,11 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
     width: 1em !important;
     height: 1em !important; }
   .button .sk-loader {
-    vertical-align: middle; }
+    vertical-align: middle;
+    /*&.sk-wandering-cubes {
+    @include sk-wandering-cubes-size($width, $height);
+    @include sk-wandering-cubes-animation($width, $height);
+  }*/ }
     .button .sk-loader.sk-rotating-plane {
       width: 1em;
       height: 1em; }
@@ -1272,60 +1267,6 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
       font-size: 0.4em; }
       .button .sk-loader.sk-wave .sk-rect {
         width: 0.24em; }
-    .button .sk-loader.sk-wandering-cubes {
-      width: 1em;
-      height: 1em; }
-      .button .sk-loader.sk-wandering-cubes .sk-cube {
-        width: 0.25em;
-        height: 0.25em; }
-
-@-webkit-keyframes sk-wanderingCube-1em-1em {
-  0% {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg); }
-  25% {
-    -webkit-transform: translateX(0.75em) rotate(-90deg) scale(0.5);
-            transform: translateX(0.75em) rotate(-90deg) scale(0.5); }
-  50% {
-    /* Hack to make FF rotate in the right direction */
-    -webkit-transform: translateX(0.75em) translateY(0.75em) rotate(-179deg);
-            transform: translateX(0.75em) translateY(0.75em) rotate(-179deg); }
-  50.1% {
-    -webkit-transform: translateX(0.75em) translateY(0.75em) rotate(-180deg);
-            transform: translateX(0.75em) translateY(0.75em) rotate(-180deg); }
-  75% {
-    -webkit-transform: translateX(0) translateY(0.75em) rotate(-270deg) scale(0.5);
-            transform: translateX(0) translateY(0.75em) rotate(-270deg) scale(0.5); }
-  100% {
-    -webkit-transform: rotate(-360deg);
-            transform: rotate(-360deg); } }
-
-@keyframes sk-wanderingCube-1em-1em {
-  0% {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg); }
-  25% {
-    -webkit-transform: translateX(0.75em) rotate(-90deg) scale(0.5);
-            transform: translateX(0.75em) rotate(-90deg) scale(0.5); }
-  50% {
-    /* Hack to make FF rotate in the right direction */
-    -webkit-transform: translateX(0.75em) translateY(0.75em) rotate(-179deg);
-            transform: translateX(0.75em) translateY(0.75em) rotate(-179deg); }
-  50.1% {
-    -webkit-transform: translateX(0.75em) translateY(0.75em) rotate(-180deg);
-            transform: translateX(0.75em) translateY(0.75em) rotate(-180deg); }
-  75% {
-    -webkit-transform: translateX(0) translateY(0.75em) rotate(-270deg) scale(0.5);
-            transform: translateX(0) translateY(0.75em) rotate(-270deg) scale(0.5); }
-  100% {
-    -webkit-transform: rotate(-360deg);
-            transform: rotate(-360deg); } }
-      .button .sk-loader.sk-wandering-cubes .sk-cube {
-        -webkit-animation: sk-wanderingCube-1em-1em 1.8s ease-in-out -1.8s infinite both;
-                animation: sk-wanderingCube-1em-1em 1.8s ease-in-out -1.8s infinite both; }
-        .button .sk-loader.sk-wandering-cubes .sk-cube:nth-child(2) {
-          -webkit-animation-delay: -0.9s;
-                  animation-delay: -0.9s; }
     .button .sk-loader.sk-pulse {
       width: 1em;
       height: 1em; }
@@ -1417,8 +1358,6 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
     background-color: #fff; }
   .button .sk-loader.sk-wave .sk-rect {
     background-color: #fff; }
-  .button .sk-loader.sk-wandering-cubes .sk-cube {
-    background-color: #fff; }
   .button .sk-loader.sk-pulse {
     background-color: #fff; }
   .button .sk-loader.sk-chasing-dots .sk-child {
@@ -1459,7 +1398,11 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
       width: 1em !important;
       height: 1em !important; }
     .button.tiny .sk-loader {
-      vertical-align: middle; }
+      vertical-align: middle;
+      /*&.sk-wandering-cubes {
+    @include sk-wandering-cubes-size($width, $height);
+    @include sk-wandering-cubes-animation($width, $height);
+  }*/ }
       .button.tiny .sk-loader.sk-rotating-plane {
         width: 1em;
         height: 1em; }
@@ -1472,39 +1415,6 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
         font-size: 0.4em; }
         .button.tiny .sk-loader.sk-wave .sk-rect {
           width: 0.24em; }
-      .button.tiny .sk-loader.sk-wandering-cubes {
-        width: 1em;
-        height: 1em; }
-        .button.tiny .sk-loader.sk-wandering-cubes .sk-cube {
-          width: 0.25em;
-          height: 0.25em; }
-
-@keyframes sk-wanderingCube-1em-1em {
-  0% {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg); }
-  25% {
-    -webkit-transform: translateX(0.75em) rotate(-90deg) scale(0.5);
-            transform: translateX(0.75em) rotate(-90deg) scale(0.5); }
-  50% {
-    /* Hack to make FF rotate in the right direction */
-    -webkit-transform: translateX(0.75em) translateY(0.75em) rotate(-179deg);
-            transform: translateX(0.75em) translateY(0.75em) rotate(-179deg); }
-  50.1% {
-    -webkit-transform: translateX(0.75em) translateY(0.75em) rotate(-180deg);
-            transform: translateX(0.75em) translateY(0.75em) rotate(-180deg); }
-  75% {
-    -webkit-transform: translateX(0) translateY(0.75em) rotate(-270deg) scale(0.5);
-            transform: translateX(0) translateY(0.75em) rotate(-270deg) scale(0.5); }
-  100% {
-    -webkit-transform: rotate(-360deg);
-            transform: rotate(-360deg); } }
-        .button.tiny .sk-loader.sk-wandering-cubes .sk-cube {
-          -webkit-animation: sk-wanderingCube-1em-1em 1.8s ease-in-out -1.8s infinite both;
-                  animation: sk-wanderingCube-1em-1em 1.8s ease-in-out -1.8s infinite both; }
-          .button.tiny .sk-loader.sk-wandering-cubes .sk-cube:nth-child(2) {
-            -webkit-animation-delay: -0.9s;
-                    animation-delay: -0.9s; }
       .button.tiny .sk-loader.sk-pulse {
         width: 1em;
         height: 1em; }
@@ -1595,7 +1505,11 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
       width: 1em !important;
       height: 1em !important; }
     .button.small .sk-loader {
-      vertical-align: middle; }
+      vertical-align: middle;
+      /*&.sk-wandering-cubes {
+    @include sk-wandering-cubes-size($width, $height);
+    @include sk-wandering-cubes-animation($width, $height);
+  }*/ }
       .button.small .sk-loader.sk-rotating-plane {
         width: 1em;
         height: 1em; }
@@ -1608,39 +1522,6 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
         font-size: 0.4em; }
         .button.small .sk-loader.sk-wave .sk-rect {
           width: 0.24em; }
-      .button.small .sk-loader.sk-wandering-cubes {
-        width: 1em;
-        height: 1em; }
-        .button.small .sk-loader.sk-wandering-cubes .sk-cube {
-          width: 0.25em;
-          height: 0.25em; }
-
-@keyframes sk-wanderingCube-1em-1em {
-  0% {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg); }
-  25% {
-    -webkit-transform: translateX(0.75em) rotate(-90deg) scale(0.5);
-            transform: translateX(0.75em) rotate(-90deg) scale(0.5); }
-  50% {
-    /* Hack to make FF rotate in the right direction */
-    -webkit-transform: translateX(0.75em) translateY(0.75em) rotate(-179deg);
-            transform: translateX(0.75em) translateY(0.75em) rotate(-179deg); }
-  50.1% {
-    -webkit-transform: translateX(0.75em) translateY(0.75em) rotate(-180deg);
-            transform: translateX(0.75em) translateY(0.75em) rotate(-180deg); }
-  75% {
-    -webkit-transform: translateX(0) translateY(0.75em) rotate(-270deg) scale(0.5);
-            transform: translateX(0) translateY(0.75em) rotate(-270deg) scale(0.5); }
-  100% {
-    -webkit-transform: rotate(-360deg);
-            transform: rotate(-360deg); } }
-        .button.small .sk-loader.sk-wandering-cubes .sk-cube {
-          -webkit-animation: sk-wanderingCube-1em-1em 1.8s ease-in-out -1.8s infinite both;
-                  animation: sk-wanderingCube-1em-1em 1.8s ease-in-out -1.8s infinite both; }
-          .button.small .sk-loader.sk-wandering-cubes .sk-cube:nth-child(2) {
-            -webkit-animation-delay: -0.9s;
-                    animation-delay: -0.9s; }
       .button.small .sk-loader.sk-pulse {
         width: 1em;
         height: 1em; }
@@ -1731,7 +1612,11 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
       width: 1em !important;
       height: 1em !important; }
     .button.large .sk-loader {
-      vertical-align: middle; }
+      vertical-align: middle;
+      /*&.sk-wandering-cubes {
+    @include sk-wandering-cubes-size($width, $height);
+    @include sk-wandering-cubes-animation($width, $height);
+  }*/ }
       .button.large .sk-loader.sk-rotating-plane {
         width: 1em;
         height: 1em; }
@@ -1744,39 +1629,6 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
         font-size: 0.4em; }
         .button.large .sk-loader.sk-wave .sk-rect {
           width: 0.24em; }
-      .button.large .sk-loader.sk-wandering-cubes {
-        width: 1em;
-        height: 1em; }
-        .button.large .sk-loader.sk-wandering-cubes .sk-cube {
-          width: 0.25em;
-          height: 0.25em; }
-
-@keyframes sk-wanderingCube-1em-1em {
-  0% {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg); }
-  25% {
-    -webkit-transform: translateX(0.75em) rotate(-90deg) scale(0.5);
-            transform: translateX(0.75em) rotate(-90deg) scale(0.5); }
-  50% {
-    /* Hack to make FF rotate in the right direction */
-    -webkit-transform: translateX(0.75em) translateY(0.75em) rotate(-179deg);
-            transform: translateX(0.75em) translateY(0.75em) rotate(-179deg); }
-  50.1% {
-    -webkit-transform: translateX(0.75em) translateY(0.75em) rotate(-180deg);
-            transform: translateX(0.75em) translateY(0.75em) rotate(-180deg); }
-  75% {
-    -webkit-transform: translateX(0) translateY(0.75em) rotate(-270deg) scale(0.5);
-            transform: translateX(0) translateY(0.75em) rotate(-270deg) scale(0.5); }
-  100% {
-    -webkit-transform: rotate(-360deg);
-            transform: rotate(-360deg); } }
-        .button.large .sk-loader.sk-wandering-cubes .sk-cube {
-          -webkit-animation: sk-wanderingCube-1em-1em 1.8s ease-in-out -1.8s infinite both;
-                  animation: sk-wanderingCube-1em-1em 1.8s ease-in-out -1.8s infinite both; }
-          .button.large .sk-loader.sk-wandering-cubes .sk-cube:nth-child(2) {
-            -webkit-animation-delay: -0.9s;
-                    animation-delay: -0.9s; }
       .button.large .sk-loader.sk-pulse {
         width: 1em;
         height: 1em; }
@@ -1876,8 +1728,6 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
       background-color: #000; }
     .button.secondary .sk-loader.sk-wave .sk-rect {
       background-color: #000; }
-    .button.secondary .sk-loader.sk-wandering-cubes .sk-cube {
-      background-color: #000; }
     .button.secondary .sk-loader.sk-pulse {
       background-color: #000; }
     .button.secondary .sk-loader.sk-chasing-dots .sk-child {
@@ -1921,8 +1771,6 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
     .button.success .sk-loader.sk-double-bounce .sk-child {
       background-color: #fff; }
     .button.success .sk-loader.sk-wave .sk-rect {
-      background-color: #fff; }
-    .button.success .sk-loader.sk-wandering-cubes .sk-cube {
       background-color: #fff; }
     .button.success .sk-loader.sk-pulse {
       background-color: #fff; }
@@ -1968,8 +1816,6 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
       background-color: #fff; }
     .button.warning .sk-loader.sk-wave .sk-rect {
       background-color: #fff; }
-    .button.warning .sk-loader.sk-wandering-cubes .sk-cube {
-      background-color: #fff; }
     .button.warning .sk-loader.sk-pulse {
       background-color: #fff; }
     .button.warning .sk-loader.sk-chasing-dots .sk-child {
@@ -2013,8 +1859,6 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
     .button.alert .sk-loader.sk-double-bounce .sk-child {
       background-color: #fff; }
     .button.alert .sk-loader.sk-wave .sk-rect {
-      background-color: #fff; }
-    .button.alert .sk-loader.sk-wandering-cubes .sk-cube {
       background-color: #fff; }
     .button.alert .sk-loader.sk-pulse {
       background-color: #fff; }
@@ -2060,8 +1904,6 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
       background-color: #000; }
     .button.info .sk-loader.sk-wave .sk-rect {
       background-color: #000; }
-    .button.info .sk-loader.sk-wandering-cubes .sk-cube {
-      background-color: #000; }
     .button.info .sk-loader.sk-pulse {
       background-color: #000; }
     .button.info .sk-loader.sk-chasing-dots .sk-child {
@@ -2105,8 +1947,6 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
     .button.dark .sk-loader.sk-double-bounce .sk-child {
       background-color: #fff; }
     .button.dark .sk-loader.sk-wave .sk-rect {
-      background-color: #fff; }
-    .button.dark .sk-loader.sk-wandering-cubes .sk-cube {
       background-color: #fff; }
     .button.dark .sk-loader.sk-pulse {
       background-color: #fff; }
@@ -2173,8 +2013,6 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
       background-color: #00558b; }
     .button.hollow .sk-loader.sk-wave .sk-rect {
       background-color: #00558b; }
-    .button.hollow .sk-loader.sk-wandering-cubes .sk-cube {
-      background-color: #00558b; }
     .button.hollow .sk-loader.sk-pulse {
       background-color: #00558b; }
     .button.hollow .sk-loader.sk-chasing-dots .sk-child {
@@ -2197,8 +2035,6 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
     .button.hollow:hover .sk-loader.sk-double-bounce .sk-child {
       background-color: #008ee8; }
     .button.hollow:hover .sk-loader.sk-wave .sk-rect {
-      background-color: #008ee8; }
-    .button.hollow:hover .sk-loader.sk-wandering-cubes .sk-cube {
       background-color: #008ee8; }
     .button.hollow:hover .sk-loader.sk-pulse {
       background-color: #008ee8; }
@@ -2265,8 +2101,6 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
         background-color: #f1f1f1; }
       .button.hollow.secondary .sk-loader.sk-wave .sk-rect {
         background-color: #f1f1f1; }
-      .button.hollow.secondary .sk-loader.sk-wandering-cubes .sk-cube {
-        background-color: #f1f1f1; }
       .button.hollow.secondary .sk-loader.sk-pulse {
         background-color: #f1f1f1; }
       .button.hollow.secondary .sk-loader.sk-chasing-dots .sk-child {
@@ -2289,8 +2123,6 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
       .button.hollow.secondary:hover .sk-loader.sk-double-bounce .sk-child {
         background-color: whitesmoke; }
       .button.hollow.secondary:hover .sk-loader.sk-wave .sk-rect {
-        background-color: whitesmoke; }
-      .button.hollow.secondary:hover .sk-loader.sk-wandering-cubes .sk-cube {
         background-color: whitesmoke; }
       .button.hollow.secondary:hover .sk-loader.sk-pulse {
         background-color: whitesmoke; }
@@ -2357,8 +2189,6 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
         background-color: #43AC6A; }
       .button.hollow.success .sk-loader.sk-wave .sk-rect {
         background-color: #43AC6A; }
-      .button.hollow.success .sk-loader.sk-wandering-cubes .sk-cube {
-        background-color: #43AC6A; }
       .button.hollow.success .sk-loader.sk-pulse {
         background-color: #43AC6A; }
       .button.hollow.success .sk-loader.sk-chasing-dots .sk-child {
@@ -2381,8 +2211,6 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
       .button.hollow.success:hover .sk-loader.sk-double-bounce .sk-child {
         background-color: #6dc68e; }
       .button.hollow.success:hover .sk-loader.sk-wave .sk-rect {
-        background-color: #6dc68e; }
-      .button.hollow.success:hover .sk-loader.sk-wandering-cubes .sk-cube {
         background-color: #6dc68e; }
       .button.hollow.success:hover .sk-loader.sk-pulse {
         background-color: #6dc68e; }
@@ -2449,8 +2277,6 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
         background-color: #F08A24; }
       .button.hollow.warning .sk-loader.sk-wave .sk-rect {
         background-color: #F08A24; }
-      .button.hollow.warning .sk-loader.sk-wandering-cubes .sk-cube {
-        background-color: #F08A24; }
       .button.hollow.warning .sk-loader.sk-pulse {
         background-color: #F08A24; }
       .button.hollow.warning .sk-loader.sk-chasing-dots .sk-child {
@@ -2473,8 +2299,6 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
       .button.hollow.warning:hover .sk-loader.sk-double-bounce .sk-child {
         background-color: #f4a75b; }
       .button.hollow.warning:hover .sk-loader.sk-wave .sk-rect {
-        background-color: #f4a75b; }
-      .button.hollow.warning:hover .sk-loader.sk-wandering-cubes .sk-cube {
         background-color: #f4a75b; }
       .button.hollow.warning:hover .sk-loader.sk-pulse {
         background-color: #f4a75b; }
@@ -2541,8 +2365,6 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
         background-color: #F04124; }
       .button.hollow.alert .sk-loader.sk-wave .sk-rect {
         background-color: #F04124; }
-      .button.hollow.alert .sk-loader.sk-wandering-cubes .sk-cube {
-        background-color: #F04124; }
       .button.hollow.alert .sk-loader.sk-pulse {
         background-color: #F04124; }
       .button.hollow.alert .sk-loader.sk-chasing-dots .sk-child {
@@ -2565,8 +2387,6 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
       .button.hollow.alert:hover .sk-loader.sk-double-bounce .sk-child {
         background-color: #f4715b; }
       .button.hollow.alert:hover .sk-loader.sk-wave .sk-rect {
-        background-color: #f4715b; }
-      .button.hollow.alert:hover .sk-loader.sk-wandering-cubes .sk-cube {
         background-color: #f4715b; }
       .button.hollow.alert:hover .sk-loader.sk-pulse {
         background-color: #f4715b; }
@@ -2633,8 +2453,6 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
         background-color: #A0D3E8; }
       .button.hollow.info .sk-loader.sk-wave .sk-rect {
         background-color: #A0D3E8; }
-      .button.hollow.info .sk-loader.sk-wandering-cubes .sk-cube {
-        background-color: #A0D3E8; }
       .button.hollow.info .sk-loader.sk-pulse {
         background-color: #A0D3E8; }
       .button.hollow.info .sk-loader.sk-chasing-dots .sk-child {
@@ -2657,8 +2475,6 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
       .button.hollow.info:hover .sk-loader.sk-double-bounce .sk-child {
         background-color: #b8deee; }
       .button.hollow.info:hover .sk-loader.sk-wave .sk-rect {
-        background-color: #b8deee; }
-      .button.hollow.info:hover .sk-loader.sk-wandering-cubes .sk-cube {
         background-color: #b8deee; }
       .button.hollow.info:hover .sk-loader.sk-pulse {
         background-color: #b8deee; }
@@ -2725,8 +2541,6 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
         background-color: #232323; }
       .button.hollow.dark .sk-loader.sk-wave .sk-rect {
         background-color: #232323; }
-      .button.hollow.dark .sk-loader.sk-wandering-cubes .sk-cube {
-        background-color: #232323; }
       .button.hollow.dark .sk-loader.sk-pulse {
         background-color: #232323; }
       .button.hollow.dark .sk-loader.sk-chasing-dots .sk-child {
@@ -2749,8 +2563,6 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
       .button.hollow.dark:hover .sk-loader.sk-double-bounce .sk-child {
         background-color: #5a5a5a; }
       .button.hollow.dark:hover .sk-loader.sk-wave .sk-rect {
-        background-color: #5a5a5a; }
-      .button.hollow.dark:hover .sk-loader.sk-wandering-cubes .sk-cube {
         background-color: #5a5a5a; }
       .button.hollow.dark:hover .sk-loader.sk-pulse {
         background-color: #5a5a5a; }
@@ -2850,8 +2662,6 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
       background-color: #fff; }
     .button-group > li > a .sk-loader.sk-wave .sk-rect, .button-group > li > label .sk-loader.sk-wave .sk-rect, .button-group > li > button .sk-loader.sk-wave .sk-rect {
       background-color: #fff; }
-    .button-group > li > a .sk-loader.sk-wandering-cubes .sk-cube, .button-group > li > label .sk-loader.sk-wandering-cubes .sk-cube, .button-group > li > button .sk-loader.sk-wandering-cubes .sk-cube {
-      background-color: #fff; }
     .button-group > li > a .sk-loader.sk-pulse, .button-group > li > label .sk-loader.sk-pulse, .button-group > li > button .sk-loader.sk-pulse {
       background-color: #fff; }
     .button-group > li > a .sk-loader.sk-chasing-dots .sk-child, .button-group > li > label .sk-loader.sk-chasing-dots .sk-child, .button-group > li > button .sk-loader.sk-chasing-dots .sk-child {
@@ -2898,8 +2708,6 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
     .button-group.secondary > li > a .sk-loader.sk-double-bounce .sk-child, .button-group.secondary > li > label .sk-loader.sk-double-bounce .sk-child, .button-group.secondary > li > button .sk-loader.sk-double-bounce .sk-child {
       background-color: #000; }
     .button-group.secondary > li > a .sk-loader.sk-wave .sk-rect, .button-group.secondary > li > label .sk-loader.sk-wave .sk-rect, .button-group.secondary > li > button .sk-loader.sk-wave .sk-rect {
-      background-color: #000; }
-    .button-group.secondary > li > a .sk-loader.sk-wandering-cubes .sk-cube, .button-group.secondary > li > label .sk-loader.sk-wandering-cubes .sk-cube, .button-group.secondary > li > button .sk-loader.sk-wandering-cubes .sk-cube {
       background-color: #000; }
     .button-group.secondary > li > a .sk-loader.sk-pulse, .button-group.secondary > li > label .sk-loader.sk-pulse, .button-group.secondary > li > button .sk-loader.sk-pulse {
       background-color: #000; }
@@ -2948,8 +2756,6 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
       background-color: #fff; }
     .button-group.success > li > a .sk-loader.sk-wave .sk-rect, .button-group.success > li > label .sk-loader.sk-wave .sk-rect, .button-group.success > li > button .sk-loader.sk-wave .sk-rect {
       background-color: #fff; }
-    .button-group.success > li > a .sk-loader.sk-wandering-cubes .sk-cube, .button-group.success > li > label .sk-loader.sk-wandering-cubes .sk-cube, .button-group.success > li > button .sk-loader.sk-wandering-cubes .sk-cube {
-      background-color: #fff; }
     .button-group.success > li > a .sk-loader.sk-pulse, .button-group.success > li > label .sk-loader.sk-pulse, .button-group.success > li > button .sk-loader.sk-pulse {
       background-color: #fff; }
     .button-group.success > li > a .sk-loader.sk-chasing-dots .sk-child, .button-group.success > li > label .sk-loader.sk-chasing-dots .sk-child, .button-group.success > li > button .sk-loader.sk-chasing-dots .sk-child {
@@ -2997,8 +2803,6 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
       background-color: #fff; }
     .button-group.warning > li > a .sk-loader.sk-wave .sk-rect, .button-group.warning > li > label .sk-loader.sk-wave .sk-rect, .button-group.warning > li > button .sk-loader.sk-wave .sk-rect {
       background-color: #fff; }
-    .button-group.warning > li > a .sk-loader.sk-wandering-cubes .sk-cube, .button-group.warning > li > label .sk-loader.sk-wandering-cubes .sk-cube, .button-group.warning > li > button .sk-loader.sk-wandering-cubes .sk-cube {
-      background-color: #fff; }
     .button-group.warning > li > a .sk-loader.sk-pulse, .button-group.warning > li > label .sk-loader.sk-pulse, .button-group.warning > li > button .sk-loader.sk-pulse {
       background-color: #fff; }
     .button-group.warning > li > a .sk-loader.sk-chasing-dots .sk-child, .button-group.warning > li > label .sk-loader.sk-chasing-dots .sk-child, .button-group.warning > li > button .sk-loader.sk-chasing-dots .sk-child {
@@ -3045,8 +2849,6 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
     .button-group.alert > li > a .sk-loader.sk-double-bounce .sk-child, .button-group.alert > li > label .sk-loader.sk-double-bounce .sk-child, .button-group.alert > li > button .sk-loader.sk-double-bounce .sk-child {
       background-color: #fff; }
     .button-group.alert > li > a .sk-loader.sk-wave .sk-rect, .button-group.alert > li > label .sk-loader.sk-wave .sk-rect, .button-group.alert > li > button .sk-loader.sk-wave .sk-rect {
-      background-color: #fff; }
-    .button-group.alert > li > a .sk-loader.sk-wandering-cubes .sk-cube, .button-group.alert > li > label .sk-loader.sk-wandering-cubes .sk-cube, .button-group.alert > li > button .sk-loader.sk-wandering-cubes .sk-cube {
       background-color: #fff; }
     .button-group.alert > li > a .sk-loader.sk-pulse, .button-group.alert > li > label .sk-loader.sk-pulse, .button-group.alert > li > button .sk-loader.sk-pulse {
       background-color: #fff; }
@@ -3097,8 +2899,6 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
       background-color: #000; }
     .button-group > li.secondary > a .sk-loader.sk-wave .sk-rect, .button-group > li.secondary > label .sk-loader.sk-wave .sk-rect, .button-group > li.secondary > button .sk-loader.sk-wave .sk-rect {
       background-color: #000; }
-    .button-group > li.secondary > a .sk-loader.sk-wandering-cubes .sk-cube, .button-group > li.secondary > label .sk-loader.sk-wandering-cubes .sk-cube, .button-group > li.secondary > button .sk-loader.sk-wandering-cubes .sk-cube {
-      background-color: #000; }
     .button-group > li.secondary > a .sk-loader.sk-pulse, .button-group > li.secondary > label .sk-loader.sk-pulse, .button-group > li.secondary > button .sk-loader.sk-pulse {
       background-color: #000; }
     .button-group > li.secondary > a .sk-loader.sk-chasing-dots .sk-child, .button-group > li.secondary > label .sk-loader.sk-chasing-dots .sk-child, .button-group > li.secondary > button .sk-loader.sk-chasing-dots .sk-child {
@@ -3145,8 +2945,6 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
     .button-group > li.success > a .sk-loader.sk-double-bounce .sk-child, .button-group > li.success > label .sk-loader.sk-double-bounce .sk-child, .button-group > li.success > button .sk-loader.sk-double-bounce .sk-child {
       background-color: #fff; }
     .button-group > li.success > a .sk-loader.sk-wave .sk-rect, .button-group > li.success > label .sk-loader.sk-wave .sk-rect, .button-group > li.success > button .sk-loader.sk-wave .sk-rect {
-      background-color: #fff; }
-    .button-group > li.success > a .sk-loader.sk-wandering-cubes .sk-cube, .button-group > li.success > label .sk-loader.sk-wandering-cubes .sk-cube, .button-group > li.success > button .sk-loader.sk-wandering-cubes .sk-cube {
       background-color: #fff; }
     .button-group > li.success > a .sk-loader.sk-pulse, .button-group > li.success > label .sk-loader.sk-pulse, .button-group > li.success > button .sk-loader.sk-pulse {
       background-color: #fff; }
@@ -3195,8 +2993,6 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
       background-color: #fff; }
     .button-group > li.warning > a .sk-loader.sk-wave .sk-rect, .button-group > li.warning > label .sk-loader.sk-wave .sk-rect, .button-group > li.warning > button .sk-loader.sk-wave .sk-rect {
       background-color: #fff; }
-    .button-group > li.warning > a .sk-loader.sk-wandering-cubes .sk-cube, .button-group > li.warning > label .sk-loader.sk-wandering-cubes .sk-cube, .button-group > li.warning > button .sk-loader.sk-wandering-cubes .sk-cube {
-      background-color: #fff; }
     .button-group > li.warning > a .sk-loader.sk-pulse, .button-group > li.warning > label .sk-loader.sk-pulse, .button-group > li.warning > button .sk-loader.sk-pulse {
       background-color: #fff; }
     .button-group > li.warning > a .sk-loader.sk-chasing-dots .sk-child, .button-group > li.warning > label .sk-loader.sk-chasing-dots .sk-child, .button-group > li.warning > button .sk-loader.sk-chasing-dots .sk-child {
@@ -3244,8 +3040,6 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
       background-color: #fff; }
     .button-group > li.alert > a .sk-loader.sk-wave .sk-rect, .button-group > li.alert > label .sk-loader.sk-wave .sk-rect, .button-group > li.alert > button .sk-loader.sk-wave .sk-rect {
       background-color: #fff; }
-    .button-group > li.alert > a .sk-loader.sk-wandering-cubes .sk-cube, .button-group > li.alert > label .sk-loader.sk-wandering-cubes .sk-cube, .button-group > li.alert > button .sk-loader.sk-wandering-cubes .sk-cube {
-      background-color: #fff; }
     .button-group > li.alert > a .sk-loader.sk-pulse, .button-group > li.alert > label .sk-loader.sk-pulse, .button-group > li.alert > button .sk-loader.sk-pulse {
       background-color: #fff; }
     .button-group > li.alert > a .sk-loader.sk-chasing-dots .sk-child, .button-group > li.alert > label .sk-loader.sk-chasing-dots .sk-child, .button-group > li.alert > button .sk-loader.sk-chasing-dots .sk-child {
@@ -3291,8 +3085,6 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
       .button-group.segmented > li > a .sk-loader.sk-double-bounce .sk-child, .button-group.segmented > li > label .sk-loader.sk-double-bounce .sk-child, .button-group.segmented > li > button .sk-loader.sk-double-bounce .sk-child {
         background-color: #00558b; }
       .button-group.segmented > li > a .sk-loader.sk-wave .sk-rect, .button-group.segmented > li > label .sk-loader.sk-wave .sk-rect, .button-group.segmented > li > button .sk-loader.sk-wave .sk-rect {
-        background-color: #00558b; }
-      .button-group.segmented > li > a .sk-loader.sk-wandering-cubes .sk-cube, .button-group.segmented > li > label .sk-loader.sk-wandering-cubes .sk-cube, .button-group.segmented > li > button .sk-loader.sk-wandering-cubes .sk-cube {
         background-color: #00558b; }
       .button-group.segmented > li > a .sk-loader.sk-pulse, .button-group.segmented > li > label .sk-loader.sk-pulse, .button-group.segmented > li > button .sk-loader.sk-pulse {
         background-color: #00558b; }
@@ -3344,9 +3136,6 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
       background-color: #fff; }
     .button-group.segmented > li.is-active > a .sk-loader.sk-wave .sk-rect,
     .button-group.segmented > li > input:checked + label .sk-loader.sk-wave .sk-rect {
-      background-color: #fff; }
-    .button-group.segmented > li.is-active > a .sk-loader.sk-wandering-cubes .sk-cube,
-    .button-group.segmented > li > input:checked + label .sk-loader.sk-wandering-cubes .sk-cube {
       background-color: #fff; }
     .button-group.segmented > li.is-active > a .sk-loader.sk-pulse,
     .button-group.segmented > li > input:checked + label .sk-loader.sk-pulse {
@@ -3402,8 +3191,6 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
           background-color: #f1f1f1; }
         .button-group.segmented.secondary > li > a .sk-loader.sk-wave .sk-rect, .button-group.segmented.secondary > li > label .sk-loader.sk-wave .sk-rect, .button-group.segmented.secondary > li > button .sk-loader.sk-wave .sk-rect {
           background-color: #f1f1f1; }
-        .button-group.segmented.secondary > li > a .sk-loader.sk-wandering-cubes .sk-cube, .button-group.segmented.secondary > li > label .sk-loader.sk-wandering-cubes .sk-cube, .button-group.segmented.secondary > li > button .sk-loader.sk-wandering-cubes .sk-cube {
-          background-color: #f1f1f1; }
         .button-group.segmented.secondary > li > a .sk-loader.sk-pulse, .button-group.segmented.secondary > li > label .sk-loader.sk-pulse, .button-group.segmented.secondary > li > button .sk-loader.sk-pulse {
           background-color: #f1f1f1; }
         .button-group.segmented.secondary > li > a .sk-loader.sk-chasing-dots .sk-child, .button-group.segmented.secondary > li > label .sk-loader.sk-chasing-dots .sk-child, .button-group.segmented.secondary > li > button .sk-loader.sk-chasing-dots .sk-child {
@@ -3454,9 +3241,6 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
         background-color: #000; }
       .button-group.segmented.secondary > li.is-active > a .sk-loader.sk-wave .sk-rect,
       .button-group.segmented.secondary > li > input:checked + label .sk-loader.sk-wave .sk-rect {
-        background-color: #000; }
-      .button-group.segmented.secondary > li.is-active > a .sk-loader.sk-wandering-cubes .sk-cube,
-      .button-group.segmented.secondary > li > input:checked + label .sk-loader.sk-wandering-cubes .sk-cube {
         background-color: #000; }
       .button-group.segmented.secondary > li.is-active > a .sk-loader.sk-pulse,
       .button-group.segmented.secondary > li > input:checked + label .sk-loader.sk-pulse {
@@ -3512,8 +3296,6 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
           background-color: #43AC6A; }
         .button-group.segmented.success > li > a .sk-loader.sk-wave .sk-rect, .button-group.segmented.success > li > label .sk-loader.sk-wave .sk-rect, .button-group.segmented.success > li > button .sk-loader.sk-wave .sk-rect {
           background-color: #43AC6A; }
-        .button-group.segmented.success > li > a .sk-loader.sk-wandering-cubes .sk-cube, .button-group.segmented.success > li > label .sk-loader.sk-wandering-cubes .sk-cube, .button-group.segmented.success > li > button .sk-loader.sk-wandering-cubes .sk-cube {
-          background-color: #43AC6A; }
         .button-group.segmented.success > li > a .sk-loader.sk-pulse, .button-group.segmented.success > li > label .sk-loader.sk-pulse, .button-group.segmented.success > li > button .sk-loader.sk-pulse {
           background-color: #43AC6A; }
         .button-group.segmented.success > li > a .sk-loader.sk-chasing-dots .sk-child, .button-group.segmented.success > li > label .sk-loader.sk-chasing-dots .sk-child, .button-group.segmented.success > li > button .sk-loader.sk-chasing-dots .sk-child {
@@ -3564,9 +3346,6 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
         background-color: #fff; }
       .button-group.segmented.success > li.is-active > a .sk-loader.sk-wave .sk-rect,
       .button-group.segmented.success > li > input:checked + label .sk-loader.sk-wave .sk-rect {
-        background-color: #fff; }
-      .button-group.segmented.success > li.is-active > a .sk-loader.sk-wandering-cubes .sk-cube,
-      .button-group.segmented.success > li > input:checked + label .sk-loader.sk-wandering-cubes .sk-cube {
         background-color: #fff; }
       .button-group.segmented.success > li.is-active > a .sk-loader.sk-pulse,
       .button-group.segmented.success > li > input:checked + label .sk-loader.sk-pulse {
@@ -3622,8 +3401,6 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
           background-color: #F08A24; }
         .button-group.segmented.warning > li > a .sk-loader.sk-wave .sk-rect, .button-group.segmented.warning > li > label .sk-loader.sk-wave .sk-rect, .button-group.segmented.warning > li > button .sk-loader.sk-wave .sk-rect {
           background-color: #F08A24; }
-        .button-group.segmented.warning > li > a .sk-loader.sk-wandering-cubes .sk-cube, .button-group.segmented.warning > li > label .sk-loader.sk-wandering-cubes .sk-cube, .button-group.segmented.warning > li > button .sk-loader.sk-wandering-cubes .sk-cube {
-          background-color: #F08A24; }
         .button-group.segmented.warning > li > a .sk-loader.sk-pulse, .button-group.segmented.warning > li > label .sk-loader.sk-pulse, .button-group.segmented.warning > li > button .sk-loader.sk-pulse {
           background-color: #F08A24; }
         .button-group.segmented.warning > li > a .sk-loader.sk-chasing-dots .sk-child, .button-group.segmented.warning > li > label .sk-loader.sk-chasing-dots .sk-child, .button-group.segmented.warning > li > button .sk-loader.sk-chasing-dots .sk-child {
@@ -3674,9 +3451,6 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
         background-color: #fff; }
       .button-group.segmented.warning > li.is-active > a .sk-loader.sk-wave .sk-rect,
       .button-group.segmented.warning > li > input:checked + label .sk-loader.sk-wave .sk-rect {
-        background-color: #fff; }
-      .button-group.segmented.warning > li.is-active > a .sk-loader.sk-wandering-cubes .sk-cube,
-      .button-group.segmented.warning > li > input:checked + label .sk-loader.sk-wandering-cubes .sk-cube {
         background-color: #fff; }
       .button-group.segmented.warning > li.is-active > a .sk-loader.sk-pulse,
       .button-group.segmented.warning > li > input:checked + label .sk-loader.sk-pulse {
@@ -3732,8 +3506,6 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
           background-color: #F04124; }
         .button-group.segmented.alert > li > a .sk-loader.sk-wave .sk-rect, .button-group.segmented.alert > li > label .sk-loader.sk-wave .sk-rect, .button-group.segmented.alert > li > button .sk-loader.sk-wave .sk-rect {
           background-color: #F04124; }
-        .button-group.segmented.alert > li > a .sk-loader.sk-wandering-cubes .sk-cube, .button-group.segmented.alert > li > label .sk-loader.sk-wandering-cubes .sk-cube, .button-group.segmented.alert > li > button .sk-loader.sk-wandering-cubes .sk-cube {
-          background-color: #F04124; }
         .button-group.segmented.alert > li > a .sk-loader.sk-pulse, .button-group.segmented.alert > li > label .sk-loader.sk-pulse, .button-group.segmented.alert > li > button .sk-loader.sk-pulse {
           background-color: #F04124; }
         .button-group.segmented.alert > li > a .sk-loader.sk-chasing-dots .sk-child, .button-group.segmented.alert > li > label .sk-loader.sk-chasing-dots .sk-child, .button-group.segmented.alert > li > button .sk-loader.sk-chasing-dots .sk-child {
@@ -3784,9 +3556,6 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
         background-color: #fff; }
       .button-group.segmented.alert > li.is-active > a .sk-loader.sk-wave .sk-rect,
       .button-group.segmented.alert > li > input:checked + label .sk-loader.sk-wave .sk-rect {
-        background-color: #fff; }
-      .button-group.segmented.alert > li.is-active > a .sk-loader.sk-wandering-cubes .sk-cube,
-      .button-group.segmented.alert > li > input:checked + label .sk-loader.sk-wandering-cubes .sk-cube {
         background-color: #fff; }
       .button-group.segmented.alert > li.is-active > a .sk-loader.sk-pulse,
       .button-group.segmented.alert > li > input:checked + label .sk-loader.sk-pulse {
@@ -3931,7 +3700,11 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
     margin: 0 0 0 0.5em;
     float: right; }
   .button-group > li > a .sk-loader {
-    vertical-align: middle; }
+    vertical-align: middle;
+    /*&.sk-wandering-cubes {
+    @include sk-wandering-cubes-size($width, $height);
+    @include sk-wandering-cubes-animation($width, $height);
+  }*/ }
     .button-group > li > a .sk-loader.sk-rotating-plane {
       width: 1em;
       height: 1em; }
@@ -3944,39 +3717,6 @@ a, [ui-sref], [ba-open], [ba-close], [ba-toggle] {
       font-size: 0.4em; }
       .button-group > li > a .sk-loader.sk-wave .sk-rect {
         width: 0.24em; }
-    .button-group > li > a .sk-loader.sk-wandering-cubes {
-      width: 1em;
-      height: 1em; }
-      .button-group > li > a .sk-loader.sk-wandering-cubes .sk-cube {
-        width: 0.25em;
-        height: 0.25em; }
-
-@keyframes sk-wanderingCube-1em-1em {
-  0% {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg); }
-  25% {
-    -webkit-transform: translateX(0.75em) rotate(-90deg) scale(0.5);
-            transform: translateX(0.75em) rotate(-90deg) scale(0.5); }
-  50% {
-    /* Hack to make FF rotate in the right direction */
-    -webkit-transform: translateX(0.75em) translateY(0.75em) rotate(-179deg);
-            transform: translateX(0.75em) translateY(0.75em) rotate(-179deg); }
-  50.1% {
-    -webkit-transform: translateX(0.75em) translateY(0.75em) rotate(-180deg);
-            transform: translateX(0.75em) translateY(0.75em) rotate(-180deg); }
-  75% {
-    -webkit-transform: translateX(0) translateY(0.75em) rotate(-270deg) scale(0.5);
-            transform: translateX(0) translateY(0.75em) rotate(-270deg) scale(0.5); }
-  100% {
-    -webkit-transform: rotate(-360deg);
-            transform: rotate(-360deg); } }
-      .button-group > li > a .sk-loader.sk-wandering-cubes .sk-cube {
-        -webkit-animation: sk-wanderingCube-1em-1em 1.8s ease-in-out -1.8s infinite both;
-                animation: sk-wanderingCube-1em-1em 1.8s ease-in-out -1.8s infinite both; }
-        .button-group > li > a .sk-loader.sk-wandering-cubes .sk-cube:nth-child(2) {
-          -webkit-animation-delay: -0.9s;
-                  animation-delay: -0.9s; }
     .button-group > li > a .sk-loader.sk-pulse {
       width: 1em;
       height: 1em; }
@@ -7550,8 +7290,6 @@ meter {
       background-color: #fff; }
     .title-bar.primary .sk-loader.sk-wave .sk-rect {
       background-color: #fff; }
-    .title-bar.primary .sk-loader.sk-wandering-cubes .sk-cube {
-      background-color: #fff; }
     .title-bar.primary .sk-loader.sk-pulse {
       background-color: #fff; }
     .title-bar.primary .sk-loader.sk-chasing-dots .sk-child {
@@ -7596,8 +7334,6 @@ meter {
     .title-bar.dark .sk-loader.sk-double-bounce .sk-child {
       background-color: #fff; }
     .title-bar.dark .sk-loader.sk-wave .sk-rect {
-      background-color: #fff; }
-    .title-bar.dark .sk-loader.sk-wandering-cubes .sk-cube {
       background-color: #fff; }
     .title-bar.dark .sk-loader.sk-pulse {
       background-color: #fff; }
@@ -8068,68 +7804,6 @@ meter {
       width: 0.15rem; }
     .sk-loader.sk-wave .sk-rect {
       background-color: #333; }
-  .sk-loader.sk-wandering-cubes {
-    position: relative;
-    margin: 0;
-    width: 1rem;
-    height: 1rem; }
-    .sk-loader.sk-wandering-cubes .sk-cube {
-      position: absolute;
-      top: 0;
-      left: 0; }
-
-@-webkit-keyframes sk-wanderingCube-1rem-1rem {
-  0% {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg); }
-  25% {
-    -webkit-transform: translateX(0.75rem) rotate(-90deg) scale(0.5);
-            transform: translateX(0.75rem) rotate(-90deg) scale(0.5); }
-  50% {
-    /* Hack to make FF rotate in the right direction */
-    -webkit-transform: translateX(0.75rem) translateY(0.75rem) rotate(-179deg);
-            transform: translateX(0.75rem) translateY(0.75rem) rotate(-179deg); }
-  50.1% {
-    -webkit-transform: translateX(0.75rem) translateY(0.75rem) rotate(-180deg);
-            transform: translateX(0.75rem) translateY(0.75rem) rotate(-180deg); }
-  75% {
-    -webkit-transform: translateX(0) translateY(0.75rem) rotate(-270deg) scale(0.5);
-            transform: translateX(0) translateY(0.75rem) rotate(-270deg) scale(0.5); }
-  100% {
-    -webkit-transform: rotate(-360deg);
-            transform: rotate(-360deg); } }
-
-@keyframes sk-wanderingCube-1rem-1rem {
-  0% {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg); }
-  25% {
-    -webkit-transform: translateX(0.75rem) rotate(-90deg) scale(0.5);
-            transform: translateX(0.75rem) rotate(-90deg) scale(0.5); }
-  50% {
-    /* Hack to make FF rotate in the right direction */
-    -webkit-transform: translateX(0.75rem) translateY(0.75rem) rotate(-179deg);
-            transform: translateX(0.75rem) translateY(0.75rem) rotate(-179deg); }
-  50.1% {
-    -webkit-transform: translateX(0.75rem) translateY(0.75rem) rotate(-180deg);
-            transform: translateX(0.75rem) translateY(0.75rem) rotate(-180deg); }
-  75% {
-    -webkit-transform: translateX(0) translateY(0.75rem) rotate(-270deg) scale(0.5);
-            transform: translateX(0) translateY(0.75rem) rotate(-270deg) scale(0.5); }
-  100% {
-    -webkit-transform: rotate(-360deg);
-            transform: rotate(-360deg); } }
-    .sk-loader.sk-wandering-cubes .sk-cube {
-      -webkit-animation: sk-wanderingCube-1rem-1rem 1.8s ease-in-out -1.8s infinite both;
-              animation: sk-wanderingCube-1rem-1rem 1.8s ease-in-out -1.8s infinite both; }
-      .sk-loader.sk-wandering-cubes .sk-cube:nth-child(2) {
-        -webkit-animation-delay: -0.9s;
-                animation-delay: -0.9s; }
-    .sk-loader.sk-wandering-cubes .sk-cube {
-      width: 0.25rem;
-      height: 0.25rem; }
-    .sk-loader.sk-wandering-cubes .sk-cube {
-      background-color: #333; }
   .sk-loader.sk-pulse {
     border-radius: 100%;
     -webkit-animation: sk-pulseScaleOut 1s infinite ease-in-out;
@@ -8476,8 +8150,6 @@ meter {
     background-color: #00558b; }
   .sk-loader.primary.sk-wave .sk-rect {
     background-color: #00558b; }
-  .sk-loader.primary.sk-wandering-cubes .sk-cube {
-    background-color: #00558b; }
   .sk-loader.primary.sk-pulse {
     background-color: #00558b; }
   .sk-loader.primary.sk-chasing-dots .sk-child {
@@ -8500,8 +8172,6 @@ meter {
   .sk-loader.secondary.sk-double-bounce .sk-child {
     background-color: #f1f1f1; }
   .sk-loader.secondary.sk-wave .sk-rect {
-    background-color: #f1f1f1; }
-  .sk-loader.secondary.sk-wandering-cubes .sk-cube {
     background-color: #f1f1f1; }
   .sk-loader.secondary.sk-pulse {
     background-color: #f1f1f1; }
@@ -8526,8 +8196,6 @@ meter {
     background-color: #43AC6A; }
   .sk-loader.success.sk-wave .sk-rect {
     background-color: #43AC6A; }
-  .sk-loader.success.sk-wandering-cubes .sk-cube {
-    background-color: #43AC6A; }
   .sk-loader.success.sk-pulse {
     background-color: #43AC6A; }
   .sk-loader.success.sk-chasing-dots .sk-child {
@@ -8550,8 +8218,6 @@ meter {
   .sk-loader.warning.sk-double-bounce .sk-child {
     background-color: #F08A24; }
   .sk-loader.warning.sk-wave .sk-rect {
-    background-color: #F08A24; }
-  .sk-loader.warning.sk-wandering-cubes .sk-cube {
     background-color: #F08A24; }
   .sk-loader.warning.sk-pulse {
     background-color: #F08A24; }
@@ -8576,8 +8242,6 @@ meter {
     background-color: #F04124; }
   .sk-loader.alert.sk-wave .sk-rect {
     background-color: #F04124; }
-  .sk-loader.alert.sk-wandering-cubes .sk-cube {
-    background-color: #F04124; }
   .sk-loader.alert.sk-pulse {
     background-color: #F04124; }
   .sk-loader.alert.sk-chasing-dots .sk-child {
@@ -8600,8 +8264,6 @@ meter {
   .sk-loader.dark.sk-double-bounce .sk-child {
     background-color: #232323; }
   .sk-loader.dark.sk-wave .sk-rect {
-    background-color: #232323; }
-  .sk-loader.dark.sk-wandering-cubes .sk-cube {
     background-color: #232323; }
   .sk-loader.dark.sk-pulse {
     background-color: #232323; }
@@ -8626,8 +8288,6 @@ meter {
     background-color: #A0D3E8; }
   .sk-loader.info.sk-wave .sk-rect {
     background-color: #A0D3E8; }
-  .sk-loader.info.sk-wandering-cubes .sk-cube {
-    background-color: #A0D3E8; }
   .sk-loader.info.sk-pulse {
     background-color: #A0D3E8; }
   .sk-loader.info.sk-chasing-dots .sk-child {
@@ -8645,373 +8305,198 @@ meter {
   .sk-loader.info.sk-solid-circle .sk-child {
     border-top-color: #A0D3E8;
     border-left-color: #A0D3E8; }
-  .sk-loader.tiny.sk-rotating-plane {
-    width: 0.5rem;
-    height: 0.5rem; }
-  .sk-loader.tiny.sk-double-bounce {
-    width: 0.5rem;
-    height: 0.5rem; }
-  .sk-loader.tiny.sk-wave {
-    width: 1rem;
-    height: 0.5rem;
-    font-size: 0.2rem; }
-    .sk-loader.tiny.sk-wave .sk-rect {
-      width: 0.12rem; }
-  .sk-loader.tiny.sk-wandering-cubes {
-    width: 0.5rem;
-    height: 0.5rem; }
-    .sk-loader.tiny.sk-wandering-cubes .sk-cube {
-      width: 0.125rem;
-      height: 0.125rem; }
-
-@-webkit-keyframes sk-wanderingCube-0.5rem-0.5rem {
-  0% {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg); }
-  25% {
-    -webkit-transform: translateX(0.375rem) rotate(-90deg) scale(0.5);
-            transform: translateX(0.375rem) rotate(-90deg) scale(0.5); }
-  50% {
-    /* Hack to make FF rotate in the right direction */
-    -webkit-transform: translateX(0.375rem) translateY(0.375rem) rotate(-179deg);
-            transform: translateX(0.375rem) translateY(0.375rem) rotate(-179deg); }
-  50.1% {
-    -webkit-transform: translateX(0.375rem) translateY(0.375rem) rotate(-180deg);
-            transform: translateX(0.375rem) translateY(0.375rem) rotate(-180deg); }
-  75% {
-    -webkit-transform: translateX(0) translateY(0.375rem) rotate(-270deg) scale(0.5);
-            transform: translateX(0) translateY(0.375rem) rotate(-270deg) scale(0.5); }
-  100% {
-    -webkit-transform: rotate(-360deg);
-            transform: rotate(-360deg); } }
-
-@keyframes sk-wanderingCube-0.5rem-0.5rem {
-  0% {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg); }
-  25% {
-    -webkit-transform: translateX(0.375rem) rotate(-90deg) scale(0.5);
-            transform: translateX(0.375rem) rotate(-90deg) scale(0.5); }
-  50% {
-    /* Hack to make FF rotate in the right direction */
-    -webkit-transform: translateX(0.375rem) translateY(0.375rem) rotate(-179deg);
-            transform: translateX(0.375rem) translateY(0.375rem) rotate(-179deg); }
-  50.1% {
-    -webkit-transform: translateX(0.375rem) translateY(0.375rem) rotate(-180deg);
-            transform: translateX(0.375rem) translateY(0.375rem) rotate(-180deg); }
-  75% {
-    -webkit-transform: translateX(0) translateY(0.375rem) rotate(-270deg) scale(0.5);
-            transform: translateX(0) translateY(0.375rem) rotate(-270deg) scale(0.5); }
-  100% {
-    -webkit-transform: rotate(-360deg);
-            transform: rotate(-360deg); } }
-    .sk-loader.tiny.sk-wandering-cubes .sk-cube {
-      -webkit-animation: sk-wanderingCube-0.5rem-0.5rem 1.8s ease-in-out -1.8s infinite both;
-              animation: sk-wanderingCube-0.5rem-0.5rem 1.8s ease-in-out -1.8s infinite both; }
-      .sk-loader.tiny.sk-wandering-cubes .sk-cube:nth-child(2) {
-        -webkit-animation-delay: -0.9s;
-                animation-delay: -0.9s; }
-  .sk-loader.tiny.sk-pulse {
-    width: 0.5rem;
-    height: 0.5rem; }
-  .sk-loader.tiny.sk-chasing-dots {
-    width: 0.5rem;
-    height: 0.5rem; }
-  .sk-loader.tiny.sk-three-bounce {
-    width: 1rem;
-    height: auto; }
-    .sk-loader.tiny.sk-three-bounce .sk-child {
-      width: 0.25rem;
-      height: 0.25rem; }
-  .sk-loader.tiny.sk-circle {
-    width: 0.5rem;
-    height: 0.5rem; }
-  .sk-loader.tiny.sk-cube-grid {
-    width: 0.5rem;
-    height: 0.5rem; }
-  .sk-loader.tiny.sk-fading-circle {
-    width: 0.5rem;
-    height: 0.5rem; }
-  .sk-loader.tiny.sk-folding-cube {
-    width: 0.5rem;
-    height: 0.5rem; }
-  .sk-loader.tiny.sk-solid-circle {
-    width: 0.5rem;
-    height: 0.5rem; }
-    .sk-loader.tiny.sk-solid-circle .sk-child {
+  .sk-loader.tiny {
+    /*&.sk-wandering-cubes {
+    @include sk-wandering-cubes-size($width, $height);
+    @include sk-wandering-cubes-animation($width, $height);
+  }*/ }
+    .sk-loader.tiny.sk-rotating-plane {
       width: 0.5rem;
+      height: 0.5rem; }
+    .sk-loader.tiny.sk-double-bounce {
+      width: 0.5rem;
+      height: 0.5rem; }
+    .sk-loader.tiny.sk-wave {
+      width: 1rem;
       height: 0.5rem;
-      border-width: 0.2rem; }
-  .sk-loader.small.sk-rotating-plane {
-    width: 1rem;
-    height: 1rem; }
-  .sk-loader.small.sk-double-bounce {
-    width: 1rem;
-    height: 1rem; }
-  .sk-loader.small.sk-wave {
-    width: 2rem;
-    height: 1rem;
-    font-size: 0.4rem; }
-    .sk-loader.small.sk-wave .sk-rect {
-      width: 0.24rem; }
-  .sk-loader.small.sk-wandering-cubes {
-    width: 1rem;
-    height: 1rem; }
-    .sk-loader.small.sk-wandering-cubes .sk-cube {
-      width: 0.25rem;
-      height: 0.25rem; }
-
-@keyframes sk-wanderingCube-1rem-1rem {
-  0% {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg); }
-  25% {
-    -webkit-transform: translateX(0.75rem) rotate(-90deg) scale(0.5);
-            transform: translateX(0.75rem) rotate(-90deg) scale(0.5); }
-  50% {
-    /* Hack to make FF rotate in the right direction */
-    -webkit-transform: translateX(0.75rem) translateY(0.75rem) rotate(-179deg);
-            transform: translateX(0.75rem) translateY(0.75rem) rotate(-179deg); }
-  50.1% {
-    -webkit-transform: translateX(0.75rem) translateY(0.75rem) rotate(-180deg);
-            transform: translateX(0.75rem) translateY(0.75rem) rotate(-180deg); }
-  75% {
-    -webkit-transform: translateX(0) translateY(0.75rem) rotate(-270deg) scale(0.5);
-            transform: translateX(0) translateY(0.75rem) rotate(-270deg) scale(0.5); }
-  100% {
-    -webkit-transform: rotate(-360deg);
-            transform: rotate(-360deg); } }
-    .sk-loader.small.sk-wandering-cubes .sk-cube {
-      -webkit-animation: sk-wanderingCube-1rem-1rem 1.8s ease-in-out -1.8s infinite both;
-              animation: sk-wanderingCube-1rem-1rem 1.8s ease-in-out -1.8s infinite both; }
-      .sk-loader.small.sk-wandering-cubes .sk-cube:nth-child(2) {
-        -webkit-animation-delay: -0.9s;
-                animation-delay: -0.9s; }
-  .sk-loader.small.sk-pulse {
-    width: 1rem;
-    height: 1rem; }
-  .sk-loader.small.sk-chasing-dots {
-    width: 1rem;
-    height: 1rem; }
-  .sk-loader.small.sk-three-bounce {
-    width: 2rem;
-    height: auto; }
-    .sk-loader.small.sk-three-bounce .sk-child {
+      font-size: 0.2rem; }
+      .sk-loader.tiny.sk-wave .sk-rect {
+        width: 0.12rem; }
+    .sk-loader.tiny.sk-pulse {
       width: 0.5rem;
       height: 0.5rem; }
-  .sk-loader.small.sk-circle {
-    width: 1rem;
-    height: 1rem; }
-  .sk-loader.small.sk-cube-grid {
-    width: 1rem;
-    height: 1rem; }
-  .sk-loader.small.sk-fading-circle {
-    width: 1rem;
-    height: 1rem; }
-  .sk-loader.small.sk-folding-cube {
-    width: 1rem;
-    height: 1rem; }
-  .sk-loader.small.sk-solid-circle {
-    width: 1rem;
-    height: 1rem; }
-    .sk-loader.small.sk-solid-circle .sk-child {
+    .sk-loader.tiny.sk-chasing-dots {
+      width: 0.5rem;
+      height: 0.5rem; }
+    .sk-loader.tiny.sk-three-bounce {
       width: 1rem;
-      height: 1rem;
-      border-width: 0.2rem; }
-  .sk-loader.medium.sk-rotating-plane {
-    width: 2rem;
-    height: 2rem; }
-  .sk-loader.medium.sk-double-bounce {
-    width: 2rem;
-    height: 2rem; }
-  .sk-loader.medium.sk-wave {
-    width: 4rem;
-    height: 2rem;
-    font-size: 0.8rem; }
-    .sk-loader.medium.sk-wave .sk-rect {
-      width: 0.48rem; }
-  .sk-loader.medium.sk-wandering-cubes {
-    width: 2rem;
-    height: 2rem; }
-    .sk-loader.medium.sk-wandering-cubes .sk-cube {
+      height: auto; }
+      .sk-loader.tiny.sk-three-bounce .sk-child {
+        width: 0.25rem;
+        height: 0.25rem; }
+    .sk-loader.tiny.sk-circle {
       width: 0.5rem;
       height: 0.5rem; }
-
-@-webkit-keyframes sk-wanderingCube-2rem-2rem {
-  0% {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg); }
-  25% {
-    -webkit-transform: translateX(1.5rem) rotate(-90deg) scale(0.5);
-            transform: translateX(1.5rem) rotate(-90deg) scale(0.5); }
-  50% {
-    /* Hack to make FF rotate in the right direction */
-    -webkit-transform: translateX(1.5rem) translateY(1.5rem) rotate(-179deg);
-            transform: translateX(1.5rem) translateY(1.5rem) rotate(-179deg); }
-  50.1% {
-    -webkit-transform: translateX(1.5rem) translateY(1.5rem) rotate(-180deg);
-            transform: translateX(1.5rem) translateY(1.5rem) rotate(-180deg); }
-  75% {
-    -webkit-transform: translateX(0) translateY(1.5rem) rotate(-270deg) scale(0.5);
-            transform: translateX(0) translateY(1.5rem) rotate(-270deg) scale(0.5); }
-  100% {
-    -webkit-transform: rotate(-360deg);
-            transform: rotate(-360deg); } }
-
-@keyframes sk-wanderingCube-2rem-2rem {
-  0% {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg); }
-  25% {
-    -webkit-transform: translateX(1.5rem) rotate(-90deg) scale(0.5);
-            transform: translateX(1.5rem) rotate(-90deg) scale(0.5); }
-  50% {
-    /* Hack to make FF rotate in the right direction */
-    -webkit-transform: translateX(1.5rem) translateY(1.5rem) rotate(-179deg);
-            transform: translateX(1.5rem) translateY(1.5rem) rotate(-179deg); }
-  50.1% {
-    -webkit-transform: translateX(1.5rem) translateY(1.5rem) rotate(-180deg);
-            transform: translateX(1.5rem) translateY(1.5rem) rotate(-180deg); }
-  75% {
-    -webkit-transform: translateX(0) translateY(1.5rem) rotate(-270deg) scale(0.5);
-            transform: translateX(0) translateY(1.5rem) rotate(-270deg) scale(0.5); }
-  100% {
-    -webkit-transform: rotate(-360deg);
-            transform: rotate(-360deg); } }
-    .sk-loader.medium.sk-wandering-cubes .sk-cube {
-      -webkit-animation: sk-wanderingCube-2rem-2rem 1.8s ease-in-out -1.8s infinite both;
-              animation: sk-wanderingCube-2rem-2rem 1.8s ease-in-out -1.8s infinite both; }
-      .sk-loader.medium.sk-wandering-cubes .sk-cube:nth-child(2) {
-        -webkit-animation-delay: -0.9s;
-                animation-delay: -0.9s; }
-  .sk-loader.medium.sk-pulse {
-    width: 2rem;
-    height: 2rem; }
-  .sk-loader.medium.sk-chasing-dots {
-    width: 2rem;
-    height: 2rem; }
-  .sk-loader.medium.sk-three-bounce {
-    width: 4rem;
-    height: auto; }
-    .sk-loader.medium.sk-three-bounce .sk-child {
+    .sk-loader.tiny.sk-cube-grid {
+      width: 0.5rem;
+      height: 0.5rem; }
+    .sk-loader.tiny.sk-fading-circle {
+      width: 0.5rem;
+      height: 0.5rem; }
+    .sk-loader.tiny.sk-folding-cube {
+      width: 0.5rem;
+      height: 0.5rem; }
+    .sk-loader.tiny.sk-solid-circle {
+      width: 0.5rem;
+      height: 0.5rem; }
+      .sk-loader.tiny.sk-solid-circle .sk-child {
+        width: 0.5rem;
+        height: 0.5rem;
+        border-width: 0.2rem; }
+  .sk-loader.small {
+    /*&.sk-wandering-cubes {
+    @include sk-wandering-cubes-size($width, $height);
+    @include sk-wandering-cubes-animation($width, $height);
+  }*/ }
+    .sk-loader.small.sk-rotating-plane {
       width: 1rem;
       height: 1rem; }
-  .sk-loader.medium.sk-circle {
-    width: 2rem;
-    height: 2rem; }
-  .sk-loader.medium.sk-cube-grid {
-    width: 2rem;
-    height: 2rem; }
-  .sk-loader.medium.sk-fading-circle {
-    width: 2rem;
-    height: 2rem; }
-  .sk-loader.medium.sk-folding-cube {
-    width: 2rem;
-    height: 2rem; }
-  .sk-loader.medium.sk-solid-circle {
-    width: 2rem;
-    height: 2rem; }
-    .sk-loader.medium.sk-solid-circle .sk-child {
+    .sk-loader.small.sk-double-bounce {
+      width: 1rem;
+      height: 1rem; }
+    .sk-loader.small.sk-wave {
       width: 2rem;
-      height: 2rem;
-      border-width: 0.25rem; }
-  .sk-loader.large.sk-rotating-plane {
-    width: 4rem;
-    height: 4rem; }
-  .sk-loader.large.sk-double-bounce {
-    width: 4rem;
-    height: 4rem; }
-  .sk-loader.large.sk-wave {
-    width: 8rem;
-    height: 4rem;
-    font-size: 1.6rem; }
-    .sk-loader.large.sk-wave .sk-rect {
-      width: 0.96rem; }
-  .sk-loader.large.sk-wandering-cubes {
-    width: 4rem;
-    height: 4rem; }
-    .sk-loader.large.sk-wandering-cubes .sk-cube {
+      height: 1rem;
+      font-size: 0.4rem; }
+      .sk-loader.small.sk-wave .sk-rect {
+        width: 0.24rem; }
+    .sk-loader.small.sk-pulse {
       width: 1rem;
       height: 1rem; }
-
-@-webkit-keyframes sk-wanderingCube-4rem-4rem {
-  0% {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg); }
-  25% {
-    -webkit-transform: translateX(3rem) rotate(-90deg) scale(0.5);
-            transform: translateX(3rem) rotate(-90deg) scale(0.5); }
-  50% {
-    /* Hack to make FF rotate in the right direction */
-    -webkit-transform: translateX(3rem) translateY(3rem) rotate(-179deg);
-            transform: translateX(3rem) translateY(3rem) rotate(-179deg); }
-  50.1% {
-    -webkit-transform: translateX(3rem) translateY(3rem) rotate(-180deg);
-            transform: translateX(3rem) translateY(3rem) rotate(-180deg); }
-  75% {
-    -webkit-transform: translateX(0) translateY(3rem) rotate(-270deg) scale(0.5);
-            transform: translateX(0) translateY(3rem) rotate(-270deg) scale(0.5); }
-  100% {
-    -webkit-transform: rotate(-360deg);
-            transform: rotate(-360deg); } }
-
-@keyframes sk-wanderingCube-4rem-4rem {
-  0% {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg); }
-  25% {
-    -webkit-transform: translateX(3rem) rotate(-90deg) scale(0.5);
-            transform: translateX(3rem) rotate(-90deg) scale(0.5); }
-  50% {
-    /* Hack to make FF rotate in the right direction */
-    -webkit-transform: translateX(3rem) translateY(3rem) rotate(-179deg);
-            transform: translateX(3rem) translateY(3rem) rotate(-179deg); }
-  50.1% {
-    -webkit-transform: translateX(3rem) translateY(3rem) rotate(-180deg);
-            transform: translateX(3rem) translateY(3rem) rotate(-180deg); }
-  75% {
-    -webkit-transform: translateX(0) translateY(3rem) rotate(-270deg) scale(0.5);
-            transform: translateX(0) translateY(3rem) rotate(-270deg) scale(0.5); }
-  100% {
-    -webkit-transform: rotate(-360deg);
-            transform: rotate(-360deg); } }
-    .sk-loader.large.sk-wandering-cubes .sk-cube {
-      -webkit-animation: sk-wanderingCube-4rem-4rem 1.8s ease-in-out -1.8s infinite both;
-              animation: sk-wanderingCube-4rem-4rem 1.8s ease-in-out -1.8s infinite both; }
-      .sk-loader.large.sk-wandering-cubes .sk-cube:nth-child(2) {
-        -webkit-animation-delay: -0.9s;
-                animation-delay: -0.9s; }
-  .sk-loader.large.sk-pulse {
-    width: 4rem;
-    height: 4rem; }
-  .sk-loader.large.sk-chasing-dots {
-    width: 4rem;
-    height: 4rem; }
-  .sk-loader.large.sk-three-bounce {
-    width: 8rem;
-    height: auto; }
-    .sk-loader.large.sk-three-bounce .sk-child {
+    .sk-loader.small.sk-chasing-dots {
+      width: 1rem;
+      height: 1rem; }
+    .sk-loader.small.sk-three-bounce {
+      width: 2rem;
+      height: auto; }
+      .sk-loader.small.sk-three-bounce .sk-child {
+        width: 0.5rem;
+        height: 0.5rem; }
+    .sk-loader.small.sk-circle {
+      width: 1rem;
+      height: 1rem; }
+    .sk-loader.small.sk-cube-grid {
+      width: 1rem;
+      height: 1rem; }
+    .sk-loader.small.sk-fading-circle {
+      width: 1rem;
+      height: 1rem; }
+    .sk-loader.small.sk-folding-cube {
+      width: 1rem;
+      height: 1rem; }
+    .sk-loader.small.sk-solid-circle {
+      width: 1rem;
+      height: 1rem; }
+      .sk-loader.small.sk-solid-circle .sk-child {
+        width: 1rem;
+        height: 1rem;
+        border-width: 0.2rem; }
+  .sk-loader.medium {
+    /*&.sk-wandering-cubes {
+    @include sk-wandering-cubes-size($width, $height);
+    @include sk-wandering-cubes-animation($width, $height);
+  }*/ }
+    .sk-loader.medium.sk-rotating-plane {
       width: 2rem;
       height: 2rem; }
-  .sk-loader.large.sk-circle {
-    width: 4rem;
-    height: 4rem; }
-  .sk-loader.large.sk-cube-grid {
-    width: 4rem;
-    height: 4rem; }
-  .sk-loader.large.sk-fading-circle {
-    width: 4rem;
-    height: 4rem; }
-  .sk-loader.large.sk-folding-cube {
-    width: 4rem;
-    height: 4rem; }
-  .sk-loader.large.sk-solid-circle {
-    width: 4rem;
-    height: 4rem; }
-    .sk-loader.large.sk-solid-circle .sk-child {
+    .sk-loader.medium.sk-double-bounce {
+      width: 2rem;
+      height: 2rem; }
+    .sk-loader.medium.sk-wave {
       width: 4rem;
+      height: 2rem;
+      font-size: 0.8rem; }
+      .sk-loader.medium.sk-wave .sk-rect {
+        width: 0.48rem; }
+    .sk-loader.medium.sk-pulse {
+      width: 2rem;
+      height: 2rem; }
+    .sk-loader.medium.sk-chasing-dots {
+      width: 2rem;
+      height: 2rem; }
+    .sk-loader.medium.sk-three-bounce {
+      width: 4rem;
+      height: auto; }
+      .sk-loader.medium.sk-three-bounce .sk-child {
+        width: 1rem;
+        height: 1rem; }
+    .sk-loader.medium.sk-circle {
+      width: 2rem;
+      height: 2rem; }
+    .sk-loader.medium.sk-cube-grid {
+      width: 2rem;
+      height: 2rem; }
+    .sk-loader.medium.sk-fading-circle {
+      width: 2rem;
+      height: 2rem; }
+    .sk-loader.medium.sk-folding-cube {
+      width: 2rem;
+      height: 2rem; }
+    .sk-loader.medium.sk-solid-circle {
+      width: 2rem;
+      height: 2rem; }
+      .sk-loader.medium.sk-solid-circle .sk-child {
+        width: 2rem;
+        height: 2rem;
+        border-width: 0.25rem; }
+  .sk-loader.large {
+    /*&.sk-wandering-cubes {
+    @include sk-wandering-cubes-size($width, $height);
+    @include sk-wandering-cubes-animation($width, $height);
+  }*/ }
+    .sk-loader.large.sk-rotating-plane {
+      width: 4rem;
+      height: 4rem; }
+    .sk-loader.large.sk-double-bounce {
+      width: 4rem;
+      height: 4rem; }
+    .sk-loader.large.sk-wave {
+      width: 8rem;
       height: 4rem;
-      border-width: 0.5rem; }
+      font-size: 1.6rem; }
+      .sk-loader.large.sk-wave .sk-rect {
+        width: 0.96rem; }
+    .sk-loader.large.sk-pulse {
+      width: 4rem;
+      height: 4rem; }
+    .sk-loader.large.sk-chasing-dots {
+      width: 4rem;
+      height: 4rem; }
+    .sk-loader.large.sk-three-bounce {
+      width: 8rem;
+      height: auto; }
+      .sk-loader.large.sk-three-bounce .sk-child {
+        width: 2rem;
+        height: 2rem; }
+    .sk-loader.large.sk-circle {
+      width: 4rem;
+      height: 4rem; }
+    .sk-loader.large.sk-cube-grid {
+      width: 4rem;
+      height: 4rem; }
+    .sk-loader.large.sk-fading-circle {
+      width: 4rem;
+      height: 4rem; }
+    .sk-loader.large.sk-folding-cube {
+      width: 4rem;
+      height: 4rem; }
+    .sk-loader.large.sk-solid-circle {
+      width: 4rem;
+      height: 4rem; }
+      .sk-loader.large.sk-solid-circle .sk-child {
+        width: 4rem;
+        height: 4rem;
+        border-width: 0.5rem; }
 
 /*
   MENU BAR
@@ -9118,8 +8603,6 @@ meter {
   .menu-bar .sk-loader.sk-double-bounce .sk-child {
     background-color: #000; }
   .menu-bar .sk-loader.sk-wave .sk-rect {
-    background-color: #000; }
-  .menu-bar .sk-loader.sk-wandering-cubes .sk-cube {
     background-color: #000; }
   .menu-bar .sk-loader.sk-pulse {
     background-color: #000; }
@@ -10349,8 +9832,6 @@ meter {
       background-color: #fff; }
     .menu-bar.primary .sk-loader.sk-wave .sk-rect {
       background-color: #fff; }
-    .menu-bar.primary .sk-loader.sk-wandering-cubes .sk-cube {
-      background-color: #fff; }
     .menu-bar.primary .sk-loader.sk-pulse {
       background-color: #fff; }
     .menu-bar.primary .sk-loader.sk-chasing-dots .sk-child {
@@ -10398,8 +9879,6 @@ meter {
     .menu-bar.dark .sk-loader.sk-double-bounce .sk-child {
       background-color: #fff; }
     .menu-bar.dark .sk-loader.sk-wave .sk-rect {
-      background-color: #fff; }
-    .menu-bar.dark .sk-loader.sk-wandering-cubes .sk-cube {
       background-color: #fff; }
     .menu-bar.dark .sk-loader.sk-pulse {
       background-color: #fff; }
@@ -10495,8 +9974,6 @@ meter {
         background-color: #fff; }
       .menu-group.primary .menu-bar .sk-loader.sk-wave .sk-rect {
         background-color: #fff; }
-      .menu-group.primary .menu-bar .sk-loader.sk-wandering-cubes .sk-cube {
-        background-color: #fff; }
       .menu-group.primary .menu-bar .sk-loader.sk-pulse {
         background-color: #fff; }
       .menu-group.primary .menu-bar .sk-loader.sk-chasing-dots .sk-child {
@@ -10546,8 +10023,6 @@ meter {
       .menu-group.dark .menu-bar .sk-loader.sk-double-bounce .sk-child {
         background-color: #fff; }
       .menu-group.dark .menu-bar .sk-loader.sk-wave .sk-rect {
-        background-color: #fff; }
-      .menu-group.dark .menu-bar .sk-loader.sk-wandering-cubes .sk-cube {
         background-color: #fff; }
       .menu-group.dark .menu-bar .sk-loader.sk-pulse {
         background-color: #fff; }
