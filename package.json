@@ -54,7 +54,7 @@
     "gulp-highlight": "0.0.3",
     "gulp-if": "^2.0.1",
     "gulp-load-plugins": "^0.8.0",
-    "gulp-markdown": "^1.0.0",
+    "gulp-markdown": "^2.0.1",
     "gulp-minify-css": "^1.2.2",
     "gulp-ng-html2js": "^0.1.8",
     "gulp-prompt": "^0.1.2",
