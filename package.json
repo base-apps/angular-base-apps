@@ -50,7 +50,7 @@
     "gulp-concat": "^2.6.0",
     "gulp-connect": "^2.0.6",
     "gulp-filter": "^4.0.0",
-    "gulp-git": "^1.8.0",
+    "gulp-git": "^2.5.2",
     "gulp-highlight": "0.0.3",
     "gulp-if": "^2.0.1",
     "gulp-load-plugins": "^0.8.0",
