@@ -20,7 +20,7 @@ $loader-default-size: 1rem !default;
       &.sk-rotating-plane { @include sk-rotating-plane($margin: 0, $width: $loader-default-size, $height: $loader-default-size); }
       &.sk-double-bounce { @include sk-double-bounce($margin: 0, $width: $loader-default-size, $height: $loader-default-size); }
       &.sk-wave { @include sk-wave($margin: 0, $width: $loader-default-size * 1.25, $height: $loader-default-size); }
-      &.sk-wandering-cubes { @include sk-wandering-cubes($margin: 0, $width: $loader-default-size, $height: $loader-default-size); }
+      //&.sk-wandering-cubes { @include sk-wandering-cubes($margin: 0, $width: $loader-default-size, $height: $loader-default-size); }
       &.sk-pulse { @include sk-pulse($margin: 0, $width: $loader-default-size, $height: $loader-default-size); }
       &.sk-chasing-dots { @include sk-chasing-dots($margin: 0, $width: $loader-default-size, $height: $loader-default-size); }
       &.sk-three-bounce { @include sk-three-bounce($margin: 0, $width: $loader-default-size * 2, $height: auto); }

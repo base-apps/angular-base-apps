@@ -1,7 +1,7 @@
 $spinkit-rotating-plane-css-export: false;
 $spinkit-double-bounce-css-export: false;
 $spinkit-wave-css-export: false;
-$spinkit-wandering-cube-css-export: false;
+//$spinkit-wandering-cube-css-export: false;
 $spinkit-pulse-css-export: false;
 $spinkit-chasing-dots-css-export: false;
 $spinkit-three-bounce-css-export: false;
@@ -15,7 +15,7 @@ $spinkit-solid-circle-css-export: false;
   "../vendor/spinkit/spinners/1-rotating-plane",
   "../vendor/spinkit/spinners/2-double-bounce",
   "../vendor/spinkit/spinners/3-wave",
-  "../vendor/spinkit/spinners/4-wandering-cubes",
+  //"../vendor/spinkit/spinners/4-wandering-cubes",
   "../vendor/spinkit/spinners/5-pulse",
   "../vendor/spinkit/spinners/6-chasing-dots",
   "../vendor/spinkit/spinners/7-three-bounce",
@@ -29,7 +29,7 @@ $spinkit-solid-circle-css-export: false;
   &.sk-rotating-plane { @include sk-rotating-plane-color($color); }
   &.sk-double-bounce { @include sk-double-bounce-color($color); }
   &.sk-wave { @include sk-wave-color($color); }
-  &.sk-wandering-cubes { @include sk-wandering-cubes-color($color); }
+  //&.sk-wandering-cubes { @include sk-wandering-cubes-color($color); }
   &.sk-pulse { @include sk-pulse-color($color); }
   &.sk-chasing-dots { @include sk-chasing-dots-color($color); }
   &.sk-three-bounce { @include sk-three-bounce-color($color); }
@@ -44,10 +44,10 @@ $spinkit-solid-circle-css-export: false;
   &.sk-rotating-plane { @include sk-rotating-plane-size($width, $height); }
   &.sk-double-bounce { @include sk-double-bounce-size($width, $height); }
   &.sk-wave { @include sk-wave-size($width * 2, $height); }
-  &.sk-wandering-cubes {
+  /*&.sk-wandering-cubes {
     @include sk-wandering-cubes-size($width, $height);
     @include sk-wandering-cubes-animation($width, $height);
-  }
+  }*/
   &.sk-pulse { @include sk-pulse-size($width, $height); }
   &.sk-chasing-dots { @include sk-chasing-dots-size($width, $height); }
   &.sk-three-bounce { @include sk-three-bounce-size($width * 2, auto); }
